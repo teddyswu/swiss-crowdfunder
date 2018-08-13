@@ -76,15 +76,18 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
   gem 'pry-doc'
-  gem 'capistrano', '~> 3.6'
-  gem 'capistrano-rails', '~> 1.3'
-  gem 'capistrano-rbenv', '~> 2.1'
+  # gem 'capistrano', '~> 3.6'
+  gem "rvm-capistrano"
+  # gem "capistrano" ,:git => "https://github.com/capistrano/capistrano.git" # 站台部屬
+  gem "capistrano" , '2.15.4' # 站台部屬 升級 rails 4 加上版本號
+  # gem 'capistrano-rails', '~> 1.3'
+  # gem 'capistrano-rbenv', '~> 2.1'
   gem 'letter_opener'
 end
 
 group :production, :test do
   # Postgres
-  gem 'pg'
+  # gem 'pg'
 end
 
 group :test do
