@@ -1,0 +1,61 @@
+/* styles to undo bootstrap styles */
+
+body {
+  font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2.25em;
+  font-weight: 300;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn-block {
+  border-radius: 3px;
+  letter-spacing: 0.2px;
+  line-height: 35px;
+}
+
+.navbar {
+  font-weight: bold;
+  align-items: flex-end;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  @media (min-width: 576px) {
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+  }
+}
+
+.navbar-collapse {
+  align-items: flex-end;
+}
+
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding-left: 1em;
+    padding-right: 1em;
+    color: rgba(0,0,0,.75);
+
+    &:focus, &:hover, &:active {
+      color: rgba(0,0,0,.9);
+    }
+  }
+}
+
+.navbar-light .navbar-brand {
+  color: #DB0808;
+  font-size: 1.5rem;
+}
+
+.main_content {
+  padding-top: 1.5em;
+}
+
+.dropdown-menu {
+  border-radius: 0.1em;
+}

@@ -1,0 +1,24 @@
+default: &default
+  # adapter: sqlite3
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  # database: sogi_test_0413
+  # database: ph_test
+  database: crowdfunder
+  host: 127.0.0.1
+  username: root
+  password: "123456789"
+
+development:
+  <<: *default
+  # database: db/development.sqlite3
+
+test:
+  <<: *default
+  # database: db/test.sqlite3
+
+production:
+  <<: *default
+  # database: db/production.sqlite3

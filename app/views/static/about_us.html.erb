@@ -1,0 +1,41 @@
+<% content_for :main_content_class do %>bg_grey<% end %>
+
+<div class="container">
+  <div class="mid_box">
+    <div class="top_section_v2">
+      <h1><%= t('.about_us') %></h1>
+      <hr>
+    </div>
+    <div class="text-center mt-5">
+      <p>
+        Swiss Crowdfunder ist ein Produkt der Firmen
+        <a href="https://ungleich.ch/">ungleich</a>
+        und
+        <a href="https://200ok.ch/">200ok</a>.
+      </p>
+
+      <p>
+        Unser Ziel ist es eine attraktive, politisch neutrale und
+        mühelose Crowdfunding Plattform bereit zu stellen.
+      </p>
+      <p>
+        Die Firma ungleich glarus ag betreibt die Webseite und die
+        Dienste von Swiss Crowdfunder. Mehr dazu entnehmen Sie bitte
+        den
+        <%= link_to "Nutzungsbedingungen", static_terms_of_service_path %>
+        .
+      </p>
+
+      <h3>
+        Kontakt
+      </h3>
+      <p>
+        ungleich, info@ungleich.ch, (044) 534-66-22
+      </p>
+      <p>
+        200ok, info@200ok.ch, +41 76 405 05 67
+      </p>
+
+    </div>
+  </div>
+</div>

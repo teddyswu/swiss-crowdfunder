@@ -1,0 +1,6 @@
+:current: swiss_test # by project
+
+:swiss_test:
+  :project: swiss_test
+  :tmp_dir: swiss_test
+  :ip: 54.251.251.241

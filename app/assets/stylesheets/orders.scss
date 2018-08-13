@@ -1,0 +1,82 @@
+// Place all the styles related to the goodies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.orders-show {
+  .fa-check {
+    font-size: 8em;
+    color: #87BA8B;
+  }
+
+  .go-back, .go-back a {
+    color: #87BA8B;
+    &:hover {
+      color: #36CBDA;
+    }
+  }
+
+  .encouragement {
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-bottom: 0.25em;
+  }
+
+  hr {
+    background-color: #87BA8B;
+    width: 30%;
+    height: 1px;
+  }
+}
+
+#campaign_order_description {
+  display: block;
+  text-align: center;
+  font-weight: 300;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+#card-element {
+  width: 100% !important;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label[for=card-element] {
+  display: block;
+  width: 100%;
+}
+
+.StripeElement {
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+#order_supporter_attributes_country {
+  -webkit-appearance: none;
+}

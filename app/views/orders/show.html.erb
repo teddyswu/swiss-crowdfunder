@@ -1,0 +1,27 @@
+<% content_for :main_content_class do %>bg_grey<% end %>
+
+
+<div class="container">
+  <div class="mid_box text-center">
+    <div class="top_icon"><%= image_tag('/success.svg') %></div>
+    <h1><%= t('.success') %></h1>
+    <hr />
+    <p class="encouragement">
+      <%= t('.text') %>
+    </p>
+    <p>
+      <%= t('.bought_package') %>
+      <b> <%= @goody.title %> </b>.
+    </p>
+    <%- unless @goody.campaign.order_success.blank? %>
+      <p>
+        <%= raw @goody.campaign.order_success_html %>
+      </p>
+    <% end %>
+    <p class="go-back">
+      <%= link_to "<i class=\"fa fa-arrow-left\" aria-hidden=\"true\"></i> #{t('.back_to_campaign')}"
+          .html_safe,
+          @goody.campaign %>
+    </p>
+  </div>
+</div>

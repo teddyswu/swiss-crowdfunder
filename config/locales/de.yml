@@ -1,0 +1,93 @@
+de:
+  number:
+    currency:
+      format:
+        delimiter: "'"
+        unit: "CHF"
+  percentage:
+    format:
+      delimiter: ''
+      separator: '.'
+  errors:
+    messages:
+      extension_whitelist_error: "Keine %{extension} Dateien hochladen! Erlaubt sind: %{allowed_types}."
+    not_found:
+      page_not_found_1: "Seite nicht gefunden"
+      page_not_found_2: "Etwas ist schief gelaufen!"
+      page_not_found_3: 'Sie können uns unter <a href="mailto:info@swiss-crowdfunding.com">info@swiss-crowdfunding.com</a> kontaktieren und wir kommen umgehend auf Sie zurück!'
+  layouts:
+    application:
+      home: "Home"
+      contact: "Kontakt"
+      language: "Language"
+      terms-of-service: "Nutzungsbedingungen"
+      about-us: "Über uns"
+  root:
+    index:
+      coming_soon: "Demnächst verfügbar"
+      view_project: "Projekt Ansehen"
+      no_campaigns: "Im Moment gibt es keine Projekte."
+      learn_more: "Mehr erfahren"
+  goodies:
+    index:
+      support_the_project: "Unterstützen Sie dieses Projekt"
+      pledge: "Weiter"
+      price: "Betrag :"
+      quantity: "Anzahl übrig: %{quantity}"
+  orders:
+    new:
+      confirmation: "Bestätigung"
+      selected_package: "Sie haben folgendes Paket gewählt: "
+      i_hereby_acknowledge: "Ich bestätige hiermit <b>%{price} für %{currency}</b> zu bezahlen."
+      credit_card: "Kreditkarte"
+      i_agree: "Ich bestätige hiermit dieses Projekt unterstützen zu
+  möchten und akzeptiere die <a href='/static/terms-of-service'>Nutzungsbedingungen</a> von Swiss Crowdfunder."
+      create_order: "Unterstützen"
+      first_name: "Vorname"
+      last_name: "Nachname"
+      email: "Email"
+      date_of_birth: "Geburtsdatum"
+      street: "Strasse"
+      postal_code: "Postleitzahl"
+      city: "Ort"
+      state: "Bundesstaat"
+      country: "Land"
+    show:
+      back_to_campaign: "Zurück zur Kampagne"
+      success: "Bestellung erfolgreich"
+      bought_package: "Sie haben folgendes Paket erstanden: "
+      text: "Sie haben eine grossartige Wahl getroffen!"
+  campaigns:
+    show:
+      time_until_start: "Noch %{time} bis zum Start!"
+      funding_goal: "Finanzierungsziel"
+      funding_amount_raised: "Bereits erreicht"
+      funding_supporters: "Anzahl an Unterstützern"
+      support_the_project: "Unterstützen Sie dieses Projekt"
+      description: "Beschreibung"
+      goodies: "Goodies"
+      start: "Begin"
+      end: "Ziel"
+      about: "Über diese Kampagne"
+  shared:
+    campaign_card:
+      funding_goal: "Finanzierungsziel"
+      raised: "bereits erreicht"
+      supporters: "Unterstützer"
+      start: "Begin"
+      end: "Ziel"
+      glarnerpick: "Glarnerpick"
+    goody:
+      pledge: "Weiter"
+      price: "Betrag :"
+      quantity: "Anzahl übrig: %{quantity}"
+      backers: "Unterstützer : %{quantity}"
+  supporter:
+    validation:
+      not_old_enough: "Mindestalter ist 18 Jahre"
+      is_not_a_date: "Geburtsdatum muss ein Datum sein"
+  static:
+    terms_of_service:
+      terms_of_service: "Nutzungsbedingungen"
+    about_us:
+      about_us: "Über uns"
