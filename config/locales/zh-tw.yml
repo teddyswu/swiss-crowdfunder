@@ -1,0 +1,85 @@
+"zh-TW":
+  number:
+    currency:
+      format:
+        unit: "TWD"
+  errors:
+    not_found:
+      page_not_found_1: "找不到網頁"
+      page_not_found_2: "一定有什麼問題!"
+      page_not_found_3: '你可以聯繫我們 <a href="mailto:info@sogi.com.tw">info@sogi.com.tw</a>'
+  layouts:
+    application:
+      home: "首頁"
+      contact: "聯繫"
+      language: "語言"
+      terms-of-service: "服務條款"
+      about-us: "關於我們"
+  root:
+    index:
+      coming_soon: "即將推出!"
+      view_project: "查看專案"
+      no_campaigns: "目前沒有項目"
+      learn_more: "了解更多"
+  goodies:
+    index:
+      support_the_project: "支持這個專案"
+      pledge: "保證"
+      price: "價格 :"
+      quantity: "剩餘數量: %{quantity}"
+  orders:
+    new:
+      confirmation: "確認"
+      selected_package: "您已選擇該項目"
+      i_hereby_acknowledge: "我在此確認支付 <strong>%{price} %{currency}</strong>"
+      credit_card: "信用卡或借記卡"
+      i_agree: "我同意支持此項目並接受<a href='/static/terms-of-service'>服務條款</a>."
+      create_order: "建立訂單"
+      first_name: "名字"
+      last_name: "姓氏"
+      email: "Email"
+      date_of_birth: "出生日期"
+      street: "街道"
+      postal_code: "郵遞區號"
+      city: "城市"
+      state: "州"
+      country: "國家"
+    show:
+      back_to_campaign: "回到活動"
+      success: "完成訂單"
+      text: "你做了一個很棒的選擇!"
+      bought_package: "您已成功購買該項目"
+  campaigns:
+    show:
+      time_until_start: "直到 %{time} 才開始!"
+      funding_goal: "資金目標"
+      funding_amount_raised: "我們達成了"
+      funding_supporters: "支持者人數"
+      support_the_project: "支持該專案"
+      description: "描述"
+      goodies: "商品"
+      start: "開始"
+      end: "結束"
+      about: "關於這個活動"
+  shared:
+    campaign_card:
+      funding_goal: "資金目標"
+      raised: "上調"
+      supporters: "支持者"
+      start: "開始"
+      end: "結束"
+      glarnerpick: "Glarnerpick"
+    goody:
+      pledge: "贊助此項回饋"
+      price: "價格 :"
+      quantity: "剩餘數量: %{quantity}"
+      backers: "支持者 : %{quantity}"
+  supporter:
+    validation:
+      not_old_enough: "不夠老"
+      is_not_a_date: "不是有效日期"
+  static:
+    terms_of_service:
+      terms_of_service: "服務條款"
+    about_us:
+      about_us: "關於我們"

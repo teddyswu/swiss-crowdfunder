@@ -3,7 +3,7 @@
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Swiss Crowdfunder</title>
+    <title>募🐔平台</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
   <body class="<%= [controller_name, action_name] * '-' %>">
     <!-- top_navbar (todo: partial) -->
     <nav class="navbar navbar-expand-md navbar-light bg-white">
-      <%= link_to "Swiss Crowdfunder", root_path, class: "navbar-brand" %>
+      <%= link_to "募🐔平台", root_path, class: "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <%= link_to "Deutsch", request.params.merge(locale: :de), class:"dropdown-item" %>
                     <%= link_to "English", request.params.merge(locale: :en), class:"dropdown-item" %>
+                    <%= link_to "中文", request.params.merge(locale: :"zh-TW"), class:"dropdown-item" %>
                   </div>
                 </li>
               </ul>
@@ -89,15 +90,15 @@
         </div>
         <div class="col-6">
           <div class="footer_brand">
-            <div class="footer_brand_title">Swiss Crowdfunder</div>
-            <!-- <ul class="list-inline">
+            <div class="footer_brand_title">募🐔平台</div>
+            <ul class="list-inline">
               <li class="list-inline-item"><a href=""><span class="fa fa-twitter"></span></a></li>
               <li class="list-inline-item"><a href=""><span class="fa fa-facebook-official"></span></a></li>
               <li class="list-inline-item"><a href=""><span class="fa fa-tumblr"></span></a></li>
               <li class="list-inline-item"><a href=""><span class="fa fa-instagram"></span></a></li>
               <li class="list-inline-item"><a href=""><span class="fa fa-pinterest"></span></a></li>
               <li class="list-inline-item"><a href=""><span class="fa fa-youtube-play"></span></a></li>
-            </ul> -->
+            </ul>
           </div>
         </div>
       </div>
