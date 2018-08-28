@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @goody = Goody.find(params[:goody_id])
     @order = Order.new(order_params)
     @order.goody = @goody
-    @order.amount = @goody.price
+    @order.amount = @goody.price + params[:bonus].to_i
     @order.payment_type = "bank"
     @order.quantity = 1
     @order.paid = false

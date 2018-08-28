@@ -92,35 +92,54 @@
     </div>
   </div>
 
-  <!-- <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
-       <a class="nav-item nav-link active" id="nav-campaign-tab" data-toggle="tab" href="#nav-campaign" role="tab"
-       aria-controls="nav-campaign" aria-expanded="true">Campaign</a>
-       <a class="nav-item nav-link" id="nav-faq-tab" data-toggle="tab" href="#nav-faq" role="tab"
-       aria-controls="nav-faq">FAQ</a>
-       <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab"
-       aria-controls="nav-updates">Updates</a>
-       <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"
-       aria-controls="nav-backers">Backers</a>
-       </nav> -->
+  <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-campaign-tab" data-toggle="tab" href="#nav-campaign" role="tab" aria-controls="nav-campaign" aria-expanded="true">內容</a>
+    <a class="nav-item nav-link" id="nav-faq-tab" data-toggle="tab" href="#nav-faq" role="tab"
+     aria-controls="nav-faq">問與答</a>
+    <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新</a>
+    <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
+  </nav>
 </div>
 
 <hr class="mt-0 mb-4">
 
 <div class="container">
   <div class="campaign_body">
-    <!-- <div class="tab-content" id="nav-tabContent">
-         <div class="tab-pane fade show active" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab">
-         </div>
-         </div> -->
     <div class="row">
       <div class="col-md-7 col-lg-8">
-        <h2><%= t('.about') %></h2>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab">
+            <h2><%= t('.about') %></h2>
+            <article>
+              <section>
+                <%= raw @campaign.description_html %>
+              </section>
+            </article>
+          </div>
+          <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+            <article>
+              <section>
+                這是問與答
+              </section>
+            </article>
+          </div>
+          <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-updates-tab">
+            <article>
+              <section>
+                這是更新
+              </section>
+            </article>
+          </div>
+        </div>
+      </div>
+      
+        <!-- <h2><%#= t('.about') %></h2>
         <article>
           <section>
-            <%= raw @campaign.description_html %>
+            <%#= raw @campaign.description_html %>
           </section>
-        </article>
-      </div>
+        </article> -->
+      
       <aside class="col-md-5 col-lg-4">
         <h2><%= t('.goodies') %></h2>
         <% @campaign.goodies.each do |goody| %>

@@ -51,9 +51,9 @@
       bought_package: "您已成功購買該項目"
   campaigns:
     show:
-      time_until_start: "直到 %{time} 才開始!"
+      time_until_start: "還有 %{time} 才開始!"
       funding_goal: "資金目標"
-      funding_amount_raised: "我們達成了"
+      funding_amount_raised: "目前達成"
       funding_supporters: "支持者人數"
       support_the_project: "支持該專案"
       description: "描述"
@@ -83,3 +83,8 @@
       terms_of_service: "服務條款"
     about_us:
       about_us: "關於我們"
+  active_admin:
+    filters:
+      predicates:
+        from: 從
+        to: 到

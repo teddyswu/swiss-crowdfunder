@@ -8,7 +8,7 @@
         <%= t('.selected_package') %> <strong><%= @goody.title %></strong>.
       </p>
       <p>
-        <%= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "CHF") %>
+        <%= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "TWD") %>
       </p>
     </div>
 
@@ -42,7 +42,14 @@
             </div>
         </div>
       <% end %>
-
+      <div class="row">
+        <div class="col-sm-4">
+          額外贊助
+        </div>
+        <div class="col-sm-8">
+          <%= number_field_tag 'bonus' %>
+        </div>
+      </div>
       <%- unless @goody.campaign.order_description.blank? %>
         <div class="jumbotron mt-4" id="campaign_order_description">
           <%= raw @goody.campaign.order_description_html %>

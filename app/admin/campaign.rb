@@ -32,7 +32,7 @@ ActiveAdmin.register Campaign do
   form do |f|
     inputs do
       input :title
-      input :active, label: "Active (will otherwise only be visible through unique slug URL)"
+      input :active, label: "顯示 (否則只能夠過連結顯示)"
       input :claim
       input :goal
       input :email

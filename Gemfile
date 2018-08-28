@@ -45,7 +45,7 @@ gem 'config'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
@@ -63,8 +63,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6'
   gem 'guard-rspec', require: false
-  gem "rack-livereload"
-  gem 'guard-livereload', '~> 2.5', require: false
+  # gem "rack-livereload"
+  # gem 'guard-livereload', '~> 2.5', require: false
 end
 
 group :development do
