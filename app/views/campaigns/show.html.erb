@@ -101,6 +101,7 @@
     <a class="nav-item nav-link" id="nav-faq-tab" data-toggle="tab" href="#nav-faq" role="tab"
      aria-controls="nav-faq">問與答</a>
     <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新</a>
+    <a class="nav-item nav-link" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言</a>
     <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">提案團隊</a>
     <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
   </nav>
@@ -140,6 +141,13 @@
                   <%= render partial: 'update_from', locals: { campaign_update: @campaign_update } if current_user.id == @campaign.user_id %>
                 <% end %>
                 <%= render partial: 'update', locals: { campaign_updates: @campaign_updates } %>
+              </section>
+            </article>
+          </div>
+          <div class="tab-pane fade" id="nav-reply" role="tabpanel" aria-labelledby="nav-reply-tab">
+            <article>
+              <section>
+                留言
               </section>
             </article>
           </div>
