@@ -5,9 +5,9 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1.json
   def show
     @campaign_qa = CampaignQa.new
-    @campaign_qas = CampaignQa.all
+    @campaign_qas = CampaignQa.find_by(:campaign_id => @campaign.id) || []
     @campaign_update = CampaignUpdate.new
-    @campaign_updates = CampaignUpdate.all
+    @campaign_updates = CampaignUpdate.find_by(:campaign_id => @campaign.id) || []
   end
 
   private
