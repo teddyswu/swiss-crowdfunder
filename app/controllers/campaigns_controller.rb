@@ -4,6 +4,10 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @campaign_qa = CampaignQa.new
+    @campaign_qas = CampaignQa.all
+    @campaign_update = CampaignUpdate.new
+    @campaign_updates = CampaignUpdate.all
   end
 
   private

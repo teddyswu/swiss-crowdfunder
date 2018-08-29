@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   devise_for :users#, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  resources :campaign_qas
+  resources :campaign_updates
+
   resources :campaigns, only: [:show] do
     resources :goodies, only: [:index] do
       resources :orders, only: [:new, :show, :create]

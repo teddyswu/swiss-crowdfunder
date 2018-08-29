@@ -13,7 +13,7 @@
 
     <script src="https://js.stripe.com/v3/"></script>
 
-    <% if Rails.env.production? %>
+    <%# if Rails.env.production? %>
       <!-- Global Site Tag (gtag.js) - Google Analytics -->
       <!--  <script src="https://www.googletagmanager.com/gtag/js?id=UA-107377421-1"></script>
        <script>
@@ -21,7 +21,7 @@
          gtag('js', new Date());
          gtag('config', 'UA-107377421-1');
        </script> -->
-    <% end %>
+    <%# end %>
 
     <%= render partial: 'shared/favicon' %>
 
@@ -42,7 +42,7 @@
             <%= link_to t('.home'), root_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "提案", static_about_us_path, class:"nav-link" %>
+            <%= link_to "提案權限", static_about_us_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to t(".about-us"), static_about_us_path, class:"nav-link" %>

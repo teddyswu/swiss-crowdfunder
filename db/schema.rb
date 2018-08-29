@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180824042805) do
+ActiveRecord::Schema.define(version: 20180829042800) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 20180824042805) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "campaign_qas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "campaign_id"
+    t.text "campaign_question"
+    t.text "campaign_answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_campaign_qas_on_campaign_id"
+  end
+
+  create_table "campaign_updates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "campaign_id"
+    t.text "campaign_title"
+    t.text "campaign_content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_campaign_updates_on_campaign_id"
   end
 
   create_table "campaigns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -47,7 +66,9 @@ ActiveRecord::Schema.define(version: 20180824042805) do
     t.text "order_success_html"
     t.string "image"
     t.boolean "active", default: false
+    t.bigint "user_id"
     t.index ["slug"], name: "index_campaigns_on_slug", unique: true
+    t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -119,6 +140,9 @@ ActiveRecord::Schema.define(version: 20180824042805) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "campaign_qas", "campaigns"
+  add_foreign_key "campaign_updates", "campaigns"
+  add_foreign_key "campaigns", "users"
   add_foreign_key "goodies", "campaigns"
   add_foreign_key "orders", "goodies"
   add_foreign_key "supporters", "orders"

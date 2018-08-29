@@ -1,0 +1,30 @@
+<script src="/ckeditor/ckeditor.js"></script>
+<%= form_for @campaign_update, :url => campaign_update_path(@campaign_update), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
+  <div class="row form-group">
+    <div class="col col-md-3">
+      <%= f.label("標題", :class => 'form-control-label') %>
+    </div>
+    <div class="col-12 col-md-9">
+      <%= f.text_field(:campaign_title, :class => "form-control")%>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col col-md-3">
+      <%= f.label("內容", :class => 'form-control-label') %>
+    </div>
+    <div class="col-12 col-md-9">
+      <%= f.text_area(:campaign_content, :class => "form-control")%>
+    </div>
+    <script>
+      CKEDITOR.replace( 'campaign_update_campaign_content' );
+    </script>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary btn-sm">
+      <i class="fa fa-dot-circle-o"></i> Submit
+    </button>
+    <button type="reset" class="btn btn-danger btn-sm">
+      <i class="fa fa-ban"></i> Reset
+    </button>
+  </div>
+<% end %>

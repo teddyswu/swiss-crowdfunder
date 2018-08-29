@@ -1,0 +1,2 @@
+class CampaignQa < ApplicationRecord
+end

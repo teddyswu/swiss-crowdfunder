@@ -1,0 +1,27 @@
+<%= form_for campaign_qa, :url => campaign_qas_path(campaign_qa), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+	<div class="row form-group">
+		<%= f.hidden_field :campaign_id, :value => @campaign.id%>
+    <div class="col col-md-3">
+      <%= f.label("問題", :class => 'form-control-label') %>
+    </div>
+    <div class="col-12 col-md-9">
+      <%= f.text_field(:campaign_question, :class => "form-control")%>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col col-md-3">
+      <%= f.label("答案", :class => 'form-control-label') %>
+    </div>
+    <div class="col-12 col-md-9">
+      <%= f.text_field(:campaign_answer, :class => "form-control")%>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary btn-sm">
+      <i class="fa fa-dot-circle-o"></i> Submit
+    </button>
+    <button type="reset" class="btn btn-danger btn-sm">
+      <i class="fa fa-ban"></i> Reset
+    </button>
+  </div>
+<% end %>

@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :campaign_update do
+    
+  end
+  factory :campaign_qa do
+    
+  end
 
   factory :campaign do
     sequence(:title) { |n| "Campaign #{n}" }

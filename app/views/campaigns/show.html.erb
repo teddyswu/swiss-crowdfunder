@@ -30,8 +30,13 @@
           <strong><%= number_to_currency(@campaign.goal, precision: 0) %> </strong>
         </div>
       </div>
+      <div class="row">
+        <div class="col text-right">
+          <div class="small mt-1"> 剩餘天數</div>
+          <strong><%= (@campaign.end_date - Date.today).to_i %> </strong>
+        </div>
+      </div>
       <hr/>
-
       <div class="d-flex align-items-end flex-wrap campaign_stat mb-2">
         <div><%= t '.funding_amount_raised' %></div>
         <div class="text-right number"><%= number_to_currency(@campaign.amount_raised, precision: 0) %></div>
@@ -91,24 +96,26 @@
       </div>
     </div>
   </div>
-
   <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
     <a class="nav-item nav-link active" id="nav-campaign-tab" data-toggle="tab" href="#nav-campaign" role="tab" aria-controls="nav-campaign" aria-expanded="true">內容</a>
     <a class="nav-item nav-link" id="nav-faq-tab" data-toggle="tab" href="#nav-faq" role="tab"
      aria-controls="nav-faq">問與答</a>
     <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新</a>
+    <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">提案團隊</a>
     <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
   </nav>
 </div>
-
 <hr class="mt-0 mb-4">
-
 <div class="container">
   <div class="campaign_body">
     <div class="row">
       <div class="col-md-7 col-lg-8">
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab">
+          <div class="tab-pane fade show active" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab" >
+            <div>
+              <small style="line-height: 39px;color: grey;">最新進度</small>
+              <%= @campaign.campaign_updates.last.campaign_title %>
+            </div>
             <h2><%= t('.about') %></h2>
             <article>
               <section>
@@ -119,14 +126,27 @@
           <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
             <article>
               <section>
-                這是問與答
+                <% if user_signed_in? %>
+                  <%= render partial: 'qa_from', locals: { campaign_qa: @campaign_qa } if current_user.id == @campaign.user_id %>
+                <% end %>
+                <%= render partial: 'qa', locals: { campaign_qas: @campaign_qas } %>
               </section>
             </article>
           </div>
           <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-updates-tab">
             <article>
               <section>
-                這是更新
+                <% if user_signed_in? %>
+                  <%= render partial: 'update_from', locals: { campaign_update: @campaign_update } if current_user.id == @campaign.user_id %>
+                <% end %>
+                <%= render partial: 'update', locals: { campaign_updates: @campaign_updates } %>
+              </section>
+            </article>
+          </div>
+          <div class="tab-pane fade" id="nav-gruop" role="tabpanel" aria-labelledby="nav-gruop-tab">
+            <article>
+              <section>
+                這是提案團隊
               </section>
             </article>
           </div>
