@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col text-right">
           <div class="small mt-1"> 剩餘天數</div>
-          <strong><%= (@campaign.end_date - Date.today).to_i %> </strong>
+          <strong><%= render_remain_day(@campaign.end_date) %> </strong>
         </div>
       </div>
       <hr/>
@@ -149,7 +149,10 @@
           <div class="tab-pane fade" id="nav-reply" role="tabpanel" aria-labelledby="nav-reply-tab">
             <article>
               <section>
-                留言
+                <% if user_signed_in? %>
+                  <%= render partial: 'reply_from', locals: { campaign_reply: @campaign_reply } %>
+                <% end %>
+                <%= render partial: 'reply', locals: { campaign_replies: @campaign_replies } %>
               </section>
             </article>
           </div>

@@ -11,4 +11,8 @@ module CampaignsHelper
     campaign.is_active? ? '' : 'disabled'
   end
 
+  def render_remain_day(day)
+  	(day - Date.today).to_i > 1 ? (day - Date.today).to_i : "已結束"
+  end
+
 end

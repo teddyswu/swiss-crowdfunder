@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :campaign_qas
   resources :campaign_updates
+  resources :campaign_replies
 
   resources :campaigns, only: [:show] do
     resources :goodies, only: [:index] do

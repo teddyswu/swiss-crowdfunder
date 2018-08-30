@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :campaign_reply do
+    
+  end
   factory :campaign_update do
     
   end

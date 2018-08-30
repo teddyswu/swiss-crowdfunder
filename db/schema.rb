@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180829042800) do
+ActiveRecord::Schema.define(version: 20180830061814) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 20180829042800) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_campaign_qas_on_campaign_id"
+  end
+
+  create_table "campaign_replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "campaign_id"
+    t.bigint "user_id"
+    t.text "content"
+    t.text "reply"
+    t.integer "reply_user_id"
+    t.boolean "enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_campaign_replies_on_campaign_id"
+    t.index ["user_id"], name: "index_campaign_replies_on_user_id"
   end
 
   create_table "campaign_updates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -141,6 +154,8 @@ ActiveRecord::Schema.define(version: 20180829042800) do
   end
 
   add_foreign_key "campaign_qas", "campaigns"
+  add_foreign_key "campaign_replies", "campaigns"
+  add_foreign_key "campaign_replies", "users"
   add_foreign_key "campaign_updates", "campaigns"
   add_foreign_key "campaigns", "users"
   add_foreign_key "goodies", "campaigns"

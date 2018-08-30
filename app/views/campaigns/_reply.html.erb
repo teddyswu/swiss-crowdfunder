@@ -1,0 +1,30 @@
+<% campaign_replies.each_with_index do |crp, i|%>
+	<div style="font-size: 0.875rem;margin-bottom: 20px;">
+	  <div style="font-weight: bold">
+	  	<%= crp.user.email %> 於 <%= crp.created_at.strftime('%F')%>
+	    <p><%= crp.content %></p>
+      <% if user_signed_in? %>
+      	<% if current_user.id == @campaign.user_id && crp.reply.blank?%>
+	    		<%= form_for crp, :url => campaign_reply_path(crp), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
+	    			<%= f.hidden_field :reply_user_id, :value => current_user.id%>
+	    			<%= f.hidden_field :campaign_id, :value => @campaign.id%>
+		    		<div class="col col-md-3">
+				      <%= f.label("回覆", :class => 'form-control-label') %>
+				    </div>
+				    <div class="col-12 col-md-9">
+				      <%= f.text_area(:reply, :class => "form-control")%>
+				    </div>
+				    <button type="submit" class="btn btn-primary btn-sm">
+				      <i class="fa fa-dot-circle-o"></i> Submit
+				    </button>
+	    		<% end %>
+	    	<% end %>
+	    <% end %>
+	  </div>
+	  <div class="text-right" style="font-size: 0.875rem;background-color: #f4f4f4;padding: 1rem;">
+	    <%= crp.reply%><br />
+	    <%= crp.reply_user_id%>
+	  </div>
+	</div>
+	<hr>
+<% end %>

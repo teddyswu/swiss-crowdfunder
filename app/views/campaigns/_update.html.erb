@@ -1,7 +1,7 @@
-<% campaign_updates.each_with_index do |cup, i|%>
+<% campaign_updates.each do |cup|%>
 	<div style="font-size: 0.875rem">
 	  <div style="font-weight: bold">
-	    <%= i + 1 %>. <%= cup.campaign_title %>
+	    <%= cup.created_at.strftime('%F') %> <%= cup.campaign_title %>
       <% if user_signed_in? %>
       	<% if current_user.id == @campaign.user_id%>
 	    		<%= link_to "編輯", "##", :onclick => "window.open('#{edit_campaign_update_path(cup.id)}', '編輯', config='height=500,width=500');"%>
