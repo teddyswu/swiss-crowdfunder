@@ -100,8 +100,8 @@
     <a class="nav-item nav-link active" id="nav-campaign-tab" data-toggle="tab" href="#nav-campaign" role="tab" aria-controls="nav-campaign" aria-expanded="true">內容</a>
     <a class="nav-item nav-link" id="nav-faq-tab" data-toggle="tab" href="#nav-faq" role="tab"
      aria-controls="nav-faq">問與答</a>
-    <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新</a>
-    <a class="nav-item nav-link" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言</a>
+    <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新(<%= @campaign.campaign_updates.size %>)</a>
+    <a class="nav-item nav-link" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言(<%= @campaign.campaign_replies.size %>)</a>
     <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">提案團隊</a>
     <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
   </nav>
