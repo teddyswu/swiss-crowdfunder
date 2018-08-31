@@ -1,0 +1,7 @@
+ID:<%= @user.id%><br />
+暱稱：<%= @user.nickname %>
+<hr>
+發起募資<br />
+<% @user.campaigns.each do |campaign|%>
+	<%= campaign.title %><br />
+<% end %>

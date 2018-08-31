@@ -25,7 +25,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta.2'
 
-gem 'devise'
+gem 'devise', '4.5.0'
 gem 'activeadmin'
 gem 'redcarpet'
 gem 'simple_form'

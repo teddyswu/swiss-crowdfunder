@@ -396,7 +396,7 @@ DEPENDENCIES
   config
   country_select
   database_cleaner
-  devise
+  devise (= 4.5.0)
   exception_notification
   factory_bot_rails (~> 4.0)
   friendly_id

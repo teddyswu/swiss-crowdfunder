@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :user_profile do
+    
+  end
   factory :campaign_reply do
     
   end

@@ -1,7 +1,7 @@
 <% campaign_replies.each_with_index do |crp, i|%>
 	<div style="font-size: 0.875rem;margin-bottom: 20px;">
 	  <div style="font-weight: bold">
-	  	<%= crp.user.email %> 於 <%= crp.created_at.strftime('%F')%>
+	  	<%= link_to crp.user.nickname, user_path(crp.id) %> 於 <%= crp.created_at.strftime('%F')%>
 	    <p><%= crp.content %></p>
       <% if user_signed_in? %>
       	<% if current_user.id == @campaign.user_id && crp.reply.blank?%>

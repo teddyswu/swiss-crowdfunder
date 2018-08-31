@@ -11,6 +11,8 @@ class Campaign < ApplicationRecord
   has_many :campaign_updates
   has_many :campaign_replies
 
+  belongs_to :user
+
   validates_presence_of :description
   validates :goal, numericality: true, presence: true
   validates :start_date, presence: true

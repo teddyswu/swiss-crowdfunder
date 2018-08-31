@@ -64,7 +64,7 @@
   shared:
     campaign_card:
       funding_goal: "資金目標"
-      raised: "上調"
+      raised: "已經達成"
       supporters: "支持者"
       start: "開始"
       end: "結束"

@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   get 'static/privacy-policy', to: 'static#privacy_policy'
   get 'static/exception_test', to: 'static#exception_test'
 
-  devise_for :users#, ActiveAdmin::Devise.config
+  #devise_for :users, ActiveAdmin::Devise.config
+  devise_for :users, :controllers => { :registrations => "user/registrations" } do
+  end
   ActiveAdmin.routes(self)
-
+  resources :users
   resources :campaign_qas
   resources :campaign_updates
   resources :campaign_replies
