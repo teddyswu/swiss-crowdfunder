@@ -22,6 +22,8 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# gem 'active_merchant_allpay', github: 'imgarylai/active_merchant_allpay'
+
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta.2'
 

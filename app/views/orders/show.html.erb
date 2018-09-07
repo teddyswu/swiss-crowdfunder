@@ -13,6 +13,7 @@
       <%= t('.bought_package') %>
       <b> <%= @goody.title %> </b>.
     </p>
+    <%= link_to "付款去", "#", :class => "btn btn-default"%>
     <%- unless @goody.campaign.order_success.blank? %>
       <p>
         <%= raw @goody.campaign.order_success_html %>

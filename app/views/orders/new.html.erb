@@ -13,33 +13,33 @@
     </div>
 
     <%= simple_form_for [@goody.campaign, @goody, @order] do |f| %>
+      <%= f.input :user_id, :as => :hidden, input_html: {value: current_user.id} %>
       <%= f.simple_fields_for :supporter do |s| %>
         <div class="row">
           <div class="col-sm-6">
-            <%= s.input :first_name, label: t('.first_name') %>
+            <%= s.input :first_name, label: t('.first_name'), input_html: {value: current_user.user_profile.first_name} %>
           </div>
           <div class="col-sm-6">
-            <%= s.input :last_name, label: t('.last_name') %>
+            <%= s.input :last_name, label: t('.last_name'), input_html: {value: current_user.user_profile.last_name} %>
           </div>
         </div>
-        <%= s.input :email, label: t('.email') %>
-        <%= s.input :date_of_birth, label: t('.date_of_birth'), as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10  %>
-        <%= s.input :street, label: t('.street') %>
+        <%= s.input :email, label: t('.email'), input_html: {value: current_user.email} %>
+        <%= s.input :address, label: t('.street'), input_html: {value: current_user.user_profile.address} %>
         <div class="row">
           <div class="col-sm-4">
-            <%= s.input :postal_code, label: t('.postal_code') %>
+            <%= s.input :postal_code, label: t('.postal_code'), input_html: {value: current_user.user_profile.postal_code} %>
           </div>
           <div class="col-sm-8">
-            <%= s.input :city, label: t('.city') %>
+            <%= s.input :city, label: t('.city'), input_html: {value: current_user.user_profile.city} %>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <%= s.input :state, label: t('.state') %>
+            <%= s.input :state, label: t('.state'), input_html: {value: current_user.user_profile.state} %>
           </div>
           <div class="col-sm-8">
-            <%= s.input :country, label: t('.country'), selected: "CH" %>
-            </div>
+            <%= s.input :country, :as => :hidden, input_html: {value: "TW"} %>
+          </div>
         </div>
       <% end %>
       <div class="row">

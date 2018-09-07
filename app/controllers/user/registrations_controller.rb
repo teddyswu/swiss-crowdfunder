@@ -21,9 +21,11 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    resource.update_attributes!(user_params)
+    resource.user_profile.update_attributes!(user_profile_params)
+  end
 
   # DELETE /resource
   # def destroy
@@ -44,6 +46,14 @@ class User::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
+  end
+
+  def user_profile_params
+    params.require(:user).require(:user_profile).permit(:first_name, :last_name, :address, :gender, :birthday, :tel, :cell_phone, :city, :state, :postal_code, :country)
+  end
+
+  def user_params
+    params.require(:user).permit(:nickname)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
