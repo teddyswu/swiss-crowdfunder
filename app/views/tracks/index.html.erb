@@ -1,0 +1,11 @@
+<div class="container">
+	追蹤紀錄
+	<hr >
+	<% @tracks.each do |track|%>
+		<%= link_to track.campaign.title, campaign_path(track.campaign.slug)%> <%= link_to "取消追蹤", cancel_tracks_path(:user_id => current_user.id, :campaign_id => track.campaign_id) %><br/>
+	<% end %>
+	<% content_for :javascript do %>
+		<script>
+		</script>
+	<% end %>
+</div>

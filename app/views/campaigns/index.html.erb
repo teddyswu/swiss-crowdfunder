@@ -1,0 +1,18 @@
+<div class="container">
+	提案紀錄
+	<hr >
+	<table>
+	  <tr>
+	    <th>專案名稱</th>
+	    <th>名單</th>
+	    <th>結束時間</th>
+	  </tr>
+	  <% @campaigns.each do |campaign|%>
+		  <tr>
+		    <td><%= link_to campaign.title, campaign_path(campaign.slug)%></td>
+		    <td><%= link_to "List", list_campaign_path(campaign.slug) if campaign.end_date < Date.today && campaign_percentage(campaign).to_f > 100%></td>
+		    <td><%= campaign.end_date %></td>
+		  </tr>
+		<% end %>
+	</table>
+</div>

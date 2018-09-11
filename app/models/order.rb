@@ -1,10 +1,11 @@
 class Order < ApplicationRecord
   belongs_to :goody
+  belongs_to :user
 
   has_one :supporter, dependent: :destroy
   accepts_nested_attributes_for :supporter
 
-  validates :payment_type, inclusion: { in: %w(stripe bank) }
+  validates :payment_type, inclusion: { in: %w(stripe bank ecpay) }
   validates :agreement, presence: true
   validates :supporter, presence: true
 

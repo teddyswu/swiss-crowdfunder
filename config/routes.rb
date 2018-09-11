@@ -13,11 +13,19 @@ Rails.application.routes.draw do
   resources :campaign_qas
   resources :campaign_updates
   resources :campaign_replies
+  resources :tracks do 
+    get "cancel", :on => :collection
+  end
 
-  resources :campaigns, only: [:show] do
+  resources :campaigns, only: [:index, :show] do
+    get "list", :on => :member
     resources :goodies, only: [:index] do
       resources :orders, only: [:new, :show, :create]
     end
+  end
+
+  resources :orders, only: [:index] do
+    get "finished", :on => :collection
   end
 
   get '*any', via: :all, to: 'errors#not_found'

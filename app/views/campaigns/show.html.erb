@@ -71,10 +71,10 @@
         <%= link_to t('.support_the_project'), campaign_goodies_path(@campaign), class: "btn btn_theme btn-lg btn-block qa-support-project #{is_campaign_active?(@campaign)}" %>
       </div>
 
-      <div class="campaign_links mb-4"><!--
-                                            <div class="col col-lg-auto pr-0">
-                                            <a href="#" class="btn_card"><span class="fa fa-heart mr-2"></span>Remind me</a>
-                                            </div> -->
+      <div class="campaign_links mb-4">
+        <div class="col col-lg-auto pr-0">
+          <a href="##" class="btn_card"><span id="track_btn" class="fa <%= @is_track ? "fa-bookmark" : "fa-bookmark-o" %> mr-2"></span>追蹤專案</a>
+        </div> 
         <div class="row">
           <div class="col">
             <ul>
@@ -102,7 +102,7 @@
      aria-controls="nav-faq">問與答</a>
     <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新(<%= @campaign.campaign_updates.size %>)</a>
     <a class="nav-item nav-link" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言(<%= @campaign.campaign_replies.size %>)</a>
-    <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">提案團隊</a>
+    <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">友善團隊</a>
     <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
   </nav>
 </div>
@@ -202,3 +202,24 @@
     </div>
   </div>
 </div>
+<% content_for :javascript do %>
+  <script>
+  $(".btn_card").click(function() {
+    var track_class = $("#track_btn").attr("class")
+    $.post( "/tracks", { user_id: <%= current_user.id if current_user.present?%>, campaign: "<%= params[:id]%>" })
+      .done(function( data ) {
+        if (track_class.indexOf("-o")!=-1){
+          alert( "追蹤完成" );
+          $("#track_btn").removeClass("fa-bookmark-o");
+          $("#track_btn").addClass("fa-bookmark");
+        }
+        else
+        {
+          alert( "追蹤取消" );
+          $("#track_btn").removeClass("fa-bookmark");
+          $("#track_btn").addClass("fa-bookmark-o"); 
+        }
+      });
+  });
+  </script>
+<% end %>

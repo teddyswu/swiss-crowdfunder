@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :track do
+    
+  end
   factory :user_profile do
     
   end

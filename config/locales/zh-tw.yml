@@ -31,7 +31,7 @@
     new:
       confirmation: "確認"
       selected_package: "您已選擇該項目"
-      i_hereby_acknowledge: "我在此確認支付 <strong>%{price} %{currency}</strong>"
+      i_hereby_acknowledge: "確認支付 <strong>%{price} %{currency}</strong>"
       credit_card: "信用卡或借記卡"
       i_agree: "我同意支持此項目並接受<a href='/static/terms-of-service'>服務條款</a>."
       create_order: "建立訂單"

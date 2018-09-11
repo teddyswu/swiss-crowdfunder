@@ -10,6 +10,7 @@ class Campaign < ApplicationRecord
   has_many :orders, through: :goodies
   has_many :campaign_updates
   has_many :campaign_replies
+  has_many :tracks
 
   belongs_to :user
 

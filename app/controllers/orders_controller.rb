@@ -1,15 +1,15 @@
 class OrdersController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :index]
 
   # TODO: Think about proper safety in this method/controller. This
   #       code is for demo purposes only and not for production use
   def create
     @goody = Goody.find(params[:goody_id])
-    number = "A" + Date.today.year.to_s + (1_000 + Random.rand(10_000 - 1_000)).to_s
+    number = "A" + Date.today.year.to_s + (10_000 + Random.rand(100_000 - 10_000)).to_s
     checknumber = Order.exists?(:number => number)
     while checknumber == true do
-      number = "A" + Date.today.year.to_s + (1_000 + Random.rand(10_000 - 1_000)).to_s
+      number = "A" + Date.today.year.to_s + (10_000 + Random.rand(100_000 - 10_000)).to_s
       checknumber = Order.exists?(:number => number)
     end
     @order = Order.new(order_params)
@@ -27,11 +27,16 @@ class OrdersController < ApplicationController
     end
   end
 
+  def index
+    @orders = Order.where(:user_id => current_user.id)
+  end
+
   def show
     @goody = Goody.find(params[:goody_id])
   end
 
-  def go_pay
+  def finished
+    
   end
 
 
@@ -47,7 +52,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:user_id, :agreement, supporter_attributes:
     [:first_name, :last_name, :email, :date_of_birth, :address,
-    :postal_code, :country, :city, :state])
+    :postal_code, :country, :city, :state, :tel, :cell_phone])
   end
 
 end

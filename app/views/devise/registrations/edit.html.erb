@@ -1,47 +1,49 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true,:readonly => true %>
+    <div class="form-inputs">
+      <%= f.input :email, required: true, autofocus: true,:readonly => true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-    <%= f.input :nickname,required: true,autofocus: true %>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.fields_for :user_profile, resource.user_profile do |user_profile| %>
-      <%= user_profile.input :first_name %>
-      <%= user_profile.input :last_name %>
-      <%= user_profile.input :city %>
-      <%= user_profile.input :state %>
-      <%= user_profile.input :postal_code %>
-      <%= user_profile.input :address %>
-      <%= user_profile.input :country, :as => :hidden, :input_html => { :value => "TW" }  %>
-      <%= user_profile.label :gender %>
-      <%= user_profile.radio_button(:gender, 1) %>男
-      <%= user_profile.radio_button(:gender, 0) %>女<br />
-      <%= user_profile.label :birthday %>
-      <%= user_profile.datetime_field :birthday %>
-      <%= user_profile.input :tel %>
-      <%= user_profile.input :cell_phone %>
-    <% end %>
-  </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
+      <%= f.input :nickname,required: true,autofocus: true %>
+      <%= f.input :password,
+                  hint: "leave it blank if you don't want to change it",
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :current_password,
+                  hint: "we need your current password to confirm your changes",
+                  required: true,
+                  input_html: { autocomplete: "current-password" } %>
+      <%= f.fields_for :user_profile, resource.user_profile do |user_profile| %>
+        <%= user_profile.input :first_name %>
+        <%= user_profile.input :last_name %>
+        <%= user_profile.input :city %>
+        <%= user_profile.input :state %>
+        <%= user_profile.input :postal_code %>
+        <%= user_profile.input :address %>
+        <%= user_profile.input :country, :as => :hidden, :input_html => { :value => "TW" }  %>
+        <%= user_profile.label :gender %>
+        <%= user_profile.radio_button(:gender, 1) %>男
+        <%= user_profile.radio_button(:gender, 0) %>女<br />
+        <%= user_profile.label :birthday %>
+        <%= user_profile.datetime_field :birthday %>
+        <%= user_profile.input :tel %>
+        <%= user_profile.input :cell_phone %>
+      <% end %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+  <% end %>
 
-<%= link_to "Back", :back %>
+  <%= link_to "Back", :back %>
+</div>

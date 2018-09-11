@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180907064623) do
+ActiveRecord::Schema.define(version: 20180911092408) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20180907064623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "agreement"
-    t.string "phone"
     t.index ["goody_id"], name: "index_orders_on_goody_id"
   end
 
@@ -134,7 +133,18 @@ ActiveRecord::Schema.define(version: 20180907064623) do
     t.string "state"
     t.string "postal_code"
     t.string "country"
+    t.string "tel"
+    t.string "cell_phone"
     t.index ["order_id"], name: "index_supporters_on_order_id"
+  end
+
+  create_table "tracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "campaign_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_tracks_on_campaign_id"
+    t.index ["user_id"], name: "index_tracks_on_user_id"
   end
 
   create_table "user_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -182,5 +192,7 @@ ActiveRecord::Schema.define(version: 20180907064623) do
   add_foreign_key "goodies", "campaigns"
   add_foreign_key "orders", "goodies"
   add_foreign_key "supporters", "orders"
+  add_foreign_key "tracks", "campaigns"
+  add_foreign_key "tracks", "users"
   add_foreign_key "user_profiles", "users"
 end

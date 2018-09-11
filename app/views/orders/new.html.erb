@@ -5,7 +5,10 @@
     <div class="top_section mb-4">
       <h1><%= t('.confirmation') %></h1>
       <p>
-        <%= t('.selected_package') %> <strong><%= @goody.title %></strong>.
+        贊助項目： <strong><%= @goody.title %></strong>.
+      </p>
+      <p>
+        贊助內容： <strong><%= @goody.description %></strong>.
       </p>
       <p>
         <%= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "TWD") %>
@@ -25,6 +28,14 @@
         </div>
         <%= s.input :email, label: t('.email'), input_html: {value: current_user.email} %>
         <%= s.input :address, label: t('.street'), input_html: {value: current_user.user_profile.address} %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= s.input :tel, label: "室話", input_html: {value: current_user.user_profile.tel} %>
+          </div>
+          <div class="col-sm-6">
+            <%= s.input :cell_phone, label: "手機", input_html: {value: current_user.user_profile.cell_phone} %>
+          </div>
+        </div>
         <div class="row">
           <div class="col-sm-4">
             <%= s.input :postal_code, label: t('.postal_code'), input_html: {value: current_user.user_profile.postal_code} %>
