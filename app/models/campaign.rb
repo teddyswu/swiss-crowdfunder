@@ -31,6 +31,14 @@ class Campaign < ApplicationRecord
     end
   end
 
+  def parent_comments()
+    campaign_replies.where(parent_id: 0, enabled: true)
+  end
+
+  def sub_comments
+    campaign_replies.where([ "parent_id != 0" ])
+  end
+
   def is_active?
     start_date <= Date.today &&
     end_date >= Date.today

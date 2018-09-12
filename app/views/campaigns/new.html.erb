@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="mid_box">
+		<div class="top_section mb-4">
+			<h1>提交提案</h1>
+			<p>需審核需審核需審核需審核需審核需審核需審核</p>
+		</div>
+		<%= form_for @campaign, :url => campaigns_path(@campaign), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+			<div class="form-group">
+				<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
+				<%= f.label :claim, "聲言" %><%= f.text_area :claim, :class => "form-control" %>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+      		<%= f.label :goal, "目標金額" %><%= f.number_field :goal, :class => "form-control" %>
+      	</div>
+      	<div class="col-sm-6">
+      		<%= f.label :email, "Email" %><%= f.text_field :email, :class => "form-control" %>
+      	</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+      		<%= f.label :start_date, "開始時間" %><%= f.date_field :start_date, :class => "form-control" %>
+      	</div>
+      	<div class="col-sm-6">
+      		<%= f.label :end_date, "結束時間" %><%= f.date_field :end_date, :class => "form-control" %>
+      	</div>
+      </div>
+      <div class="form-group">
+				<%= f.label :youtube_url, "YouTube影片" %><%= f.text_field :youtube_url, :class => "form-control" %>
+				<%= f.label :facebook_url, "Facebook粉絲團" %><%= f.text_field :facebook_url, :class => "form-control" %>
+				<%= f.label :twitter_url, "Twitter" %><%= f.text_field :twitter_url, :class => "form-control" %>
+				<%= f.label :description, "描述" %><%= f.text_area :description, rows: 4, :class => "form-control" %>
+      </div>
+		<% end %>
+	</div>
+</div>

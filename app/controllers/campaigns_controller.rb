@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show]
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :new]
 
   # GET /campaigns/1
   # GET /campaigns/1.json
@@ -10,13 +10,21 @@ class CampaignsController < ApplicationController
     @campaign_reply = CampaignReply.new
     @campaign_qas = CampaignQa.where(:campaign_id => @campaign.id) || []
     @campaign_updates = CampaignUpdate.where(:campaign_id => @campaign.id).order(created_at: :desc) || []
-    @campaign_replies = CampaignReply.where(:campaign_id => @campaign.id) || []
+    @campaign_replies = @campaign.parent_comments
+    @sub_replies = @campaign.sub_comments
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
   end
 
   def index
     @campaigns = Campaign.where(:user_id => current_user.id)
+  end
+
+  def new
+    @campaign = Campaign.new
+  end
+
+  def create
   end
 
   def list

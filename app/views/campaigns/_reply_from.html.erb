@@ -1,6 +1,7 @@
 <%= form_for campaign_reply, :url => campaign_replies_path(campaign_reply), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
 	<div class="row form-group">
 		<%= f.hidden_field :campaign_id, :value => @campaign.id%>
+    <%= f.hidden_field :enabled, :value => true %>
     <%= f.hidden_field :user_id, :value => current_user.id%>
     <div class="col col-md-3">
       <%= f.label("留言", :class => 'form-control-label') %>

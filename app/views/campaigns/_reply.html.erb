@@ -3,28 +3,33 @@
 	  <div style="font-weight: bold">
 	  	<%= link_to crp.user.nickname, user_path(crp.user.id) %> 於 <%= crp.created_at.strftime('%F')%>
 	    <p><%= crp.content %></p>
-      <% if user_signed_in? %>
-      	<% if current_user.id == @campaign.user_id && crp.reply.blank?%>
-	    		<%= form_for crp, :url => campaign_reply_path(crp), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
-	    			<%= f.hidden_field :reply_user_id, :value => current_user.id%>
-	    			<%= f.hidden_field :campaign_id, :value => @campaign.id%>
-		    		<div class="col col-md-3">
-				      <%= f.label("回覆", :class => 'form-control-label') %>
-				    </div>
-				    <div class="col-12 col-md-9">
-				      <%= f.text_area(:reply, :class => "form-control")%>
-				    </div>
-				    <button type="submit" class="btn btn-primary btn-sm">
-				      <i class="fa fa-dot-circle-o"></i> Submit
-				    </button>
-	    		<% end %>
-	    	<% end %>
-	    <% end %>
+      
 	  </div>
-	  <div class="text-right" style="font-size: 0.875rem;background-color: #f4f4f4;padding: 1rem;">
-	    <%= crp.reply%><br />
-	    <%= crp.reply_user_id%>
-	  </div>
+	  <% sub_replies = data_filter(@sub_replies, "parent_id", crp.id) %>
+	  <% sub_replies.each do |sub_reply| %>
+	  	<div class="text-right" style="font-size: 0.875rem;background-color: #f4f4f4;padding: 1rem;">
+		    <%= sub_reply.content%><br />
+		    <%= link_to sub_reply.user.nickname, user_path(sub_reply.user.id) %> 於 <%= sub_reply.created_at.strftime('%F')%>
+		  </div>
+	  <% end %>
+	  <% if user_signed_in? %>
+  		<%= form_for @campaign_reply, :url => campaign_replies_path(@campaign_reply), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+  			<%= f.hidden_field :user_id, :value => current_user.id%>
+  			<%= f.hidden_field :campaign_id, :value => @campaign.id%>
+  			<%= f.hidden_field :parent_id, :value => crp.id%>
+  			<%= f.hidden_field :enabled, :value => true %>
+    		<div class="col col-md-3">
+		      <%= f.label("回覆", :class => 'form-control-label') %>
+		    </div>
+		    <div class="col-12 col-md-9">
+		      <%= f.text_area(:content, :class => "form-control")%>
+		    </div>
+		    <button type="submit" class="btn btn-primary btn-sm">
+		      <i class="fa fa-dot-circle-o"></i> Submit
+		    </button>
+  		<% end %>
+    <% end %>
+	  
 	</div>
 	<hr>
 <% end %>

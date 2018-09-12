@@ -1,5 +1,7 @@
 module CampaignsHelper
 
+  include ToolsLibrary
+
   def campaign_percentage(campaign)
     number_to_percentage(100*(campaign.amount_raised.to_f / campaign.goal),
                          precision: 1,

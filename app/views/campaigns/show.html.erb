@@ -1,5 +1,6 @@
 <div class="container">
   <h1 style="margin-left: -3px;"><%= @campaign.title %></h1>
+  <div class="small mt-1 text-right" style="color: #999"> #這邊 #會放 #tag</div>
   <p class="small mt-2 mb-4">
     <span class="text_loud_sub"><%= @campaign.claim %></span>
   </p>
@@ -74,6 +75,7 @@
       <div class="campaign_links mb-4">
         <div class="col col-lg-auto pr-0">
           <a href="##" class="btn_card"><span id="track_btn" class="fa <%= @is_track ? "fa-bookmark" : "fa-bookmark-o" %> mr-2"></span>追蹤專案</a>
+          <div class="text-right">由 <%= link_to @campaign.user.nickname, user_path(@campaign.user.id)%> 提案</div>
         </div> 
         <div class="row">
           <div class="col">
@@ -101,8 +103,9 @@
     <a class="nav-item nav-link" id="nav-faq-tab" data-toggle="tab" href="#nav-faq" role="tab"
      aria-controls="nav-faq">問與答</a>
     <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新(<%= @campaign.campaign_updates.size %>)</a>
-    <a class="nav-item nav-link" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言(<%= @campaign.campaign_replies.size %>)</a>
+    <a class="nav-item nav-link" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言(<%= @campaign_replies.size %>)</a>
     <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">友善團隊</a>
+    <a class="nav-item nav-link" id="nav-support-tab" data-toggle="tab" href="#nav-support" role="tab" aria-controls="nav-support">支持者</a>    
     <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
   </nav>
 </div>

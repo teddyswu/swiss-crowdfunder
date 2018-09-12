@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get "cancel", :on => :collection
   end
 
-  resources :campaigns, only: [:index, :show] do
+  resources :campaigns, only: [:index, :show, :new, :create] do
     get "list", :on => :member
     resources :goodies, only: [:index] do
       resources :orders, only: [:new, :show, :create]
