@@ -75,7 +75,7 @@
       <div class="campaign_links mb-4">
         <div class="col col-lg-auto pr-0">
           <a href="##" class="btn_card"><span id="track_btn" class="fa <%= @is_track ? "fa-bookmark" : "fa-bookmark-o" %> mr-2"></span>追蹤專案</a>
-          <div class="text-right">由 <%= link_to @campaign.user.nickname, user_path(@campaign.user.id)%> 提案</div>
+          <div class="text-right">由 <%= link_to @campaign.user.user_profile.nickname, user_path(@campaign.user.id)%> 提案</div>
         </div> 
         <div class="row">
           <div class="col">

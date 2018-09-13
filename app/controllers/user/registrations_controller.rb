@@ -12,13 +12,14 @@ class User::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    resource.create_user_profile(:user_id => resource.id)
+    resource.create_user_profile(:user_id => resource.id, :nickname => params[:nickname])
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    UserProfile.find_or_create_by(:user_id => resource.id)
+    super
+  end
 
   # PUT /resource
   def update
@@ -49,7 +50,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
   def user_profile_params
-    params.require(:user).require(:user_profile).permit(:first_name, :last_name, :address, :gender, :birthday, :tel, :cell_phone, :city, :state, :postal_code, :country)
+    params.require(:user).require(:user_profile).permit(:nickname, :first_name, :last_name, :address, :gender, :birthday, :tel, :cell_phone, :city, :state, :postal_code, :country)
   end
 
   def user_params

@@ -1,7 +1,7 @@
 <% campaign_replies.each_with_index do |crp, i|%>
 	<div style="font-size: 0.875rem;margin-bottom: 20px;">
 	  <div style="font-weight: bold">
-	  	<%= link_to crp.user.nickname, user_path(crp.user.id) %> 於 <%= crp.created_at.strftime('%F')%>
+	  	<%= link_to crp.user.user_profile.nickname, user_path(crp.user.id) %> 於 <%= crp.created_at.strftime('%F')%>
 	    <p><%= crp.content %></p>
       
 	  </div>
@@ -9,7 +9,7 @@
 	  <% sub_replies.each do |sub_reply| %>
 	  	<div class="text-right" style="font-size: 0.875rem;background-color: #f4f4f4;padding: 1rem;">
 		    <%= sub_reply.content%><br />
-		    <%= link_to sub_reply.user.nickname, user_path(sub_reply.user.id) %> 於 <%= sub_reply.created_at.strftime('%F')%>
+		    <%= link_to sub_reply.user.user_profile.nickname, user_path(sub_reply.user.id) %> 於 <%= sub_reply.created_at.strftime('%F')%>
 		  </div>
 	  <% end %>
 	  <% if user_signed_in? %>

@@ -11,6 +11,9 @@ class Campaign < ApplicationRecord
   has_many :campaign_updates
   has_many :campaign_replies
   has_many :tracks
+  has_many :campaign_groups
+
+  accepts_nested_attributes_for :campaign_groups
 
   belongs_to :user
 

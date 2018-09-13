@@ -10,7 +10,7 @@
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
-      <%= f.input :nickname,required: true,autofocus: true %>
+      
       <%= f.input :password,
                   hint: "leave it blank if you don't want to change it",
                   required: false,
@@ -23,6 +23,7 @@
                   required: true,
                   input_html: { autocomplete: "current-password" } %>
       <%= f.fields_for :user_profile, resource.user_profile do |user_profile| %>
+        <%= user_profile.input :nickname,required: true,autofocus: true %>
         <%= user_profile.input :first_name %>
         <%= user_profile.input :last_name %>
         <%= user_profile.input :city %>
@@ -34,7 +35,7 @@
         <%= user_profile.radio_button(:gender, 1) %>男
         <%= user_profile.radio_button(:gender, 0) %>女<br />
         <%= user_profile.label :birthday %>
-        <%= user_profile.datetime_field :birthday %>
+        <%= user_profile.date_field :birthday %>
         <%= user_profile.input :tel %>
         <%= user_profile.input :cell_phone %>
       <% end %>

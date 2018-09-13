@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :campaign_group do
+    
+  end
   factory :track do
     
   end

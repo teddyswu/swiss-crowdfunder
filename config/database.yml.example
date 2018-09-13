@@ -1,11 +1,6 @@
 default: &default
-  # adapter: sqlite3
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # timeout: 5000
   adapter: mysql2
   encoding: utf8
-  # database: sogi_test_0413
-  # database: ph_test
   database: crowdfunder
   host: 127.0.0.1
   username: root
@@ -22,3 +17,11 @@ test:
 production:
   <<: *default
   # database: db/production.sqlite3
+
+agric_db:
+  adapter: mysql2
+  encoding: utf8
+  database: agric_sc
+  host: vpc-national.cqhshwwfsykv.ap-southeast-1.rds.amazonaws.com
+  username: root
+  password: voil1674

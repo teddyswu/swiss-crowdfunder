@@ -1,5 +1,5 @@
 ID:<%= @user.id%><br />
-暱稱：<%= @user.nickname %>
+暱稱：<%= @user.user_profile.nickname %>
 <hr>
 發起募資<br />
 <% @user.campaigns.each do |campaign|%>
