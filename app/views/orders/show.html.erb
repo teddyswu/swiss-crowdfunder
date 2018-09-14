@@ -3,8 +3,11 @@
 
 <div class="container">
   <div class="mid_box text-center">
-    <div class="top_icon"><%= image_tag('/success.svg') %></div>
-    <h1><%= t('.success') %></h1>
+    <div>
+      <%#= image_tag('/success.svg') %>
+      <i class="fa fa-credit-card-alt fa-5" style="font-size: 12em" aria-hidden="true"></i>
+    </div>
+    <h1>選擇付款方式</h1>
     <hr />
     <p class="encouragement">
       <%= t('.text') %>
@@ -20,7 +23,7 @@
       </p>
     <% end %>
     <p class="go-back">
-      <%= link_to "<i class=\"fa fa-arrow-left\" aria-hidden=\"true\"></i> #{t('.back_to_campaign')}"
+      <%#= link_to "<i class=\"fa fa-arrow-left\" aria-hidden=\"true\"></i> #{t('.back_to_campaign')}"
           .html_safe,
           @goody.campaign %>
     </p>

@@ -17,4 +17,16 @@ module CampaignsHelper
   	(day - Date.today).to_i > 1 ? (day - Date.today).to_i : "已結束"
   end
 
+  def render_staus(status)
+    case status
+    when 1
+      "草稿"
+    when 2
+      "審核中"
+    when 3
+      "審核完成"
+    end
+      
+  end
+
 end

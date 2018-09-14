@@ -5,7 +5,7 @@
 			<h1>提交提案</h1>
 			<p>需審核需審核需審核需審核需審核需審核需審核</p>
 		</div>
-		<%= form_for @campaign, :url => campaigns_path(@campaign), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+		<%= form_for @campaign, :url => campaign_path(@campaign), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
 			<div class="form-group">
 				<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
 				<%= f.label :claim, "聲言" %><%= f.text_area :claim, :class => "form-control" %>
@@ -36,6 +36,7 @@
         <%= f.label :order_description_html, "贊助時注意事項" %><%= f.text_area :order_description_html, rows: 4, :class => "form-control" %>
         <hr>
         <%= f.label :order_success_html, "贊助後注意事項" %><%= f.text_area :order_success_html, rows: 4, :class => "form-control" %>
+        <%= f.check_box :status, {}, 2, 1%>提交審核
       </div>
       <%= f.submit "送出"%>
       <%= f.submit "取消", :type => "reset" %>     

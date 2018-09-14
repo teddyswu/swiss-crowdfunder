@@ -1,0 +1,31 @@
+<div class="container">
+	<%= @campaign.title %>
+	<% @campaign.campaign_groups.each do |group| %>
+		<div class="row">
+      <div class="col-sm-6">
+    		<%= label_tag 'user', "User" %>:<%= group.user.a_user_profile.name %>
+    	</div>
+    	<div class="col-sm-6">
+    		<%= label_tag 'income', "收益" %>:<%= group.income %>
+    		<%= link_to "<i class='fa fa-trash' aria-hidden='true'></i>".html_safe, gruop_del_campaign_path(group.id), :method => :delete%>
+    	</div>
+    </div>
+	<% end %>
+  <hr>
+	<%= form_for @campaign, :url => group_create_campaigns_path(@campaign), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+    <%= fields_for :campaign_groups, @campaign.campaign_groups.build do |build|%>
+	    <div class="row">
+	    	<%= build.hidden_field :campaign_id, :value => @campaign.id%>
+	      <div class="col-sm-6">
+	    		<%= build.label :user_id, "User" %><%= build.select :user_id, options_for_select(@farmer_lists), {}, {:class => "form-control"} %>
+	    	</div>
+	    	<div class="col-sm-6">
+	    		<%= build.label :income, "收益" %><%= build.number_field :income, :class => "form-control" %>
+	    	</div>
+	    </div>
+	    <%= f.submit "送出"%>
+      <%= f.submit "取消", :type => "reset" %>  
+      <%= link_to "回上一頁", campaigns_path%>
+	  <% end %>  
+	<% end %>
+</div>

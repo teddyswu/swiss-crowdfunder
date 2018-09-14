@@ -1,0 +1,36 @@
+<div class="container">
+	<%= @campaign.title%>
+	<div class="row">
+		<table>
+		  <tr>
+		    <th>名稱</th>
+		    <th>描述</th>
+		    <th>金額</th>
+		    <th>數量</th>
+		    <th>編輯</th>
+		    <th>刪除</th>
+		  </tr>
+		  <% @campaign.goodies.each do |goody| %>
+			  <tr>
+			    <td><%= goody.title%></td>
+			    <td><%= goody.description%></td>
+			    <td><%= goody.price%></td>
+			    <td><%= render_quantity(goody.quantity)%></td>
+			    <td><%= link_to "編輯", goody_edit_campaign_path(goody.id)%></td>
+			    <td><%= link_to "<i class='fa fa-trash' aria-hidden='true'></i>".html_safe, goody_del_campaign_path(goody.id), :method => :delete%></td>
+			  </tr>
+		  <% end %>
+		</table>  
+  </div>
+  <hr>
+	<%= form_for @goody, :url => goody_create_campaigns_path(@goody), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+  	<%= f.hidden_field :campaign_id, :value => @campaign.id%>
+		<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
+		<%= f.label :title, "描述" %><%= f.text_area :description, :class => "form-control", rows: 4 %>
+		<%= f.label :title, "金額" %><%= f.number_field :price, :class => "form-control" %>
+		<%= f.label :title, "數量(輸入-1，無上限)" %><%= f.number_field :quantity, :class => "form-control" %>
+		<%= f.submit "送出"%>
+    <%= f.submit "取消", :type => "reset" %>
+    <%= link_to "回上一頁", campaigns_path%>
+	<% end %>
+</div>

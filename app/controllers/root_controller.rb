@@ -7,6 +7,6 @@ class RootController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_campaigns
-      @campaigns = Campaign.limit(3)
+      @campaigns = Campaign.where(:status => 3)#.limit(3)
     end
 end

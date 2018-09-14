@@ -26,7 +26,7 @@ class Campaign < ApplicationRecord
 
   before_save :use_youtube_embedd_url
 
-  before_save :convert_descriptions
+  # before_save :convert_descriptions
 
   def amount_raised
     goodies.inject(0) do |sum, g|

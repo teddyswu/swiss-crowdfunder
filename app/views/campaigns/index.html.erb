@@ -5,12 +5,20 @@
 	  <tr>
 	    <th>專案名稱</th>
 	    <th>名單</th>
+	    <th>狀態</th>
+	    <th>友善團隊</th>
+      <th>回饋項目</th>
+	    <th>編輯</th>
 	    <th>結束時間</th>
 	  </tr>
 	  <% @campaigns.each do |campaign|%>
 		  <tr>
 		    <td><%= link_to campaign.title, campaign_path(campaign.slug)%></td>
 		    <td><%= link_to "List", list_campaign_path(campaign.slug) if campaign.end_date < Date.today && campaign_percentage(campaign).to_f > 100%></td>
+		    <td><%= render_staus(campaign.status) %></td>
+		    <td><%= link_to "編輯", group_edit_campaign_path(campaign.slug) if campaign.status == 1%></td>
+		    <td><%= link_to "編輯", goody_campaign_path(campaign.slug) if campaign.status == 1%></td>
+		    <td><%= link_to "編輯或提交", edit_campaign_path(campaign.slug) if campaign.status == 1 %>
 		    <td><%= campaign.end_date %></td>
 		  </tr>
 		<% end %>

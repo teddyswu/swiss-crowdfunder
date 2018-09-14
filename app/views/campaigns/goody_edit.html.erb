@@ -1,0 +1,11 @@
+<div class="container">	
+	<%= form_for @goody, :url => goody_update_campaign_path(@goody), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
+  	<%= f.hidden_field :campaign_id, :value => @goody.campaign_id%>
+		<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
+		<%= f.label :title, "描述" %><%= f.text_area :description, :class => "form-control", rows: 4 %>
+		<%= f.label :title, "金額" %><%= f.number_field :price, :class => "form-control" %>
+		<%= f.label :title, "數量" %><%= f.number_field :quantity, :class => "form-control" %>
+		<%= f.submit "送出"%>
+    <%= f.submit "取消", :type => "reset" %>
+	<% end %>
+</div>

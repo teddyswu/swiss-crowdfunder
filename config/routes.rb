@@ -17,12 +17,21 @@ Rails.application.routes.draw do
     get "cancel", :on => :collection
   end
 
-  resources :campaigns, only: [:index, :show, :new, :create] do
+  resources :campaigns do
     get "list", :on => :member
+    get "group_edit", :on => :member
+    post "group_create",:on => :collection
+    delete "gruop_del", :on => :member
+    get "goody", :on => :member
+    get "goody_edit", :on => :member
+    patch "goody_update", :on => :member
+    post "goody_create",:on => :collection
+    delete "goody_del", :on => :member
     resources :goodies, only: [:index] do
       resources :orders, only: [:new, :show, :create]
     end
   end
+
 
   resources :orders, only: [:index] do
     get "finished", :on => :collection

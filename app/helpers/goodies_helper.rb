@@ -8,4 +8,8 @@ module GoodiesHelper
     end
   end
 
+  def render_quantity(quantity)
+  	quantity == -1 ? "∞" : quantity
+  end
+
 end

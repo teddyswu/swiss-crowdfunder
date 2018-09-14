@@ -11,5 +11,6 @@ class User < AgricDbConnecter
   has_many :tracks
   has_many :orders
   has_one :user_profile
+  has_one :a_user_profile
 
 end

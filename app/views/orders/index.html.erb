@@ -8,6 +8,7 @@
 	    <th>金額</th>
 	    <th>單號</th>
 	    <th>付款狀態</th>
+	    <th>成立日期</th>
 	  </tr>
 	  <% @orders.each do |order|%>
 		  <tr>
@@ -17,6 +18,7 @@
 			    <td><%= number_to_currency(order.amount, precision: 0) %></td>
 			    <td><%= order.number%></td>
 			    <td><%= render_is_paid(order.goody.campaign.id, order.goody.id, order.id, order.paid)%></td>
+			    <td><%= order.created_at.strftime('%F')%></td>
 			  <% end %>
 		  </tr>
 		<% end %>
