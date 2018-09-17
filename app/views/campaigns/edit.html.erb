@@ -38,7 +38,6 @@
         <%= f.label :order_description_html, "贊助時注意事項" %><%= f.text_area :order_description_html, rows: 4, :class => "form-control" %>
         <hr>
         <%= f.label :order_success_html, "贊助後注意事項" %><%= f.text_area :order_success_html, rows: 4, :class => "form-control" %>
-        <%= f.check_box :status, {}, 2, 1%>提交審核
       </div>
       <%= f.submit "送出"%>
       <%= f.submit "取消", :type => "reset" %>     
@@ -47,6 +46,7 @@
 </div>
 <% content_for :javascript do %>
   <script>
+    CKEDITOR.replace( 'campaign_risk' );
     CKEDITOR.replace( 'campaign_description_html' );
     CKEDITOR.replace( 'campaign_order_description_html' );
     CKEDITOR.replace( 'campaign_order_success_html' );
