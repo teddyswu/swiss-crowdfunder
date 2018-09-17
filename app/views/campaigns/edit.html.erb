@@ -31,6 +31,8 @@
 				<%= f.label :facebook_url, "Facebook粉絲團" %><%= f.text_field :facebook_url, :class => "form-control" %>
 				<%= f.label :twitter_url, "Twitter" %><%= f.text_field :twitter_url, :class => "form-control" %>
         <hr>
+        <%= f.label :risk, "風險與承諾" %><%= f.text_area :risk, rows: 4, :class => "form-control" %>
+        <hr>
 				<%= f.label :description_html, "提案內容" %><%= f.text_area :description_html, rows: 4, :class => "form-control" %>
         <hr>
         <%= f.label :order_description_html, "贊助時注意事項" %><%= f.text_area :order_description_html, rows: 4, :class => "form-control" %>

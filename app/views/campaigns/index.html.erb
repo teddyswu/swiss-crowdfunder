@@ -10,6 +10,7 @@
       <th>回饋項目</th>
 	    <th>編輯</th>
 	    <th>結束時間</th>
+	    <th>提交</th>
 	  </tr>
 	  <% @campaigns.each do |campaign|%>
 		  <tr>
@@ -18,8 +19,12 @@
 		    <td><%= render_staus(campaign.status) %></td>
 		    <td><%= link_to "編輯", group_edit_campaign_path(campaign.slug) if campaign.status == 1%></td>
 		    <td><%= link_to "編輯", goody_campaign_path(campaign.slug) if campaign.status == 1%></td>
-		    <td><%= link_to "編輯或提交", edit_campaign_path(campaign.slug) if campaign.status == 1 %>
-		    <td><%= campaign.end_date %></td>
+	    	<%= form_for campaign, :url => campaign_path(campaign), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
+	    		<td><%= link_to "編輯", edit_campaign_path(campaign.slug) if campaign.status == 1 %>
+	    		<td><%= campaign.end_date %></td>
+	    		<%= f.hidden_field :status, :value => 2%>
+	    		<td><%= f.submit "提交" if campaign.status == 1 %></td>
+	    	<% end %>
 		  </tr>
 		<% end %>
 	</table>

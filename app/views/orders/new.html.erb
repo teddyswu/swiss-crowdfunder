@@ -11,12 +11,21 @@
         贊助內容： <strong><%= @goody.description %></strong>.
       </p>
       <p>
-        <%= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "TWD") %>
+        <%#= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "TWD") %>
       </p>
     </div>
 
     <%= simple_form_for [@goody.campaign, @goody, @order] do |f| %>
       <%= f.input :user_id, :as => :hidden, input_html: {value: current_user.id} %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= label_tag "項目金額"%><br >
+          <%= number_to_currency(@goody.price, precision: 0)%>
+        </div>
+        <div class="col-sm-6">
+          <%= f.input :bonus, label: '額外贊助' %>
+        </div>
+      </div>
       <%= f.simple_fields_for :supporter do |s| %>
         <div class="row">
           <div class="col-sm-6">
@@ -53,25 +62,21 @@
           </div>
         </div>
       <% end %>
-      <div class="row">
-        <div class="col-sm-4">
-          額外贊助
-        </div>
-        <div class="col-sm-8">
-          <%= number_field_tag 'bonus' %>
-        </div>
-      </div>
+
+      <%= f.input :remark, as: :text, label: "備註欄位", :input_html => {:rows => 10}  %>
+      
       <%- unless @goody.campaign.order_description.blank? %>
         <div class="jumbotron mt-4" id="campaign_order_description">
           <%= raw @goody.campaign.order_description_html %>
         </div>
       <% end %>
-
+      <%= f.input :payment_type, as: :radio_buttons, label: "付款方式", collection: [['ecpay', '第三方支付']], label_method: :second, value_method: :first %>
       <div class="text-right mb-4">
+        <%= f.input :anonymous, label: "匿名贊助" %>
         <%= f.input :agreement, required: true, label: t('.i_agree').html_safe, input_html: { class: "qa-agreement" } %>
       </div>
       <div class="text-center">
-        <%= f.submit "下一步", class: "qa-submit btn btn_theme btn_wide" %>
+        <%= f.submit "付款", class: "qa-submit btn btn_theme btn_wide" %>
       </div>
     <% end %>
   </div>

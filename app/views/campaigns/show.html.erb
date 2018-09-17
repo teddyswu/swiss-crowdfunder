@@ -80,6 +80,8 @@
         <div class="row">
           <div class="col">
             <ul>
+              <li><i class="fa fa-share" aria-hidden="true"></i>
+              </li>
               <%- unless @campaign.twitter_url.blank? %>
                 <li><%= link_to raw('<span class="fa fa-twitter"></span>'), @campaign.twitter_url, target: "_blank", class: "link " %></li>
               <% end %>
@@ -128,6 +130,8 @@
                 <%= raw @campaign.description_html %>
               </section>
             </article>
+            <h5>風險與承諾</h5>
+            <%= raw @campaign.risk %>
           </div>
           <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
             <article>
@@ -162,7 +166,14 @@
           <div class="tab-pane fade" id="nav-gruop" role="tabpanel" aria-labelledby="nav-gruop-tab">
             <article>
               <section>
-                這是提案團隊
+                <%= render partial: 'group', locals: { groups: @campaign.campaign_groups } %>
+              </section>
+            </article>
+          </div>
+          <div class="tab-pane fade" id="nav-support" role="tabpanel" aria-labelledby="nav-support-tab">
+            <article>
+              <section>
+                <%= render partial: 'support', locals: { supporters: @campaign.orders } %>
               </section>
             </article>
           </div>

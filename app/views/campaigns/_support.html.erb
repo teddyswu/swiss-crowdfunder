@@ -1,0 +1,5 @@
+<% supporters.each do |supporter|%>
+  <% if supporter.paid == true %>
+		<%= supporter.anonymous ? "匿名贊助" :  supporter.user.user_profile.nickname  %><br >
+	<% end %>
+<% end %>

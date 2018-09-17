@@ -15,8 +15,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.number = number
     @order.goody = @goody
-    @order.amount = @goody.price + params[:bonus].to_i
-    @order.payment_type = "ecpay"
+    @order.amount = @goody.price
     @order.quantity = 1
     @order.paid = false
 
@@ -50,9 +49,10 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:user_id, :agreement, supporter_attributes:
+    params.require(:order).permit(:user_id, :agreement, :bonus, :payment_type, :anonymous, :remark, 
+      supporter_attributes:
     [:first_name, :last_name, :email, :date_of_birth, :address,
-    :postal_code, :country, :city, :state, :tel, :cell_phone])
+    :postal_code, :country, :city, :state, :tel, :cell_phone, :anonymous])
   end
 
 end
