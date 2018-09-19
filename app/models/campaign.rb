@@ -1,7 +1,8 @@
 class Campaign < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
-  mount_uploader :image, CampaignImageUploader
+  # mount_uploader :image, CampaignImageUploader
+  has_one :campaign_image
 
   default_scope { where(active: true) }
 

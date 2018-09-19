@@ -26,7 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta.2'
-
+gem "fog"
 gem 'devise', '4.5.0'
 gem 'activeadmin'
 gem 'redcarpet'
@@ -38,10 +38,11 @@ gem 'friendly_id'
 gem 'exception_notification'
 gem 'httparty'
 gem 'timecop'
-gem 'carrierwave'
-gem 'mini_magick'
+gem 'carrierwave', '0.10.0' 
+gem 'mini_magick', "3.6.0"
 gem 'config'
 
+# gem 'aws-sdk', '~> 1.66' # 連線 AWS 的 gem, 目前 paperclip 會使用
 #gem 'cancancan', '~> 2.0'
 
 # Use CoffeeScript for .coffee assets and views

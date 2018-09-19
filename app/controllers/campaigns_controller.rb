@@ -92,6 +92,10 @@ class CampaignsController < ApplicationController
     @campaign.active = true
     @campaign.status = 1
     @campaign.save!
+    @campaign_image = CampaignImage.new(campaign_image_params)
+    @campaign_image.campaign_id = @campaign.id
+    @campaign_image.save!
+    @campaign_image.update_urls_success?
     redirect_to campaigns_path
   end
 
@@ -117,6 +121,10 @@ class CampaignsController < ApplicationController
 
     def goody_params
       params.require(:goody).permit(:campaign_id, :title, :description, :price, :quantity)
+    end
+
+    def campaign_image_params
+      params.require(:campaign).require(:campaign_image).permit(:file)
     end
 
 

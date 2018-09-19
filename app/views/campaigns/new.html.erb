@@ -27,6 +27,10 @@
       	</div>
       </div>
       <div class="form-group">
+        <%= f.fields_for :campaign_image do |i|%>
+          <%= i.label "上傳圖片"%>
+          <%= i.file_field :file, :class => "form-control"%>
+        <% end %>
 				<%= f.label :youtube_url, "YouTube影片" %><%= f.text_field :youtube_url, :class => "form-control" %>
 				<%= f.label :facebook_url, "Facebook粉絲團" %><%= f.text_field :facebook_url, :class => "form-control" %>
 				<%= f.label :twitter_url, "Twitter" %><%= f.text_field :twitter_url, :class => "form-control" %>

@@ -13,4 +13,8 @@ class SelfConfig
   	@@config[:agrisc_host]
   end
 
+  def self.upload_dir
+    @@custom[:upload_dir]
+  end
+
 end
