@@ -5,8 +5,6 @@ class CampaignGoodyImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
 
-  process :set_content_type
-
   MiniMagick.processor = :gm
 
   # Choose what kind of storage to use for this uploader:
