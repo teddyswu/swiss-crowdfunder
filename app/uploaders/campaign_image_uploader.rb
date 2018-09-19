@@ -2,7 +2,7 @@ class CampaignImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
 
-  MiniMagick.processor = :gm
+  # MiniMagick.processor = :gm
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -37,7 +37,7 @@ class CampaignImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [1024, 515]
   end
 
-  version :campaign do
+  version :campaign_path do
     process resize_to_fill: [560, 315]
   end
 

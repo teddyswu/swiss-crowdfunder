@@ -78,8 +78,14 @@ class CampaignsController < ApplicationController
 
   def update
     @campaign.update(campaign_params)
-    @campaign.status = params[:campaign][:status]
+    @campaign.status = 1
     @campaign.save!
+    if campaign_image_params.present?
+      @campaign_image = CampaignImage.find_or_initialize_by(:campaign_id => @campaign.id)
+      @campaign_image.update(campaign_image_params)
+      @campaign_image.save!
+      @campaign_image.update_urls_success?
+    end
     redirect_to campaigns_path
   end
 

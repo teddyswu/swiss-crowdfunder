@@ -10,7 +10,7 @@ class CampaignImage < ApplicationRecord
         # s3_host = "https://sogi-channel.s3.amazonaws.com"
         update_datas = {
           :landing_page => self.file.landing_page.url,
-          :campaign   => self.file.campaign.url,
+          :campaign_path   => self.file.campaign_path.url,
         }
         if self.update_attributes( update_datas )
           return true

@@ -14,7 +14,7 @@ class SelfConfig
   end
 
   def self.upload_dir
-    @@custom[:upload_dir]
+    @@config[:upload_dir]
   end
 
 end
