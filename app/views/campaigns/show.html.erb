@@ -1,6 +1,10 @@
 <div class="container">
   <h1 style="margin-left: -3px;"><%= @campaign.title %></h1>
-  <div class="small mt-1 text-right" style="color: #999"> #這邊 #會放 #tag</div>
+  <div class="small mt-1 text-right" style="color: #999">
+    <% @campaign.campaign_tags.each do |tag|%>
+      <%= link_to "##{tag.name}", campaign_tag_path(tag.id)%>
+    <% end %>
+  </div>
   <p class="small mt-2 mb-4">
     <span class="text_loud_sub"><%= @campaign.claim %></span>
   </p>
@@ -12,7 +16,7 @@
           <iframe class="embed-responsive-item" height="315" src="<%= @campaign.youtube_url %>" width="560"></iframe>
         </div>
       <% else %>
-        <%= image_tag @campaign.image.campaign, class: "mb-5" %>
+        <%= image_tag @campaign.campaign_image.try(:campaign), class: "mb-5" %>
       <% end %>
     </div>
     <div class="col-md-5 col-lg-4">

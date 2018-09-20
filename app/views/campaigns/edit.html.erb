@@ -8,6 +8,12 @@
 		<%= form_for @campaign, :url => campaign_path(@campaign), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
 			<div class="form-group">
 				<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
+        <%= label_tag :category, "類別" %>
+        <% @campaign_tags.each do |ct| %>
+          <li>
+            <%= check_box_tag 'tag_ids[]', ct.id, @campaign_tag_ship.include?(ct.id) %><%= ct.name%>
+          </li>
+        <%end%>
 				<%= f.label :claim, "聲言" %><%= f.text_area :claim, :class => "form-control" %>
       </div>
       <div class="row">
@@ -27,7 +33,7 @@
       	</div>
       </div>
       <div class="form-group">
-        <%= f.fields_for :campaign_image do |i|%>
+        <%= f.fields_for :campaign_image, @campaign.input_campaign_image do |i|%>
           <%= i.label "上傳圖片(若不修改，請勿上傳)"%>
           <%= i.file_field :file, :class => "form-control"%>
         <% end %>

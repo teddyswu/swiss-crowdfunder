@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       resources :orders, only: [:new, :show, :create]
     end
   end
-
+  resources :campaign_tags
 
   resources :orders, only: [:index] do
     get "finished", :on => :collection

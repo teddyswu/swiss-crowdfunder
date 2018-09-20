@@ -25,6 +25,10 @@
   <hr>
 	<%= form_for @goody, :url => goody_create_campaigns_path(@goody), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
   	<%= f.hidden_field :campaign_id, :value => @campaign.id%>
+  	<%= f.fields_for :goody_image, @goody.input_goody_image do |i|%>
+      <%= i.label "上傳圖片"%>
+      <%= i.file_field :file, :class => "form-control"%>
+    <% end %>
 		<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
 		<%= f.label :title, "描述" %><%= f.text_area :description, :class => "form-control", rows: 4 %>
 		<%= f.label :title, "金額" %><%= f.number_field :price, :class => "form-control" %>

@@ -1,4 +1,13 @@
 FactoryBot.define do
+  factory :campaign_tag do
+    
+  end
+  factory :campaign_tag_ship do
+    
+  end
+  factory :goody_image do
+    
+  end
   factory :campaign_image do
     
   end

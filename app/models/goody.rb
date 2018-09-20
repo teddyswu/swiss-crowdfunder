@@ -5,12 +5,18 @@ class Goody < ApplicationRecord
   belongs_to :campaign, -> { unscope(where: 'active') }
   has_many :orders
   has_many :supporters, through: :orders
+  has_one :goody_image
 
   validates :price, numericality: true, presence: true
   validates :quantity, numericality: true, presence: true
 
+  accepts_nested_attributes_for :goody_image, update_only: true
   def orders_count
     orders.count
+  end
+
+  def input_goody_image
+    self.goody_image ||= self.build_goody_image
   end
 
   def remaining_quantity

@@ -22,10 +22,12 @@ class CampaignsController < ApplicationController
 
   def new
     @campaign = Campaign.new
+    @campaign_tags = CampaignTag.all
   end
 
   def edit
-    
+    @campaign_tags = CampaignTag.all
+    @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id).map {|cts| cts.campaign_tag_id }    
   end
 
   def group_edit
@@ -53,6 +55,10 @@ class CampaignsController < ApplicationController
   def goody_create
     @goody = Goody.new(goody_params)
     @goody.save!
+    # @goody_image = GoodyImage.new(goody_image_params)
+    # @goody_image.goody_id = @goody.id
+    # @goody_image.save!
+    @goody.goody_image.update_urls_success?
     id = Campaign.find(params[:goody][:campaign_id])
     redirect_to goody_campaign_path(id.slug)
   end
@@ -65,6 +71,12 @@ class CampaignsController < ApplicationController
     @goody = Goody.find(params[:id])
     @goody.update(goody_params)
     @goody.save!
+    # if goody_image_params.present?
+    #   @goody_image = GoodyImage.find_or_initialize_by(:goody_id => @goody.id)
+    #   @goody_image.update(goody_image_params)
+    #   @goody_image.save!
+    @goody.goody_image.update_urls_success?
+    # end
     id = Campaign.find(params[:goody][:campaign_id])
     redirect_to goody_campaign_path(id.slug)
   end
@@ -80,11 +92,19 @@ class CampaignsController < ApplicationController
     @campaign.update(campaign_params)
     @campaign.status = 1
     @campaign.save!
-    if campaign_image_params.present?
-      @campaign_image = CampaignImage.find_or_initialize_by(:campaign_id => @campaign.id)
-      @campaign_image.update(campaign_image_params)
-      @campaign_image.save!
-      @campaign_image.update_urls_success?
+    # @campaign.
+    # if campaign_image_params.present?
+
+    #   @campaign_image = CampaignImage.find_or_initialize_by(:campaign_id => @campaign.id)
+    #   @campaign_image.update(campaign_image_params)
+    #   @campaign_image.save!
+    @campaign.campaign_image.update_urls_success?
+    # end
+    @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id)
+    @campaign_tag_ship.destroy_all
+    tag_ids_params.each do |ti|
+      @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
+      @campaign_tag_ship.save!
     end
     redirect_to campaigns_path
   end
@@ -98,10 +118,15 @@ class CampaignsController < ApplicationController
     @campaign.active = true
     @campaign.status = 1
     @campaign.save!
-    @campaign_image = CampaignImage.new(campaign_image_params)
-    @campaign_image.campaign_id = @campaign.id
-    @campaign_image.save!
-    @campaign_image.update_urls_success?
+    # @campaign_image = CampaignImage.new(campaign_image_params)
+    # @campaign_image.campaign_id = @campaign.id
+    # @campaign_image.save!
+    @campaign.campaign_image.update_urls_success?
+    tag_ids_params.each do |ti|
+      @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
+      @campaign_tag_ship.save!
+    end
+    
     redirect_to campaigns_path
   end
 
@@ -118,7 +143,7 @@ class CampaignsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
       params.require(:campaign).permit(:claim, :email, :goal, :start_date, :end_date,
-      :title, :youtube_url, :twitter_url, :facebook_url, :risk, :description_html, :order_description_html, :order_success_html)
+      :title, :youtube_url, :twitter_url, :facebook_url, :risk, :description_html, :order_description_html, :order_success_html, campaign_image_attributes: [:file])
     end
 
     def campaign_groups_params
@@ -126,12 +151,20 @@ class CampaignsController < ApplicationController
     end
 
     def goody_params
-      params.require(:goody).permit(:campaign_id, :title, :description, :price, :quantity)
+      params.require(:goody).permit(:campaign_id, :title, :description, :price, :quantity, goody_image_attributes: [:file])
     end
 
     def campaign_image_params
-      params.require(:campaign).require(:campaign_image).permit(:file)
+      params.require(:campaign).permit(campaign_image: :file)
+      # params.require(:campaign).require(:campaign_image).permit(:file)
     end
 
+    def goody_image_params
+      params.require(:goody).permit(goody_image: :file)
+      # params.require(:goody).require(:goody_image).permit(:file)
+    end
 
+    def tag_ids_params
+      params.require(:tag_ids)
+    end
 end

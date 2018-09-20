@@ -5,6 +5,7 @@ class Campaign < ApplicationRecord
   has_one :campaign_image
 
   default_scope { where(active: true) }
+  scope :normal_state, -> { where(status: 3) }
 
   has_many :goodies, dependent: :destroy
   has_many :supporters, through: :goodies
@@ -13,8 +14,11 @@ class Campaign < ApplicationRecord
   has_many :campaign_replies
   has_many :tracks
   has_many :campaign_groups
+  has_many :campaign_tag_ships
+  has_many :campaign_tags, :through => :campaign_tag_ships
 
   accepts_nested_attributes_for :campaign_groups
+  accepts_nested_attributes_for :campaign_image, update_only: true #allow_destroy: true
 
   belongs_to :user
 
@@ -46,6 +50,10 @@ class Campaign < ApplicationRecord
   def is_active?
     start_date <= Date.today &&
     end_date >= Date.today
+  end
+
+  def input_campaign_image
+    self.campaign_image ||= self.build_campaign_image
   end
 
   private

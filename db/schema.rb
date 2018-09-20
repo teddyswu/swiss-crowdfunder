@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919101457) do
+ActiveRecord::Schema.define(version: 20180920070343) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 20180919101457) do
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_campaign_replies_on_campaign_id"
     t.index ["user_id"], name: "index_campaign_replies_on_user_id"
+  end
+
+  create_table "campaign_tag_ships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "campaign_id"
+    t.integer "campaign_tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "campaign_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "campaign_updates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -125,6 +138,14 @@ ActiveRecord::Schema.define(version: 20180919101457) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_goodies_on_campaign_id"
+  end
+
+  create_table "goody_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "goody_id"
+    t.string "file"
+    t.text "cover"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

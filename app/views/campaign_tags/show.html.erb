@@ -1,0 +1,21 @@
+<div class="site-wrapper">
+  <%= @campaign_tag.name %>
+  <main class="container mb-3">
+    <% unless @campaign_tag.campaigns.normal_state %>
+      <%= t('.no_campaigns') %>
+    <% end %>
+    <div class="row">
+      <% @campaign_tag.campaigns.normal_state.each do |campaign| %>
+        <%= render partial: 'shared/campaign_card', locals: {campaign: campaign} %>
+      <% end %>
+      <!-- Show "Coming soon" cards to fill up remaining spots -->
+      <% (3 - @campaign_tag.campaigns.normal_state.length).times do |i| %>
+        <div class="col-md-4 pb-3">
+          <div class="campaign_card coming_soon">
+            <div class="text-muted"><%= t '.coming_soon' %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </main>
+</div>

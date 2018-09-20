@@ -1,5 +1,6 @@
 <section class="card side_card">
   <div class="card-body">
+    <p class="card-text"><img class="d-block w-100" src="<%= goody.goody_image.try(:cover) %>"></p>
     <h4 class="card-title"><%= goody.title %></h4>
     <p class="card-text"><%= goody.description %></p>
     <p class="card_point"><%= t(".quantity", quantity: goody.remaining_quantity) %></p>
