@@ -11,6 +11,9 @@
         贊助內容： <strong><%= @goody.description %></strong>.
       </p>
       <p>
+        <img class="d-block w-100" src="<%= @goody.goody_image.try(:cover) %>">
+      </p>
+      <p>
         <%#= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "TWD") %>
       </p>
     </div>
