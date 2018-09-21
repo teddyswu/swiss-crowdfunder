@@ -7,15 +7,19 @@
 		    <th>描述</th>
 		    <th>金額</th>
 		    <th>數量</th>
+		    <th>預計送達時間</th>
+		    <th>排序</th>
 		    <th>編輯</th>
 		    <th>刪除</th>
 		  </tr>
-		  <% @campaign.goodies.each do |goody| %>
+		  <% @campaign.goodies.order(:sort).each do |goody| %>
 			  <tr>
 			    <td><%= goody.title%></td>
 			    <td><%= goody.description%></td>
 			    <td><%= goody.price%></td>
 			    <td><%= render_quantity(goody.quantity)%></td>
+			    <td><%= goody.delivery_time.strftime("%Y年%m月")%></td>
+			    <td><%= goody.sort %></td>
 			    <td><%= link_to "編輯", goody_edit_campaign_path(goody.id)%></td>
 			    <td><%= link_to "<i class='fa fa-trash' aria-hidden='true'></i>".html_safe, goody_del_campaign_path(goody.id), :method => :delete%></td>
 			  </tr>
@@ -30,9 +34,11 @@
       <%= i.file_field :file, :class => "form-control"%>
     <% end %>
 		<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
-		<%= f.label :title, "描述" %><%= f.text_area :description, :class => "form-control", rows: 4 %>
-		<%= f.label :title, "金額" %><%= f.number_field :price, :class => "form-control" %>
-		<%= f.label :title, "數量(輸入-1，無上限)" %><%= f.number_field :quantity, :class => "form-control" %>
+		<%= f.label :description, "描述" %><%= f.text_area :description, :class => "form-control", rows: 4 %>
+		<%= f.label :price, "金額" %><%= f.number_field :price, :class => "form-control" %>
+		<%= f.label :quantity, "數量(輸入-1，無上限)" %><%= f.number_field :quantity, :class => "form-control" %>
+		<%= f.label :delivery_time, "預計送達時間"%><%= f.date_field :delivery_time, :class => "form-control"%>
+		<%= f.label :sort, "排序(越小越上面)"%><%= f.number_field :sort, :class => "form-control"%>
 		<%= f.submit "送出"%>
     <%= f.submit "取消", :type => "reset" %>
     <%= link_to "回上一頁", campaigns_path%>

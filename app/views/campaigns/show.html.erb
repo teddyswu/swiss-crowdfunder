@@ -193,7 +193,7 @@
       
       <aside class="col-md-5 col-lg-4">
         <h2><%= t('.goodies') %></h2>
-        <% @campaign.goodies.each do |goody| %>
+        <% @campaign.goodies.order(:sort).each do |goody| %>
           <%= render partial: 'shared/goody', locals: { goody: goody } %>
         <% end %>
         <!-- <section class="card side_card">

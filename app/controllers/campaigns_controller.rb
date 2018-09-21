@@ -152,18 +152,18 @@ class CampaignsController < ApplicationController
     end
 
     def goody_params
-      params.require(:goody).permit(:campaign_id, :title, :description, :price, :quantity, goody_image_attributes: [:file])
+      params.require(:goody).permit(:campaign_id, :title, :description, :sort, :price, :quantity, :delivery_time, goody_image_attributes: [:file])
     end
 
-    def campaign_image_params
-      params.require(:campaign).permit(campaign_image: :file)
-      # params.require(:campaign).require(:campaign_image).permit(:file)
-    end
+    # def campaign_image_params
+    #   params.require(:campaign).permit(campaign_image: :file)
+    #   # params.require(:campaign).require(:campaign_image).permit(:file)
+    # end
 
-    def goody_image_params
-      params.require(:goody).permit(goody_image: :file)
-      # params.require(:goody).require(:goody_image).permit(:file)
-    end
+    # def goody_image_params
+    #   params.require(:goody).permit(goody_image: :file)
+    #   # params.require(:goody).require(:goody_image).permit(:file)
+    # end
 
     def tag_ids_params
       params.require(:tag_ids) if params[:tag_ids].present?

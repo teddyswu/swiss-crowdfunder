@@ -5,6 +5,7 @@
     <p class="card-text"><%= goody.description %></p>
     <p class="card_point"><%= t(".quantity", quantity: goody.remaining_quantity) %></p>
     <p class="card_point"><%= t(".backers", quantity: goody.orders_count) %></p>
+    <p class="card_point">預計送達日期 : <%= goody.delivery_time.strftime("%Y年%m月") %></p>
     <hr>
     <div class="card_action d-flex justify-content-between align-items-center flex-wrap">
       <div class="wrap_top"><%= t(".price") %> <strong> <%= number_to_currency(goody.price, precision: 0) %></strong></div>

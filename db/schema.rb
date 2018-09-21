@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180920070343) do
+ActiveRecord::Schema.define(version: 20180921063530) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -135,8 +135,10 @@ ActiveRecord::Schema.define(version: 20180920070343) do
     t.integer "price"
     t.integer "quantity"
     t.bigint "campaign_id"
+    t.integer "sort"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "delivery_time"
     t.index ["campaign_id"], name: "index_goodies_on_campaign_id"
   end
 
