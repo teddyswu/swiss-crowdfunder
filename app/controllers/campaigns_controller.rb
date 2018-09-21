@@ -90,7 +90,6 @@ class CampaignsController < ApplicationController
 
   def update
     @campaign.update(campaign_params)
-    @campaign.status = 1
     @campaign.save!
     # @campaign.
     # if campaign_image_params.present?
@@ -100,11 +99,13 @@ class CampaignsController < ApplicationController
     #   @campaign_image.save!
     @campaign.campaign_image.update_urls_success?
     # end
-    @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id)
-    @campaign_tag_ship.destroy_all
-    tag_ids_params.each do |ti|
-      @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
-      @campaign_tag_ship.save!
+    if tag_ids_params.present?
+      @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id)
+      @campaign_tag_ship.destroy_all
+      tag_ids_params.each do |ti|
+        @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
+        @campaign_tag_ship.save!
+      end
     end
     redirect_to campaigns_path
   end
@@ -143,7 +144,7 @@ class CampaignsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
       params.require(:campaign).permit(:claim, :email, :goal, :start_date, :end_date,
-      :title, :youtube_url, :twitter_url, :facebook_url, :risk, :description_html, :order_description_html, :order_success_html, campaign_image_attributes: [:file])
+      :title, :youtube_url, :twitter_url, :facebook_url, :status, :risk, :description_html, :order_description_html, :order_success_html, campaign_image_attributes: [:file])
     end
 
     def campaign_groups_params
@@ -165,6 +166,6 @@ class CampaignsController < ApplicationController
     end
 
     def tag_ids_params
-      params.require(:tag_ids)
+      params.require(:tag_ids) if params[:tag_ids].present?
     end
 end
