@@ -1,7 +1,7 @@
 module GoodiesHelper
 
   def is_goody_active?(goody)
-    if (goody.remaining_quantity != 0) and goody.campaign.is_active?
+    if (goody.remaining_quantity != 0) and goody.campaign.is_active? and goody.campaign.status == 3 and goody.campaign.start_date > Date.today
       ''
     else
       'disabled'

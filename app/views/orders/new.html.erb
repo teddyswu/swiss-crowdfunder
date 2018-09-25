@@ -17,69 +17,74 @@
         <%#= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "TWD") %>
       </p>
     </div>
+    <% if is_goody_active?(@goody) == ''%>
+      <%= simple_form_for [@goody.campaign, @goody, @order] do |f| %>
+        <%= f.input :user_id, :as => :hidden, input_html: {value: current_user.id} %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= label_tag "項目金額"%><br >
+            <%= number_to_currency(@goody.price, precision: 0)%>
+          </div>
+          <div class="col-sm-6">
+            <%= f.input :bonus, label: '額外贊助' %>
+          </div>
+        </div>
+        <%= f.simple_fields_for :supporter do |s| %>
+          <div class="row">
+            <div class="col-sm-6">
+              <%= s.input :first_name, label: t('.first_name'), input_html: {value: current_user.user_profile.first_name} %>
+            </div>
+            <div class="col-sm-6">
+              <%= s.input :last_name, label: t('.last_name'), input_html: {value: current_user.user_profile.last_name} %>
+            </div>
+          </div>
+          <%= s.input :email, label: t('.email'), input_html: {value: current_user.email} %>
+          <%= s.input :address, label: t('.street'), input_html: {value: current_user.user_profile.address} %>
+          <div class="row">
+            <div class="col-sm-6">
+              <%= s.input :tel, label: "室話", input_html: {value: current_user.user_profile.tel} %>
+            </div>
+            <div class="col-sm-6">
+              <%= s.input :cell_phone, label: "手機", input_html: {value: current_user.user_profile.cell_phone} %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <%= s.input :postal_code, label: t('.postal_code'), input_html: {value: current_user.user_profile.postal_code} %>
+            </div>
+            <div class="col-sm-8">
+              <%= s.input :city, label: t('.city'), input_html: {value: current_user.user_profile.city} %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <%= s.input :state, label: t('.state'), input_html: {value: current_user.user_profile.state} %>
+            </div>
+            <div class="col-sm-8">
+              <%= s.input :country, :as => :hidden, input_html: {value: "TW"} %>
+            </div>
+          </div>
+        <% end %>
 
-    <%= simple_form_for [@goody.campaign, @goody, @order] do |f| %>
-      <%= f.input :user_id, :as => :hidden, input_html: {value: current_user.id} %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= label_tag "項目金額"%><br >
-          <%= number_to_currency(@goody.price, precision: 0)%>
+        <%= f.input :remark, as: :text, label: "備註欄位", :input_html => {:rows => 10}  %>
+        
+        <%- unless @goody.campaign.order_description.blank? %>
+          <div class="jumbotron mt-4" id="campaign_order_description">
+            <%= raw @goody.campaign.order_description_html %>
+          </div>
+        <% end %>
+        <%= f.input :payment_type, as: :radio_buttons, label: "付款方式", collection: [['ecpay', '第三方支付']], label_method: :second, value_method: :first %>
+        <div class="text-right mb-4">
+          <%= f.input :anonymous, label: "匿名贊助" %>
+          <%= f.input :agreement, required: true, label: t('.i_agree').html_safe, input_html: { class: "qa-agreement" } %>
         </div>
-        <div class="col-sm-6">
-          <%= f.input :bonus, label: '額外贊助' %>
-        </div>
-      </div>
-      <%= f.simple_fields_for :supporter do |s| %>
-        <div class="row">
-          <div class="col-sm-6">
-            <%= s.input :first_name, label: t('.first_name'), input_html: {value: current_user.user_profile.first_name} %>
-          </div>
-          <div class="col-sm-6">
-            <%= s.input :last_name, label: t('.last_name'), input_html: {value: current_user.user_profile.last_name} %>
-          </div>
-        </div>
-        <%= s.input :email, label: t('.email'), input_html: {value: current_user.email} %>
-        <%= s.input :address, label: t('.street'), input_html: {value: current_user.user_profile.address} %>
-        <div class="row">
-          <div class="col-sm-6">
-            <%= s.input :tel, label: "室話", input_html: {value: current_user.user_profile.tel} %>
-          </div>
-          <div class="col-sm-6">
-            <%= s.input :cell_phone, label: "手機", input_html: {value: current_user.user_profile.cell_phone} %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <%= s.input :postal_code, label: t('.postal_code'), input_html: {value: current_user.user_profile.postal_code} %>
-          </div>
-          <div class="col-sm-8">
-            <%= s.input :city, label: t('.city'), input_html: {value: current_user.user_profile.city} %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <%= s.input :state, label: t('.state'), input_html: {value: current_user.user_profile.state} %>
-          </div>
-          <div class="col-sm-8">
-            <%= s.input :country, :as => :hidden, input_html: {value: "TW"} %>
-          </div>
+        <div class="text-center">
+          <%= f.submit "付款", class: "qa-submit btn btn_theme btn_wide" %>
         </div>
       <% end %>
-
-      <%= f.input :remark, as: :text, label: "備註欄位", :input_html => {:rows => 10}  %>
-      
-      <%- unless @goody.campaign.order_description.blank? %>
-        <div class="jumbotron mt-4" id="campaign_order_description">
-          <%= raw @goody.campaign.order_description_html %>
-        </div>
-      <% end %>
-      <%= f.input :payment_type, as: :radio_buttons, label: "付款方式", collection: [['ecpay', '第三方支付']], label_method: :second, value_method: :first %>
-      <div class="text-right mb-4">
-        <%= f.input :anonymous, label: "匿名贊助" %>
-        <%= f.input :agreement, required: true, label: t('.i_agree').html_safe, input_html: { class: "qa-agreement" } %>
-      </div>
-      <div class="text-center">
-        <%= f.submit "付款", class: "qa-submit btn btn_theme btn_wide" %>
+    <% else %>
+      <div class="jumbotron mt-4" id="campaign_order_description">
+        尚未開始
       </div>
     <% end %>
   </div>
