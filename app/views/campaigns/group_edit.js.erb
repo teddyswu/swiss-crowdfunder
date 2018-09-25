@@ -1,0 +1,4 @@
+<% if params[:group_name].present? %>
+$("#campaign_groups_user_id").html('<%= escape_javascript select_tag("campaign_groups_user_id", "<option
+value=''>請選擇會員</option>".html_safe + options_for_select(@farmer_lists), :id => "campaign_groups_user_id") %>');
+<% end %>

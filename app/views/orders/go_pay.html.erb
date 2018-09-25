@@ -1,0 +1,46 @@
+<%= @order.id%>
+<form name="myForm" id="myForm" target="_myFrame" action="https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5" method="POST">
+  <input name="MerchantID" value="2000132" />
+  <input name="MerchantTradeNo" value="<%= @order.number%>" />
+  <input name="MerchantTradeDate" value="<%= @order.created_at.strftime('%F %H:%M:%S')%>" />
+  <input name="PaymentType" value="aio" />
+  <input name="TotalAmount" value="<%= @order.amount%>" />
+  <input name="TradeDesc" value="募資平台" />
+  <input name="ItemName" value="<%= @order.goody.title%>" />
+  <input name="ReturnURL" value="" />
+  <input name="ChoosePayment" value="ALL" />
+  <input name="CheckMacValue" value="ALL" />
+  <input name="ClientBackURL" value="http://localhost:3000/orders/finished" />
+  <input name="EncryptType" value="1" />
+  <input type="submit" value="Submit" />
+</form>
+<% payment_service_for  @order,
+                        @order.user.email,
+                        :service => :allpay,
+                        :html    => { :id => 'allpay-atm-form', :method => :post,authenticity_token: false,enforce_utf8: false } do |service| %>
+  <% service.merchant_trade_no @order.number %>
+  <% service.merchant_trade_date @order.created_at %>
+  <% service.total_amount @order.amount %>
+  <% service.description @order.id %>
+  <% service.item_name @order.goody.title %>
+  <% service.choose_payment "ALL" %>
+  <% service.return_url "http://localhost:3000/orders/finished" %>
+  <% service.notify_url "http://localhost:3000/orders/finished" %>
+  <% service.encrypted_data %>
+<% end %>
+
+<script type="text/javascript">
+  // window.onload=function(){
+  //     var auto = setTimeout(function(){ autoRefresh(); }, 100);
+
+  //     function submitform(){
+  //       alert('test');
+  //       document.forms["allpay-atm-form"].submit();
+  //     }
+
+  //     function autoRefresh(){
+  //        clearTimeout(auto);
+  //        auto = setTimeout(function(){ submitform(); autoRefresh(); }, 100);
+  //     }
+  // }
+</script>

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:index] do
     get "finished", :on => :collection
+    get "go_pay", :on => :member
   end
 
   get '*any', via: :all, to: 'errors#not_found'

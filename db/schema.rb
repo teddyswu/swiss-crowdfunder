@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180921063530) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "campaign_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "campaign_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "campaign_id"
     t.integer "income"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20180921063530) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "campaign_qas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "campaign_qas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "campaign_id"
     t.text "campaign_question"
     t.text "campaign_answer"
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 20180921063530) do
     t.index ["campaign_id"], name: "index_campaign_qas_on_campaign_id"
   end
 
-  create_table "campaign_replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "campaign_replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "campaign_id"
     t.bigint "user_id"
-    t.text "content", collation: "utf8_general_ci"
+    t.text "content"
     t.integer "parent_id"
     t.boolean "enabled"
     t.datetime "created_at", null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20180921063530) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "campaign_updates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "campaign_updates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "campaign_id"
     t.text "campaign_title"
     t.text "campaign_content"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 20180921063530) do
     t.index ["order_id"], name: "index_supporters_on_order_id"
   end
 
-  create_table "tracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "tracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "campaign_id"
     t.datetime "created_at", null: false
@@ -193,20 +193,20 @@ ActiveRecord::Schema.define(version: 20180921063530) do
     t.index ["user_id"], name: "index_tracks_on_user_id"
   end
 
-  create_table "user_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "user_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.string "nickname"
-    t.string "first_name", collation: "utf8_general_ci"
-    t.string "last_name", collation: "utf8_general_ci"
+    t.string "first_name"
+    t.string "last_name"
     t.integer "gender"
     t.datetime "birthday"
-    t.string "city", collation: "utf8_general_ci"
-    t.string "state", collation: "utf8_general_ci"
-    t.string "postal_code", collation: "utf8_general_ci"
-    t.string "country", collation: "utf8_general_ci"
-    t.text "address", collation: "utf8_general_ci"
-    t.string "tel", collation: "utf8_general_ci"
-    t.string "cell_phone", collation: "utf8_general_ci"
+    t.string "city"
+    t.string "state"
+    t.string "postal_code"
+    t.string "country"
+    t.text "address"
+    t.string "tel"
+    t.string "cell_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_profiles_on_user_id"

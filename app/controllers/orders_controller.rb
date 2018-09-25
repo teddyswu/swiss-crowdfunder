@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @order.paid = false
 
     if NewOrderService.new(@order).call
-      redirect_to [@goody.campaign, @goody, @order]
+      redirect_to go_pay_order_path(@order.id)#[@goody.campaign, @goody, @order]
     else
       render action: 'new'
     end
@@ -36,6 +36,10 @@ class OrdersController < ApplicationController
 
   def finished
     
+  end
+
+  def go_pay
+    @order = Order.find(params[:id])
   end
 
 

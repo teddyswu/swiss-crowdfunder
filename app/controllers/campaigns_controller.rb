@@ -31,7 +31,9 @@ class CampaignsController < ApplicationController
   end
 
   def group_edit
-    @farmer_lists = User.where(:is_check_farmer => true).map {|user| [user.a_user_profile.name, user.id] }
+    @farmer_group = AUserProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
+    @farmer_lists = params[:group_name].present? ? User.joins(:a_user_profile).where("users.is_check_farmer = true and user_profiles.ps_group = ?", params[:group_name]).map {|user| [user.a_user_profile.name, user.id] } : []
+  
   end
 
   def group_create
