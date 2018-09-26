@@ -31,21 +31,18 @@
 #     (Digest::SHA256.hexdigest(url_encode_data) == checksum.to_s.downcase)
 #   end 
 # end
+
+
 OffsitePayments::Integrations::Allpay.module_eval do
 	def self.service_url
-		"https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5"
+    pay = YAML.load_file("config/settings.yml")
+		pay[:service_url]
 	end
 end
 OffsitePayments::Integrations::Allpay.setup do |allpay|
-  if Rails.env.development?
-    # default setting for stage test
-    allpay.merchant_id = '2000132'
-    allpay.hash_key    = '5294y06JbISpM5x9'
-    allpay.hash_iv     = 'v77hoKGq4kWxNNIS'
-  else
-    # change to yours
-    allpay.merchant_id = ''
-    allpay.hash_key    = ''
-    allpay.hash_iv     = ''
-  end
+  pay = YAML.load_file("config/settings.yml")
+  # default setting for stage test
+  allpay.merchant_id = pay[:merchant_id]
+  allpay.hash_key    = pay[:hash_key]
+  allpay.hash_iv     = pay[:hash_iv]
 end
