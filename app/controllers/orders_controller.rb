@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  skip_before_action :verify_authenticity_token, only: [:is_paid]
   before_action :authenticate_user!, only: [:new, :index]
 
   # TODO: Think about proper safety in this method/controller. This
