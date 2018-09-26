@@ -24,8 +24,8 @@
   <% service.description @order.id %>
   <% service.item_name @order.goody.title %>
   <% service.choose_payment "ALL" %>
-  <% service.return_url "http://#{SelfConfig.agrisc_host}/orders/finished" %>
-  <% service.notify_url "http://#{SelfConfig.agrisc_host}/orders/#{@order.id}/is_paid" %>
+  <% service.return_url "http://#{SelfConfig.root_host}/orders/finished" %>
+  <% service.notify_url "http://#{SelfConfig.root_host}/orders/#{@order.id}/is_paid" %>
   <% service.encrypted_data %>
 <% end %>
 
