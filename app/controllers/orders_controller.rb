@@ -38,6 +38,29 @@ class OrdersController < ApplicationController
     
   end
 
+  def is_paid
+    File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
+      file.syswrite(%(#{Time.now.iso8601}: #{params} \n---------------------------------------------\n\n))
+    end
+    order = Order.find(params[:id])
+    checkstring = "HashKey=#{OffsitePayments::Integrations::Allpay.hash_key}"+"CustomField1=&CustomField2=&CustomField3=&CustomField4=&&EncryptType=1&MerchantID=#{OffsitePayments::Integrations::Allpay.merchant_id}&MerchantTradeNo=#{order.number}&PaymentDate=#{params[:PaymentDate]}&PaymentType=#{params[:PaymentType]}&PaymentTypeChargeFee=#{params[:PaymentTypeChargeFee]}&RtnCode=#{params[:RtnCode]}&RtnMsg=#{params[:RtnMsg]}&SimulatePaid=#{params[:SimulatePaid]}&StoreID=&TradeAmt=#{order.amount}&TradeDate=#{order.created_at.strftime('%F %H:%M:%S')}&TradeNo=#{params[:TradeNo]}" + "&HashIV=#{OffsitePayments::Integrations::Allpay.hash_iv}"
+    encodestr = URI::encode(checkstring).downcase
+    sha256 = Digest::SHA256.hexdigest(encodestr)
+    if sha256 == params[:CheckMacValue]
+      if params[:RtnCode] == 1 #&& params[:SimulatePaid] == 0
+        order.paid = true
+        order.trade_no = params[:TradeNo]
+        order.payment_date = params[:PaymentDate]
+        order.ecpay_payment_type = params[:PaymentType]
+        order.payment_type_charge_fee = params[:PaymentTypeChargeFee]
+        order.save!
+        render plain: "1|OK"
+      end
+      render plain: "0|付款失敗"
+    end
+    render plain: "0|驗證失敗"
+  end
+
   def go_pay
     @order = Order.find(params[:id])
   end

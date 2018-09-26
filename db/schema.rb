@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180921063530) do
+ActiveRecord::Schema.define(version: 20180926044023) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20180921063530) do
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "number"
+    t.string "trade_no"
     t.integer "quantity"
     t.integer "amount"
     t.integer "bonus"
@@ -164,6 +165,9 @@ ActiveRecord::Schema.define(version: 20180921063530) do
     t.datetime "updated_at", null: false
     t.boolean "agreement"
     t.boolean "anonymous"
+    t.string "payment_date"
+    t.string "ecpay_payment_type"
+    t.integer "payment_type_charge_fee"
     t.index ["goody_id"], name: "index_orders_on_goody_id"
   end
 
