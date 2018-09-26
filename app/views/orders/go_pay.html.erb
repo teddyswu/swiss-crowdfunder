@@ -25,22 +25,22 @@
   <% service.item_name @order.goody.title %>
   <% service.choose_payment "ALL" %>
   <% service.return_url "http://#{SelfConfig.agrisc_host}/orders/finished" %>
-  <% service.notify_url "http://#{SelfConfig.agrisc_host}/orders/<%= @order.id%>/is_paid" %>
+  <% service.notify_url "http://#{SelfConfig.agrisc_host}/orders/#{@order.id}/is_paid" %>
   <% service.encrypted_data %>
 <% end %>
 
 <script type="text/javascript">
-  // window.onload=function(){
-  //     var auto = setTimeout(function(){ autoRefresh(); }, 100);
+  window.onload=function(){
+      var auto = setTimeout(function(){ autoRefresh(); }, 100);
 
-  //     function submitform(){
-  //       alert('test');
-  //       document.forms["allpay-atm-form"].submit();
-  //     }
+      function submitform(){
+        alert('test');
+        document.forms["allpay-atm-form"].submit();
+      }
 
-  //     function autoRefresh(){
-  //        clearTimeout(auto);
-  //        auto = setTimeout(function(){ submitform(); autoRefresh(); }, 100);
-  //     }
-  // }
+      function autoRefresh(){
+         clearTimeout(auto);
+         auto = setTimeout(function(){ submitform(); autoRefresh(); }, 100);
+      }
+  }
 </script>
