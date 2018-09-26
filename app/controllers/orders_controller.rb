@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
     # encodestr = URI::encode(checkstring).downcase
     # sha256 = Digest::SHA256.hexdigest(encodestr)
     if chksource.checksum_ok?
-      if params[:RtnCode] == 1 #&& params[:SimulatePaid] == 0
+      if params[:RtnCode] == "1" #&& params[:SimulatePaid] == 0
         order.paid = true
         order.trade_no = params[:TradeNo]
         order.payment_date = params[:PaymentDate]
