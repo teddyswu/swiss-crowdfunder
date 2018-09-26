@@ -17,4 +17,8 @@ class SelfConfig
     @@config[:upload_dir]
   end
 
+  def self.root_host
+    @@config[:root_host]
+  end
+
 end
