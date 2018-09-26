@@ -20,7 +20,7 @@
                         :html    => { :id => 'allpay-atm-form', :method => :post,authenticity_token: false,enforce_utf8: false } do |service| %>
   <% service.merchant_trade_no @order.number %>
   <% service.merchant_trade_date @order.created_at %>
-  <% service.total_amount @order.amount %>
+  <% service.total_amount @order.amount + @order.bonus.to_i %>
   <% service.description @order.id %>
   <% service.item_name @order.goody.title %>
   <% service.choose_payment "ALL" %>
