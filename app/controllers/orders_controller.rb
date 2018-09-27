@@ -48,20 +48,6 @@ class OrdersController < ApplicationController
     # checkstring = "HashKey=#{OffsitePayments::Integrations::Allpay.hash_key}&"+"CustomField1=&CustomField2=&CustomField3=&CustomField4=&EncryptType=1&MerchantID=#{OffsitePayments::Integrations::Allpay.merchant_id}&MerchantTradeNo=#{order.number}&PaymentDate=#{params[:PaymentDate]}&PaymentType=#{params[:PaymentType]}&PaymentTypeChargeFee=#{params[:PaymentTypeChargeFee]}&RtnCode=#{params[:RtnCode]}&RtnMsg=#{params[:RtnMsg]}&SimulatePaid=#{params[:SimulatePaid]}&StoreID=&TradeAmt=#{price}&TradeDate=#{order.created_at.strftime('%F %H:%M:%S')}&TradeNo=#{params[:TradeNo]}" + "&HashIV=#{OffsitePayments::Integrations::Allpay.hash_iv}"
     # encodestr = URI::encode(checkstring).downcase
     # sha256 = Digest::SHA256.hexdigest(encodestr)
-    params_copy = request.raw_post
-    raw_data = params_copy.sort_by { |k,v| k.downcase }.map do |x, y|
-      "#{x}=#{y}"
-    end.join('&')
-    hash_raw_data = "HashKey=#{OffsitePayments::Integrations::Allpay.hash_key}&#{raw_data}&HashIV=#{OffsitePayments::Integrations::Allpay.hash_iv}"
-    url_encode_data = OffsitePayments::Integrations::Allpay::Helper.url_encode(hash_raw_data)
-    File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
-      file.syswrite(%(#{Time.now.iso8601}: 1. #{params_copy.delete('CheckMacValue')} \n---------------------------------------------\n\n))
-      file.syswrite(%(#{Time.now.iso8601}: 2. #{raw_data} \n---------------------------------------------\n\n))
-      file.syswrite(%(#{Time.now.iso8601}: 3. #{hash_raw_data} \n---------------------------------------------\n\n))
-      file.syswrite(%(#{Time.now.iso8601}: 4. #{url_encode_data} \n---------------------------------------------\n\n))
-      file.syswrite(%(#{Time.now.iso8601}: 5. #{url_encode_data.downcase!} \n---------------------------------------------\n\n))
-      file.syswrite(%(#{Time.now.iso8601}: 6. #{Digest::SHA256.hexdigest(url_encode_data)} \n---------------------------------------------\n\n))
-    end
     if chksource.checksum_ok?
       File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
         file.syswrite(%(#{Time.now.iso8601}: #{params[:RtnCode] == "1"} \n---------------------------------------------\n\n))

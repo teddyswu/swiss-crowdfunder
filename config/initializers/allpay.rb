@@ -15,7 +15,13 @@ OffsitePayments::Integrations::Allpay::Notification.module_eval do
 	def checksum_ok?
     params_copy = @params.clone
 
+    p params_copy
+    p "1111111"
+
     checksum = params_copy.delete('CheckMacValue')
+
+    p checksum
+    p "222222"
 
     # 把 params 轉成 query string 前必須先依照 hash key 做 sort
     # 依照英文字母排序，由 A 到 Z 且大小寫不敏感
@@ -23,10 +29,19 @@ OffsitePayments::Integrations::Allpay::Notification.module_eval do
       "#{x}=#{y}"
     end.join('&')
 
-    hash_raw_data = "HashKey=#{OffsitePayments::Integrations::Allpay.hash_key}&#{raw_data}&HashIV=#{OffsitePayments::Integrations::Allpay.hash_iv}"
+    p raw_data
+    p "333333"
 
+    hash_raw_data = "HashKey=#{OffsitePayments::Integrations::Allpay.hash_key}&#{raw_data}&HashIV=#{OffsitePayments::Integrations::Allpay.hash_iv}"
+    p hash_raw_data
+    p "444444"
     url_encode_data = OffsitePayments::Integrations::Allpay::Helper.url_encode(hash_raw_data)
+    p url_encode_data
+    p "5555555"
     url_encode_data.downcase!
+    p url_encode_data.downcase!
+    p "6666666"
+    p Digest::SHA256.hexdigest(url_encode_data)
 
     (Digest::SHA256.hexdigest(url_encode_data) == checksum.to_s.downcase)
   end 
