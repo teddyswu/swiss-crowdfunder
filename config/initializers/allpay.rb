@@ -18,15 +18,16 @@ OffsitePayments::Integrations::Allpay::Notification.module_eval do
     File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
       file.syswrite(%(#{Time.now.iso8601}: #{params_copy} \n---------------------------------------------\n\n))
     end
-
+    params_copy["EncryptType"] = "1"
     checksum = params_copy.delete('CheckMacValue')
-
+    
     File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
       file.syswrite(%(#{Time.now.iso8601} 1: #{checksum} \n---------------------------------------------\n\n))
     end
 
     # 把 params 轉成 query string 前必須先依照 hash key 做 sort
     # 依照英文字母排序，由 A 到 Z 且大小寫不敏感
+
     raw_data = params_copy.sort_by { |k,v| k.downcase }.map do |x, y|
       "#{x}=#{y}"
     end.join('&')

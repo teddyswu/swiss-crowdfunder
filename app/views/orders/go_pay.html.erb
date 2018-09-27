@@ -26,14 +26,15 @@
   <% service.choose_payment "ALL" %>
   <% service.return_url "http://#{SelfConfig.root_host}/orders/finished" %>
   <% service.notify_url "http://#{SelfConfig.root_host}/orders/#{@order.id}/is_paid" %>
+  <% service.encrypt_type 1 %>
   <% service.encrypted_data %>
 <% end %>
 
 <script type="text/javascript">
-  window.onload=function(){
-    var auto = setTimeout(function(){ submitform(); }, 100);
-    function submitform(){
-      document.forms["allpay-atm-form"].submit();
-    }
-  }
+  // window.onload=function(){
+  //   var auto = setTimeout(function(){ submitform(); }, 100);
+  //   function submitform(){
+  //     document.forms["allpay-atm-form"].submit();
+  //   }
+  // }
 </script>
