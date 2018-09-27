@@ -35,7 +35,7 @@ class Campaign < ApplicationRecord
 
   def amount_raised
     goodies.inject(0) do |sum, g|
-      sum += g.orders ? g.orders.sum(&:amount) : sum
+      sum += g.orders ? g.orders.sum{ |p| p.amount + p.bonus.to_i }  : sum
     end
   end
 
