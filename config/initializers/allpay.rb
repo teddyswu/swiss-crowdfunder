@@ -11,6 +11,22 @@
 #     allpay.hash_iv     = '123ddewqerasdfas'
 #   end
 # end
+OffsitePayments::Integrations::Allpay::Helper.module_eval do
+  def encrypted_data
+    raw_data = @fields.sort.map{|field, value|
+      # utf8, authenticity_token, commit are generated from form helper, needed to skip
+      "#{field}=#{value}" if field!='utf8' && field!='authenticity_token' && field!='commit'
+    }.join('&')
+
+    hash_raw_data = "HashKey=#{OffsitePayments::Integrations::Allpay.hash_key}&#{raw_data}&HashIV=#{OffsitePayments::Integrations::Allpay.hash_iv}"
+    url_encode_data = self.class.url_encode(hash_raw_data)
+    url_encode_data.downcase!
+
+    binding.pry if OffsitePayments::Integrations::Allpay.debug
+
+    add_field 'CheckMacValue', Digest::SHA256.hexdigest(url_encode_data).upcase
+  end
+end
 OffsitePayments::Integrations::Allpay::Notification.module_eval do
 	def checksum_ok?
     params_copy = @params.clone
