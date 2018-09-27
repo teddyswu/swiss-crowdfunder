@@ -18,7 +18,6 @@ OffsitePayments::Integrations::Allpay::Notification.module_eval do
     File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
       file.syswrite(%(#{Time.now.iso8601}: #{params_copy} \n---------------------------------------------\n\n))
     end
-    params_copy["EncryptType"] = "1"
     checksum = params_copy.delete('CheckMacValue')
     
     File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
