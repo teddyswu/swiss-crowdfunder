@@ -33,12 +33,12 @@
       <%= i.label "上傳圖片"%>
       <%= i.file_field :file, :class => "form-control"%>
     <% end %>
-		<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
+		<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control", :required => true %>
 		<%= f.label :description, "描述" %><%= f.text_area :description, :class => "form-control", rows: 4 %>
-		<%= f.label :price, "金額" %><%= f.number_field :price, :class => "form-control" %>
-		<%= f.label :quantity, "數量(輸入-1，無上限)" %><%= f.number_field :quantity, :class => "form-control" %>
-		<%= f.label :delivery_time, "預計送達時間"%><%= f.date_field :delivery_time, :class => "form-control"%>
-		<%= f.label :sort, "排序(越小越上面)"%><%= f.number_field :sort, :class => "form-control"%>
+		<%= f.label :price, "金額" %><%= f.number_field :price, :class => "form-control", :required => true %>
+		<%= f.label :quantity, "數量(輸入-1，無上限)" %><%= f.number_field :quantity, :class => "form-control", :required => true %>
+		<%= f.label :delivery_time, "預計送達時間"%><%= f.date_field :delivery_time, :class => "form-control", :required => true%>
+		<%= f.label :sort, "排序(越小越上面)"%><%= f.number_field :sort, :class => "form-control", :required => true%>
 		<%= f.submit "送出"%>
     <%= f.submit "取消", :type => "reset" %>
     <%= link_to "回上一頁", campaigns_path%>

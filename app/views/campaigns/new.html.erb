@@ -5,9 +5,9 @@
 			<h1>提交提案</h1>
 			<p>需審核需審核需審核需審核需審核需審核需審核</p>
 		</div>
-		<%= form_for @campaign, :url => campaigns_path(@campaign), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+		<%= form_for @campaign, :url => campaigns_path(@campaign), :method => :post, :validation => true, :html => {:class => 'form-horizontal'} do |f| %>
 			<div class="form-group">
-				<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
+				<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control", :required => true %>
         <%= f.label("類別", :class => 'form-control-label') %>
         <% @campaign_tags.each do |ct| %>
           <li>
@@ -18,18 +18,18 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
-      		<%= f.label :goal, "目標金額" %><%= f.number_field :goal, :class => "form-control" %>
+      		<%= f.label :goal, "目標金額" %><%= f.number_field :goal, :class => "form-control", :required => true %>
       	</div>
       	<div class="col-sm-6">
-      		<%= f.label :email, "Email" %><%= f.text_field :email, :class => "form-control" %>
+      		<%= f.label :email, "Email" %><%= f.text_field :email, :class => "form-control", :required => true %>
       	</div>
       </div>
       <div class="row">
         <div class="col-sm-6">
-      		<%= f.label :start_date, "開始時間" %><%= f.date_field :start_date, :class => "form-control" %>
+      		<%= f.label :start_date, "開始時間" %><%= f.date_field :start_date, :class => "form-control", :required => true %>
       	</div>
       	<div class="col-sm-6">
-      		<%= f.label :end_date, "結束時間" %><%= f.date_field :end_date, :class => "form-control" %>
+      		<%= f.label :end_date, "結束時間" %><%= f.date_field :end_date, :class => "form-control", :required => true %>
       	</div>
       </div>
       <div class="form-group">
@@ -43,7 +43,7 @@
         <hr>
         <%= f.label :risk, "風險與承諾" %><%= f.text_area :risk, rows: 4, :class => "form-control" %>
         <hr>
-				<%= f.label :description_html, "提案內容" %><%= f.text_area :description_html, rows: 4, :class => "form-control" %>
+				<%= f.label :description_html, "提案內容" %><%= f.text_area :description_html, rows: 4, :class => "form-control", :required => true %>
         <hr>
         <%= f.label :order_description_html, "贊助時注意事項" %><%= f.text_area :order_description_html, rows: 4, :class => "form-control" %>
         <hr>

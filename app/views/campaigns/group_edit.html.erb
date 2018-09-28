@@ -17,13 +17,13 @@
 	    <div class="row">
 	    	<%= build.hidden_field :campaign_id, :value => @campaign.id%>
 	      <div class="col-sm-4">
-	    		<%= label_tag :group_id, "群組" %><%= select_tag :group_id, '<option value=''>請選擇群組</option>'.html_safe + options_for_select(@farmer_group), :class => "form-control", :onchange=> "change_user_id();" %>
+	    		<%= label_tag :group_id, "群組" %><%= select_tag :group_id, '<option value=''>請選擇群組</option>'.html_safe + options_for_select(@farmer_group), :class => "form-control", :onchange=> "change_user_id();", :required => true %>
 	    	</div>
 	    	<div class="col-sm-4">
-	    		<%= build.label :user_id, "User" %><%= build.select :user_id, options_for_select(@farmer_lists), {}, {:class => "form-control"} %>
+	    		<%= build.label :user_id, "User" %><%= build.select :user_id, options_for_select(@farmer_lists), {}, {:class => "form-control", :required => true} %>
 	    	</div>
 	    	<div class="col-sm-4">
-	    		<%= build.label :income, "收益" %><%= build.number_field :income, :class => "form-control" %>
+	    		<%= build.label :income, "收益" %><%= build.number_field :income, :class => "form-control", :required => true %>
 	    	</div>
 	    </div>
 	    <%= f.submit "送出"%>
