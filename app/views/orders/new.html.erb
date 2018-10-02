@@ -26,7 +26,7 @@
             <%= number_to_currency(@goody.price, precision: 0)%>
           </div>
           <div class="col-sm-6">
-            <%= f.input :bonus, label: '額外贊助' %>
+            <%= f.input :bonus, label: '額外贊助', input_html: {value: '0', min: '0', step: 'any' } %>
           </div>
         </div>
         <%= f.simple_fields_for :supporter do |s| %>
@@ -79,7 +79,7 @@
           <%= f.input :agreement, required: true, label: t('.i_agree').html_safe, input_html: { class: "qa-agreement" } %>
         </div>
         <div class="text-center">
-          <%= f.submit "付款", class: "qa-submit btn btn_theme btn_wide" %>
+          <%= f.submit "付款", class: "qa-submit btn btn_theme btn_wide", :onclick => "return validate_all();" %>
         </div>
       <% end %>
     <% else %>
@@ -89,3 +89,57 @@
     <% end %>
   </div>
 </div>
+<% content_for :javascript do %>
+  <script>
+  $(document).ready(function() {
+    $('#order_bonus').keyup(function () {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+  });
+  function validateForm(){
+    var is_read_checkbox = document.getElementById("order_agreement");
+    if (is_read_checkbox.checked == false){
+      alert_a = '付款前請確定您已閱讀服務條款';
+      alert(alert_a);
+    }
+    return is_read_checkbox.checked ;
+  };
+  function PaymentType(){
+    var payment_type = document.querySelector('input[name="order[payment_type]"]:checked');
+    if (payment_type== null){
+      alert("請選擇付款方式");
+      return false
+    }else{return true}
+  };
+  function CheckAllInput(){
+    if($("#order_supporter_attributes_first_name").val()==""){
+      alert('名字，未填寫');
+      return false
+    }else if($("#order_supporter_attributes_last_name").val()==""){
+      alert('姓氏，未填寫');
+      return false
+    }else if($("#order_supporter_attributes_address").val()==""){
+      alert('地址，未填寫');
+      return false
+    }else if($("#order_supporter_attributes_cell_phone").val()==""){
+      alert('手機，未填寫');
+      return false
+    }else if($("#order_supporter_attributes_postal_code").val()==""){
+      alert('郵遞區號，未填寫');
+      return false
+    }else if($("#order_supporter_attributes_city").val()==""){
+      alert('區域，未填寫');
+      return false
+    }else{
+      return true
+    }
+  };
+  function validate_all(){
+    if (CheckAllInput()==true && validateForm()==true && PaymentType()==true){
+      return true;
+    }else{
+      return false;
+    }
+  };
+  </script>
+<% end %>

@@ -1,0 +1,2 @@
+class PayOrderNumber < ApplicationRecord
+end

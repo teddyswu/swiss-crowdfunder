@@ -4,7 +4,7 @@
                             @order.user.email,
                             :service => :allpay,
                             :html    => { :id => 'allpay-atm-form', :method => :post,authenticity_token: false,enforce_utf8: false } do |service| %>
-      <% service.merchant_trade_no @order.number %>
+      <% service.merchant_trade_no @number %>
       <% service.merchant_trade_date @order.created_at %>
       <% service.total_amount @order.amount + @order.bonus.to_i %>
       <% service.description @order.id %>
@@ -20,7 +20,7 @@
 </div>
 
 <script type="text/javascript">
-  window.onload=function(){
-    document.forms["allpay-atm-form"].submit();
-  }
+  // window.onload=function(){
+  //   document.forms["allpay-atm-form"].submit();
+  // }
 </script>

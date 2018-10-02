@@ -68,6 +68,17 @@ class OrdersController < ApplicationController
 
   def go_pay
     @order = Order.find(params[:id])
+    number = @order.number + (100 + Random.rand(100 - 10)).to_s
+    checknumber = PayOrderNumber.exists?(:pay_order_number => number)
+    while checknumber == true do
+      number = @order.number + (100 + Random.rand(100 - 10)).to_s
+      checknumber = PayOrderNumber.exists?(:pay_order_number => number)
+    end 
+    pay_order_number = PayOrderNumber.new
+    pay_order_number.pay_order_number = number
+    pay_order_number.original_order_number = @order.number
+    pay_order_number.save!
+    @number = number
   end
 
 

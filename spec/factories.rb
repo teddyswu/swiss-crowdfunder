@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :pay_order_number do
+    
+  end
   factory :campaign_tag do
     
   end
