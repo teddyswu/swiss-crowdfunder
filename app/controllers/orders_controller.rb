@@ -20,7 +20,6 @@ class OrdersController < ApplicationController
     @order.paid = false
 
     if NewOrderService.new(@order).call
-      CampaignMailer.notify_comment(current_user, @goody.campaign).deliver_now!
       redirect_to go_pay_order_path(@order.id)#[@goody.campaign, @goody, @order]
     else
       render action: 'new'
@@ -60,6 +59,9 @@ class OrdersController < ApplicationController
         order.ecpay_payment_type = params[:PaymentType]
         order.payment_type_charge_fee = params[:PaymentTypeChargeFee]
         order.save!
+        number = PayOrderNumber.find(:pay_order_number => params[:TradeNo])
+        order = Order.find(:number => number.original_order_number)
+        CampaignMailer.notify_comment(order.user, order.goody.campaign).deliver_now!
         render plain: "1|OK"
       end
       render plain: "0|付款失敗"
