@@ -42,6 +42,7 @@ gem 'timecop'
 gem 'carrierwave', '0.10.0' 
 gem 'mini_magick', "3.6.0"
 gem 'config'
+gem "aws-ses", "~> 0.5.0", :require => 'aws/ses'
 
 # gem 'aws-sdk', '~> 1.66' # 連線 AWS 的 gem, 目前 paperclip 會使用
 #gem 'cancancan', '~> 2.0'

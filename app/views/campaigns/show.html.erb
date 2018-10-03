@@ -110,8 +110,8 @@
      aria-controls="nav-faq">問與答</a>
     <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates">更新(<%= @campaign.campaign_updates.size %>)</a>
     <a class="nav-item nav-link" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言(<%= @campaign_replies.size %>)</a>
-    <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">友善團隊</a>
-    <a class="nav-item nav-link" id="nav-support-tab" data-toggle="tab" href="#nav-support" role="tab" aria-controls="nav-support">支持者</a>    
+    <a class="nav-item nav-link" id="nav-gruop-tab" data-toggle="tab" href="#nav-gruop" role="tab" aria-controls="nav-gruop">友善團隊(<%= @campaign.campaign_groups.size %>)</a>
+    <a class="nav-item nav-link" id="nav-support-tab" data-toggle="tab" href="#nav-support" role="tab" aria-controls="nav-support">支持者(<%= @campaign.orders.is_paid.size %>)</a>    
     <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
   </nav>
 </div>
@@ -177,7 +177,7 @@
           <div class="tab-pane fade" id="nav-support" role="tabpanel" aria-labelledby="nav-support-tab">
             <article>
               <section>
-                <%= render partial: 'support', locals: { supporters: @campaign.orders } %>
+                <%= render partial: 'support', locals: { supporters: @campaign.orders.is_paid } %>
               </section>
             </article>
           </div>

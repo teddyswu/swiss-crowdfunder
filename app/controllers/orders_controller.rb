@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
     @order.paid = false
 
     if NewOrderService.new(@order).call
+      CampaignMailer.notify_comment(current_user, @goody.campaign).deliver_now!
       redirect_to go_pay_order_path(@order.id)#[@goody.campaign, @goody, @order]
     else
       render action: 'new'
