@@ -59,8 +59,6 @@ class OrdersController < ApplicationController
         order.ecpay_payment_type = params[:PaymentType]
         order.payment_type_charge_fee = params[:PaymentTypeChargeFee]
         order.save!
-        number = PayOrderNumber.find(:pay_order_number => params[:TradeNo])
-        order = Order.find(:number => number.original_order_number)
         CampaignMailer.notify_comment(order.user, order.goody.campaign).deliver_now!
         render plain: "1|OK"
       end

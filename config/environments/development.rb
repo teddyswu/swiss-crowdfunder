@@ -58,6 +58,6 @@ Rails.application.configure do
 
   # config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :ses
 
 end
