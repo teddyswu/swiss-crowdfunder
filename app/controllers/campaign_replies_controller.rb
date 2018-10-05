@@ -4,7 +4,7 @@ class CampaignRepliesController < ApplicationController
 		@campaign_reply.enabled = true
 		@campaign_reply.save!
 		id = Campaign.find(params[:campaign_reply][:campaign_id]).slug
-		redirect_to campaign_path(id)
+		# redirect_to campaign_path(id)
 	end
 
 	# def update

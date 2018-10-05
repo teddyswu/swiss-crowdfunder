@@ -1,4 +1,6 @@
-<% campaign_replies.each_with_index do |crp, i|%>
+<div style="font-size: 0.875rem;margin-bottom: 20px;" id="new_reply">
+</div>
+<% campaign_replies.each do |crp|%>
 	<div style="font-size: 0.875rem;margin-bottom: 20px;">
 	  <div style="font-weight: bold">
 	  	<%= link_to crp.user.user_profile.nickname, user_path(crp.user.id) %> 於 <%= crp.created_at.strftime('%F')%>
@@ -12,8 +14,9 @@
 		    <%= link_to sub_reply.user.user_profile.nickname, user_path(sub_reply.user.id) %> 於 <%= sub_reply.created_at.strftime('%F')%>
 		  </div>
 	  <% end %>
+	  <div id="reply_<%= crp.id %>"></div>
 	  <% if user_signed_in? %>
-  		<%= form_for @campaign_reply, :url => campaign_replies_path(@campaign_reply), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+  		<%= form_for @campaign_reply, :url => campaign_replies_path(@campaign_reply), :method => :post, :html => {:class => 'form-horizontal'}, :remote => true do |f| %>
   			<%= f.hidden_field :user_id, :value => current_user.id%>
   			<%= f.hidden_field :campaign_id, :value => @campaign.id%>
   			<%= f.hidden_field :parent_id, :value => crp.id%>
@@ -22,7 +25,7 @@
 		      <%= f.label("回覆", :class => 'form-control-label') %>
 		    </div>
 		    <div class="col-12 col-md-9">
-		      <%= f.text_area(:content, :class => "form-control")%>
+		      <%= f.text_area(:content, :class => "form-control reply_#{crp.id}")%>
 		    </div>
 		    <button type="submit" class="btn btn-primary btn-sm">
 		      <i class="fa fa-dot-circle-o"></i> Submit

@@ -1,4 +1,4 @@
-<%= form_for campaign_reply, :url => campaign_replies_path(campaign_reply), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
+<%= form_for campaign_reply, :url => campaign_replies_path(campaign_reply), :method => :post, :html => {:class => 'form-horizontal'}, :remote => true do |f| %>
 	<div class="row form-group">
 		<%= f.hidden_field :campaign_id, :value => @campaign.id%>
     <%= f.hidden_field :enabled, :value => true %>
