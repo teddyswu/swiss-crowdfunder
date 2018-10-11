@@ -11,14 +11,19 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :users
   resources :campaign_qas
+  get "campaigns/:id/qas", :to => "campaign_qas#show", :as => "campaign_show_qa"
   resources :campaign_updates
+  get "campaigns/:id/updates", :to => "campaign_updates#show", :as => "campaign_show_update"
   resources :campaign_replies
+  get "campaigns/:id/replies", :to => "campaign_replies#show", :as => "campaign_show_reply"
   resources :tracks do 
     get "cancel", :on => :collection
   end
 
   resources :campaigns do
     get "list", :on => :member
+    get "group", :on => :member
+    get "support", :on => :member
     get "group_edit", :on => :member
     post "group_create",:on => :collection
     delete "gruop_del", :on => :member

@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :edit, :update, :group_edit, :goody]
+  before_action :set_campaign, only: [:show, :edit, :update, :group_edit, :goody, :group, :support]
   before_action :authenticate_user!, only: [:index, :new]
 
   # GET /campaigns/1
@@ -28,6 +28,30 @@ class CampaignsController < ApplicationController
   def edit
     @campaign_tags = CampaignTag.all
     @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id).map {|cts| cts.campaign_tag_id }    
+  end
+
+  def group
+    @campaign_qa = CampaignQa.new
+    @campaign_update = CampaignUpdate.new
+    @campaign_reply = CampaignReply.new
+    @campaign_qas = CampaignQa.where(:campaign_id => @campaign.id) || []
+    @campaign_updates = CampaignUpdate.where(:campaign_id => @campaign.id).order(created_at: :desc) || []
+    @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
+    @sub_replies = @campaign.sub_comments
+    user_id = current_user.present? ? current_user.id : nil
+    @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
+  end
+
+  def support
+    @campaign_qa = CampaignQa.new
+    @campaign_update = CampaignUpdate.new
+    @campaign_reply = CampaignReply.new
+    @campaign_qas = CampaignQa.where(:campaign_id => @campaign.id) || []
+    @campaign_updates = CampaignUpdate.where(:campaign_id => @campaign.id).order(created_at: :desc) || []
+    @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
+    @sub_replies = @campaign.sub_comments
+    user_id = current_user.present? ? current_user.id : nil
+    @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
   end
 
   def group_edit
@@ -136,6 +160,18 @@ class CampaignsController < ApplicationController
 
   def list
     @campaign = Campaign.friendly.find(params[:id])
+  end
+
+  def qas
+    @campaign_qa = CampaignQa.new
+    @campaign_update = CampaignUpdate.new
+    @campaign_reply = CampaignReply.new
+    @campaign_qas = CampaignQa.where(:campaign_id => @campaign.id) || []
+    @campaign_updates = CampaignUpdate.where(:campaign_id => @campaign.id).order(created_at: :desc) || []
+    @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
+    @sub_replies = @campaign.sub_comments
+    user_id = current_user.present? ? current_user.id : nil
+    @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
   end
 
   private

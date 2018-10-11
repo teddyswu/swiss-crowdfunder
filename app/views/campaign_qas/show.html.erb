@@ -53,7 +53,7 @@
 
       <div class="campaign_date mb-4">
         <div class="row mb-2">
-
+          <%= I18n.locale %>
           <%- if @campaign.start_date > Date.today %>
             <div class="col qa-time_until_start">
               <span><%= t '.time_until_start', time: distance_of_time_in_words(@campaign.start_date, Date.today) %>
@@ -61,7 +61,6 @@
           <% end %>
 
         </div>
-
         <div class="row mb-2">
           <div class="col-2"><strong><%= t '.start' %></strong></div>
           <div class="col"><%= I18n.l @campaign.start_date %></div>
@@ -105,9 +104,9 @@
     </div>
   </div>
   <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-campaign-tab" data-toggle="tab" href="#nav-campaign" role="tab" aria-controls="nav-campaign" aria-expanded="true">內容</a>
-    <%= link_to "問與答", campaign_show_qa_path(params[:id]) , :class => "nav-item nav-link"%>
-    <%= link_to "更新( #{@campaign.campaign_updates.size})", campaign_show_update_path(params[:id]) , :class => "nav-item nav-link" %>
+    <%= link_to "內容", campaign_path(params[:id]) , :class => "nav-item nav-link"%>
+    <a class="nav-item nav-link active" id="nav-faq-tab" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-faq">問與答</a>
+    <%= link_to "更新( #{@campaign.campaign_updates.size})", campaign_show_update_path(params[:id]) , :class => "nav-item nav-link"%>
     <%= link_to "留言(#{@campaign_replies.size})", campaign_show_reply_path(params[:id]), :class => "nav-item nav-link" %>
     <%= link_to "友善團隊(#{@campaign.campaign_groups.size})", group_campaign_path(params[:id]) , :class => "nav-item nav-link"%>
     <%= link_to "支持者(#{@campaign.orders.is_paid.size})", support_campaign_path(params[:id]) , :class => "nav-item nav-link"%>
@@ -120,101 +119,33 @@
     <div class="row">
       <div class="col-md-7 col-lg-8">
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab" >
-            <div>
-              <% if @campaign.campaign_updates.present? %>
-                <small style="line-height: 39px;color: grey;">最新進度</small>
-                <%= @campaign.campaign_updates.last.campaign_title %>
-              <% end %>
-            </div>
-            <h2><%= t('.about') %></h2>
-            <article>
-              <section>
-                <%= raw @campaign.description_html %>
-              </section>
-            </article>
-            <h5>風險與承諾</h5>
-            <%= raw @campaign.risk %>
+          <div class="tab-pane fade" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab" >
           </div>
-          <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+          <div class="tab-pane fade show active" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
             <article>
               <section>
                 <% if user_signed_in? %>
-                  <%= render partial: 'qa_from', locals: { campaign_qa: @campaign_qa } if current_user.id == @campaign.user_id %>
+                  <%= render partial: 'campaigns/qa_from', locals: { campaign_qa: @campaign_qa } if current_user.id == @campaign.user_id %>
                 <% end %>
-                <%= render partial: 'qa', locals: { campaign_qas: @campaign_qas } %>
+                <%= render partial: 'campaigns/qa', locals: { campaign_qas: @campaign_qas } %>
               </section>
             </article>
           </div>
           <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-updates-tab">
-            <article>
-              <section>
-                <% if user_signed_in? %>
-                  <%= render partial: 'update_from', locals: { campaign_update: @campaign_update } if current_user.id == @campaign.user_id %>
-                <% end %>
-                <%= render partial: 'update', locals: { campaign_updates: @campaign_updates } %>
-              </section>
-            </article>
           </div>
           <div class="tab-pane fade" id="nav-reply" role="tabpanel" aria-labelledby="nav-reply-tab">
-            <article>
-              <section>
-                <% if user_signed_in? %>
-                  <%= render partial: 'reply_from', locals: { campaign_reply: @campaign_reply } %>
-                <% end %>
-                <%= render partial: 'reply', locals: { campaign_replies: @campaign_replies } %>
-              </section>
-            </article>
           </div>
           <div class="tab-pane fade" id="nav-gruop" role="tabpanel" aria-labelledby="nav-gruop-tab">
-            <article>
-              <section>
-                <%= render partial: 'group', locals: { groups: @campaign.campaign_groups } %>
-              </section>
-            </article>
           </div>
           <div class="tab-pane fade" id="nav-support" role="tabpanel" aria-labelledby="nav-support-tab">
-            <article>
-              <section>
-                <%= render partial: 'support', locals: { supporters: @campaign.orders.is_paid } %>
-              </section>
-            </article>
           </div>
         </div>
       </div>
-      
-        <!-- <h2><%#= t('.about') %></h2>
-        <article>
-          <section>
-            <%#= raw @campaign.description_html %>
-          </section>
-        </article> -->
-      
       <aside class="col-md-5 col-lg-4">
         <h2><%= t('.goodies') %></h2>
         <% @campaign.goodies.order(:sort).each do |goody| %>
           <%= render partial: 'shared/goody', locals: { goody: goody } %>
         <% end %>
-        <!-- <section class="card side_card">
-             <div class="card-body">
-             <h4 class="card-title strong">Pledge CHF 15 or more</h4>
-             <h5>CHF 15 Reward</h5>
-             <p class="card-text">
-             Receive regular project updates, plus your name listed on DCL website as a member of Glarnercrowd supporters.
-             </p>
-
-             <div class="card_point">ESTIMATED DELIVERY</div>
-             <time>Sep 2017</time>
-
-             <p class="card_point">200 Backers</p>
-             </div>
-             <div class="input_iconed">
-             <span class="input_icon">$</span>
-             <input type="text" class="form-control" placeholder="amount" aria-label="amount" aria-describedby="pledge-input" value="10">
-             </div>
-             <button class="btn btn_theme btn_bottom">Select</button>
-             <button class="btn btn_faded btn_bottom">Select</button>
-             </section> -->
       </aside>
     </div>
   </div>
