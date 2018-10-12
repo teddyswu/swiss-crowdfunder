@@ -5,13 +5,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    @campaign_qa = CampaignQa.new
-    @campaign_update = CampaignUpdate.new
-    @campaign_reply = CampaignReply.new
-    @campaign_qas = CampaignQa.where(:campaign_id => @campaign.id) || []
-    @campaign_updates = CampaignUpdate.where(:campaign_id => @campaign.id).order(created_at: :desc) || []
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
-    @sub_replies = @campaign.sub_comments
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
   end
@@ -31,25 +25,13 @@ class CampaignsController < ApplicationController
   end
 
   def group
-    @campaign_qa = CampaignQa.new
-    @campaign_update = CampaignUpdate.new
-    @campaign_reply = CampaignReply.new
-    @campaign_qas = CampaignQa.where(:campaign_id => @campaign.id) || []
-    @campaign_updates = CampaignUpdate.where(:campaign_id => @campaign.id).order(created_at: :desc) || []
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
-    @sub_replies = @campaign.sub_comments
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
   end
 
   def support
-    @campaign_qa = CampaignQa.new
-    @campaign_update = CampaignUpdate.new
-    @campaign_reply = CampaignReply.new
-    @campaign_qas = CampaignQa.where(:campaign_id => @campaign.id) || []
-    @campaign_updates = CampaignUpdate.where(:campaign_id => @campaign.id).order(created_at: :desc) || []
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
-    @sub_replies = @campaign.sub_comments
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
   end

@@ -74,6 +74,17 @@
       price: "價格 :"
       quantity: "剩餘數量: %{quantity}"
       backers: "支持者 : %{quantity}"
+    campaign_top:
+      time_until_start: "還有 %{time} 才開始!"
+      funding_goal: "資金目標"
+      funding_amount_raised: "目前達成"
+      funding_supporters: "支持者人數"
+      support_the_project: "支持該專案"
+      description: "描述"
+      goodies: "商品"
+      start: "開始"
+      end: "結束"
+      about: "關於這個活動"
   supporter:
     validation:
       not_old_enough: "不夠老"

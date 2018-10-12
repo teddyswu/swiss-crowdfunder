@@ -1,6 +1,6 @@
-<% campaign_updates.each do |cup|%>
+<% campaign_updates.each_with_index do |cup, i|%>
 	<div style="font-size: 0.875rem">
-	  <div style="font-weight: bold">
+	  <div style="font-weight: bold" <%= "id=top" if i == 0%>>
 	    <%= cup.created_at.strftime('%F') %> <%= cup.campaign_title %>
       <% if user_signed_in? %>
       	<% if current_user.id == @campaign.user_id%>

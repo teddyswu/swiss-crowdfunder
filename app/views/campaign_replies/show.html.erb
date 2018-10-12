@@ -1,109 +1,5 @@
 <div class="container">
-  <h1 style="margin-left: -3px;"><%= @campaign.title %></h1>
-  <div class="small mt-1 text-right" style="color: #999">
-    <% @campaign.campaign_tags.each do |tag|%>
-      <%= link_to "##{tag.name}", campaign_tag_path(tag.id)%>
-    <% end %>
-  </div>
-  <p class="small mt-2 mb-4">
-    <span class="text_loud_sub"><%= @campaign.claim %></span>
-  </p>
-
-  <div class="row">
-    <div class="col-md-7 col-lg-8">
-      <% unless @campaign.youtube_url.empty? %>
-        <div class="embed-responsive embed-responsive-16by9 mb-5">
-          <iframe class="embed-responsive-item" height="315" src="<%= @campaign.youtube_url %>" width="560"></iframe>
-        </div>
-      <% else %>
-        <%= image_tag @campaign.campaign_image.try(:campaign_path), class: "mb-5" %>
-      <% end %>
-    </div>
-    <div class="col-md-5 col-lg-4">
-      <div class="progress progress_thin mb-1">
-        <div class="progress-bar bg_theme" role="progressbar"
-             style="width: <%= campaign_percentage(@campaign) %>;"
-             aria-valuenow="<%= @campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="<%= @campaign.goal %>">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-auto">
-          <div class="text_loud text_theme"><%= campaign_percentage(@campaign) %></div>
-        </div>
-        <div class="col text-right funding_goal">
-          <div class="small mt-1"><%= t '.funding_goal' %></div>
-          <strong><%= number_to_currency(@campaign.goal, precision: 0) %> </strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col text-right">
-          <div class="small mt-1"> 剩餘天數</div>
-          <strong><%= render_remain_day(@campaign.end_date) %> </strong>
-        </div>
-      </div>
-      <hr/>
-      <div class="d-flex align-items-end flex-wrap campaign_stat mb-2">
-        <div><%= t '.funding_amount_raised' %></div>
-        <div class="text-right number"><%= number_to_currency(@campaign.amount_raised, precision: 0) %></div>
-      </div>
-      <div class="d-flex align-items-end flex-wrap campaign_stat mb-4">
-        <div><%= t '.funding_supporters' %></div>
-        <div class="text-right number"><%= @campaign.supporters.count %></div>
-      </div>
-
-      <div class="campaign_date mb-4">
-        <div class="row mb-2">
-
-          <%- if @campaign.start_date > Date.today %>
-            <div class="col qa-time_until_start">
-              <span><%= t '.time_until_start', time: distance_of_time_in_words(@campaign.start_date, Date.today) %>
-            </div>
-          <% end %>
-
-        </div>
-
-        <div class="row mb-2">
-          <div class="col-2"><strong><%= t '.start' %></strong></div>
-          <div class="col"><%= I18n.l @campaign.start_date %></div>
-        </div>
-        <div class="row mb-2">
-          <div class="col-2"><strong><%= t '.end' %></strong></div>
-          <div class="col"><%= I18n.l @campaign.end_date %></div>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <%= link_to t('.support_the_project'), campaign_goodies_path(@campaign), class: "btn btn_theme btn-lg btn-block qa-support-project #{is_campaign_active?(@campaign)}" %>
-      </div>
-
-      <div class="campaign_links mb-4">
-        <div class="col col-lg-auto pr-0">
-          <a href="##" class="btn_card"><span id="track_btn" class="fa <%= @is_track ? "fa-bookmark" : "fa-bookmark-o" %> mr-2"></span>追蹤專案</a>
-          <div class="text-right">由 <%= link_to @campaign.user.user_profile.nickname, user_path(@campaign.user.id)%> 提案</div>
-        </div> 
-        <div class="row">
-          <div class="col">
-            <ul>
-              <li><i class="fa fa-share" aria-hidden="true"></i>
-              </li>
-              <%- unless @campaign.twitter_url.blank? %>
-                <li><%= link_to raw('<span class="fa fa-twitter"></span>'), @campaign.twitter_url, target: "_blank", class: "link " %></li>
-              <% end %>
-              <%- unless @campaign.facebook_url.blank? %>
-                <li><%= link_to raw('<span class="fa fa-facebook"></span>'), @campaign.facebook_url, target: "_blank" %></li>
-              <% end %>
-              <li>
-                <%= mail_to @campaign.email,
-                subject: "Swiss Crowdfunder: #{@campaign.title}" do %>
-                  <span class="fa fa-envelope"></span>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
   <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
     <%= link_to "內容", campaign_path(params[:id]) , :class => "nav-item nav-link"%>
     <%= link_to "問與答", campaign_show_qa_path(params[:id]) , :class => "nav-item nav-link"%>
@@ -120,30 +16,20 @@
     <div class="row">
       <div class="col-md-7 col-lg-8">
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab" >
-          </div>
-          <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
-          </div>
-          <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-updates-tab">
-          </div>
           <div class="tab-pane fade show active" id="nav-reply" role="tabpanel" aria-labelledby="nav-reply-tab">
             <article>
               <section>
                 <% if user_signed_in? %>
                   <%= render partial: 'campaigns/reply_from', locals: { campaign_reply: @campaign_reply } %>
                 <% end %>
-                <%= render partial: 'campaigns/reply', locals: { campaign_replies: @campaign_replies } %>
+                <%= render partial: 'campaigns/reply', locals: { campaign_replies: @campaign_replies, sub_replies: @sub_replies, campaign_reply: @campaign_reply } %>
               </section>
             </article>
-          </div>
-          <div class="tab-pane fade" id="nav-gruop" role="tabpanel" aria-labelledby="nav-gruop-tab">
-          </div>
-          <div class="tab-pane fade" id="nav-support" role="tabpanel" aria-labelledby="nav-support-tab">
           </div>
         </div>
       </div>
       <aside class="col-md-5 col-lg-4">
-        <h2><%= t('.goodies') %></h2>
+        <h2><%= t('campaigns.show.goodies') %></h2>
         <% @campaign.goodies.order(:sort).each do |goody| %>
           <%= render partial: 'shared/goody', locals: { goody: goody } %>
         <% end %>
