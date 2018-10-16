@@ -3,7 +3,7 @@
 	<% @campaign.campaign_groups.each do |group| %>
 		<div class="row">
       <div class="col-sm-6">
-    		<%= label_tag 'user', "User" %>:<%= group.user.a_user_profile.name %>
+    		<%= label_tag 'user', "User" %>:<%= group.user.farmer_profile.name %>
     	</div>
     	<div class="col-sm-6">
     		<%= label_tag 'income', "收益" %>:<%= group.income %>

@@ -3,7 +3,7 @@
 	  <div style="font-weight: bold">
 	    <%= i + 1 %>. <%= cqa.campaign_question %>
       <% if user_signed_in? %>
-      	<% if current_user.id == @campaign.user_id%>
+      	<% if current_user.id == @campaign.user_id && @campaign.status != 2%>
 	    		<%= link_to "編輯", "##", :onclick => "window.open('#{edit_campaign_qa_path(cqa.id)}', '編輯', config='height=500,width=500');"%>
 	    	<% end %>
 	    <% end %>

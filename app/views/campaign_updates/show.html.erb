@@ -20,7 +20,7 @@
             <article>
               <section>
                 <% if user_signed_in? %>
-                  <%= render partial: 'campaigns/update_from', locals: { campaign_update: @campaign_update } if current_user.id == @campaign.user_id %>
+                  <%= render partial: 'campaigns/update_from', locals: { campaign_update: @campaign_update } if current_user.id == @campaign.user_id && @campaign.start_date < Date.today%>
                 <% end %>
                 <%= render partial: 'campaigns/update', locals: { campaign_updates: @campaign_updates } %>
               </section>

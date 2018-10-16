@@ -19,7 +19,7 @@
           <div class="tab-pane fade show active" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
             <article>
               <section>
-                <% if user_signed_in? %>
+                <% if user_signed_in? && @campaign.status != 2 %>
                   <%= render partial: 'campaigns/qa_from', locals: { campaign_qa: @campaign_qa } if current_user.id == @campaign.user_id %>
                 <% end %>
                 <%= render partial: 'campaigns/qa', locals: { campaign_qas: @campaign_qas } %>
