@@ -32,33 +32,33 @@
         <%= f.simple_fields_for :supporter do |s| %>
           <div class="row">
             <div class="col-sm-6">
-              <%= s.input :first_name, label: t('.first_name'), input_html: {value: current_user.user_profile.first_name} %>
+              <%= s.input :first_name, label: t('.first_name'), input_html: {value: @last_order.supporter.first_name} %>
             </div>
             <div class="col-sm-6">
-              <%= s.input :last_name, label: t('.last_name'), input_html: {value: current_user.user_profile.last_name} %>
+              <%= s.input :last_name, label: t('.last_name'), input_html: {value: @last_order.supporter.last_name} %>
             </div>
           </div>
           <%= s.input :email, label: t('.email'), input_html: {value: current_user.email} %>
-          <%= s.input :address, label: t('.street'), input_html: {value: current_user.user_profile.address} %>
+          <%= s.input :address, label: t('.street'), input_html: {value: @last_order.supporter.address} %>
           <div class="row">
             <div class="col-sm-6">
-              <%= s.input :tel, label: "室話", input_html: {value: current_user.user_profile.tel} %>
+              <%= s.input :tel, label: "室話", input_html: {value: @last_order.supporter.tel} %>
             </div>
             <div class="col-sm-6">
-              <%= s.input :cell_phone, label: "手機", input_html: {value: current_user.user_profile.cell_phone} %>
+              <%= s.input :cell_phone, label: "手機", input_html: {value: @last_order.supporter.cell_phone} %>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-4">
-              <%= s.input :postal_code, label: t('.postal_code'), input_html: {value: current_user.user_profile.postal_code} %>
+              <%= s.input :postal_code, label: t('.postal_code'), input_html: {value: @last_order.supporter.postal_code} %>
             </div>
             <div class="col-sm-8">
-              <%= s.input :city, label: t('.city'), input_html: {value: current_user.user_profile.city} %>
+              <%= s.input :city, label: t('.city'), input_html: {value: @last_order.supporter.city} %>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-4">
-              <%= s.input :state, label: t('.state'), input_html: {value: current_user.user_profile.state} %>
+              <%= s.input :state, label: t('.state'), input_html: {value: @last_order.supporter.state} %>
             </div>
             <div class="col-sm-8">
               <%= s.input :country, :as => :hidden, input_html: {value: "TW"} %>

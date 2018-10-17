@@ -35,7 +35,8 @@ class OrdersController < ApplicationController
   end
 
   def finished
-    
+    order = Order.find(params[:id])
+    @campaign = order.goody.campaign
   end
 
   def is_paid
@@ -84,6 +85,7 @@ class OrdersController < ApplicationController
 
 
   def new
+    @last_order = Order.where(:user_id => current_user.id).last
     @goody = Goody.find(params[:goody_id])
     @order = Order.new goody: @goody
     @order.build_supporter
