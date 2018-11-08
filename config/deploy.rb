@@ -1,5 +1,3 @@
-# -*- encoding : utf-8 -*-
-
 # 用rvm必加require "rvm/capistrano"
 # 不加會bundle找不到
 # 當然local必須安裝rvm-capistrano
@@ -23,18 +21,17 @@ set :domain, current_config[:ip]
 # RVM設定
 # 參考 -> http://ruby-china.org/topics/6424
 # 參考 -> http://rvm.io/integration/capistrano#environment
-# set :rvm_ruby_string, '2.0.0-p247'
-set :rvm_ruby_string, '2.1.2'
+set :rvm_ruby_string, '2.4.1'
 set :rvm_type, :user
 
 # git & depoly路徑設定
 set :scm, :git
-set :branch, "develop" #可以設定master/develop
-set :repository, "git@github.com:200ok-ungleich/swiss-crowdfunder.git"
+set :branch, "master" #可以設定master/develop
+set :repository, "https://github.com/teddyswu/swiss-crowdfunder.git"
 set :deploy_to, "/home/apps/#{current_config[:project]}/#{application}" # 可以放指定目錄
 
 # options
-set :deploy_via, :copy
+set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :rails_env, "production"
 set :use_sudo, false
@@ -121,18 +118,13 @@ namespace :custom do
     run "mkdir -p #{deploy_to}/shared/pids"
 
     symlink_hash = {
-      "#{shared_path}/config/customization.yml" => "#{release_path}/config/customization.yml",
+      # "#{shared_path}/config/customization.yml" => "#{release_path}/config/customization.yml",
       "#{shared_path}/config/database.yml" => "#{release_path}/config/database.yml",
       "#{shared_path}/config/aws.yml" => "#{release_path}/config/aws.yml",
-      "#{shared_path}/config/authorization_key.yml" => "#{release_path}/config/authorization_key.yml",
-      "#{shared_path}/config/newrelic.yml" => "#{release_path}/config/newrelic.yml",
-      "#{shared_path}/config/schedule_timer.yml" => "#{release_path}/config/schedule_timer.yml",
-      "#{shared_path}/config/external_api.yml" => "#{release_path}/config/external_api.yml",
-      "#{shared_path}/config/secrets.yml" => "#{release_path}/config/secrets.yml",
-      "#{shared_path}/config/spree.yml" => "#{release_path}/config/spree.yml",
-      "#{shared_path}/config/appsignal.yml" => "#{release_path}/config/appsignal.yml",
-      "#{shared_path}/config/skylight.yml" => "#{release_path}/config/skylight.yml",
-      "#{shared_path}/config/Translate_API_Project-797b2ce618ab.p12" => "#{release_path}/config/Translate_API_Project-797b2ce618ab.p12"
+      "#{shared_path}/config/settings.yml" => "#{release_path}/config/settings.yml",
+      # "#{shared_path}/config/newrelic.yml" => "#{release_path}/config/newrelic.yml",
+      # "#{shared_path}/config/schedule_timer.yml" => "#{release_path}/config/schedule_timer.yml",
+      "#{shared_path}/config/secrets.yml" => "#{release_path}/config/secrets.yml"
     }
 
     # 將檔案複製捷徑到current的目錄

@@ -1,3 +1,7 @@
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container mb-3">
+
+
 <div class="container">
   <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
   <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
@@ -75,18 +79,18 @@
   <script>
   $(".btn_card").click(function() {
     var track_class = $("#track_btn").attr("class")
-    $.post( "/tracks", { user_id: <%= current_user.id if current_user.present?%>, campaign: "<%= params[:id]%>" })
+    $.post( "/tracks", { user_id: <%= current_user.present? ? current_user.id : 0 %>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
         if (track_class.indexOf("-o")!=-1){
           alert( "追蹤完成" );
-          $("#track_btn").removeClass("fa-bookmark-o");
-          $("#track_btn").addClass("fa-bookmark");
+          $("#track_btn").removeClass("far");
+          $("#track_btn").addClass("fas");
         }
         else
         {
           alert( "追蹤取消" );
-          $("#track_btn").removeClass("fa-bookmark");
-          $("#track_btn").addClass("fa-bookmark-o"); 
+          $("#track_btn").removeClass("fas");
+          $("#track_btn").addClass("far"); 
         }
       });
   });

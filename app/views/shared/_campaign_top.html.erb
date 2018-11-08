@@ -1,3 +1,88 @@
+<div class="row">
+  <div class="col-12">
+    <div class="text-center mb-10">
+      <div class="h3 text-success"><%= campaign.title %></div>
+    </div>
+  </div>
+</div>
+<div class="border p-3 rounded bg-white">
+  <div class="row">
+    <div class="col-12 col-lg-8 mb-3 mb-lg-0 item-media">
+      <%= campaign_tag(campaign) %>
+      <% unless campaign.youtube_url.empty? %>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="<%= campaign.youtube_url %>" allowfullscreen></iframe>
+        </div>
+      <% else %>
+        <figure class="figure m-0">
+          <%= image_tag campaign.campaign_image.try(:campaign_path), class: "img-fluid text-center" %>
+        </figure>
+      <% end %>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="media mb-2">
+        <img class="rounded-circle mr-3" src="https://graph.facebook.com/<%= current_user.try(:authorizations).try(:uid)%>/picture" alt="" style="width: 50px;">
+        <div class="media-body">
+          <div>
+            <%= link_to campaign.user.user_profile.nickname, user_path(campaign.user.id), :class => "text-dark"%>
+          </div>
+          <div class="font-small">
+            <%= mail_to campaign.email, subject: "募資項目: #{campaign.title}", class: "text-muted mr-2" do %>
+              <i class="fas fa-lg fa-fw fa-envelope"></i>
+            <% end %>
+            <%- unless campaign.facebook_url.blank? %>
+              <%= link_to campaign.facebook_url, target: "_blank", class: "text-muted" do  %>
+                <i class="fab fa-lg fa-fw fa-facebook"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <hr class="my-3">
+      <div>
+        <div class="font-small text-muted">目前達成</div>
+        <div class="h1 font-weight-bold"><%= number_to_currency(campaign.amount_raised, precision: 0) %></div>
+      </div>
+      <div class="font-small text-muted">資金目標 <strong><%= number_to_currency(campaign.goal, precision: 0) %></strong></div>
+      <div class="progress progress-md">
+        <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(campaign) %>;" aria-valuenow="<%= campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(campaign) %></div>
+      </div>
+      <div class="my-2">
+        <div class="font-small text-muted">支持人數</div>
+        <div class="h1 font-weight-bold"><%= campaign.supporters.count %></div>
+      </div>
+      <div class="my-2">
+        <div class="font-small text-muted">剩餘時間 (<%= I18n.l campaign.start_date %> ~ <%= I18n.l campaign.end_date %>)</div>
+        <div class="h1 font-weight-bold"><%= render_remain_day_only_num(campaign.end_date) %>天</div>
+      </div>
+      <div class="row no-gutters mt-2">
+        <div class="col-6">
+          <a class="btn btn-outline-primary btn-like btn_card" href="##">
+            <i class="<%= is_track ? "far" : "fas" %> fa-fw fa-heart" id="track_btn" ></i> <%= is_track ? "追蹤" : "已追蹤" %>
+          </a>
+          <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+        </div>
+        <div class="col-6 text-right">
+          <!--<small class="mr-2">分享</small>-->
+          <div class="btn-group btn-group-md">
+            <a class="btn btn-outline-secondary" href="">
+              <i class="fab fa-fw fa-twitter"></i>
+            </a>
+            <a class="btn btn-outline-secondary" href="">
+              <i class="fab fa-fw fa-facebook-f"></i>
+            </a>
+            <a class="btn btn-outline-secondary" href="">
+              <i class="fab fa-fw fa-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 <h1 style="margin-left: -3px;"><%= campaign.title %></h1>
 <div class="small mt-1 text-right" style="color: #999">
   <% campaign.campaign_tags.each do |tag|%>
@@ -70,7 +155,7 @@
     </div>
     <div class="campaign_links mb-4">
       <div class="col col-lg-auto pr-0">
-        <a href="##" class="btn_card"><span id="track_btn" class="fa <%= is_track ? "fa-bookmark" : "fa-bookmark-o" %> mr-2"></span>追蹤專案</a>
+        <a href="##" class="btn_cardd"><span id="track_btnn" class="fa <%= is_track ? "fa-bookmark" : "fa-bookmark-o" %> mr-2"></span>追蹤專案</a>
         <div class="text-right">由 <%= link_to campaign.user.user_profile.nickname, user_path(campaign.user.id)%> 提案</div>
       </div> 
       <div class="row">

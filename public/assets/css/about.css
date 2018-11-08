@@ -1,0 +1,37 @@
+#main .h1, #main .h2, #main .h3, #main .h4, #main .h5, #main .h6 {
+  line-height: 1.5; }
+#main .title {
+  display: inline-block;
+  padding-bottom: .25rem;
+  border-bottom: 2px solid #fff;
+  font-weight: bold; }
+
+#intro {
+  background: url(../img/uploads/about-intro.jpg) center 0 no-repeat;
+  background-attachment: fixed; }
+#intro .h1 {
+  color: #fff;
+  border-color: #fff; }
+#intro .box {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #e5eed8; }
+
+#vision .img-fluid {
+  -moz-box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.1); }
+
+#team {
+  background: url(../img/uploads/about-team.jpg) 0 0 no-repeat;
+  background-attachment: fixed;
+  background-size: cover; }
+#team .box {
+  color: black; }
+
+#group .title {
+  color: #f90;
+  border-color: #f90; }
+
+#qa .title {
+  color: #85af4b;
+  border-color: #85af4b; }

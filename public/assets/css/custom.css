@@ -1,0 +1,1359 @@
+@charset "UTF-8";
+body {
+  background: url(../img/ui/bg-body.jpg) center 0 repeat-x #fff; }
+
+a {
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease; }
+a:hover {
+  text-decoration: none; }
+
+.text-fb {
+  color: #3a589a; }
+
+.text-line {
+  color: #00b900; }
+
+a.text-fb:hover {
+  color: #2f4779 !important; }
+
+a.text-line:hover {
+  color: #008600 !important; }
+
+.bg-404 {
+  background: url(../img/uploads/bg-404.jpg) center center no-repeat;
+  background-size: cover; }
+
+.bg-login {
+  background: url(../img/uploads/bg-login.jpg) center center no-repeat;
+  background-size: cover; }
+
+@media (max-width: 991.98px) {
+  .navbar-brand img {
+    max-width: 150px; } }
+
+#header {
+  border-bottom: 1px solid #85af4b; }
+#header .container {
+  background: url(../img/ui/bg-header.png) 85% 100% no-repeat; }
+@media (max-width: 991.98px) {
+  #header .container {
+    background: none; } }
+#header .nav-link {
+  color: #6c757d; }
+#header .nav-link:hover {
+  color: #000; }
+
+#footer {
+  background: #a5dbcd; }
+#footer .nav-link {
+  padding: .25rem 0;
+  color: #6c757d;
+  font-size: .85rem; }
+
+.comment {
+  overflow: auto;
+  max-height: 560px; }
+@media (max-width: 991.98px) {
+  .comment {
+    max-height: none; } }
+
+.close {
+  position: absolute;
+  right: 1rem;
+  z-index: 10; }
+
+.fc-event {
+  font-size: 1rem !important; }
+
+.freezePage {
+  overflow: hidden;
+  height: 100%;
+  position: relative; }
+
+.item, .post .btn-info, .border-hover {
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease; }
+.item:hover, .item:active, .item:focus, .post .btn-info:hover, .post .btn-info:active, .post .btn-info:focus, .border-hover:hover, .border-hover:active, .border-hover:focus {
+  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2); }
+.item:hover div.btn-primary, .item:hover div.btn-outline-primary, .item:active div.btn-primary, .item:active div.btn-outline-primary, .item:focus div.btn-primary, .item:focus div.btn-outline-primary, .post .btn-info:hover div.btn-primary, .post .btn-info:hover div.btn-outline-primary, .post .btn-info:active div.btn-primary, .post .btn-info:active div.btn-outline-primary, .post .btn-info:focus div.btn-primary, .post .btn-info:focus div.btn-outline-primary, .border-hover:hover div.btn-primary, .border-hover:hover div.btn-outline-primary, .border-hover:active div.btn-primary, .border-hover:active div.btn-outline-primary, .border-hover:focus div.btn-primary, .border-hover:focus div.btn-outline-primary {
+  background-color: #85af4b;
+  color: #fff; }
+
+.item {
+  display: block;
+  background: #f8f9fa; }
+.item .item-title, .item .item-desc {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical; }
+.item .item-title {
+  -webkit-line-clamp: 2;
+  height: 3.5rem; }
+.item .item-desc {
+  -webkit-line-clamp: 3;
+  line-height: 1.5;
+  height: 3.5rem; }
+.item.item-close {
+  cursor: default; }
+.item.item-close .btn {
+  cursor: default; }
+
+.item .badge, .item-media .badge {
+  position: absolute;
+  top: .25rem;
+  left: -.25rem;
+  z-index: 10;
+  font-size: 1rem; }
+.item .badge:after, .item-media .badge:after {
+  position: absolute;
+  right: -9px;
+  top: 0;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 13px 0 12px 12px; }
+.item .badge.badge-primary:after, .item-media .badge.badge-primary:after {
+  border-color: transparent transparent transparent #85af4b; }
+.item .badge.badge-danger:after, .item-media .badge.badge-danger:after {
+  border-color: transparent transparent transparent #dc3545; }
+.item .badge.badge-info:after, .item-media .badge.badge-info:after {
+  border-color: transparent transparent transparent #4a99d6; }
+.item .badge.badge-warning, .item-media .badge.badge-warning {
+  color: #331f00; }
+.item .badge.badge-warning:after, .item-media .badge.badge-warning:after {
+  border-color: transparent transparent transparent #f90; }
+
+@media (max-width: 991.98px) {
+  .article {
+    margin-left: -5px;
+    margin-right: -5px; }
+  .article .post {
+    margin: 5px 0 !important;
+    padding-left: 5px;
+    padding-right: 5px; } }
+.card-headlines {
+  border: 0; }
+.card-headlines .card-img-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fff; }
+@media (max-width: 1199.98px) {
+  .card-headlines .h1 {
+    font-size: 1.75rem; } }
+@media (max-width: 991.98px) {
+  .card-headlines .h1 {
+    font-size: 1.25rem; } }
+
+.rank-face {
+  position: relative;
+  display: block; }
+.rank-face img {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%; }
+.rank-face .award {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 66px;
+  font-size: 2.5rem;
+  color: #eae1d0; }
+.rank-face .award-1, .rank-face .award-2, .rank-face .award-3 {
+  bottom: -10px;
+  width: 65px;
+  height: 78px; }
+.rank-face .award-1 {
+  background-image: url("../img/ui/icon-award-1.png"); }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 1.25dppx), only screen and (min-resolution: 2dppx) {
+  .rank-face .award-1 {
+    background-image: url("../img/ui/icon-award-1@2x.png");
+    -moz-background-size: 100%, 100%;
+    -o-background-size: 100%, 100%;
+    -webkit-background-size: 100%, 100%;
+    background-size: 100%, 100%; } }
+.rank-face .award-2 {
+  background-image: url("../img/ui/icon-award-2.png"); }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 1.25dppx), only screen and (min-resolution: 2dppx) {
+  .rank-face .award-2 {
+    background-image: url("../img/ui/icon-award-2@2x.png");
+    -moz-background-size: 100%, 100%;
+    -o-background-size: 100%, 100%;
+    -webkit-background-size: 100%, 100%;
+    background-size: 100%, 100%; } }
+.rank-face .award-3 {
+  background-image: url("../img/ui/icon-award-3.png"); }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 1.25dppx), only screen and (min-resolution: 2dppx) {
+  .rank-face .award-3 {
+    background-image: url("../img/ui/icon-award-3@2x.png");
+    -moz-background-size: 100%, 100%;
+    -o-background-size: 100%, 100%;
+    -webkit-background-size: 100%, 100%;
+    background-size: 100%, 100%; } }
+.rank-face .award-other {
+  background-image: url("../img/ui/icon-award-other.png"); }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 1.25dppx), only screen and (min-resolution: 2dppx) {
+  .rank-face .award-other {
+    background-image: url("../img/ui/icon-award-other@2x.png");
+    -moz-background-size: 100%, 100%;
+    -o-background-size: 100%, 100%;
+    -webkit-background-size: 100%, 100%;
+    background-size: 100%, 100%; } }
+@media (max-width: 991.98px) {
+  .rank-face .award {
+    background-size: cover; }
+  .rank-face .award-1, .rank-face .award-2, .rank-face .award-3 {
+    width: 40px;
+    height: 48px; }
+  .rank-face .award-other {
+    width: 40px;
+    height: 41px;
+    font-size: 1rem; } }
+
+.card-wall {
+  display: block;
+  overflow: hidden;
+  background-color: #000;
+  border: 0;
+  border-radius: 0;
+  color: #fff; }
+.card-wall img {
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s; }
+.card-wall .card-img-overlay {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
+.card-wall:hover, .card-wall:active, .card-wall:focus {
+  color: #fff; }
+.card-wall:hover .card-img-overlay, .card-wall:active .card-img-overlay, .card-wall:focus .card-img-overlay {
+  display: flex; }
+.card-wall:hover img, .card-wall:active img, .card-wall:focus img {
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  opacity: .6; }
+
+#support-action {
+  bottom: -100px;
+  background: #f90;
+  z-index: 1100;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease; }
+#support-action.scroll-up {
+  bottom: 0; }
+#support-action.scroll-down {
+  bottom: -100px; }
+
+@media (max-width: 991.98px) {
+  .table-rwd thead {
+    clip: rect(0 0 0 0);
+    position: absolute;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    width: 1px;
+    border: none; }
+  .table-rwd td.td-head {
+    background-color: #f8f9fa; }
+  .table-rwd td.td-border {
+    border-top: 1px solid #dee2e6 !important; }
+  .table-rwd td:before {
+    float: left;
+    margin-right: 1rem;
+    content: attr(data-label);
+    font-weight: bold;
+    color: #6c757d; }
+  .table-rwd tbody tr:first-child .td-border {
+    border-top: 0 !important; }
+  .table-rwd tbody tr {
+    background: none !important; }
+  .table-rwd tr, .table-rwd td {
+    display: block; } }
+.font-small {
+  font-size: 0.8rem; }
+
+[class^="text-row-"], [class*="text-row-"] {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical; }
+
+.text-row-1 {
+  -webkit-line-clamp: 1; }
+
+.text-row-2 {
+  -webkit-line-clamp: 2;
+  min-height: 3rem; }
+
+.text-row-3 {
+  -webkit-line-clamp: 3; }
+
+.text-youtube {
+  color: #f00; }
+
+.text-gray-6 {
+  color: #6c757d; }
+
+.text-gray-8 {
+  color: #343a40; }
+
+.text-black {
+  color: #000; }
+
+@media (max-width: 991.98px) {
+  .h1 {
+    font-size: 2rem; } }
+.nav-info .nav-item {
+  border-left: 1px solid #ced4da; }
+.nav-info .nav-item .nav-link {
+  padding: 0 2rem;
+  line-height: 1; }
+.nav-info .nav-item:first-child, .nav-info .nav-item:only-child {
+  border-left: 0; }
+.nav-info .nav-item:first-child .nav-link, .nav-info .nav-item:only-child .nav-link {
+  padding-left: 0; }
+@media (max-width: 767.98px) {
+  .nav-info .nav-item {
+    width: 100%;
+    border-left: 0; }
+  .nav-info .nav-item .nav-link {
+    padding-left: 0;
+    border-left: 0; } }
+
+.nav-modal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  margin-top: -1rem;
+  width: 100%;
+  max-width: 1110px; }
+.nav-modal .btn-left, .nav-modal .btn-right {
+  position: absolute;
+  display: block;
+  color: #fff;
+  opacity: .8; }
+.nav-modal .btn-left:hover, .nav-modal .btn-right:hover {
+  opacity: 1; }
+.nav-modal .btn-left {
+  left: 1.5rem !important; }
+.nav-modal .btn-right {
+  right: 1.5rem !important; }
+@media (max-width: 991.98px) {
+  .nav-modal {
+    display: none; } }
+
+@media (max-width: 991.98px) {
+  .nav-responsive {
+    overflow: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; }
+  .nav-responsive .nav {
+    display: block;
+    white-space: nowrap; }
+  .nav-responsive .nav .nav-item {
+    display: inline-block; } }
+#menu {
+  position: relative;
+  z-index: 1100; }
+
+.nav-tabs .nav-link {
+  margin-top: 2px;
+  color: #343a40; }
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus, .nav-tabs .nav-link:active, .nav-tabs .nav-link.active {
+  margin-top: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-top: 3px solid #85af4b; }
+
+.nav-index .nav-item {
+  margin-left: 1rem;
+  margin-right: 1rem; }
+.nav-index .nav-link {
+  padding: .25rem 0;
+  color: #343a40;
+  border-bottom: 2px solid transparent; }
+.nav-index .nav-link:hover, .nav-index .nav-link:active, .nav-index .nav-link:focus, .nav-index .nav-link.active {
+  color: #85af4b;
+  border-bottom-color: #85af4b; }
+
+.custom-select {
+  -moz-appearance: window;
+  -webkit-appearance: none; }
+
+.custom-button {
+  padding: 0;
+  border-radius: 0.25rem;
+  border: 1px solid #dee2e6; }
+.custom-button .custom-control-label {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer; }
+.custom-button .custom-control-label::before {
+  display: none; }
+.custom-button.custom-radio .custom-control-input:checked ~ .custom-control-label {
+  background: #85af4b;
+  color: #fff; }
+.custom-button.custom-radio .custom-control-input:checked ~ .custom-control-label::before, .custom-button.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  display: none; }
+
+.btn-fb {
+  color: #fff;
+  background-color: #3a589a; }
+.btn-fb:hover {
+  background-color: #2f4779 !important;
+  color: #fff; }
+
+.btn-line {
+  color: #fff;
+  background-color: #00b900; }
+.btn-line:hover {
+  background-color: #008600 !important;
+  color: #fff; }
+
+.block-info .flex-column {
+  opacity: 0;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.5); }
+.block-info:hover .flex-column, .block-info:active .flex-column, .block-info.active .flex-column {
+  opacity: 1; }
+.block-info .multi {
+  position: absolute;
+  right: 0;
+  z-index: 10; }
+
+.btn-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 40px;
+  height: 40px;
+  background: #fff; }
+.btn-top:hover, .btn-top:active, .btn-top:focus {
+  background: #85af4b; }
+
+.btn-primary {
+  color: #fff; }
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:focus {
+  color: #fff !important; }
+
+.btn-group-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate; }
+.btn-group-justified .btn, .btn-group-justified .btn-group {
+  float: none;
+  display: table-cell;
+  width: 1%; }
+.btn-group-justified .btn .btn, .btn-group-justified .btn-group .btn {
+  width: 100%; }
+.btn-group-justified .btn .dropdown-menu, .btn-group-justified .btn-group .dropdown-menu {
+  left: auto; }
+
+.btn-story:hover img, .btn-story:active img, .btn-story:focus img {
+  opacity: .8; }
+
+[class^="icon-"], [class*="icon-"] {
+  position: relative;
+  top: -2px;
+  display: inline-block;
+  vertical-align: middle;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+  background-repeat: no-repeat;
+  background-size: 100%; }
+
+.icon-award {
+  width: 20px;
+  height: 20px;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSItNTAgMSA1MTEgNTExLjk5OTk5IiB3aWR0aD0iNTEycHgiPjxwYXRoIGQ9Im0uNSA0NTAuODk0NTMxIDcyLjA3ODEyNS00LjY1MjM0MyAzMi4wMTk1MzEgNjUuNzU3ODEyIDg4LjkxNDA2My0xNTQuOTkyMTg4LTEwNS40ODA0NjktNTcuNzU3ODEyem0wIDAiIGZpbGw9IiNmZjc4MTYiLz48cGF0aCBkPSJtMzI2LjE2NDA2MiAzMDEuOTMzNTk0LTEwNS44NTkzNzQgNTcuMDcwMzEyIDg3Ljc1IDE1Mi45OTYwOTQgMzIuMDE5NTMxLTY1Ljc1NzgxMiA3Mi4wOTM3NSA0LjY1MjM0M3ptMCAwIiBmaWxsPSIjZmY0YjAwIi8+PHBhdGggZD0ibTM3OS43MzQzNzUgMTUzLjk3MjY1NmMtNS43MTA5MzctNC4yMDcwMzEtNy41MTU2MjUtMTEuNzIyNjU2LTQuODA4NTk0LTE4LjMzMjAzMSA1LjcxMDkzOC0xMy4yMjY1NjMgNC44MDg1OTQtMjcuOTUzMTI1LTIuNDA2MjUtNDAuNTc0MjE5LTcuMjEwOTM3LTEyLjMyMDMxMi0xOS41MzEyNS0yMS40Mzc1LTMzLjk1NzAzMS0yMy4yNDIxODctNi45MTQwNjItLjg5ODQzOC0xMi4zMjQyMTktNi4zMDg1OTQtMTMuMjI2NTYyLTEzLjUyMzQzOC0xLjgwMDc4Mi0xNC4xMjEwOTMtOS45MTQwNjMtMjYuNDQ1MzEyLTIyLjUzOTA2My0zMy42NTYyNS0xMi4zMjAzMTMtNy4yMTQ4NDMtMjcuMDQ2ODc1LTguMTE3MTg3LTQwLjI2OTUzMS0yLjQwNjI1LTYuNjEzMjgyIDIuNzA3MDMxLTE0LjEyNS42MDE1NjMtMTguMzMyMDMyLTUuMTA5Mzc1LTguNzE0ODQzLTExLjQxNzk2OC0yMi41MzkwNjItMTcuMTI4OTA2LTM2LjM2MzI4MS0xNy4xMjg5MDZzLTI3LjY0ODQzNyA1LjcxMDkzOC0zNi4zNjMyODEgMTcuMTI4OTA2Yy00LjIwNzAzMSA1LjcxMDkzOC0xMS43MjI2NTYgNy44MTY0MDYtMTguMzMyMDMxIDUuMTA5Mzc1LTEzLjIyNjU2My01LjcxMDkzNy0yNy45NDkyMTktNC44MDg1OTMtNDAuMjY5NTMxIDIuNDA2MjUtMTIuNjI1IDcuMjEwOTM4LTIwLjczODI4MiAxOS41MzUxNTctMjIuNTQyOTY5IDMzLjY1NjI1LS45MDIzNDQgNy4yMTQ4NDQtNi4zMTI1IDEyLjYyNS0xMy4yMjI2NTcgMTMuNTIzNDM4LTE0LjQyNTc4MSAxLjgwNDY4Ny0yNi43NDYwOTMgMTAuOTIxODc1LTMzLjk1NzAzMSAyMy4yNDIxODctNy4yMTQ4NDMgMTIuNjIxMDk0LTguMTE3MTg3IDI3LjM0NzY1Ni0yLjQwNjI1IDQwLjU3NDIxOSAyLjcwNzAzMSA2LjYwOTM3NS44OTg0MzggMTQuMTIxMDk0LTQuODA4NTkzIDE4LjMzMjAzMS0xMS43MTg3NSA4LjcxNDg0NC0xOC4zMzIwMzIgMjEuOTM3NS0xOC4zMzIwMzIgMzYuMzYzMjgyIDAgMTQuNDI1NzgxIDYuNjEzMjgyIDI3LjY0ODQzNyAxOC4zMzIwMzIgMzYuMDYyNSA1LjcwNzAzMSA0LjUwNzgxMiA3LjUxNTYyNCAxMi4wMTk1MzEgNC44MDg1OTMgMTguMzMyMDMxLTUuNzEwOTM3IDEzLjIyMjY1Ni00LjgwODU5MyAyOC4yNDYwOTMgMi40MDYyNSA0MC41NzAzMTIgNy4yMTA5MzggMTIuNjIxMDk0IDE5LjUzMTI1IDIwLjczODI4MSAzMy45NTcwMzEgMjIuMjM4MjgxIDYuOTEwMTU3LjkwMjM0NCAxMi4zMjAzMTMgNi42MTMyODIgMTMuMjIyNjU3IDEzLjUyMzQzOCAxLjgwNDY4NyAxNC40MjU3ODEgOS45MTc5NjkgMjYuNzUgMjIuNTQyOTY5IDMzLjk2MDkzOCAxMi4zMjAzMTIgNy4yMTA5MzcgMjcuMDQyOTY4IDguMTEzMjgxIDQwLjI2OTUzMSAyLjQwNjI1IDYuNjA5Mzc1LTMuMDA3ODEzIDE0LjEyNS0uOTAyMzQ0IDE4LjMzMjAzMSA0LjgwNDY4NyA4LjcxNDg0NCAxMS40MjE4NzUgMjEuOTM3NSAxOC4wMzEyNSAzNi4zNjMyODEgMTguMDMxMjVzMjcuNjQ4NDM4LTYuNjA5Mzc1IDM2LjM2MzI4MS0xOC4wMzEyNWM0LjIwNzAzMi01LjcwNzAzMSAxMS43MjI2NTctNy41MTE3MTkgMTguMzMyMDMyLTQuODA0Njg3IDEzLjIyNjU2MiA1LjcwNzAzMSAyNy45NDkyMTggNC44MDQ2ODcgNDAuMjY5NTMxLTIuNDA2MjUgMTIuNjI1LTcuMjEwOTM4IDIwLjczODI4MS0xOS41MzUxNTcgMjIuNTQyOTY5LTMzLjk2MDkzOC45MDIzNDQtNi45MTAxNTYgNi4zMTI1LTEyLjYyMTA5NCAxMy4yMjI2NTYtMTMuNTIzNDM4IDE0LjQyNTc4MS0xLjUgMjYuNzQ2MDk0LTkuNjE3MTg3IDMzLjk1NzAzMS0yMi4yMzgyODEgNy4yMTQ4NDQtMTIuMzI0MjE5IDguMTE3MTg4LTI3LjM0NzY1NiAyLjQwNjI1LTQwLjU3MDMxMi0uODk4NDM3LTEuODA0Njg4LTEuMTk5MjE5LTMuOTA2MjUtMS4xOTkyMTktNi4wMTE3MTkgMC00LjUwNzgxMiAyLjEwMTU2My05LjMxNjQwNiA2LjAwNzgxMy0xMi4zMjAzMTIgMTEuNzIyNjU2LTguNDE0MDYzIDE4LjMzMjAzMS0yMS42MzY3MTkgMTguMzMyMDMxLTM2LjA2MjUgMC0xNC40MjU3ODItNi42MTMyODEtMjcuNjQ4NDM4LTE4LjMzMjAzMS0zNi4zNjMyODJ6bTAgMCIgZmlsbD0iI2ZmZDQwMCIvPjxwYXRoIGQ9Im0zOTguMDY2NDA2IDE5MC4zMzU5MzhjMCAxNC40MjU3ODEtNi42MTMyODEgMjcuNjQ4NDM3LTE4LjMzMjAzMSAzNi4wNjI1LTMuOTA2MjUgMy4wMDM5MDYtNi4wMTE3MTkgNy44MTI1LTYuMDExNzE5IDEyLjMyMDMxMiAwIDIuMTA1NDY5LjMwMDc4MiA0LjIwNzAzMSAxLjIwMzEyNSA2LjAxMTcxOSA1LjcwNzAzMSAxMy4yMjI2NTYgNC44MDQ2ODggMjguMjQ2MDkzLTIuNDA2MjUgNDAuNTcwMzEyLTcuMjE0ODQzIDEyLjYyMTA5NC0xOS41MzUxNTYgMjAuNzM4MjgxLTMzLjk2MDkzNyAyMi4yMzgyODEtNi45MTAxNTYuOTAyMzQ0LTEyLjMyMDMxMyA2LjYxMzI4Mi0xMy4yMjI2NTYgMTMuNTIzNDM4LTEuODA0Njg4IDE0LjQyNTc4MS05LjkxNDA2MyAyNi43NS0yMi41MzkwNjMgMzMuOTYwOTM4LTEyLjMyMDMxMyA3LjIxMDkzNy0yNy4wNDY4NzUgOC4xMTMyODEtNDAuMjY5NTMxIDIuNDA2MjUtNi42MTMyODItMi43MDcwMzItMTQuMTI1LS45MDIzNDQtMTguMzMyMDMyIDQuODA0Njg3LTguNzE0ODQzIDExLjQyMTg3NS0yMS45NDE0MDYgMTguMDMxMjUtMzYuMzY3MTg3IDE4LjAzMTI1di0zODAuMjY1NjI1YzEzLjgyODEyNSAwIDI3LjY0ODQzNyA1LjcxMDkzOCAzNi4zNjcxODcgMTcuMTI4OTA2IDQuMjA3MDMyIDUuNzEwOTM4IDExLjcxODc1IDcuODE2NDA2IDE4LjMzMjAzMiA1LjEwOTM3NSAxMy4yMjI2NTYtNS43MTA5MzcgMjcuOTQ5MjE4LTQuODA4NTkzIDQwLjI2OTUzMSAyLjQwNjI1IDEyLjYyNSA3LjIxMDkzOCAyMC43MzQzNzUgMTkuNTM1MTU3IDIyLjUzOTA2MyAzMy42NTYyNS45MDIzNDMgNy4yMTQ4NDQgNi4zMTI1IDEyLjYyNSAxMy4yMjI2NTYgMTMuNTIzNDM4IDE0LjQyNTc4MSAxLjgwNDY4NyAyNi43NDYwOTQgMTAuOTIxODc1IDMzLjk2MDkzNyAyMy4yNDIxODcgNy4yMTA5MzggMTIuNjIxMDk0IDguMTEzMjgxIDI3LjM0NzY1NiAyLjQwNjI1IDQwLjU3NDIxOS0yLjcwNzAzMSA2LjYwOTM3NS0uOTAyMzQzIDE0LjEyMTA5NCA0LjgwNDY4OCAxOC4zMzIwMzEgMTEuNzIyNjU2IDguNzE0ODQ0IDE4LjMzNTkzNyAyMS45Mzc1IDE4LjMzNTkzNyAzNi4zNjMyODJ6bTAgMCIgZmlsbD0iI2ZmOWYwMCIvPjxwYXRoIGQ9Im0yMDcuODMyMDMxIDkwLjI1NzgxMmMtNTggMC0xMDUuMTgzNTkzIDQ3LjE4MzU5NC0xMDUuMTgzNTkzIDEwNS4xODc1IDAgNTggNDcuMTgzNTkzIDEwNS4xODM1OTQgMTA1LjE4MzU5MyAxMDUuMTgzNTk0czEwNS4xODM1OTQtNDcuMTgzNTk0IDEwNS4xODM1OTQtMTA1LjE4MzU5NGMwLTU4LjAwMzkwNi00Ny4xODM1OTQtMTA1LjE4NzUtMTA1LjE4MzU5NC0xMDUuMTg3NXptMCAwIiBmaWxsPSIjZmY5ZjAwIi8+PHBhdGggZD0ibTMxMy4wMTU2MjUgMTk1LjQ0NTMxMmMwIDU4LTQ3LjE4MzU5NCAxMDUuMTgzNTk0LTEwNS4xODM1OTQgMTA1LjE4MzU5NHYtMjEwLjM3MTA5NGM1OCAwIDEwNS4xODM1OTQgNDcuMTgzNTk0IDEwNS4xODM1OTQgMTA1LjE4NzV6bTAgMCIgZmlsbD0iI2ZmNzgxNiIvPjwvc3ZnPgo=); }
+
+.icon-award-o {
+  width: 20px;
+  height: 20px;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjEyOHB4IiB2aWV3Qm94PSItNTAgMSA1MTEgNTExLjk5OSIgd2lkdGg9IjEyOHB4Ij48cGF0aCBkPSJtMzExLjk5NjA5NCAxOTQuODM5ODQ0YzAtNTcuODQ3NjU2LTQ3LjA2NjQwNi0xMDQuOTE0MDYzLTEwNC45MTQwNjMtMTA0LjkxNDA2My01Ny44NTE1NjIgMC0xMDQuOTE0MDYyIDQ3LjA2NjQwNy0xMDQuOTE0MDYyIDEwNC45MTQwNjMgMCA1Ny44NTE1NjIgNDcuMDYyNSAxMDQuOTE0MDYyIDEwNC45MTQwNjIgMTA0LjkxNDA2MiA1Ny44NDc2NTcgMCAxMDQuOTE0MDYzLTQ3LjA2MjUgMTA0LjkxNDA2My0xMDQuOTE0MDYyem0tMTA0LjkxNDA2MyA3NC45Mzc1Yy00MS4zMjQyMTkgMC03NC45NDE0MDYtMzMuNjE3MTg4LTc0Ljk0MTQwNi03NC45Mzc1IDAtNDEuMzIwMzEzIDMzLjYxNzE4Ny03NC45Mzc1IDc0Ljk0MTQwNi03NC45Mzc1IDQxLjMyMDMxMyAwIDc0LjkzNzUgMzMuNjE3MTg3IDc0LjkzNzUgNzQuOTM3NSAwIDQxLjMyMDMxMi0zMy42MTcxODcgNzQuOTM3NS03NC45Mzc1IDc0LjkzNzV6bTAgMCIgZmlsbD0iI2RiYWYwMCIvPjxwYXRoIGQ9Im0zMzAuMDAzOTA2IDMwOS44ODI4MTJjMi4xMTcxODgtMS42NDA2MjQgNC42NzU3ODItMi43NSA3LjQ4ODI4Mi0zLjA5NzY1NmwuMDU0Njg3LS4wMDc4MTJjMTQuMjc3MzQ0LTEuNzE4NzUgMjYuNTg5ODQ0LTkuODQ3NjU2IDMzLjc3NzM0NC0yMi4yOTY4NzUgNy4wNDY4NzUtMTIuMjAzMTI1IDguMDM1MTU2LTI2LjU4OTg0NCAyLjc1NzgxMi0zOS42MDU0NjlsLS4zMzIwMzEtLjgwMDc4MWMtMi43NzM0MzgtNi40OTIxODgtLjc2NTYyNS0xMy45ODQzNzUgNC44ODI4MTItMTguMjE4NzUgMTEuNTAzOTA3LTguNjI4OTA3IDE4LjEwMTU2My0yMS44MjQyMTkgMTguMTAxNTYzLTM2LjIwMzEyNXMtNi41OTc2NTYtMjcuNTcwMzEzLTE4LjEwMTU2My0zNi4xOTkyMTlsLS4wODk4NDMtLjA2NjQwNmMtNS41ODIwMzEtNC4yNDYwOTQtNy41NTQ2ODgtMTEuNjk5MjE5LTQuNzkyOTY5LTE4LjE1NjI1IDUuNjQ0NTMxLTEzLjIyMjY1NyA0Ljc2NTYyNS0yNy45NDkyMTktMi40MjU3ODEtNDAuNDAyMzQ0LTcuMTI4OTA3LTEyLjM0Mzc1LTE5LjI4OTA2My0yMC40NDE0MDYtMzMuNDA2MjUtMjIuMjUzOTA2bC0uMzc1LS4wNDY4NzVjLTcuMDA3ODEzLS44NDc2NTYtMTIuNDkyMTg4LTYuMzMyMDMyLTEzLjMzNTkzOC0xMy4zMzk4NDQtMS43MjI2NTYtMTQuMjc3MzQ0LTkuODQ3NjU2LTI2LjU4OTg0NC0yMi4zMDA3ODEtMzMuNzc3MzQ0LTEyLjQzMzU5NC03LjE3OTY4Ny0yNy4xMjg5MDYtOC4wNzAzMTItNDAuMzM5ODQ0LTIuNDQ5MjE4bC0uMDExNzE4LjAwMzkwNmMtLjAxOTUzMi4wMDc4MTItLjAzMTI1LjAxMTcxOC0uMDQ2ODc2LjAxOTUzMWgtLjAwMzkwNmMtNi40OTYwOTQgMi43NzczNDQtMTMuOTg4MjgxLjc2NTYyNS0xOC4yMjI2NTYtNC44ODI4MTMtOC42Mjg5MDYtMTEuNTAzOTA2LTIxLjgyMDMxMi0xOC4xMDE1NjItMzYuMTk5MjE5LTE4LjEwMTU2Mi0xNC4zNzg5MDYgMC0yNy41NzQyMTkgNi41OTc2NTYtMzYuMjAzMTI1IDE4LjEwMTU2Mi00LjIzNDM3NSA1LjY0ODQzOC0xMS43MjY1NjIgNy42NTYyNS0xOC4yMjI2NTYgNC44ODI4MTN2LS4wMDM5MDZjLS4wMTU2MjUtLjAwMzkwNy0uMDMxMjUtLjAxMTcxOS0uMDQ2ODc1LS4wMTk1MzFsLS4wMTk1MzEtLjAwMzkwN2MtMTMuMjAzMTI1LTUuNjIxMDkzLTI3LjkwMjM0NC00LjcyNjU2Mi00MC4zMzU5MzggMi40NTMxMjUtMTIuNDUzMTI1IDcuMTg3NS0yMC41NzgxMjUgMTkuNS0yMi4zMDA3ODEgMzMuNzczNDM4LS44NDM3NSA3LjAxMTcxOC02LjMyODEyNSAxMi40OTYwOTQtMTMuMzM1OTM3IDEzLjMzOTg0NGwtLjM3MTA5NC4wNDY4NzRjLTE0LjEyMTA5NCAxLjgxMjUtMjYuMjgxMjUgOS45MTAxNTctMzMuNDEwMTU2IDIyLjI1MzkwNy03LjE4NzUgMTIuNDUzMTI1LTguMDcwMzEzIDI3LjE3OTY4Ny0yLjQyMTg3NiA0MC40MDIzNDMgMi43NTc4MTMgNi40NTcwMzIuNzg5MDYzIDEzLjkwMjM0NC00Ljc4OTA2MiAxOC4xNTIzNDRsLS4wOTc2NTYuMDcwMzEzYy0xMS41MDM5MDYgOC42Mjg5MDYtMTguMTAxNTYzIDIxLjgyNDIxOS0xOC4xMDE1NjMgMzYuMjAzMTI1IDAgMTQuMzc1IDYuNTk3NjU3IDI3LjU3MDMxMiAxOC4xMDE1NjMgMzYuMTk5MjE4IDUuNjQ4NDM3IDQuMjM4MjgyIDcuNjU2MjUgMTEuNzMwNDY5IDQuODgyODEyIDE4LjIyMjY1N2wtLjMwODU5NC43MjY1NjItLjAyMzQzNy4wNzQyMTljLTUuMjc3MzQ0IDEzLjAxNTYyNS00LjI4OTA2MyAyNy4zOTg0MzggMi43NTc4MTMgMzkuNjAxNTYyIDcuMTg3NSAxMi40NTMxMjYgMTkuNSAyMC41ODIwMzIgMzMuNzc3MzQzIDIyLjMwMDc4MmwuMDUwNzgxLjAwMzkwNmMxLjkxMDE1Ny4yMzgyODEgMy42OTkyMTkuODI4MTI1IDUuMzIwMzEzIDEuNjkxNDA2bC04MS40ODQzNzUgMTQzLjM1OTM3NSA3MS42NzU3ODEtNC42MjUgMzIuMDM1MTU3IDY0Ljc4OTA2MyA3OS4yMjI2NTYtMTM5LjMzMjAzMmM2Ljk5MjE4NyA0LjI5Njg3NiAxNS4xMDkzNzUgNi42NDA2MjYgMjMuNjQ4NDM3IDYuNjQwNjI2IDcuNjM2NzE5IDAgMTQuOTM3NS0xLjg3ODkwNyAyMS4zOTg0MzgtNS4zNTE1NjNsNzguNDY4NzUgMTM4LjA0Njg3NSAzMi4wMzkwNjItNjQuNzkyOTY5IDcxLjY3MTg3NSA0LjYyMTA5NHptLTIzOS44MTI1IDEwNi4xMjUtMzYuMTc1NzgxIDIuMzMyMDMyIDQzLjk4MDQ2OS03Ny4zNzEwOTRjMy42OTkyMTggNS4xODc1IDguNTExNzE4IDkuNjA5Mzc1IDE0LjI1NzgxMiAxMi45MjU3ODEgMTIuNDQ5MjE5IDcuMTkxNDA3IDI3LjE3OTY4OCA4LjA3NDIxOSA0MC40MDIzNDQgMi40MjU3ODEgMi4wNDI5NjktLjg3MTA5MyA0LjE3OTY4OC0xLjI2OTUzMSA2LjI4OTA2Mi0xLjIzMDQ2OGwtNTIuODg2NzE4IDkzLjAxMTcxOHptMTE2Ljg5MDYyNS02Ni42NzU3ODFjLTguMzQ3NjU2IDAtMTIuMzg2NzE5LTYuNDAyMzQzLTEyLjU1MDc4MS02LjU0Mjk2OS0xMi42MDE1NjItMTYuNDAyMzQzLTM0LjU4MjAzMS0yMi4xNzk2ODctNTMuNjUyMzQ0LTE0LjAzNTE1Ni00LjQ2MDkzNyAxLjkwNjI1LTkuNDMzNTk0IDEuNjA5Mzc1LTEzLjYzNjcxOC0uODE2NDA2LTQuMjAzMTI2LTIuNDI5Njg4LTYuOTQ1MzEzLTYuNTg1OTM4LTcuNTI3MzQ0LTExLjQwNjI1LTIuNTAzOTA2LTIwLjc2MTcxOS0xOC43NS0zNy4wMTE3MTktMzkuNTE1NjI1LTM5LjUxMTcxOWwtLjA1MDc4MS0uMDA3ODEyYy00Ljc5Njg3Ni0uNTkzNzUtOC45MzM1OTQtMy4zMzIwMzEtMTEuMzUxNTYzLTcuNTE5NTMxLTIuNDI5Njg3LTQuMjA3MDMyLTIuNzI2NTYzLTkuMTc1NzgyLS44MjAzMTMtMTMuNjQwNjI2bC4zMTI1LS43MjY1NjIuMDIzNDM4LS4wNzQyMTljNy43MTQ4NDQtMTkuMDQ2ODc1IDEuNzAzMTI1LTQwLjgwMDc4MS0xNC44MDA3ODEtNTMuMTc5Njg3LTMuODgyODEzLTIuOTEwMTU2LTYuMTA5Mzc1LTcuMzY3MTg4LTYuMTA5Mzc1LTEyLjIxODc1IDAtNC44MTY0MDYgMi4xOTE0MDYtOS4yMzgyODIgNi4wMTk1MzEtMTIuMTQ4NDM4bC4wOTM3NS0uMDc0MjE4YzE2LjczMDQ2OS0xMi41NDY4NzYgMjIuNjc5Njg3LTM0Ljc0NjA5NCAxNC40NjQ4NDQtNTMuOTc2NTYzLTEuOTA2MjUtNC40NjQ4NDQtMS42MDkzNzUtOS40MzM1OTQuODE2NDA2LTEzLjY0MDYyNSAyLjQyNTc4MS00LjIwMzEyNSA2LjU4MjAzMS02Ljk0NTMxMiAxMS40MDIzNDQtNy41MjczNDRsLjM3MTA5My0uMDQ2ODc1YzIwLjU4NTkzOC0yLjY0ODQzNyAzNi42NTYyNS0xOC44MjgxMjUgMzkuMTQ0NTMyLTM5LjQ2ODc1LjU4MjAzMS00LjgxNjQwNiAzLjMyNDIxOC04Ljk3MjY1NiA3LjUyNzM0NC0xMS40MDIzNDMgNC4yMDcwMzEtMi40MjU3ODIgOS4xNzU3ODEtMi43MjI2NTcgMTMuNjM2NzE4LS44MTY0MDdsLjA3ODEyNS4wMzEyNWMxOS4yMTA5MzggOC4xNzE4NzUgNDEuMzcxMDk0IDIuMjE0ODQ0IDUzLjkwMjM0NC0xNC40OTYwOTMgMi45MTQwNjMtMy44ODI4MTMgNy4zNjcxODctNi4xMDkzNzYgMTIuMjE4NzUtNi4xMDkzNzYgNC44NTU0NjkgMCA5LjMwODU5NCAyLjIyNjU2MyAxMi4yMjI2NTYgNi4xMTMyODIgMTIuNTMxMjUgMTYuNzA3MDMxIDM0LjY4MzU5NCAyMi42NjAxNTYgNTMuODk4NDM4IDE0LjQ5MjE4N2wuMDc4MTI1LS4wMzEyNWM0LjQ2ODc1LTEuOTA2MjUgOS40Mzc1LTEuNjA5Mzc1IDEzLjY0MDYyNS44MTY0MDcgNC4yMDMxMjUgMi40Mjk2ODcgNi45NDUzMTIgNi41ODU5MzcgNy41MjczNDMgMTEuNDA2MjUgMi40ODQzNzYgMjAuNjM2NzE4IDE4LjU1ODU5NCAzNi44MTY0MDYgMzkuMTQwNjI2IDM5LjQ2NDg0M2wuMzc1LjA0Njg3NWM0LjgxNjQwNi41ODIwMzIgOC45NzI2NTYgMy4zMjQyMTkgMTEuMzk4NDM3IDcuNTI3MzQ0IDIuNDI5Njg3IDQuMjA3MDMxIDIuNzI2NTYzIDkuMTc1NzgxLjgyMDMxMyAxMy42NDA2MjUtOC4yMTQ4NDQgMTkuMjM0Mzc1LTIuMjY5NTMyIDQxLjQyOTY4NyAxNC40NjA5MzcgNTMuOTc2NTYzbC4wODk4NDQuMDY2NDA2YzMuODMyMDMxIDIuOTE0MDYyIDYuMDIzNDM3IDcuMzM5ODQ0IDYuMDIzNDM3IDEyLjE1NjI1IDAgNC44NTU0NjgtMi4yMjY1NjIgOS4zMDg1OTQtNi4xMDkzNzUgMTIuMjIyNjU2LTE2LjUgMTIuMzc1LTIyLjUxMTcxOSAzNC4xMzI4MTItMTQuNzk2ODc1IDUzLjE3NTc4MWwuMzMyMDMyLjgwNDY4OGMxLjkxMDE1NiA0LjQ2MDkzNyAxLjYwOTM3NCA5LjQzMzU5My0uODE2NDA3IDEzLjYzNjcxOS0yLjQxNzk2OSA0LjE4NzUtNi41NTA3ODEgNi45MjU3ODEtMTEuMzQ3NjU2IDcuNTE5NTMxbC0uMDU4NTk0LjAwNzgxMmMtMjAuNzYxNzE5IDIuNS0zNy4wMTE3MTkgMTguNzUtMzkuNTExNzE5IDM5LjUxNTYyNS0uNTgyMDMxIDQuODE2NDA2LTMuMzI0MjE4IDguOTcyNjU2LTcuNTI3MzQzIDExLjQwMjM0NC00LjIwMzEyNSAyLjQyNTc4MS05LjE3NTc4MSAyLjcyMjY1Ni0xMy42NDA2MjUuODE2NDA2LTE5LjA3MDMxMy04LjE0NDUzMS00MS4wNDY4NzUtMi4zNjcxODctNTMuNjUyMzQ0IDE0LjAzNTE1Ni0uMjE4NzUuMTg3NS00LjA0Mjk2OSA2LjU0Mjk2OS0xMi41NDI5NjkgNi41NDI5Njl6bTExMy44OTA2MjUgNjYuNjc1NzgxLTE1Ljg2NzE4NyAzMi4wODk4NDQtNTIuNjg3NS05Mi42OTE0MDZjMi45Njg3NS0uNjA5Mzc1IDYuMTI4OTA2LS4zNTE1NjIgOS4wODU5MzcuOTE0MDYyIDEzLjIyMjY1NiA1LjY0ODQzOCAyNy45NDkyMTkgNC43NjU2MjYgNDAuNDAyMzQ0LTIuNDI1NzgxIDQuOTAyMzQ0LTIuODI4MTI1IDkuMTIxMDk0LTYuNDYwOTM3IDEyLjU1NDY4OC0xMC42ODc1bDQyLjY5MTQwNiA3NS4xMzY3MTl6bTAgMCIgZmlsbD0iI2RiYWYwMCIvPjwvc3ZnPgo=); }
+
+.bg-cyan {
+  background-color: #17a2b8; }
+
+.bg-black {
+  background-color: #000; }
+
+.border-gray {
+  border-color: #adb5bd; }
+
+.bs {
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+
+.bs-strong {
+  -moz-box-shadow: 18px 18px 5px rgba(9, 28, 47, 0.3);
+  -webkit-box-shadow: 18px 18px 5px rgba(9, 28, 47, 0.3);
+  box-shadow: 18px 18px 5px rgba(9, 28, 47, 0.3); }
+
+.v-middle {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle !important; }
+
+.pos-a-b {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10; }
+
+.pos-a-c {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  transform: translateY(-50%); }
+
+.pos-a-r {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 10;
+  transform: translateY(-50%); }
+
+.modal-dialog {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto; }
+@media (max-width: 768px) {
+  .modal-dialog {
+    min-height: calc(100vh - 20px); } }
+
+.badge-primary, .badge-succes {
+  color: #fff; }
+
+input[type="text"], input[type="email"], input[type="date"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 2.5rem; }
+
+.nav-link .badge {
+  position: relative;
+  top: -2px; }
+
+.badge.badge-outlined {
+  border-width: 1px;
+  border-style: solid;
+  background-color: transparent; }
+
+.badge.badge-outlined.badge-primary {
+  border-color: #85af4b;
+  color: #85af4b; }
+
+.badge.badge-outlined.badge-secondary {
+  border-color: #6c757d;
+  color: #6c757d; }
+
+.badge.badge-outlined.badge-success {
+  border-color: #85af4b;
+  color: #85af4b; }
+
+.badge.badge-outlined.badge-warning {
+  border-color: #f90;
+  color: #f90; }
+
+.badge.badge-outlined.badge-info {
+  border-color: #4a99d6;
+  color: #4a99d6; }
+
+.badge.badge-outlined.badge-danger {
+  border-color: #dc3545;
+  color: #dc3545; }
+
+.progress-md {
+  height: 1.5rem;
+  font-size: 1rem; }
+
+.badge-float {
+  position: absolute;
+  left: -10px;
+  top: 5px; }
+
+/*!
+ * Datepicker for Bootstrap v1.6.4 (https://github.com/eternicode/bootstrap-datepicker)
+ *
+ * Copyright 2012 Stefan Petre
+ * Improvements by Andrew Rowls
+ * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+ */
+.datepicker {
+  border-radius: 4px;
+  direction: ltr; }
+
+.datepicker-inline {
+  width: 220px; }
+
+.datepicker.datepicker-rtl {
+  direction: rtl; }
+
+.datepicker.datepicker-rtl table tr td span {
+  float: right; }
+
+.datepicker-dropdown {
+  top: 0;
+  left: 0;
+  padding: 4px; }
+
+.datepicker-dropdown:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid rgba(0, 0, 0, 0.15);
+  border-top: 0;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  position: absolute; }
+
+.datepicker-dropdown:after {
+  content: '';
+  display: inline-block;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #fff;
+  border-top: 0;
+  position: absolute; }
+
+.datepicker-dropdown.datepicker-orient-left:before {
+  left: 6px; }
+
+.datepicker-dropdown.datepicker-orient-left:after {
+  left: 7px; }
+
+.datepicker-dropdown.datepicker-orient-right:before {
+  right: 6px; }
+
+.datepicker-dropdown.datepicker-orient-right:after {
+  right: 7px; }
+
+.datepicker-dropdown.datepicker-orient-bottom:before {
+  top: -7px; }
+
+.datepicker-dropdown.datepicker-orient-bottom:after {
+  top: -6px; }
+
+.datepicker-dropdown.datepicker-orient-top:before {
+  bottom: -7px;
+  border-bottom: 0;
+  border-top: 7px solid rgba(0, 0, 0, 0.15); }
+
+.datepicker-dropdown.datepicker-orient-top:after {
+  bottom: -6px;
+  border-bottom: 0;
+  border-top: 6px solid #fff; }
+
+.datepicker table {
+  margin: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.datepicker table tr td, .datepicker table tr th {
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  border: none; }
+
+.table-striped .datepicker table tr td, .table-striped .datepicker table tr th {
+  background-color: transparent; }
+
+.datepicker table tr td.old, .datepicker table tr td.new {
+  color: #777777; }
+
+.datepicker table tr td.day:hover, .datepicker table tr td.focused {
+  background: #eeeeee;
+  cursor: pointer; }
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: default; }
+
+.datepicker table tr td.highlighted {
+  color: #000;
+  background-color: #d9edf7;
+  border-color: #85c5e5;
+  border-radius: 0; }
+
+.datepicker table tr td.highlighted:focus, .datepicker table tr td.highlighted.focus {
+  color: #000;
+  background-color: #afd9ee;
+  border-color: #298fc2; }
+
+.datepicker table tr td.highlighted:hover {
+  color: #000;
+  background-color: #afd9ee;
+  border-color: #52addb; }
+
+.datepicker table tr td.highlighted:active, .datepicker table tr td.highlighted.active {
+  color: #000;
+  background-color: #afd9ee;
+  border-color: #52addb; }
+
+.datepicker table tr td.highlighted:active:hover, .datepicker table tr td.highlighted.active:hover, .datepicker table tr td.highlighted:active:focus, .datepicker table tr td.highlighted.active:focus, .datepicker table tr td.highlighted:active.focus, .datepicker table tr td.highlighted.active.focus {
+  color: #000;
+  background-color: #91cbe8;
+  border-color: #298fc2; }
+
+.datepicker table tr td.highlighted.disabled:hover, .datepicker table tr td.highlighted[disabled]:hover, fieldset[disabled] .datepicker table tr td.highlighted:hover, .datepicker table tr td.highlighted.disabled:focus, .datepicker table tr td.highlighted[disabled]:focus, fieldset[disabled] .datepicker table tr td.highlighted:focus, .datepicker table tr td.highlighted.disabled.focus, .datepicker table tr td.highlighted[disabled].focus, fieldset[disabled] .datepicker table tr td.highlighted.focus {
+  background-color: #d9edf7;
+  border-color: #85c5e5; }
+
+.datepicker table tr td.highlighted.focused {
+  background: #afd9ee; }
+
+.datepicker table tr td.highlighted.disabled, .datepicker table tr td.highlighted.disabled:active {
+  background: #d9edf7;
+  color: #777777; }
+
+.datepicker table tr td.today {
+  color: #000;
+  background-color: #ffdb99;
+  border-color: #ffb733; }
+
+.datepicker table tr td.today:focus, .datepicker table tr td.today.focus {
+  color: #000;
+  background-color: #ffc966;
+  border-color: #b37400; }
+
+.datepicker table tr td.today:hover {
+  color: #000;
+  background-color: #ffc966;
+  border-color: #f59e00; }
+
+.datepicker table tr td.today:active, .datepicker table tr td.today.active {
+  color: #000;
+  background-color: #ffc966;
+  border-color: #f59e00; }
+
+.datepicker table tr td.today:active:hover, .datepicker table tr td.today.active:hover, .datepicker table tr td.today:active:focus, .datepicker table tr td.today.active:focus, .datepicker table tr td.today:active.focus, .datepicker table tr td.today.active.focus {
+  color: #000;
+  background-color: #ffbc42;
+  border-color: #b37400; }
+
+.datepicker table tr td.today.disabled:hover, .datepicker table tr td.today[disabled]:hover, fieldset[disabled] .datepicker table tr td.today:hover, .datepicker table tr td.today.disabled:focus, .datepicker table tr td.today[disabled]:focus, fieldset[disabled] .datepicker table tr td.today:focus, .datepicker table tr td.today.disabled.focus, .datepicker table tr td.today[disabled].focus, fieldset[disabled] .datepicker table tr td.today.focus {
+  background-color: #ffdb99;
+  border-color: #ffb733; }
+
+.datepicker table tr td.today.focused {
+  background: #ffc966; }
+
+.datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:active {
+  background: #ffdb99;
+  color: #777777; }
+
+.datepicker table tr td.range {
+  color: #000;
+  background-color: #eeeeee;
+  border-color: #bbbbbb;
+  border-radius: 0; }
+
+.datepicker table tr td.range:focus, .datepicker table tr td.range.focus {
+  color: #000;
+  background-color: #d5d5d5;
+  border-color: #7c7c7c; }
+
+.datepicker table tr td.range:hover {
+  color: #000;
+  background-color: #d5d5d5;
+  border-color: #9d9d9d; }
+
+.datepicker table tr td.range:active, .datepicker table tr td.range.active {
+  color: #000;
+  background-color: #d5d5d5;
+  border-color: #9d9d9d; }
+
+.datepicker table tr td.range:active:hover, .datepicker table tr td.range.active:hover, .datepicker table tr td.range:active:focus, .datepicker table tr td.range.active:focus, .datepicker table tr td.range:active.focus, .datepicker table tr td.range.active.focus {
+  color: #000;
+  background-color: #c3c3c3;
+  border-color: #7c7c7c; }
+
+.datepicker table tr td.range.disabled:hover, .datepicker table tr td.range[disabled]:hover, fieldset[disabled] .datepicker table tr td.range:hover, .datepicker table tr td.range.disabled:focus, .datepicker table tr td.range[disabled]:focus, fieldset[disabled] .datepicker table tr td.range:focus, .datepicker table tr td.range.disabled.focus, .datepicker table tr td.range[disabled].focus, fieldset[disabled] .datepicker table tr td.range.focus {
+  background-color: #eeeeee;
+  border-color: #bbbbbb; }
+
+.datepicker table tr td.range.focused {
+  background: #d5d5d5; }
+
+.datepicker table tr td.range.disabled, .datepicker table tr td.range.disabled:active {
+  background: #eeeeee;
+  color: #777777; }
+
+.datepicker table tr td.range.highlighted {
+  color: #000;
+  background-color: #e4eef3;
+  border-color: #9dc1d3; }
+
+.datepicker table tr td.range.highlighted:focus, .datepicker table tr td.range.highlighted.focus {
+  color: #000;
+  background-color: #c1d7e3;
+  border-color: #4b88a6; }
+
+.datepicker table tr td.range.highlighted:hover {
+  color: #000;
+  background-color: #c1d7e3;
+  border-color: #73a6c0; }
+
+.datepicker table tr td.range.highlighted:active, .datepicker table tr td.range.highlighted.active {
+  color: #000;
+  background-color: #c1d7e3;
+  border-color: #73a6c0; }
+
+.datepicker table tr td.range.highlighted:active:hover, .datepicker table tr td.range.highlighted.active:hover, .datepicker table tr td.range.highlighted:active:focus, .datepicker table tr td.range.highlighted.active:focus, .datepicker table tr td.range.highlighted:active.focus, .datepicker table tr td.range.highlighted.active.focus {
+  color: #000;
+  background-color: #a8c8d8;
+  border-color: #4b88a6; }
+
+.datepicker table tr td.range.highlighted.disabled:hover, .datepicker table tr td.range.highlighted[disabled]:hover, fieldset[disabled] .datepicker table tr td.range.highlighted:hover, .datepicker table tr td.range.highlighted.disabled:focus, .datepicker table tr td.range.highlighted[disabled]:focus, fieldset[disabled] .datepicker table tr td.range.highlighted:focus, .datepicker table tr td.range.highlighted.disabled.focus, .datepicker table tr td.range.highlighted[disabled].focus, fieldset[disabled] .datepicker table tr td.range.highlighted.focus {
+  background-color: #e4eef3;
+  border-color: #9dc1d3; }
+
+.datepicker table tr td.range.highlighted.focused {
+  background: #c1d7e3; }
+
+.datepicker table tr td.range.highlighted.disabled, .datepicker table tr td.range.highlighted.disabled:active {
+  background: #e4eef3;
+  color: #777777; }
+
+.datepicker table tr td.range.today {
+  color: #000;
+  background-color: #f7ca77;
+  border-color: #f1a417; }
+
+.datepicker table tr td.range.today:focus, .datepicker table tr td.range.today.focus {
+  color: #000;
+  background-color: #f4b747;
+  border-color: #815608; }
+
+.datepicker table tr td.range.today:hover {
+  color: #000;
+  background-color: #f4b747;
+  border-color: #bf800c; }
+
+.datepicker table tr td.range.today:active, .datepicker table tr td.range.today.active {
+  color: #000;
+  background-color: #f4b747;
+  border-color: #bf800c; }
+
+.datepicker table tr td.range.today:active:hover, .datepicker table tr td.range.today.active:hover, .datepicker table tr td.range.today:active:focus, .datepicker table tr td.range.today.active:focus, .datepicker table tr td.range.today:active.focus, .datepicker table tr td.range.today.active.focus {
+  color: #000;
+  background-color: #f2aa25;
+  border-color: #815608; }
+
+.datepicker table tr td.range.today.disabled:hover, .datepicker table tr td.range.today[disabled]:hover, fieldset[disabled] .datepicker table tr td.range.today:hover, .datepicker table tr td.range.today.disabled:focus, .datepicker table tr td.range.today[disabled]:focus, fieldset[disabled] .datepicker table tr td.range.today:focus, .datepicker table tr td.range.today.disabled.focus, .datepicker table tr td.range.today[disabled].focus, fieldset[disabled] .datepicker table tr td.range.today.focus {
+  background-color: #f7ca77;
+  border-color: #f1a417; }
+
+.datepicker table tr td.range.today.disabled, .datepicker table tr td.range.today.disabled:active {
+  background: #f7ca77;
+  color: #777777; }
+
+.datepicker table tr td.selected, .datepicker table tr td.selected.highlighted {
+  color: #fff;
+  background-color: #777777;
+  border-color: #555555;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
+
+.datepicker table tr td.selected:focus, .datepicker table tr td.selected.highlighted:focus, .datepicker table tr td.selected.focus, .datepicker table tr td.selected.highlighted.focus {
+  color: #fff;
+  background-color: #5e5e5e;
+  border-color: #161616; }
+
+.datepicker table tr td.selected:hover, .datepicker table tr td.selected.highlighted:hover {
+  color: #fff;
+  background-color: #5e5e5e;
+  border-color: #373737; }
+
+.datepicker table tr td.selected:active, .datepicker table tr td.selected.highlighted:active, .datepicker table tr td.selected.active, .datepicker table tr td.selected.highlighted.active {
+  color: #fff;
+  background-color: #5e5e5e;
+  border-color: #373737; }
+
+.datepicker table tr td.selected:active:hover, .datepicker table tr td.selected.highlighted:active:hover, .datepicker table tr td.selected.active:hover, .datepicker table tr td.selected.highlighted.active:hover, .datepicker table tr td.selected:active:focus, .datepicker table tr td.selected.highlighted:active:focus, .datepicker table tr td.selected.active:focus, .datepicker table tr td.selected.highlighted.active:focus, .datepicker table tr td.selected:active.focus, .datepicker table tr td.selected.highlighted:active.focus, .datepicker table tr td.selected.active.focus, .datepicker table tr td.selected.highlighted.active.focus {
+  color: #fff;
+  background-color: #4c4c4c;
+  border-color: #161616; }
+
+.datepicker table tr td.selected.disabled:hover, .datepicker table tr td.selected.highlighted.disabled:hover, .datepicker table tr td.selected[disabled]:hover, .datepicker table tr td.selected.highlighted[disabled]:hover, fieldset[disabled] .datepicker table tr td.selected:hover, fieldset[disabled] .datepicker table tr td.selected.highlighted:hover, .datepicker table tr td.selected.disabled:focus, .datepicker table tr td.selected.highlighted.disabled:focus, .datepicker table tr td.selected[disabled]:focus, .datepicker table tr td.selected.highlighted[disabled]:focus, fieldset[disabled] .datepicker table tr td.selected:focus, fieldset[disabled] .datepicker table tr td.selected.highlighted:focus, .datepicker table tr td.selected.disabled.focus, .datepicker table tr td.selected.highlighted.disabled.focus, .datepicker table tr td.selected[disabled].focus, .datepicker table tr td.selected.highlighted[disabled].focus, fieldset[disabled] .datepicker table tr td.selected.focus, fieldset[disabled] .datepicker table tr td.selected.highlighted.focus {
+  background-color: #777777;
+  border-color: #555555; }
+
+.datepicker table tr td.active, .datepicker table tr td.active.highlighted {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
+
+.datepicker table tr td.active:focus, .datepicker table tr td.active.highlighted:focus, .datepicker table tr td.active.focus, .datepicker table tr td.active.highlighted.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40; }
+
+.datepicker table tr td.active:hover, .datepicker table tr td.active.highlighted:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74; }
+
+.datepicker table tr td.active:active, .datepicker table tr td.active.highlighted:active, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74; }
+
+.datepicker table tr td.active:active:hover, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active.highlighted.active.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40; }
+
+.datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.highlighted.disabled:hover, .datepicker table tr td.active[disabled]:hover, .datepicker table tr td.active.highlighted[disabled]:hover, fieldset[disabled] .datepicker table tr td.active:hover, fieldset[disabled] .datepicker table tr td.active.highlighted:hover, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active.highlighted.disabled:focus, .datepicker table tr td.active[disabled]:focus, .datepicker table tr td.active.highlighted[disabled]:focus, fieldset[disabled] .datepicker table tr td.active:focus, fieldset[disabled] .datepicker table tr td.active.highlighted:focus, .datepicker table tr td.active.disabled.focus, .datepicker table tr td.active.highlighted.disabled.focus, .datepicker table tr td.active[disabled].focus, .datepicker table tr td.active.highlighted[disabled].focus, fieldset[disabled] .datepicker table tr td.active.focus, fieldset[disabled] .datepicker table tr td.active.highlighted.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4; }
+
+.datepicker table tr td span {
+  display: block;
+  width: 23%;
+  height: 54px;
+  line-height: 54px;
+  float: left;
+  margin: 1%;
+  cursor: pointer;
+  border-radius: 4px; }
+
+.datepicker table tr td span:hover, .datepicker table tr td span.focused {
+  background: #eeeeee; }
+
+.datepicker table tr td span.disabled, .datepicker table tr td span.disabled:hover {
+  background: none;
+  color: #777777;
+  cursor: default; }
+
+.datepicker table tr td span.active, .datepicker table tr td span.active:hover, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled:hover {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
+
+.datepicker table tr td span.active:focus, .datepicker table tr td span.active:hover:focus, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active.focus, .datepicker table tr td span.active:hover.focus, .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active.disabled:hover.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40; }
+
+.datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover:hover, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74; }
+
+.datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74; }
+
+.datepicker table tr td span.active:active:hover, .datepicker table tr td span.active:hover:active:hover, .datepicker table tr td span.active.disabled:active:hover, .datepicker table tr td span.active.disabled:hover:active:hover, .datepicker table tr td span.active.active:hover, .datepicker table tr td span.active:hover.active:hover, .datepicker table tr td span.active.disabled.active:hover, .datepicker table tr td span.active.disabled:hover.active:hover, .datepicker table tr td span.active:active:focus, .datepicker table tr td span.active:hover:active:focus, .datepicker table tr td span.active.disabled:active:focus, .datepicker table tr td span.active.disabled:hover:active:focus, .datepicker table tr td span.active.active:focus, .datepicker table tr td span.active:hover.active:focus, .datepicker table tr td span.active.disabled.active:focus, .datepicker table tr td span.active.disabled:hover.active:focus, .datepicker table tr td span.active:active.focus, .datepicker table tr td span.active:hover:active.focus, .datepicker table tr td span.active.disabled:active.focus, .datepicker table tr td span.active.disabled:hover:active.focus, .datepicker table tr td span.active.active.focus, .datepicker table tr td span.active:hover.active.focus, .datepicker table tr td span.active.disabled.active.focus, .datepicker table tr td span.active.disabled:hover.active.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40; }
+
+.datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active:hover.disabled:hover, .datepicker table tr td span.active.disabled.disabled:hover, .datepicker table tr td span.active.disabled:hover.disabled:hover, .datepicker table tr td span.active[disabled]:hover, .datepicker table tr td span.active:hover[disabled]:hover, .datepicker table tr td span.active.disabled[disabled]:hover, .datepicker table tr td span.active.disabled:hover[disabled]:hover, fieldset[disabled] .datepicker table tr td span.active:hover, fieldset[disabled] .datepicker table tr td span.active:hover:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active:hover.disabled:focus, .datepicker table tr td span.active.disabled.disabled:focus, .datepicker table tr td span.active.disabled:hover.disabled:focus, .datepicker table tr td span.active[disabled]:focus, .datepicker table tr td span.active:hover[disabled]:focus, .datepicker table tr td span.active.disabled[disabled]:focus, .datepicker table tr td span.active.disabled:hover[disabled]:focus, fieldset[disabled] .datepicker table tr td span.active:focus, fieldset[disabled] .datepicker table tr td span.active:hover:focus, fieldset[disabled] .datepicker table tr td span.active.disabled:focus, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active:hover.disabled.focus, .datepicker table tr td span.active.disabled.disabled.focus, .datepicker table tr td span.active.disabled:hover.disabled.focus, .datepicker table tr td span.active[disabled].focus, .datepicker table tr td span.active:hover[disabled].focus, .datepicker table tr td span.active.disabled[disabled].focus, .datepicker table tr td span.active.disabled:hover[disabled].focus, fieldset[disabled] .datepicker table tr td span.active.focus, fieldset[disabled] .datepicker table tr td span.active:hover.focus, fieldset[disabled] .datepicker table tr td span.active.disabled.focus, fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4; }
+
+.datepicker table tr td span.old, .datepicker table tr td span.new {
+  color: #777777; }
+
+.datepicker .datepicker-switch {
+  width: 145px; }
+
+.datepicker .datepicker-switch, .datepicker .prev, .datepicker .next, .datepicker tfoot tr th {
+  cursor: pointer; }
+
+.datepicker .datepicker-switch:hover, .datepicker .prev:hover, .datepicker .next:hover, .datepicker tfoot tr th:hover {
+  background: #eeeeee; }
+
+.datepicker .cw {
+  font-size: 10px;
+  width: 12px;
+  padding: 0 2px 0 5px;
+  vertical-align: middle; }
+
+.input-group.date .input-group-addon {
+  cursor: pointer; }
+
+.input-daterange {
+  width: 100%; }
+
+.input-daterange input {
+  text-align: center; }
+
+.input-daterange input:first-child {
+  border-radius: 3px 0 0 3px; }
+
+.input-daterange input:last-child {
+  border-radius: 0 3px 3px 0; }
+
+.input-daterange .input-group-addon {
+  width: auto;
+  min-width: 16px;
+  padding: 4px 5px;
+  line-height: 1.42857143;
+  text-shadow: 0 1px 0 #fff;
+  border-width: 1px 0;
+  margin-left: -5px;
+  margin-right: -5px; }
+
+/*# sourceMappingURL=bootstrap-datepicker3.css.map */
+/*! Pushy - v1.1.0 - 2017-1-30
+* Pushy is a responsive off-canvas navigation menu using CSS transforms & transitions.
+* https://github.com/christophery/pushy/
+* by Christopher Yee */
+/* Menu Appearance */
+.pushy {
+  font-size: 15px;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 9999;
+  background: #fff;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  /* enables momentum scrolling in iOS overflow elements */ }
+.pushy ul:first-child {
+  margin-top: 10px; }
+.pushy.pushy-left {
+  left: 0; }
+.pushy.pushy-right {
+  right: 0; }
+
+.pushy-content {
+  visibility: hidden; }
+
+/* Menu Movement */
+.pushy-left {
+  -webkit-transform: translate3d(-240px, 0, 0);
+  -ms-transform: translate3d(-240px, 0, 0);
+  transform: translate3d(-240px, 0, 0); }
+
+.pushy-open-left #container, .pushy-open-left .push {
+  -webkit-transform: translate3d(240px, 0, 0);
+  -ms-transform: translate3d(240px, 0, 0);
+  transform: translate3d(240px, 0, 0); }
+
+.pushy-right {
+  -webkit-transform: translate3d(240px, 0, 0);
+  -ms-transform: translate3d(240px, 0, 0);
+  transform: translate3d(240px, 0, 0); }
+
+.pushy-open-right #container, .pushy-open-right .push {
+  -webkit-transform: translate3d(-240px, 0, 0);
+  -ms-transform: translate3d(-240px, 0, 0);
+  transform: translate3d(-240px, 0, 0); }
+
+.pushy-open-left .pushy, .pushy-open-right .pushy {
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+.pushy-open-left .pushy-content, .pushy-open-right .pushy-content {
+  visibility: visible; }
+
+/* Menu Transitions */
+#container, .pushy, .push {
+  transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99); }
+
+.pushy-content {
+  transition: visibility 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99); }
+
+/* Site Overlay */
+.site-overlay {
+  display: none; }
+
+.pushy-open-left .site-overlay, .pushy-open-right .site-overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-animation: fade 500ms;
+  animation: fade 500ms; }
+
+@keyframes fade {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+/* Submenu Appearance */
+.pushy-submenu {
+  /* Submenu Buttons */
+  /* Submenu Icon */ }
+.pushy-submenu ul {
+  padding-left: 15px;
+  transition: max-height 0.2s ease-in-out, visibility 0.2s ease-in-out; }
+.pushy-submenu ul .pushy-link {
+  transition: opacity 0.2s ease-in-out; }
+.pushy-submenu button {
+  width: 100%;
+  color: #b3b3b1;
+  padding: 15px 30px;
+  text-align: left;
+  background: transparent;
+  border: 0; }
+.pushy-submenu button:hover {
+  color: #FFF; }
+.pushy-submenu > a, .pushy-submenu > button {
+  position: relative; }
+.pushy-submenu > a::after, .pushy-submenu > button::after {
+  content: '';
+  display: block;
+  height: 11px;
+  width: 8px;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  background: url("../img/arrow.svg") no-repeat;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition: transform 0.2s; }
+
+/* Submenu Movement */
+.pushy-submenu-closed ul {
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden; }
+.pushy-submenu-closed .pushy-link {
+  opacity: 0; }
+
+.pushy-submenu-open {
+  /* Submenu Icon */ }
+.pushy-submenu-open ul {
+  max-height: 1000px;
+  visibility: visible; }
+.pushy-submenu-open .pushy-link {
+  opacity: 1; }
+.pushy-submenu-open a::after, .pushy-submenu-open button::after {
+  -webkit-transform: translateY(-50%) rotate(90deg);
+  -ms-transform: translateY(-50%) rotate(90deg);
+  transform: translateY(-50%) rotate(90deg); }
+
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent; }
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0; }
+.slick-list:focus {
+  outline: none; }
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand; }
+
+.slick-slider .slick-track, .slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+.slick-track:before, .slick-track:after {
+  content: "";
+  display: table; }
+.slick-track:after {
+  clear: both; }
+.slick-loading .slick-track {
+  visibility: hidden; }
+
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  display: none; }
+[dir="rtl"] .slick-slide {
+  float: right; }
+.slick-slide img {
+  display: block; }
+.slick-slide.slick-loading img {
+  display: none; }
+.slick-slide.dragging img {
+  pointer-events: none; }
+.slick-initialized .slick-slide {
+  display: block; }
+.slick-loading .slick-slide {
+  visibility: hidden; }
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent; }
+
+.slick-arrow.slick-hidden {
+  display: none; }
+
+.slick-loading .slick-list {
+  background: url(../img/ui/ajax-loader.gif) center center no-repeat #fff; }
+
+/* Arrows */
+.slick-prev, .slick-next {
+  position: absolute;
+  z-index: 100;
+  display: block;
+  line-height: 0px;
+  font-size: 0px;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  padding: 0;
+  border: none;
+  outline: none; }
+.slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+  outline: none;
+  background: transparent;
+  color: transparent; }
+.slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
+  opacity: 1; }
+.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+  opacity: 0.25; }
+.slick-prev:before, .slick-next:before {
+  font-family: "FontAwesome";
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  opacity: 0.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.slick-prev {
+  left: 5px; }
+[dir="rtl"] .slick-prev {
+  left: auto;
+  right: 5px; }
+.slick-prev:before {
+  content: ""; }
+[dir="rtl"] .slick-prev:before {
+  content: ""; }
+
+.slick-next {
+  right: 5px; }
+[dir="rtl"] .slick-next {
+  left: 5px;
+  right: auto; }
+.slick-next:before {
+  content: ""; }
+[dir="rtl"] .slick-next:before {
+  content: ""; }
+
+/* Dots */
+.slick-dots {
+  position: absolute;
+  bottom: 20px;
+  z-index: 5;
+  list-style: none;
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%; }
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer; }
+.slick-dots li button {
+  border: 0;
+  background-color: transparent;
+  display: block;
+  height: 12px;
+  width: 12px;
+  outline: none;
+  line-height: 0px;
+  font-size: 0px;
+  color: transparent;
+  border: 1px solid #fff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%; }
+.slick-dots li button:hover, .slick-dots li button:focus {
+  outline: none;
+  background-color: #fff; }
+.slick-dots li.slick-active button {
+  background-color: #fff; }
