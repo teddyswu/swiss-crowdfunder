@@ -1,96 +1,98 @@
 <div id="main" class="push py-14 mt-10 mt-lg-12">
   <div class="container mb-3">
-
-
-<div class="container">
-  <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
-  <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-campaign-tab" data-toggle="tab" href="#nav-campaign" role="tab" aria-controls="nav-campaign" aria-expanded="true">內容</a>
-    <%= link_to "問與答", campaign_show_qa_path(params[:id]) , :class => "nav-item nav-link"%>
-    <%= link_to "更新( #{@campaign.campaign_updates.size})", campaign_show_update_path(params[:id]) , :class => "nav-item nav-link" %>
-    <%= link_to "留言(#{@campaign_replies.size})", campaign_show_reply_path(params[:id]), :class => "nav-item nav-link" %>
-    <%= link_to "友善團隊(#{@campaign.campaign_groups.size})", group_campaign_path(params[:id]) , :class => "nav-item nav-link"%>
-    <%= link_to "支持者(#{@campaign.orders.is_paid.size})", support_campaign_path(params[:id]) , :class => "nav-item nav-link"%>
-    <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
-  </nav>
-</div>
-<hr class="mt-0 mb-4">
-<div class="container">
-  <div class="campaign_body">
-    <div class="row">
-      <div class="col-md-7 col-lg-8">
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-campaign" role="tabpanel" aria-labelledby="nav-campaign-tab" >
-            <div>
-              <% if @campaign.campaign_updates.present? %>
-                <small style="line-height: 39px;color: grey;">最新進度</small>
-                <%= link_to "#{@campaign.campaign_updates.last.campaign_title}", campaign_show_update_path(params[:id], anchor: "top") %>
-              <% end %>
-            </div>
-            <h2><%= t('.about') %></h2>
-            <article>
-              <section>
-                <%= raw @campaign.description_html %>
-              </section>
-            </article>
-            <h5>風險與承諾</h5>
-            <%= raw @campaign.risk %>
+    <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
+  </div>
+  <div class="container-fluid border-bottom bg-white mb-6 pt-3" id="menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+                <%= link_to "內容", campaign_path(params[:id], anchor: "menu") , :class => "nav-link active"%>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link anchor" href="#rewards">回饋</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to "更新 <span class='text-primary'>#{@campaign.campaign_updates.size}</span>".html_safe, campaign_show_update_path(params[:id]) , :class => "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "問答 <span class='text-primary'>#{@campaign.campaign_qas.size}</span>".html_safe, campaign_show_qa_path(params[:id]) , :class => "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "留言 <span class='text-primary'>#{@campaign_replies.size}</span>".html_safe, campaign_show_reply_path(params[:id]), :class => "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id]) , :class => "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id]) , :class => "nav-link"%>
+              </li>
+            </ul>
           </div>
         </div>
+        <div class="col-12 col-lg-4 d-none d-lg-block">
+          <%= link_to "支持提案", campaign_goodies_path(@campaign), class: "btn btn-primary btn-block" %>
+        </div>
       </div>
-      
-        <!-- <h2><%#= t('.about') %></h2>
-        <article>
-          <section>
-            <%#= raw @campaign.description_html %>
-          </section>
-        </article> -->
-      
-      <aside class="col-md-5 col-lg-4">
-        <h2><%= t('.goodies') %></h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 mb-lg-0 mb-5">
+        <% if @campaign.campaign_updates.present? %>
+          <div class="border p-3 mb-6 rounded">
+            <div class="lead font-weight-bold">
+              <span class="badge badge-warning text-white">NEW</span>
+                計畫更新 <small>發佈於<%= @campaign.campaign_updates.last.created_at.strftime(" %F") %></small>
+            </div>
+            <%= link_to "#{@campaign.campaign_updates.last.campaign_title}", campaign_show_update_path(params[:id], anchor: "top") %>
+          </div>
+        <% end %>
+        <div class="text-dark lead">
+          <figure class="figure">
+            <%= image_tag @campaign.campaign_image.try(:campaign_path), class: "img-fluid" %>
+          </figure>
+          <%= raw @campaign.description_html %>
+        </div>
+        <div class="border p-3 rounded">
+          <div class="text-center mb-3">
+            <div class="alert-heading h5 font-weight-bold">
+              <i class="fas fa-exclamation-triangle"></i> 風險與承諾
+            </div>
+          </div>
+          <%= raw @campaign.risk %>
+        </div>
+        <div class="mt-3 d-lg-none">
+          <%= link_to "支持提案", campaign_goodies_path(@campaign), class: "btn btn-primary btn-block" %>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="pt-10 mb-3 d-lg-none" id="rewards">
+          <div class="h5 font-weight-bold">回饋商品</div>
+        </div>
         <% @campaign.goodies.order(:sort).each do |goody| %>
           <%= render partial: 'shared/goody', locals: { goody: goody } %>
         <% end %>
-        <!-- <section class="card side_card">
-             <div class="card-body">
-             <h4 class="card-title strong">Pledge CHF 15 or more</h4>
-             <h5>CHF 15 Reward</h5>
-             <p class="card-text">
-             Receive regular project updates, plus your name listed on DCL website as a member of Glarnercrowd supporters.
-             </p>
-
-             <div class="card_point">ESTIMATED DELIVERY</div>
-             <time>Sep 2017</time>
-
-             <p class="card_point">200 Backers</p>
-             </div>
-             <div class="input_iconed">
-             <span class="input_icon">$</span>
-             <input type="text" class="form-control" placeholder="amount" aria-label="amount" aria-describedby="pledge-input" value="10">
-             </div>
-             <button class="btn btn_theme btn_bottom">Select</button>
-             <button class="btn btn_faded btn_bottom">Select</button>
-             </section> -->
-      </aside>
+      </div>
     </div>
   </div>
 </div>
 <% content_for :javascript do %>
   <script>
   $(".btn_card").click(function() {
-    var track_class = $("#track_btn").attr("class")
+    var track_class = $("#track_btn").attr("data-prefix")
     $.post( "/tracks", { user_id: <%= current_user.present? ? current_user.id : 0 %>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
-        if (track_class.indexOf("-o")!=-1){
+        if (track_class == "far"){
+          $("#track_btn").attr("data-prefix", "fas")
           alert( "追蹤完成" );
-          $("#track_btn").removeClass("far");
-          $("#track_btn").addClass("fas");
         }
         else
         {
           alert( "追蹤取消" );
-          $("#track_btn").removeClass("fas");
-          $("#track_btn").addClass("far"); 
+          $("#track_btn").attr("data-prefix", "far")
         }
       });
   });

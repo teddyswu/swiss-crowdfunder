@@ -10,7 +10,9 @@ class User < AgricDbConnecter
   has_many :campaigns
   has_many :tracks
   has_many :orders
+  has_many :authorizations
   has_one :user_profile
   has_one :farmer_profile
+
 
 end

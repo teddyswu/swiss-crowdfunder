@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
 	before_action :authenticate_user!, only: [:index]
+	protect_from_forgery with: :null_session
 
 	def create
     campaign = Campaign.find_by_slug(params[:campaign])

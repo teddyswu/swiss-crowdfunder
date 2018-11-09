@@ -13,6 +13,7 @@ class Campaign < ApplicationRecord
   has_many :campaign_updates
   has_many :campaign_replies
   has_many :tracks
+  has_many :campaign_qas
   has_many :campaign_groups
   has_many :campaign_tag_ships
   has_many :campaign_tags, :through => :campaign_tag_ships

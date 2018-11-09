@@ -70,7 +70,7 @@
             <!-- 已登入 -->
             <div class="dropdown">
               <a class="btn text-dark px-0 dropdown-toggle" href="" data-toggle="dropdown">
-                <img class="img-fluid rounded-circle" src="https://graph.facebook.com/<%= current_user.try(:authorizations).try(:uid)%>/picture" alt="" style="width: 30px">
+                <img class="img-fluid rounded-circle" src="<%= current_user.authorizations.present? ? "https://graph.facebook.com/#{current_user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 30px">
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="#">我的牆面</a>
@@ -206,7 +206,7 @@
         <div class="pt-3 text-gray-6">
           <div class="row align-items-center">
             <div class="col-12 col-lg-3 text-center text-lg-left">
-              <img src="sk2_assets/img/ui/logo.png" srcset="sk2_assets/img/ui/logo@2x.png 2x" class="logo img-fluid" alt="">
+              <img src="/sk2_assets/img/ui/logo.png" srcset="/sk2_assets/img/ui/logo@2x.png 2x" class="logo img-fluid" alt="">
             </div>
             <div class="col-12 col-lg-6 text-center text-lg-left">
               <small>
