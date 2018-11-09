@@ -21,7 +21,7 @@
     </div>
     <div class="col-12 col-lg-4">
       <div class="media mb-2">
-        <img class="rounded-circle mr-3" src="https://graph.facebook.com/<%= current_user.try(:authorizations).try(:uid)%>/picture" alt="" style="width: 50px;">
+        <img class="rounded-circle mr-3" src="<%= campaign.user.authorizations.present? ? "https://graph.facebook.com/#{campaign.user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 50px;">
         <div class="media-body">
           <div>
             <%= link_to campaign.user.user_profile.nickname, user_path(campaign.user.id), :class => "text-dark"%>
