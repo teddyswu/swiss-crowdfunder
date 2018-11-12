@@ -1,15 +1,14 @@
 <% campaign_qas.each_with_index do |cqa, i|%>
-	<div style="font-size: 0.875rem">
-	  <div style="font-weight: bold">
-	    <%= i + 1 %>. <%= cqa.campaign_question %>
-      <% if user_signed_in? %>
+	<div class="border p-3 mb-6">
+	  <a class="lead font-weight-bold anchor" href="#qa<%= i+1 %>" id="qa<%= i+1 %>">Q<%= i+1 %>. <%= cqa.campaign_question %></a>
+	  <div class="float-right">
+	  	<% if user_signed_in? %>
       	<% if current_user.id == @campaign.user_id && @campaign.status != 2%>
-	    		<%= link_to "編輯", "##", :onclick => "window.open('#{edit_campaign_qa_path(cqa.id)}', '編輯', config='height=500,width=500');"%>
+	    		<%= link_to "編輯", "##", :onclick => "window.open('#{edit_campaign_qa_path(cqa.id)}', '編輯', config='height=500,width=500');", :class => "btn btn-outline-primary btn-sm"%>
 	    	<% end %>
 	    <% end %>
 	  </div>
-	  <div style="font-size: 0.875rem;background-color: #f4f4f4;margin-top: 0.5rem;padding: 1rem;">
-	    <%= cqa.campaign_answer%>
-	  </div>
+	  <div class="text-muted"><small>最後更新於 <%= cqa.created_at.strftime('%F %H:%M') %></small></div>
+	  <p class="mb-0"><%= cqa.campaign_answer%></p>
 	</div>
 <% end %>

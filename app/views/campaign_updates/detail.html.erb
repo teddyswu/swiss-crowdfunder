@@ -1,0 +1,58 @@
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container mb-3">
+    <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
+  </div>
+  <div class="container-fluid border-bottom bg-white mb-6 pt-3" id="menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+                <%= link_to "內容", campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link anchor" href="#rewards">回饋</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to "更新 <span class='text-primary'>#{@campaign.campaign_updates.size}</span>".html_safe, campaign_show_update_path(params[:id], anchor: "menu") , :class => "nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "問答 <span class='text-primary'>#{@campaign.campaign_qas.size}</span>".html_safe, campaign_show_qa_path(params[:id]), anchor: "menu", :class => "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "留言 <span class='text-primary'>#{@campaign_replies.size}</span>".html_safe, campaign_show_reply_path(params[:id]), anchor: "menu", :class => "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id]), anchor: "menu", :class => "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id]), anchor: "menu", :class => "nav-link"%>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 mb-lg-0 mb-5">
+        <div class="text-dark lead">
+          <div class="lead font-weight-bold"><%= @campaign_update.campaign_title %></div>
+          <div class="text-muted"><small><%= @campaign_update.created_at.strftime('%F %H:%M') %></small></div>
+          <%= raw @campaign_update.campaign_content %>
+        </div>
+        <div class="fb-comments" data-width="100%" data-href="<%= request.url%>" data-numposts="5"></div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="pt-10 mb-3 d-lg-none" id="rewards">
+          <div class="h5 font-weight-bold">回饋商品</div>
+        </div>
+        <% @campaign.goodies.order(:sort).each do |goody| %>
+          <%= render partial: 'shared/goody', locals: { goody: goody } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

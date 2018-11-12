@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "campaigns/:id/qas", :to => "campaign_qas#show", :as => "campaign_show_qa"
   resources :campaign_updates
   get "campaigns/:id/updates", :to => "campaign_updates#show", :as => "campaign_show_update"
+  get "campaigns/:id/updates/:update_id", :to => "campaign_updates#detail", :as => "campaign_update_detail"
   resources :campaign_replies
   get "campaigns/:id/replies", :to => "campaign_replies#show", :as => "campaign_show_reply"
   resources :tracks do 

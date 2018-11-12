@@ -1,6 +1,6 @@
 class CampaignUpdatesController < ApplicationController
 
-	before_action :set_campaign, only: [:show]
+	before_action :set_campaign, only: [:show, :detail]
 
 	def show
 		@campaign_update = CampaignUpdate.new
@@ -20,6 +20,12 @@ class CampaignUpdatesController < ApplicationController
 	def edit
 		@campaign_update = CampaignUpdate.find(params[:id])
 	end
+
+	def detail
+		@campaign_update = CampaignUpdate.find(params[:update_id])
+		@campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
+	end
+
 	def update
 		@campaign_update = CampaignUpdate.find(params[:id])
   	@campaign_update.update(campaign_update_params)

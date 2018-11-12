@@ -1,31 +1,23 @@
 <script src="/ckeditor/ckeditor.js"></script>
-<%= form_for campaign_update, :url => campaign_updates_path(campaign_update), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
-	<div class="row form-group">
-		<%= f.hidden_field :campaign_id, :value => @campaign.id%>
-    <div class="col col-md-3">
-      <%= f.label("標題", :class => 'form-control-label') %>
+<div class="border py-3 mb-6 bg-light">
+  <% if @campaign_updates.size == 0 %>
+    <div class="text-center px-3 py-5">
+      <div class="h3">目前尚未有更新</div>
     </div>
-    <div class="col-12 col-md-9">
-      <%= f.text_field(:campaign_title, :class => "form-control")%>
+  <% end %>
+  <hr class="mb-5">
+  <div class="media px-3">
+    <img class="img-fluid rounded-circle mr-3" src="<%= @campaign.user.authorizations.present? ? "https://graph.facebook.com/#{@campaign.user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 50px">
+    <div class="media-body">
+      <%= form_for campaign_update, :url => campaign_updates_path(campaign_update), :method => :post do |f| %>
+    		<%= f.hidden_field :campaign_id, :value => @campaign.id%>
+        <%= f.text_field(:campaign_title, :class => "form-control", :placeholder => "標題")%>
+        <%= f.text_area(:campaign_content, :class => "form-control")%>
+        <script>
+          CKEDITOR.replace( 'campaign_update_campaign_content' );
+        </script>
+        <button class="btn btn-outline-primary">送出</button>
+      <% end %>
     </div>
   </div>
-  <div class="row form-group">
-    <div class="col col-md-3">
-      <%= f.label("內容", :class => 'form-control-label') %>
-    </div>
-    <div class="col-12 col-md-9">
-      <%= f.text_area(:campaign_content, :class => "form-control")%>
-    </div>
-    <script>
-      CKEDITOR.replace( 'campaign_update_campaign_content' );
-    </script>
-  </div>
-  <div class="card-footer">
-    <button type="submit" class="btn btn-primary btn-sm">
-      <i class="fa fa-dot-circle-o"></i> Submit
-    </button>
-    <button type="reset" class="btn btn-danger btn-sm">
-      <i class="fa fa-ban"></i> Reset
-    </button>
-  </div>
-<% end %>
+</div>

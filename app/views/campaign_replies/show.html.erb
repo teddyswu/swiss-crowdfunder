@@ -1,3 +1,60 @@
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container mb-3">
+    <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
+  </div>
+  <div class="container-fluid border-bottom bg-white mb-6 pt-3" id="menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+                <%= link_to "內容", campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link anchor" href="#rewards">回饋</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to "更新 <span class='text-primary'>#{@campaign.campaign_updates.size}</span>".html_safe, campaign_show_update_path(params[:id], anchor: "menu") , :class => "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "問答 <span class='text-primary'>#{@campaign.campaign_qas.size}</span>".html_safe, campaign_show_qa_path(params[:id], anchor: "menu") , :class => "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "留言 <span class='text-primary'>#{@campaign_replies.size}</span>".html_safe, campaign_show_reply_path(params[:id], anchor: "menu"), :class => "nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 mb-lg-0 mb-5">
+        <div class="border py-3 mb-6 bg-light">
+          <% if user_signed_in? %>
+            <%= render partial: 'campaigns/reply_from', locals: { campaign_reply: @campaign_reply } %>
+          <% else %>
+            <div class="text-center px-3 py-5">
+              <div class="h3">登入後才能留言</div>
+              <div class="h3">目前尚未有留言</div>
+              <div class="font-small text-muted">
+                對這個計畫有問題嗎？看看<a class="" href="project-qa.html#menu">常見問答</a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+          <%= render partial: 'campaigns/reply', locals: { campaign_replies: @campaign_replies, sub_replies: @sub_replies, campaign_reply: @campaign_reply } %>
+        </div>
+
+
 <div class="container">
   <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
   <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">

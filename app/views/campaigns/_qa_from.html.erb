@@ -1,27 +1,19 @@
-<%= form_for campaign_qa, :url => campaign_qas_path(campaign_qa), :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
-	<div class="row form-group">
-		<%= f.hidden_field :campaign_id, :value => @campaign.id%>
-    <div class="col col-md-3">
-      <%= f.label("問題", :class => 'form-control-label') %>
+<div class="border py-3 mb-6 bg-light">
+  <% if @campaign.campaign_qas.size == 0 %>
+    <div class="text-center px-3 py-5">
+      <div class="h3">目前尚未有問答</div>
     </div>
-    <div class="col-12 col-md-9">
-      <%= f.text_field(:campaign_question, :class => "form-control")%>
+  <% end %>
+  <hr class="mb-5">
+  <div class="media px-3">
+    <img class="img-fluid rounded-circle mr-3" src="<%= @campaign.user.authorizations.present? ? "https://graph.facebook.com/#{@campaign.user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 50px">
+    <div class="media-body">
+      <%= form_for campaign_qa, :url => campaign_qas_path(campaign_qa), :method => :post do |f| %>
+        <%= f.hidden_field :campaign_id, :value => @campaign.id%>
+        <%= f.text_field(:campaign_question, :class => "form-control mb-2", :placeholder => "請填寫問題")%>
+        <%= f.text_area(:campaign_answer, :class => "form-control mb-2", :placeholder => "請填寫答案", :rows => "8")%>
+        <button class="btn btn-outline-primary">送出</button>
+      <% end %>
     </div>
   </div>
-  <div class="row form-group">
-    <div class="col col-md-3">
-      <%= f.label("答案", :class => 'form-control-label') %>
-    </div>
-    <div class="col-12 col-md-9">
-      <%= f.text_field(:campaign_answer, :class => "form-control")%>
-    </div>
-  </div>
-  <div class="card-footer">
-    <button type="submit" class="btn btn-primary btn-sm">
-      <i class="fa fa-dot-circle-o"></i> Submit
-    </button>
-    <button type="reset" class="btn btn-danger btn-sm">
-      <i class="fa fa-ban"></i> Reset
-    </button>
-  </div>
-<% end %>
+</div>

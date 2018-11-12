@@ -15,19 +15,19 @@
                 <a class="nav-link anchor" href="#rewards">回饋</a>
               </li>
               <li class="nav-item">
-                <%= link_to "更新 <span class='text-primary'>#{@campaign.campaign_updates.size}</span>".html_safe, campaign_show_update_path(params[:id]) , :class => "nav-link" %>
+                <%= link_to "更新 <span class='text-primary'>#{@campaign.campaign_updates.size}</span>".html_safe, campaign_show_update_path(params[:id], anchor: "menu") , :class => "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "問答 <span class='text-primary'>#{@campaign.campaign_qas.size}</span>".html_safe, campaign_show_qa_path(params[:id]) , :class => "nav-link"%>
+                <%= link_to "問答 <span class='text-primary'>#{@campaign.campaign_qas.size}</span>".html_safe, campaign_show_qa_path(params[:id], anchor: "menu") , :class => "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= link_to "留言 <span class='text-primary'>#{@campaign_replies.size}</span>".html_safe, campaign_show_reply_path(params[:id]), :class => "nav-link" %>
+                <%= link_to "留言 <span class='text-primary'>#{@campaign_replies.size}</span>".html_safe, campaign_show_reply_path(params[:id], anchor: "menu"), :class => "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id]) , :class => "nav-link"%>
+                <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id]) , :class => "nav-link"%>
+                <%= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
               </li>
             </ul>
           </div>

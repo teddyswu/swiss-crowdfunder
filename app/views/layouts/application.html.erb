@@ -50,7 +50,7 @@
           <button class="navbar-toggler menu-btn" type="button">
             <i class="fas fa-bars"></i>
           </button>
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="/">
             <img src="/sk2_assets/img/ui/logo.png" srcset="/sk2_assets/img/ui/logo@2x.png 2x" class="logo" alt="">
           </a>
           <div class="nav-main d-none d-lg-block navbar-collapse">
@@ -236,6 +236,7 @@
     <script src="/sk2_assets/js/vendor/jquery.slick.min.js"></script>
     <script src="/sk2_assets/js/vendor/jquery.hc-sticky.min.js"></script>
     <script src="/sk2_assets/js/vendor/infinite-scroll.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.js"></script>
     <script src="/sk2_assets/js/custom.js"></script>
     <div id="fb-root"></div>
     <%= yield(:javascript) if content_for(:javascript).present? %>
