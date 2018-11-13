@@ -5,7 +5,7 @@
   <div class="container-fluid border-bottom bg-white mb-6 pt-3" id="menu">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-lg-8">
           <div class="nav-responsive">
             <ul class="nav nav-tabs nav-justified border-bottom-0">
               <li class="nav-item">
@@ -32,6 +32,9 @@
             </ul>
           </div>
         </div>
+        <div class="col-12 col-lg-4 d-none d-lg-block">
+          <%= link_to "支持提案", campaign_goodies_path(@campaign), class: "btn btn-primary btn-block" %>
+        </div>
       </div>
     </div>
   </div>
@@ -44,53 +47,22 @@
           <% else %>
             <div class="text-center px-3 py-5">
               <div class="h3">登入後才能留言</div>
-              <div class="h3">目前尚未有留言</div>
               <div class="font-small text-muted">
                 對這個計畫有問題嗎？看看<a class="" href="project-qa.html#menu">常見問答</a>
               </div>
             </div>
           <% end %>
         </div>
-          <%= render partial: 'campaigns/reply', locals: { campaign_replies: @campaign_replies, sub_replies: @sub_replies, campaign_reply: @campaign_reply } %>
-        </div>
-
-
-<div class="container">
-  <%= render partial: 'shared/campaign_top', locals: { campaign: @campaign, is_track: @is_track } %>
-  <nav class="nav nav-pills nav_underlines mt-5 mt-md-0" id="campaignTab" role="tablist">
-    <%= link_to "內容", campaign_path(params[:id]) , :class => "nav-item nav-link"%>
-    <%= link_to "問與答", campaign_show_qa_path(params[:id]) , :class => "nav-item nav-link"%>
-    <%= link_to "更新( #{@campaign.campaign_updates.size})", campaign_show_update_path(params[:id]) , :class => "nav-item nav-link" %>
-    <a class="nav-item nav-link active" id="nav-reply-tab" data-toggle="tab" href="#nav-reply" role="tab" aria-controls="nav-reply">留言(<%= @campaign_replies.size %>)</a>
-    <%= link_to "友善團隊(#{@campaign.campaign_groups.size})", group_campaign_path(params[:id]) , :class => "nav-item nav-link"%>
-    <%= link_to "支持者(#{@campaign.orders.is_paid.size})", support_campaign_path(params[:id]) , :class => "nav-item nav-link"%>
-    <!-- <a class="nav-item nav-link" id="nav-backers-tab" data-toggle="tab" href="#nav-backers" role="tab"aria-controls="nav-backers">Backers</a> -->
-  </nav>
-</div>
-<hr class="mt-0 mb-4">
-<div class="container">
-  <div class="campaign_body">
-    <div class="row">
-      <div class="col-md-7 col-lg-8">
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-reply" role="tabpanel" aria-labelledby="nav-reply-tab">
-            <article>
-              <section>
-                <% if user_signed_in? %>
-                  <%= render partial: 'campaigns/reply_from', locals: { campaign_reply: @campaign_reply } %>
-                <% end %>
-                <%= render partial: 'campaigns/reply', locals: { campaign_replies: @campaign_replies, sub_replies: @sub_replies, campaign_reply: @campaign_reply } %>
-              </section>
-            </article>
-          </div>
-        </div>
+        <%= render partial: 'campaigns/reply', locals: { campaign_replies: @campaign_replies, sub_replies: @sub_replies, campaign_reply: @campaign_reply } %>
       </div>
-      <aside class="col-md-5 col-lg-4">
-        <h2><%= t('campaigns.show.goodies') %></h2>
+      <div class="col-12 col-lg-4">
+        <div class="pt-10 mb-3 d-lg-none" id="rewards">
+          <div class="h5 font-weight-bold">回饋商品</div>
+        </div>
         <% @campaign.goodies.order(:sort).each do |goody| %>
           <%= render partial: 'shared/goody', locals: { goody: goody } %>
         <% end %>
-      </aside>
+      </div>
     </div>
   </div>
 </div>
@@ -98,7 +70,7 @@
   <script>
   $(".btn_card").click(function() {
     var track_class = $("#track_btn").attr("class")
-    $.post( "/tracks", { user_id: <%= current_user.id if current_user.present?%>, campaign: "<%= params[:id]%>" })
+    $.post( "/tracks", { user_id: <%= current_user.present? ? current_user.id : 0%>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
         if (track_class.indexOf("-o")!=-1){
           alert( "追蹤完成" );

@@ -1,5 +1,23 @@
 <% supporters.each do |supporter|%>
-  <% if supporter.paid == true %>
-		<%= supporter.anonymous ? "匿名贊助" :  supporter.user.user_profile.nickname  %><br >
+	<% if supporter.paid == true %>
+		<div class="border border-hover p-3 mb-6">
+		  <div class="media">
+		    <img class="img-fluid rounded-circle mr-3" src="assets/img/uploads/avatar3.jpg" alt="" style="width: 50px">
+		    <div class="media-body">
+		      <div class="row">
+		        <div class="col">
+		          <%= supporter.anonymous ? "匿名贊助" :  supporter.user.user_profile.nickname  %>
+		          <span class="badge badge-outlined badge-primary">贊助人</span>
+		        </div>
+		        <div class="col">
+		          <div class="text-right text-muted">
+		            <small><%= supporter.updated_at.strftime('%F %H:%M')%></small>
+		          </div>
+		        </div>
+		      </div>
+		      <p></p>
+		    </div>
+		  </div>
+		</div>
 	<% end %>
 <% end %>

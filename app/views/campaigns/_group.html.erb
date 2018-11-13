@@ -1,3 +1,40 @@
 <% groups.each do |group|%>
-	<%= link_to group.user.farmer_profile.name, "https://#{SelfConfig.agrisc_host}/farmers/#{group.user.id}", :target => "_blank"  %><br >
-<% end %>
+  <div class="border p-3 mb-6">
+    <div class="row">
+      <div class="col-12 col-lg-2 my-2 text-center">
+        <img class="img-fluid rounded-circle" src="<%= group.user.farmer_profile.user_pic_url%>" alt="" style="width: 150px;">
+      </div>
+      <div class="col-12 col-lg-10 my-2">
+        <div class="mb-2">
+          <div class="text-center text-md-left">
+            <span class="h5"><%= group.user.farmer_profile.name%></span>
+            <span class="ml-3">
+            	<%= link_to "#{group.user.farmer_profile.fb_url}", :class => "text-fb" do %>
+                <i class="fab fa-fw fa-lg fa-facebook"></i>
+              <% end %>
+              <a class="text-danger btn-like" href="javascript:void();">
+                <i class="far fa-fw fa-lg fa-heart"></i>
+              </a>
+            </span>
+          </div>
+          <div class="font-small text-muted my-2">
+            <span class="mr-2">
+              <i class="icon-award"></i> 有機認證
+            </span>
+          </div>
+        </div>
+        <ul class="nav nav-info">
+          <li class="nav-item my-1">
+          	<%= link_to "<u>#{group.user.farmer_profile.farm_name}</u>".html_safe, "https://story.i-sogi.com/farmers/#{group.user.id}", :class => "nav-link"%>
+          </li>
+          <li class="nav-item my-1">
+          	<%= link_to "<u>農場工作紀錄</u>".html_safe, "https://story.i-sogi.com/farmers/#{group.user.id}/work_record", :class => "nav-link" %>
+          </li>
+        </ul>
+        <div class="mt-4 text-muted">
+        	<%= strip_tags(group.user.farmer_profile.introduce) %>...<a href=""><u>看看他們的故事</u></a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>	  

@@ -5,7 +5,7 @@
   <div class="container-fluid border-bottom bg-white mb-6 pt-3" id="menu">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-lg-8">
           <div class="nav-responsive">
             <ul class="nav nav-tabs nav-justified border-bottom-0">
               <li class="nav-item">
@@ -31,6 +31,9 @@
               </li>
             </ul>
           </div>
+        </div>
+        <div class="col-12 col-lg-4 d-none d-lg-block">
+          <%= link_to "支持提案", campaign_goodies_path(@campaign), class: "btn btn-primary btn-block" %>
         </div>
       </div>
     </div>
@@ -58,7 +61,7 @@
   <script>
   $(".btn_card").click(function() {
     var track_class = $("#track_btn").attr("class")
-    $.post( "/tracks", { user_id: <%= current_user.id if current_user.present?%>, campaign: "<%= params[:id]%>" })
+    $.post( "/tracks", { user_id: <%= current_user.present? ? current_user.id : 0%>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
         if (track_class.indexOf("-o")!=-1){
           alert( "追蹤完成" );
