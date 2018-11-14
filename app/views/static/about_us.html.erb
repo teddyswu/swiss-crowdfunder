@@ -1,41 +1,247 @@
-<% content_for :main_content_class do %>bg_grey<% end %>
-
-<div class="container">
-  <div class="mid_box">
-    <div class="top_section_v2">
-      <h1><%= t('.about_us') %></h1>
-      <hr>
+<div id="main" class="push mt-10 mt-lg-12">
+  <!-- TOP -->
+  <div id="intro" class="container-fluid py-10 py-lg-20">
+    <div class="container text-center">
+      <ul class="nav nav-pill justify-content-center mb-6">
+        <li class="nav-item">
+          <a class="nav-link anchor text-white px-2" href="#vision">願景與目標</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link anchor text-white px-2" href="#team">我們來自哪</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link anchor text-white px-2" href="#group">加入小圈子</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link anchor text-white px-2" href="#qa">常見問題</a>
+        </li>
+      </ul>
+      <div class="d-inline-block box p-5 p-lg-10">
+        <div class="text-success mb-6">
+          <div class="h1 title">關於我們</div>
+        </div>
+        <div class="lead">
+          文明最早的開始源至於耕作<br>
+          築成了農村文化延伸了你我對食的重視<br>
+          或無論是池上鄉稻米或是拉拉山水蜜桃<br>
+          皆是在地食材的光采<br>
+          相對的<br>
+          也開始重視你我周遭的環境<br>
+          我們希望透過您的加入<br>
+          孕育這平凡世代中的不凡事蹟<br>
+          邀請您與我們一起參與這盛事
+        </div>
+      </div>
     </div>
-    <div class="text-center mt-5">
-      <p>
-        Swiss Crowdfunder ist ein Produkt der Firmen
-        <a href="https://ungleich.ch/">ungleich</a>
-        und
-        <a href="https://200ok.ch/">200ok</a>.
-      </p>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+      </div>
+      <div class="col-12 col-lg-6">
+      </div>
+    </div>
+  </div>
+  <!-- 願景與目標-->
+  <div id="vision" class="container-fluid py-0 py-lg-10">
+    <div class="container">
+      <div class="row align-items-center py-5">
+        <div class="col-12 col-lg-7 my-5">
+          <div class="h2 mb-2">
+            我們對生產者友好更是對環境的尊重<br>
+            透過小眾的力量不僅是解決食的問題<br>
+            更是對現況做了改變<br>
+            這就是<strong class="text-primary h1 font-weight-bold">友善</strong>
+          </div>
+          <p class="mb-0 text-muted">
+            精緻農業已經是現在小農的代名詞，確是沉重的壓力！<br>
+            當大家眼中只有「價錢」，還有多少農民有足夠的時間解釋「價值」！<br>
+            還是有一群傻傻的農民默默地堅持裡理念。<br>
+            他們有許多聲音還沒有被聽到、被看到、被掌聲支持…<br>
+            但你的加入，會是他們最好的肯定。
+          </p>
+        </div>
+        <div class="col-12 col-lg-5 my-5">
+          <img class="img-fluid" src="/sk2_assets/img/uploads/about-vision-01.jpg" alt="">
+        </div>
+      </div>
+      <div class="row align-items-center py-5">
+        <div class="col-12 col-lg-7 my-5">
+          <div class="h2 mb-2">
+            用溫暖的心來鼓勵小農
+          </div>
+          <p class="mb-0 text-muted">
+            以實際行動與有機農民交朋友，鼓勵他們為環境而努力種出更優質的作物，<br>這友善的小圈子就是友善圈。
+          </p>
+        </div>
+        <div class="col-12 col-lg-5 my-5 order-lg-first">
+          <img class="img-fluid" src="/sk2_assets/img/uploads/about-vision-02.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 我們來自哪裡 -->
+  <div id="team" class="container-fluid py-10 py-lg-20">
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-12 col-lg-6">
+          <div class="box">
+            <div class="h1 font-weight-bold mb-3">我們來自哪裡</div>
+            <p class="lead">
+              社會企業責任我們已邁入幾十年頭<br>
+              首機網路(手機王)從高海拔的部落到偏鄉都有我們的足跡<br>
+              在今年<br>
+              我們選擇這裡連結曾走過的地方以及還沒到地方<br>
+              讓美好的事讓大家看見<br>
+              在此點亮
+            </p>
+            <div class="h4 font-weight-bold">紀事</div>
+            <p>
+              成立時間 <strong>2017年6月</strong><br>
+              網站營運時間 <strong>2019年1月1日</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <p>
-        Unser Ziel ist es eine attraktive, politisch neutrale und
-        mühelose Crowdfunding Plattform bereit zu stellen.
-      </p>
-      <p>
-        Die Firma ungleich glarus ag betreibt die Webseite und die
-        Dienste von Swiss Crowdfunder. Mehr dazu entnehmen Sie bitte
-        den
-        <%= link_to "Nutzungsbedingungen", static_terms_of_service_path %>
-        .
-      </p>
+  <!-- 如何成為小圈子 -->
+  <div id="group" class="container-fluid py-10 py-lg-20">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8 text-center">
+          <div class="h1 title mb-10">如何成為小圈子</div>
+          <p>
+            我們希望透過你的加入，帶起最初衷農村文化風潮，以鼓勵的概念直接與小農互動，不僅認識田間的生活點滴更能獲得知識傳遞，進而建立起友好關係。
+            如果你跟我一樣也是願意改變，現在就讓我們看看怎麼進行這有趣的圈子。
+          </p>
+          <div class="row mt-10">
+            <div class="col-12 mb-6">
+              <div class="h2 font-weight-bold">和茶福交朋友</div>
+            </div>
+            <div class="col-4">
+              <figure class="figure">
+                <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-1-1.png" alt="">
+                <figcaption class="figure-caption">1.FB尋找「茶福愛坪林」</figcaption>
+              </figure>
+            </div>
+            <div class="col-4">
+              <figure class="figure">
+                <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-1-2.png" alt="">
+                <figcaption class="figure-caption">2.聊天認識茶福</figcaption>
+              </figure>
+            </div>
+            <div class="col-4">
+              <figure class="figure">
+                <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-1-3.png" alt="">
+                <figcaption class="figure-caption">3.訂閱茶福</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="row mt-10">
+            <div class="col-12 mb-6">
+              <div class="h2 font-weight-bold">給小農鼓勵</div>
+            </div>
+            <div class="col-4">
+              <figure class="figure">
+                <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-2-1.png" alt="">
+                <figcaption class="figure-caption">1.你發現一位很喜歡的小農</figcaption>
+              </figure>
+            </div>
+            <div class="col-4">
+              <figure class="figure">
+                <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-2-2.png" alt="">
+                <figcaption class="figure-caption">2.表達對小農喜好</figcaption>
+              </figure>
+            </div>
+            <div class="col-4">
+              <figure class="figure">
+                <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-2-3.png" alt="">
+                <figcaption class="figure-caption">3.追蹤小農</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="row mt-10">
+              <div class="col-12 mb-6">
+                <div class="h2 font-weight-bold">一起參與活動</div>
+              </div>
+              <div class="col-4">
+                <figure class="figure">
+                  <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-3-1.png" alt="">
+                  <figcaption class="figure-caption">1.你看到很喜歡的活動</figcaption>
+                </figure>
+              </div>
+              <div class="col-4">
+                <figure class="figure">
+                  <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-3-2.png" alt="">
+                  <figcaption class="figure-caption">2.參與活動鼓勵小農</figcaption>
+                </figure>
+              </div>
+              <div class="col-4">
+                <figure class="figure">
+                  <img class="figure-img img-fluid" src="/sk2_assets/img/uploads/about-group-3-3.png" alt="">
+                  <figcaption class="figure-caption">3.小農繼續為友善努力</figcaption>
+                </figure>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <h3>
-        Kontakt
-      </h3>
-      <p>
-        ungleich, info@ungleich.ch, (044) 534-66-22
-      </p>
-      <p>
-        200ok, info@200ok.ch, +41 76 405 05 67
-      </p>
-
+  <!-- 常見問題 -->
+  <div id="qa" class="container-fluid py-10 py-lg-20 bg-light">
+    <div class="container">
+      <div class="text-center">
+        <div class="h1 title mb-10">常見問題</div>
+      </div>
+      <div class="font-weight-bold text-success">
+        Q1.贊助的方式？
+      </div>
+      <div class="mb-2">
+        「一次性贊助」，選擇喜歡的提案支持他們吧。
+      </div>
+      <div class="font-weight-bold text-success">
+        Q2.有幾種贊助扣款的方式呢？
+      </div>
+      <div class="mb-2">
+        目前我們提供三種扣款方式：
+        <ol class="pl-3">
+          <li>線上信用卡刷卡。</li>
+          <li>線上ATM轉帳。</li>
+          <li>臨櫃繳款。</li>
+        </ol>
+      </div>
+      <div class="font-weight-bold text-success">
+        Q3.什麼人可以成為提案者，並接受贊助？
+      </div>
+      <div class="mb-2">
+        不論你是否是農友、企業，還是個人，你都可以跟我們提出成為「提案者」的請求，透過我們的客服信箱：<a href="mailto:robert@sogi.com.tw"><u>robert@sogi.com.tw</u></a>
+      </div>
+      <div class="font-weight-bold text-success">
+        Q4.如果我已經贊助了提案，還可以再贊助同一個提案嗎？
+      </div>
+      <div class="mb-2">
+        當然，我們歡迎每個支持對提案的肯定。
+      </div>
+      <div class="font-weight-bold text-success">
+        Q5.為什麼有些提案無法贊助？
+      </div>
+      <div class="mb-2">
+        無法贊助的情況包含提案時間結束，以及特殊條件暫停(天災、蟲害等)。
+      </div>
+      <div class="font-weight-bold text-success">
+        Q6.農民會收到多少比例的贊助金額？
+      </div>
+      <div class="mb-2">
+        你所贊助的款項，扣掉一定比例的平台維運管銷費用5%以及第三方金流平台3%，會直接回饋給提案人。<br>
+        隨著提案配合的方式不同如包材及運費，農民分配的比例會略有不同。
+      </div>
+      <div class="font-weight-bold text-success">
+        Q7.成功贊助扣款後，可以撤銷贊助並退款嗎？
+      </div>
+      <div class="mb-2">
+        可以，支持友善不是一件嚴肅的事，就讓我們輕鬆地成就一樁美事！
+      </div>
     </div>
   </div>
 </div>

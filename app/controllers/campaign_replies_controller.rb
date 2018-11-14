@@ -7,6 +7,7 @@ class CampaignRepliesController < ApplicationController
     @sub_replies = @campaign.sub_comments
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
+    @sponsor_ids = @campaign.orders.map {|order| order.user_id }
 	end
 
 	def create

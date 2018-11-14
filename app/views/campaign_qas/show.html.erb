@@ -41,9 +41,16 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-8 mb-lg-0 mb-5">
-        <% if user_signed_in? && @campaign.status != 2 %>
-          <%= render partial: 'campaigns/qa_from', locals: { campaign_qa: @campaign_qa } if current_user.id == @campaign.user_id %>
-        <% end %>
+        <div class="border py-3 mb-6 bg-light">
+          <% if @campaign_qas.size == 0 %>
+            <div class="text-center px-3 py-5">
+              <div class="h3">目前尚未有問答</div>
+            </div>
+          <% end %>
+          <% if user_signed_in? && @campaign.status != 2 %>
+            <%= render partial: 'campaigns/qa_from', locals: { campaign_qa: @campaign_qa } if current_user.id == @campaign.user_id %>
+          <% end %>
+        </div>
         <%= render partial: 'campaigns/qa', locals: { campaign_qas: @campaign_qas } %>
         </div>
       <div class="col-12 col-lg-4">

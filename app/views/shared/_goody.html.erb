@@ -1,7 +1,6 @@
-<%= link_to new_campaign_goody_order_path(@campaign, goody),
-              class:"item d-block mb-6 #{is_goody_active?(goody)}" do %>
-  <div class="d-block position-relative text-center">
-    <img class="img-fluid" src="<%= goody.goody_image.try(:cover) %>" alt="">
+<%= link_to new_campaign_goody_order_path(@campaign, goody), class:"item d-block mb-6" do %>
+  <div class="d-block position-relative">
+    <img class="img-fluid text-center" src="<%= goody.goody_image.try(:cover) %>" style="width: 100%;" alt="">
   </div>
   <div class="p-2">
     <div class="text-black"><%= goody.title %></div>
@@ -14,6 +13,7 @@
         <i class="fas fa-fw fa-truck"></i> 預計送達 : <%= goody.delivery_time.strftime("%Y年%m月") %>
       </small>
     </div>
-    <div class="btn btn-block btn-outline-primary"><%= t(".pledge") %></div>
+    <%= goody.remaining_quantity == 0 ? "<div class='btn btn-block btn-danger'>已額滿</div>".html_safe : "<div class='btn btn-block btn-outline-primary'>#{t('.pledge')}</div>".html_safe %>
+    
   </div>
 <% end %>

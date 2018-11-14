@@ -1,14 +1,14 @@
-<% content_for :main_content_class do %>bg_grey<% end %>
-
-<div class="container">
-  <div class="mid_box text-center">
-    <h1>404</h1>
-    <h2><%= t('.page_not_found_1') %></h2>
-    <hr>
-    <p>
-      <%= t('.page_not_found_2') %>
-      <br>
-      <%= raw t('.page_not_found_3') %>
-    </p>
+<div id="main" class="push bg-404 py-14">
+  <div class="container">
+    <div class="row justify-content-md-center my-20 py-10">
+      <div class="col-12 col-md-6 text-center">
+        <div class="bs bg-white p-10">
+          <img class="img-fluid" src="/assets/img/ui/logo.png" srcset="assets/img/ui/logo@2x.png 2x" alt="">
+          <h1>404</h1>
+          <p>您查詢的頁面不存在</p>
+          <%= link_to "回首頁", root_path, :class => "btn btn-link"%>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

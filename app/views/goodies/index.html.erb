@@ -1,17 +1,22 @@
-<div class="container">
-  <div class="text-center">
-    <div class="goody_header">
-      <div class="goody_header_title"><%= @campaign.title %></div>
-      <p class="mb-0"><%= @campaign.claim %></p>
-    </div>
-    <h1 class="mb-5 mt-5"><%= t('.support_the_project') %></h1>
-  </div>
-
-  <div class="row">
-    <% @goodies.each do |goody| %>
-      <div class="col-sm-6 col-md-4">
-        <%= render partial: 'shared/goody', locals: { goody: goody } %>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container mb-3">
+    <!-- module: project-title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center mb-10">
+          <div class="h3 text-success"><%= @campaign.title %></div>
+        </div>
       </div>
-    <% end %>
+    </div>
+    <!-- ./module: project-title -->
+  </div>
+  <div class="container mt-5">
+    <div class="row">
+      <% @goodies.each do |goody| %>
+        <div class="col-sm-6 col-md-4">
+          <%= render partial: 'shared/goody', locals: { goody: goody } %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

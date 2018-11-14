@@ -8,7 +8,8 @@
 	      <div class="row">
 	        <div class="col">
 	        	<%= link_to crp.user.user_profile.nickname, user_path(crp.user.id) %>
-	          <span class="badge badge-outlined badge-primary">贊助人</span>
+	        	<%= render_is_sponsor(sponsor_ids, crp.user.id)%>
+	        	<%= render_is_proposer(@campaign.user_id, crp.user.id)%>
 	        </div>
 	        <div class="col">
 	          <div class="text-right text-muted">
@@ -25,7 +26,8 @@
 		          <div class="row">
 		            <div class="col">
 		              <%= link_to sub_reply.user.user_profile.nickname, user_path(sub_reply.user.id) %>
-		              <span class="badge badge-primary">提案人</span>
+		              <%= render_is_sponsor(sponsor_ids, sub_reply.user.id)%>
+		              <%= render_is_proposer(@campaign.user_id, sub_reply.user.id)%>
 		            </div>
 		            <div class="col">
 		              <div class="text-right text-muted">
