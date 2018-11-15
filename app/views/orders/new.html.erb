@@ -56,7 +56,7 @@
                         <i class="far fa-sm fa-question-circle"></i>
                       </span>
                     </label>
-                    <%= s.text_field :first_name, value: @last_order.supporter.first_name, :class => "form-control", :placeholder => "請輸入姓名" %>
+                    <%= s.text_field :first_name, value: @last_order.try(:supporter).try(:first_name), :class => "form-control", :placeholder => "請輸入姓名" %>
                   </div>
                   <div class="form-group">
                     <label for="formCountry" class="d-flex justify-content-between">
@@ -65,14 +65,14 @@
                         <i class="far fa-sm fa-question-circle"></i>
                       </span>
                     </label>
-                    <%= s.text_field :city, value: @last_order.supporter.city, :class => "form-control", :placeholder => "請輸入縣市" %>
+                    <%= s.text_field :city, value: @last_order.try(:supporter).try(:city), :class => "form-control", :placeholder => "請輸入縣市" %>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-10">
                       <label for="formAddress" class="d-flex justify-content-between">
                         地址
                       </label>
-                      <%= s.text_field :address, value: @last_order.supporter.address, :class => "form-control", :placeholder => "請輸入地址" %>
+                      <%= s.text_field :address, value: @last_order.try(:supporter).try(:address), :class => "form-control", :placeholder => "請輸入地址" %>
                     </div>
                     <div class="form-group col-md-2">
                       <label for="formNum" class="d-flex justify-content-between">
@@ -81,7 +81,7 @@
                           <i class="far fa-sm fa-question-circle"></i>
                         </span>
                       </label>
-                      <%= s.text_field :postal_code, value: @last_order.supporter.postal_code, :class => "form-control" %>
+                      <%= s.text_field :postal_code, value: @last_order.try(:supporter).try(:postal_code), :class => "form-control" %>
                     </div>
                   </div>
                   <div class="form-group">
@@ -91,7 +91,7 @@
                         <i class="far fa-sm fa-question-circle"></i>
                       </span>
                     </label>
-                    <%= s.text_field :cell_phone, value: @last_order.supporter.cell_phone, :class => "form-control", :placeholder => "請輸入電話" %>
+                    <%= s.text_field :cell_phone, value: @last_order.try(:supporter).try(:cell_phone), :class => "form-control", :placeholder => "請輸入電話" %>
                   </div>
                   <div class="form-group">
                     <label for="formMail" class="d-flex justify-content-between">
@@ -139,9 +139,9 @@
               </div>
             </div>
             <%= f.submit "立即付款支持", class: "btn btn-primary", :onclick => "return validate_all();" %>
-            <div class="alert alert-secondary mt-3">
+            <!-- <div class="alert alert-secondary mt-3">
               當提案達目標金額100000元時，將進行結算。則10月31日23:00之前若沒有達到100000元的目標金額，將不進行結算，您所支持的金額將獲得退款，並會扣除手續費用。
-            </div>
+            </div> -->
           <% end %>
         <% else %>
           <div class="card mb-3">
