@@ -26,6 +26,13 @@ class OrdersController < ApplicationController
     end
   end
 
+  def add_evaluation
+    @order = Order.find(params[:id])
+    @order.evaluation = params[:order][:evaluation]
+    @order.save!
+    redirect_to finished_order_path(params[:id], :s => "evaluation")
+  end
+
   def index
     @orders = Order.where(:user_id => current_user.id)
   end
@@ -35,8 +42,9 @@ class OrdersController < ApplicationController
   end
 
   def finished
-    order = Order.find(params[:id])
-    @campaign = order.goody.campaign
+    @order = Order.find(params[:id])
+    @campaign = @order.goody.campaign
+    @campaigns_new = Campaign.where(:status => 3).order("updated_at DESC").limit(4)
   end
 
   def is_paid
@@ -87,7 +95,7 @@ class OrdersController < ApplicationController
   def new
     @last_order = Order.where(:user_id => current_user.id).last
     @goody = Goody.find(params[:goody_id])
-    @order = Order.new goody: @goody
+    @order = Order.new
     @order.build_supporter
   end
 

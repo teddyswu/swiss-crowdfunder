@@ -1,13 +1,74 @@
-<% content_for :main_content_class do %>bg_grey<% end %>
-
-
-<div class="container">
-  <div class="mid_box text-center">
-    <div class="top_icon"><%= image_tag('/success.svg') %></div>
-    <h1>付款完成</h1>
-    <hr />
-    <p class="encouragement">
-      <%= raw @campaign.order_success_html %>
-    </p>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <div class="jumbotron bg-light mb-10 text-center bs">
+          <div class="display-4 font-weight-bold text-primary mb-2">
+            <i class="fas fa-check"></i> 支持成功
+          </div>
+          <p>
+            支持的項目預計將在 <%= @order.goody.delivery_time.strftime("%Y年%m月")%>實現。若需要修改及查看贊助紀錄，請至<%= link_to "支持紀錄", orders_path %>。
+          </p>
+          <hr class="my-4">
+          <p class="lead font-weight-bold">提案人的話</p>
+          <p class="mb-10"><%= raw @campaign.order_success_html %></p>
+          <% if params[:s] != "evaluation" %>
+            <%= form_for @order, :url => add_evaluation_order_path(@order), method: :post do |f| %>
+              <p class="lead font-weight-bold">支持者的鼓勵</p>
+              <div class="form-group">
+                <label>請給您支持的提案更多鼓勵的話</label>
+                <!-- <select class="form-control mb-2">
+                    <option>您儲存的意見</option>
+                </select> -->
+                <%= f.text_area :evaluation, :class => "form-control mb-2"%>
+                <%=  f.submit "送出", :class => "btn btn-outline-primary" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success">
+          <div class="h3">更多你可能會有興趣的計畫…</div>
+        </div>
+      </div>
+      <% @campaigns_new.each do |camp_new|%>
+        <div class="col-12 col-sm-6 col-lg-3 my-3">
+          <%= link_to campaign_path(camp_new), :class => "item" do %>
+            <div class="d-block position-relative">
+              <%= campaign_tag(camp_new)%>
+              <img class="img-fluid text-center" src="<%= camp_new.campaign_image.try(:campaign_path) %>" alt="">
+            </div>
+            <div class="p-2">
+              <div class="item-title text-black">
+                <%= camp_new.title %>
+              </div>
+              <div class="text-muted mb-2">
+                <small>
+                  <i class="far fa-user"></i> <%= camp_new.user.user_profile.nickname%>
+                </small>
+                <small class="item-desc">
+                  <%= camp_new.claim %>
+                </small>
+              </div>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(camp_new) %>;" aria-valuenow="<%= campaign_percentage(camp_new) %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(camp_new) %></div>
+              </div>
+              <div class="mt-2 text-dark">
+                <small class="d-block">
+                  <i class="far fa-fw fa-clock"></i> <%= render_remain_day(camp_new.end_date) %>
+                </small>
+                <small class="d-block">
+                  <i class="fas fa-fw fa-dollar-sign"></i> <span class="text-muted">目前達成金額</span>
+                  <strong><%= number_to_currency(camp_new.amount_raised, precision: 0)%></strong>
+                </small>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

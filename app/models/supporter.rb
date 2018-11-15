@@ -1,6 +1,6 @@
 class Supporter < ApplicationRecord
   belongs_to :order
-  validates_presence_of :first_name, :last_name, :address,
+  validates_presence_of :first_name, :address,
     :postal_code, :country, :city, :email
 
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }

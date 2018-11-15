@@ -1,95 +1,195 @@
-<% content_for :main_content_class do %>bg_grey<% end %>
-
-<div class="container">
-  <div class="mid_box">
-    <div class="top_section mb-4">
-      <h1><%= t('.confirmation') %></h1>
-      <p>
-        贊助項目： <strong><%= @goody.title %></strong>.
-      </p>
-      <p>
-        贊助內容： <strong><%= @goody.description %></strong>.
-      </p>
-      <p>
-        <img class="d-block w-100" src="<%= @goody.goody_image.try(:cover) %>">
-      </p>
-      <p>
-        <%#= raw t('.i_hereby_acknowledge', price: @goody.price, currency: "TWD") %>
-      </p>
-    </div>
-    <% if is_goody_active?(@goody) == ''%>
-      <%= simple_form_for [@goody.campaign, @goody, @order] do |f| %>
-        <%= f.input :user_id, :as => :hidden, input_html: {value: current_user.id} %>
-        <div class="row">
-          <div class="col-sm-6">
-            <%= label_tag "項目金額"%><br >
-            <%= number_to_currency(@goody.price, precision: 0)%>
-          </div>
-          <div class="col-sm-6">
-            <%= f.input :bonus, label: '額外贊助', input_html: {value: '0', min: '0', step: 'any' } %>
-          </div>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center mb-10">
+          <div class="h3 text-success"><%= @goody.campaign.title %></div>
+          <%= link_to user_path(@goody.campaign.user.id), :class => "font-small" do %>
+            <i class="far fa-user"></i> <%= @goody.campaign.user.user_profile.nickname%>
+          <% end %>
         </div>
-        <%= f.simple_fields_for :supporter do |s| %>
-          <div class="row">
-            <div class="col-sm-6">
-              <%= s.input :first_name, label: t('.first_name'), input_html: {value: @last_order.supporter.first_name} %>
-            </div>
-            <div class="col-sm-6">
-              <%= s.input :last_name, label: t('.last_name'), input_html: {value: @last_order.supporter.last_name} %>
-            </div>
-          </div>
-          <%= s.input :email, label: t('.email'), input_html: {value: current_user.email} %>
-          <%= s.input :address, label: t('.street'), input_html: {value: @last_order.supporter.address} %>
-          <div class="row">
-            <div class="col-sm-6">
-              <%= s.input :tel, label: "室話", input_html: {value: @last_order.supporter.tel} %>
-            </div>
-            <div class="col-sm-6">
-              <%= s.input :cell_phone, label: "手機", input_html: {value: @last_order.supporter.cell_phone} %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <%= s.input :postal_code, label: t('.postal_code'), input_html: {value: @last_order.supporter.postal_code} %>
-            </div>
-            <div class="col-sm-8">
-              <%= s.input :city, label: t('.city'), input_html: {value: @last_order.supporter.city} %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <%= s.input :state, label: t('.state'), input_html: {value: @last_order.supporter.state} %>
-            </div>
-            <div class="col-sm-8">
-              <%= s.input :country, :as => :hidden, input_html: {value: "TW"} %>
-            </div>
-          </div>
-        <% end %>
-
-        <%= f.input :remark, as: :text, label: "備註欄位", :input_html => {:rows => 10}  %>
-        
-        <%- unless @goody.campaign.order_description.blank? %>
-          <div class="jumbotron mt-4" id="campaign_order_description">
-            <%= raw @goody.campaign.order_description_html %>
-          </div>
-        <% end %>
-        <%= f.input :payment_type, as: :radio_buttons, label: "付款方式", collection: [['ecpay', '第三方支付']], label_method: :second, value_method: :first %>
-        <div class="text-right mb-4">
-          <%= f.input :anonymous, label: "匿名贊助" %>
-          <%= f.input :agreement, required: true, label: t('.i_agree').html_safe, input_html: { class: "qa-agreement" } %>
-        </div>
-        <div class="text-center">
-          <%= f.submit "付款", class: "qa-submit btn btn_theme btn_wide", :onclick => "return validate_all();" %>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="jumbotron mt-4" id="campaign_order_description">
-        尚未開始
       </div>
-    <% end %>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 order-last order-lg-first">
+        <% if is_goody_active?(@goody) == ''%>
+          <%= form_for @order, :url => campaign_goody_orders_path(@goody.campaign, @goody) do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="formPay">付款方式</label>
+                  <div class="form-row">
+                    <div class="col-12 col-sm-6 mb-2">
+                      <div class="custom-control custom-radio custom-button">
+                        <%= f.radio_button :payment_type, 'ecpay', :class=> "custom-control-input", :onClick =>"settip('支援多重付款方式')", :checked => true%>
+                        <label class="custom-control-label" for="order_payment_type_ecpay">第三方支付</label>
+                      </div>
+                    </div>
+                  </div>
+                  <small class="form-text text-muted" id="paytip"></small>
+                </div>
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>支持金額</label><br />
+                  <%= number_to_currency(@goody.price, precision: 0)%>
+                </div>
+                <div class="form-group">
+                  <label>我願意提供更多支持</label>
+                  <%= f.text_field :bonus, :class => "form-control", value: '0', min: '0', step: 'any', :placeholder => "請輸入金額" %>
+                </div>
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="card-body">
+                <%= f.fields_for :supporter do |s| %>
+                  <%= s.hidden_field :country, value: "TW" %>
+                  <div class="form-group">
+                    <label for="formName" class="d-flex justify-content-between">
+                      收件人
+                      <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                        <i class="far fa-sm fa-question-circle"></i>
+                      </span>
+                    </label>
+                    <%= s.text_field :first_name, value: @last_order.supporter.first_name, :class => "form-control", :placeholder => "請輸入姓名" %>
+                  </div>
+                  <div class="form-group">
+                    <label for="formCountry" class="d-flex justify-content-between">
+                      縣市
+                      <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                        <i class="far fa-sm fa-question-circle"></i>
+                      </span>
+                    </label>
+                    <%= s.text_field :city, value: @last_order.supporter.city, :class => "form-control", :placeholder => "請輸入縣市" %>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-10">
+                      <label for="formAddress" class="d-flex justify-content-between">
+                        地址
+                      </label>
+                      <%= s.text_field :address, value: @last_order.supporter.address, :class => "form-control", :placeholder => "請輸入地址" %>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="formNum" class="d-flex justify-content-between">
+                        郵遞區號
+                        <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                          <i class="far fa-sm fa-question-circle"></i>
+                        </span>
+                      </label>
+                      <%= s.text_field :postal_code, value: @last_order.supporter.postal_code, :class => "form-control" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="formPhone" class="d-flex justify-content-between">
+                      聯絡電話
+                      <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                        <i class="far fa-sm fa-question-circle"></i>
+                      </span>
+                    </label>
+                    <%= s.text_field :cell_phone, value: @last_order.supporter.cell_phone, :class => "form-control", :placeholder => "請輸入電話" %>
+                  </div>
+                  <div class="form-group">
+                    <label for="formMail" class="d-flex justify-content-between">
+                      聯絡信箱
+                      <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                        <i class="far fa-sm fa-question-circle"></i>
+                      </span>
+                    </label>
+                    <%= s.text_field :email, value: current_user.email, :class => "form-control" %>
+                  </div>
+                <% end %>
+                <div class="form-group">
+                  <label for="formNote" class="d-flex justify-content-between">
+                    備註
+                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                      <i class="far fa-sm fa-question-circle"></i>
+                    </span>
+                  </label>
+                  <%= f.text_area :remark, :class => "form-control"  %>
+                </div>
+                <%- unless @goody.campaign.order_description.blank? %>
+                  <div class="form-group">
+                    <label>支持注意事項</label>
+                    <small class="form-text text-muted">
+                      <%= raw @goody.campaign.order_description_html %>
+                    </small>
+                  </div>
+                <% end %>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <%= f.check_box :agreement, required: true, class: "custom-control-input" %>
+                    <label class="custom-control-label" for="order_agreement">
+                      我已同意<%= link_to "<u>網站使用條款</u>".html_safe, static_terms_of_service_path, :target => "_blank"%>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <%= f.check_box :anonymous, :class => "custom-control-input" %>
+                    <label class="custom-control-label" for="order_anonymous">
+                      匿名支持<br><small class="text-muted">不顯示公開的會員資料</small>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%= f.submit "立即付款支持", class: "btn btn-primary", :onclick => "return validate_all();" %>
+            <div class="alert alert-secondary mt-3">
+              當提案達目標金額100000元時，將進行結算。則10月31日23:00之前若沒有達到100000元的目標金額，將不進行結算，您所支持的金額將獲得退款，並會扣除手續費用。
+            </div>
+          <% end %>
+        <% else %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="form-group">
+                尚未開始，或已經結束。
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-12 col-lg-4 mb-lg-0 mb-5">
+        <div class="mb-3">
+          <div class="h5 font-weight-bold">
+            <i class="far fa-check-square"></i> 您支持的回饋項目
+          </div>
+        </div>
+        <div class="item d-block mb-6">
+          <div class="d-block position-relative text-center">
+            <img class="img-fluid" src="<%= @goody.goody_image.try(:cover) %>" alt="">
+          </div>
+          <div class="p-2">
+            <div class="text-black">
+              <%= @goody.title %>
+            </div>
+            <div class="text-danger font-weight-bold"><%= number_to_currency(@goody.price, precision: 0) %></div>
+            <div class="text-muted mb-2">
+              <small>
+                <div class="text-row-2"><%= @goody.description %></div>
+                <i class="fas fa-fw fa-check"></i> 剩餘數量：<%= @goody.remaining_quantity %><br>
+                <i class="fas fa-fw fa-user"></i> 支持者：<%= @goody.orders_count %><br>
+                <i class="fas fa-fw fa-truck"></i> 預計送達 : <%= @goody.delivery_time.strftime("%Y年%m月") %>
+              </small>
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-outline-primary btn-block" href="project-rewards.html">更改回饋</a>
+      </div>
+    </div>
   </div>
 </div>
 <% content_for :javascript do %>
+  <script>
+    function settip(setting) {
+      myOption = setting;
+      document.getElementById("paytip").innerHTML = myOption;
+    }
+  </script>
   <script>
   $(document).ready(function() {
     $('#order_bonus').keyup(function () {

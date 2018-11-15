@@ -69,8 +69,9 @@
 <% content_for :javascript do %>
   <script>
   $(".btn_card").click(function() {
+    <% if user_signed_in? %>
     var track_class = $("#track_btn").attr("class")
-    $.post( "/tracks", { user_id: <%= current_user.present? ? current_user.id : 0%>, campaign: "<%= params[:id]%>" })
+    $.post( "/tracks", { user_id: <%= current_user.id %>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
         if (track_class.indexOf("-o")!=-1){
           alert( "追蹤完成" );
@@ -84,6 +85,9 @@
           $("#track_btn").addClass("fa-bookmark-o"); 
         }
       });
+    <% else %>
+    alert("請先登入");
+    <% end %>
   });
   </script>
 <% end %>
