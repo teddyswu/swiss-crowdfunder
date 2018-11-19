@@ -17,6 +17,7 @@ class CampaignsController < ApplicationController
   def new
     @campaign = Campaign.new
     @campaign_tags = CampaignTag.all
+    @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
   end
 
   def edit
@@ -127,14 +128,16 @@ class CampaignsController < ApplicationController
     @campaign.user_id = current_user.id
     @campaign.active = true
     @campaign.status = 1
+    @campaign.start_date = params[:campaign][:start_date].gsub(/[年月]/, '-').gsub("日","")
+    @campaign.end_date = params[:campaign][:end_date].gsub(/[年月]/, '-').gsub("日","")
     @campaign.save!
-    # @campaign_image = CampaignImage.new(campaign_image_params)
-    # @campaign_image.campaign_id = @campaign.id
-    # @campaign_image.save!
     @campaign.campaign_image.update_urls_success?
     tag_ids_params.each do |ti|
       @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
       @campaign_tag_ship.save!
+    end
+    group_params.each do |k, v|
+      CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
     end
     
     redirect_to campaigns_path
@@ -188,5 +191,9 @@ class CampaignsController < ApplicationController
 
     def tag_ids_params
       params.require(:tag_ids) if params[:tag_ids].present?
+    end
+
+    def group_params
+      params.require(:campaign_groups)
     end
 end
