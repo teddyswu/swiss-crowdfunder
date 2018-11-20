@@ -1,31 +1,51 @@
-<div class="container">
-	提案紀錄
-	<hr >
-	<table>
-	  <tr>
-	    <th>專案名稱</th>
-	    <th>名單</th>
-	    <th>狀態</th>
-	    <th>友善團隊</th>
-      <th>回饋項目</th>
-	    <th>編輯</th>
-	    <th>結束時間</th>
-	    <th>提交</th>
-	  </tr>
-	  <% @campaigns.each do |campaign|%>
-		  <tr>
-		    <td><%= link_to campaign.title, campaign_path(campaign.slug)%></td>
-		    <td><%= link_to "List", list_campaign_path(campaign.slug) if campaign.end_date < Date.today && campaign_percentage(campaign).to_f > 100%></td>
-		    <td><%= render_staus(campaign.status) %></td>
-		    <td><%= link_to "編輯", group_edit_campaign_path(campaign.slug) if campaign.status == 1%></td>
-		    <td><%= link_to "編輯", goody_campaign_path(campaign.slug) if campaign.status == 1%></td>
-	    	<%= form_for campaign, :url => campaign_path(campaign), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
-	    		<td><%= link_to "編輯", edit_campaign_path(campaign.slug) if campaign.status == 1 %>
-	    		<td><%= campaign.end_date %></td>
-	    		<%= f.hidden_field :status, :value => 2%>
-	    		<td><%= f.submit "提交" if campaign.status == 1 %></td>
-	    	<% end %>
-		  </tr>
-		<% end %>
-	</table>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success mb-7">
+          <h1 class="font-weight-bold">友善會員</h1>
+          <div class="h3">支持紀錄</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid border-bottom mb-6 pt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+              	<%= link_to "帳號管理", edit_user_registration_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+              	<%= link_to "支持紀錄", orders_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+              	<%= link_to "追蹤提案", tracks_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+              	<%= link_to "提案紀錄", campaigns_path, class:"nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">最愛小農</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-4 text-right">
+        	<%= link_to "發起提案", new_campaign_path, :class => "btn btn-outline-primary"%>
+        </div>
+        <% @campaigns.each do |campaign|%>
+	        <%= render_camoaign_block(campaign)%>
+	      <% end %>
+      </div>
+    </div>
+  </div>
 </div>

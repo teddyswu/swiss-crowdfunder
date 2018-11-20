@@ -1,0 +1,42 @@
+<div class="border item mb-4">
+  <div class="row no-gutters bg-light">
+    <div class="col-12 col-lg-5">
+      <%= link_to campaign_path(campaign.slug), :class => "d-block position-relative" do %>
+      	<%= render_status_tag(campaign)%>
+        <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:campaign_path) %>" alt="">
+      <% end %>
+    </div>
+    <div class="col-12 col-lg-7 p-2">
+      <div class="font-small text-muted">
+        <%= campaign.created_at.strftime("%F %T") %>
+      </div>
+      <%= link_to campaign.title, campaign_path(campaign.slug), :class => "text-black text-row-1"%>
+      <hr class="my-3">
+      <div class="text-muted">
+        資金目標：<%= number_to_currency(campaign.goal, precision: 0) %><br>
+        <div class="progress">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: <%= campaign_percentage(campaign) %>;" aria-valuenow="<%= campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(campaign) %></div>
+        </div>
+        目前達成：<%= number_to_currency(campaign.amount_raised, precision: 0) %><br>
+        支持人數：<%= campaign.supporters.count %> 人<br>
+        剩餘時間：<%= render_remain_day(campaign.end_date)%>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white border-top p-4">
+    <div class="row align-items-center">
+      <div class="col-12 col-lg-8 text-center text-lg-left">
+        <div class="text-success my-1 my-lg-0">
+        	<% if campaign.amount_raised > 100 %>
+          	<%= "<i class='fas fa-fw fa-check'></i> 您的提案已結束，恭喜您的提案支持成功！".html_safe %>
+          <% else %>
+         	 	<%= "<i class='fas fa-fw fa-ban'></i> 您的提案已結束，很可惜提案未成功。".html_safe %>
+         	<% end %>
+        </div>
+      </div>
+      <div class="col-12 col-lg my-1 my-lg-0 text-center text-lg-right">
+      	<%= link_to "查看紀錄", list_campaign_path(campaign.slug), :class => "btn btn-sm btn-outline-primary" if campaign.amount_raised > 100 %>
+      </div>
+    </div>
+  </div>
+</div>
