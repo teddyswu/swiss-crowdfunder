@@ -40,9 +40,9 @@ class CampaignsController < ApplicationController
 
   def group_edit
     @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
-    @farmer_all_lists = params[:group_name].present? ? User.joins(:farmer_profile).where("users.is_check_farmer = true and farmer_profiles.ps_group = ?", params[:group_name]).map {|user| [user.farmer_profile.name, user.id] } : []
-    @farmer_exist_lists = params[:group_name].present? ? @campaign.campaign_groups.map {|group| [group.user.farmer_profile.name, group.user.id] } : []
-    @farmer_lists = params[:group_name].present? ? @farmer_all_lists - @farmer_exist_lists : []
+    @farmer_lists = params[:group_name].present? ? User.joins(:farmer_profile).where("users.is_check_farmer = true and farmer_profiles.ps_group = ?", params[:group_name]).map {|user| [user.farmer_profile.name, user.id] } : []
+    # @farmer_exist_lists = params[:group_name].present? ? @campaign.campaign_groups.map {|group| [group.user.farmer_profile.name, group.user.id] } : []
+    # @farmer_lists = params[:group_name].present? ? @farmer_all_lists - @farmer_exist_lists : []
   end
 
   def group_create
