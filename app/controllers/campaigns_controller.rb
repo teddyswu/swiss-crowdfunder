@@ -23,6 +23,7 @@ class CampaignsController < ApplicationController
   def edit
     @campaign_tags = CampaignTag.all
     @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id).map {|cts| cts.campaign_tag_id }    
+    @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
   end
 
   def group
@@ -101,14 +102,7 @@ class CampaignsController < ApplicationController
   def update
     @campaign.update(campaign_params)
     @campaign.save!
-    # @campaign.
-    # if campaign_image_params.present?
-
-    #   @campaign_image = CampaignImage.find_or_initialize_by(:campaign_id => @campaign.id)
-    #   @campaign_image.update(campaign_image_params)
-    #   @campaign_image.save!
     @campaign.campaign_image.update_urls_success?
-    # end
     if tag_ids_params.present?
       @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id)
       @campaign_tag_ship.destroy_all
@@ -116,6 +110,11 @@ class CampaignsController < ApplicationController
         @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
         @campaign_tag_ship.save!
       end
+    end
+    @campaign_group = CampaignGroup.where(:campaign_id => @campaign.id)
+    @campaign_group.destroy_all
+    group_params.each do |k, v|
+      CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
     end
     redirect_to campaigns_path
   end
@@ -167,7 +166,7 @@ class CampaignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
-      params.require(:campaign).permit(:claim, :email, :goal, :start_date, :end_date,
+      params.require(:campaign).permit(:slug, :claim, :email, :goal, :start_date, :end_date,
       :title, :youtube_url, :twitter_url, :facebook_url, :status, :risk, :description_html, :order_description_html, :order_success_html, campaign_image_attributes: [:file])
     end
 

@@ -75,6 +75,13 @@
         </div>
       </div>
       <div class="form-group">
+        <label>提案關鍵字</label>
+        <%= f.text_field :slug, :class => "form-control", :required => true %>
+        <div class="form-text text-muted font-small">
+          請輸入一組英文名稱、或由英文+數字組合的名稱，不能輸入其它符號或空格，這組名稱將作為您的提案短網址使用。
+        </div>
+      </div>
+      <div class="form-group">
         <label>提案摘要</label>
         <%= f.text_area :claim, :class => "form-control", :rows => "4" %>
         <div class="form-text text-muted font-small">
