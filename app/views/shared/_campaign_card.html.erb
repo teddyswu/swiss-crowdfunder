@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="campaign_card">
 
-    <%= link_to campaign_path(campaign) do %>
+    <%= link_to campaign_path(campaign.slug) do %>
       <img class="d-block w-100" src="<%= campaign.campaign_image.try(:landing_page) %>">
     <% end %>
     <div class="campaign_card_content">

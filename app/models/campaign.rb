@@ -1,10 +1,10 @@
 class Campaign < ApplicationRecord
-  extend FriendlyId
-  friendly_id :title, use: :slugged
+  # extend FriendlyId
+  # friendly_id :title, use: :slugged
   # mount_uploader :image, CampaignImageUploader
   has_one :campaign_image
 
-  default_scope { where(active: true) }
+  # default_scope { where(active: true) }
   scope :normal_state, -> { where(status: 3) }
 
   has_many :goodies, dependent: :destroy

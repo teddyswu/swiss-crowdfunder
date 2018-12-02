@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-12 my-3 post">
         <% @campaigns_top.each_with_index do |campaign, index| %>
-          <%= link_to campaign_path(campaign), :class => "position-relative d-block block-info active" do %>
+          <%= link_to campaign_path(campaign.slug), :class => "position-relative d-block block-info active" do %>
             <div class="position-absolute d-flex flex-column w-100 h-100 p-2 text-white">
               <div class="mb-auto"></div>
               <div class="text-center">
@@ -40,7 +40,7 @@
       </div>
       <% @campaigns_new.each do |camp_new|%>
         <div class="col-12 col-sm-6 col-lg-3 my-3">
-          <%= link_to campaign_path(camp_new), :class => "item" do %>
+          <%= link_to campaign_path(camp_new.slug), :class => "item" do %>
             <div class="d-block position-relative">
               <%= campaign_tag(camp_new)%>
               <img class="img-fluid text-center" src="<%= camp_new.campaign_image.try(:campaign_path) %>" alt="">
@@ -82,7 +82,7 @@
       </div>
       <% @campaigns.each do |campaign|%>
         <div class="col-12 col-sm-6 col-lg-3 my-3">
-          <%= link_to campaign_path(campaign), :class => "item" do %>
+          <%= link_to campaign_path(campaign.slug), :class => "item" do %>
             <div class="d-block position-relative">
               <%= campaign_tag(campaign)%>
               <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:campaign_path) %>" alt="">

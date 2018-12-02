@@ -39,6 +39,6 @@ class CampaignUpdatesController < ApplicationController
 	private
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
-      @campaign = Campaign.unscoped.friendly.find(params[:id])
+      @campaign = Campaign.find_by(:slug => params[:id])
     end
 end
