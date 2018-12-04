@@ -4,8 +4,17 @@ ActiveAdmin.register CampaignGroup do
 #
   permit_params :income
 
+  index do
+  	selectable_column
+  	column :id
+  	column :user_id
+  	column :income
+  	actions
+  end
+
   form do |f|
     inputs do
+    	input :user_id
       input :income
     end
     actions

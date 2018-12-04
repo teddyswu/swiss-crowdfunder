@@ -7,7 +7,7 @@ ActiveAdmin.register Campaign do
   # friendly_id resource lookup
   controller do
     def find_resource
-      scoped_collection.friendly.find(params[:id])
+      scoped_collection.find(params[:id])
     end
 
     protected
@@ -34,8 +34,9 @@ ActiveAdmin.register Campaign do
   form do |f|
     inputs do
       input :title
-      input :active, label: "顯示 (否則只能夠過連結顯示)"
+      input :active, label: "顯示 (否則只能夠通過連結顯示)"
       input :claim
+      input :slug
       input :goal
       input :email
       input :image
