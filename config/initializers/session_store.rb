@@ -1,1 +1,1 @@
-Crowdfunding::Application.config.session_store :cookie_store, key: '_ugooz_session', domain: "lvh.me"
+Crowdfunding::Application.config.session_store :cookie_store, key: '_ugooz_session', domain: "ugooz.cc"
