@@ -1,20 +1,68 @@
-<h2>Log in</h2>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-9">
+        <div class="row bg-white bs">
+          <div class="col-12 col-lg-6 px-8 pt-8 pb-20 py-lg-8 text-center bg-login">
+            <div class="h5 font-weight-bold text-center mb-3">快速登入</div>
+            <div class="">
+              <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-fb" do %>
+                <div class="float-left">
+                  <i class="fab fa-lg fa-fw fa-facebook-f"></i>
+                </div>
+                <span>Facebook登入</span>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6 p-8">
+            <div class="h5 font-weight-bold text-center mb-3">新註冊</div>
+            <a class="btn btn-block btn-primary" href="">
+              <div class="float-left">
+                <i class="fas fa-lg fa-fw fa-user"></i>
+              </div>
+              <span>小農請由此註冊</span>
+            </a>
+            <a class="btn btn-block btn-fb" href="">
+              <div class="float-left">
+                <i class="fab fa-lg fa-fw fa-facebook-f"></i>
+              </div>
+              <span>Facebook帳號註冊</span>
+            </a>
+            <div class="mt-5">
+              <p>
+                創建帳戶即表示您同意<a href=""><u>使用條款</u></a>和<a href=""><u>隱私政策</u></a>。
+              </p>
+              <p>
+                註冊會員需要您授權在FB的信箱，請確認您的FB帳戶內有填寫信箱。
+              </p>
+              <p class="mb-0 text-center">
+                <a href=""><u>FB帳戶註冊或登入遇到問題?</u></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
+<!-- <h2>Log in</h2> -->
+
+<%#= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <!-- <div class="form-inputs"> -->
+    <%#= f.input :email,
                 required: false,
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
+    <%#= f.input :password,
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+    <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <!-- </div> -->
 
-  <div class="form-actions">
-    <%= f.button :submit, "登入" %>
-  </div>
-<% end %>
+  <!-- <div class="form-actions"> -->
+    <%#= f.button :submit, "登入" %>
+  <!-- </div> -->
+<%# end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

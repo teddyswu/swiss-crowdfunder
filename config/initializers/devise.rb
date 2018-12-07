@@ -261,6 +261,14 @@ Devise.setup do |config|
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
 
+  authorization = YAML.load_file("config/authorization_key.yml")
+  config.omniauth :facebook, authorization[:facebook][:app_key], authorization[:facebook][:app_secret], {
+  # :scope => 'email,user_birthday',
+  :scope => 'email',
+  :info_fields => 'id,email,gender,link,locale,name,timezone,updated_time,verified',
+  strategy_class: OmniAuth::Strategies::Facebook,
+  :provider_ignores_state => true}
+
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.
