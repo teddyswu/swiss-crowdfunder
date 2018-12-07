@@ -1,17 +1,66 @@
-<div class="container">	
-	<%= form_for @goody, :url => goody_update_campaign_path(@goody), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
-  	<%= f.hidden_field :campaign_id, :value => @goody.campaign_id%>
-  	<%= f.fields_for :goody_image, @goody.input_goody_image do |i|%>
-      <%= i.label "上傳圖片(若不修改，請勿上傳)"%>
-      <%= i.file_field :file, :class => "form-control"%>
-    <% end %>
-		<%= f.label :title, "標題" %><%= f.text_field :title, :class => "form-control" %>
-		<%= f.label :description, "描述" %><%= f.text_area :description, :class => "form-control", rows: 4 %>
-		<%= f.label :price, "金額" %><%= f.number_field :price, :class => "form-control" %>
-		<%= f.label :quantity, "數量" %><%= f.number_field :quantity, :class => "form-control" %>
-		<%= f.label :delivery_time, "預計送達時間"%><%= f.date_field :delivery_time, :class => "form-control"%>
-		<%= f.label :sort, "排序(越小越上面)"%><%= f.number_field :sort, :class => "form-control"%>
-		<%= f.submit "送出"%>
-    <%= f.submit "取消", :type => "reset" %>
-	<% end %>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success mb-10">
+          <div class="h1 font-weight-bold">編輯回饋</div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+      	<%= form_for @goody, :url => goody_update_campaign_path(@goody), :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
+        	<%= f.hidden_field :campaign_id, :value => @goody.campaign_id%>
+          <div class="form-group">
+            <label>回饋項目圖片</label>
+            <div class="custom-file">
+            	<%= f.fields_for :goody_image, @goody.input_goody_image do |i|%>
+      					<%= i.file_field :file, :class => "form-control"%>
+						  <% end %>
+            </div>
+            <small class="form-text text-muted">(若不修改，請勿上傳)</small>
+          </div>
+          <div class="form-group">
+            <label>回饋項目名稱</label>
+            <%= f.text_field :title, :class => "form-control", :required => true %>
+            <small class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+            <label>回饋項目說明</label>
+            <%= f.text_area :description, :class => "form-control", rows: 4 %>
+            <small class="form-text text-muted"></small>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>回饋金額</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <%= f.number_field :price, :class => "form-control", :required => true %>
+              </div>
+              <small class="form-text text-muted"></small>
+            </div>
+            <div class="form-group col-md-6">
+              <label>回饋數量</label>
+              <%= f.number_field :quantity, :class => "form-control", :required => true %>
+              <small class="form-text text-muted">輸入-1，無上限</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>預計達成時間</label>
+            <%= f.date_field :delivery_time, :class => "form-control", :required => true%>
+            <small class="form-text text-muted">說明文案</small>
+          </div>
+          <div class="form-group">
+            <label>排序</label>
+            <%= f.number_field :sort, :class => "form-control", :required => true%>
+            <small class="form-text text-muted">越小越上面</small>
+          </div>
+          <%= f.submit "送出", :class => "btn btn-primary mr-2"%>
+          <%= link_to "返回提案紀錄", campaigns_path, class:"btn btn-outline-secondary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
