@@ -49,6 +49,7 @@ ActiveAdmin.register Campaign do
       input :description, label: "提案內容"
       input :order_description, label: "贊助時注意事項"
       input :order_success, label: "贊助後注意事項"
+      input :is_rate, label: "顯示 (顯示調查結果)"
       input :status, :label => '狀態', :as => :select, :collection => options_for_select([["草稿", "1"], ["審核中", "2"], ["審核完成", "3"]])
     end
     actions
