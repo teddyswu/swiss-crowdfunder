@@ -126,6 +126,7 @@ class CampaignsController < ApplicationController
     @campaign.order_description = ActionView::Base.full_sanitizer.sanitize(params[:campaign][:order_description_html])
     @campaign.user_id = current_user.id
     @campaign.active = true
+    @campaign.is_rate = false
     @campaign.status = 1
     @campaign.start_date = params[:campaign][:start_date].gsub(/[年月]/, '-').gsub("日","")
     @campaign.end_date = params[:campaign][:end_date].gsub(/[年月]/, '-').gsub("日","")

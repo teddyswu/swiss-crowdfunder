@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:is_paid]
-  before_action :authenticate_user!, only: [:new, :index]
+  before_action :authenticate_user!, only: [:new, :index, :detail]
 
   # TODO: Think about proper safety in this method/controller. This
   #       code is for demo purposes only and not for production use
@@ -35,6 +35,10 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(:user_id => current_user.id)
+  end
+
+  def detail
+    @order = Order.find(params[:id])
   end
 
   def show

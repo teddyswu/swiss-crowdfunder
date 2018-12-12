@@ -1,0 +1,126 @@
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success mb-7">
+          <h1 class="font-weight-bold">友善會員</h1>
+          <div class="h3">支持紀錄</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid border-bottom mb-6 pt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+                <%= link_to "帳號管理", edit_user_registration_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "支持紀錄", orders_path, class:"nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "追蹤提案", tracks_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "提案紀錄", campaigns_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="user-favorite-farmer.html">最愛小農</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 order-last order-lg-first">
+        <div class="mb-3">
+          <%= link_to orders_path do %>
+            <i class="fas fa-chevron-left"></i> 返回支持列表
+          <% end %>
+        </div>
+        <form>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="text-muted">提案名稱</label>
+                <div class="form-control-plaintext"><%= @order.goody.campaign.title %></div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="text-muted">支持金額</label>
+                <div class="form-control-plaintext"><%= number_to_currency("#{@order.amount + @order.bonus.to_i}", precision: 0) %></div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="text-muted">收件人</label>
+                <div class="form-control-plaintext"><%= @order.supporter.first_name%></div>
+              </div>
+              <div class="form-group">
+                <label class="text-muted">國家</label>
+                <div class="form-control-plaintext">台灣</div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-10">
+                  <label class="text-muted">地址</label>
+                  <div class="form-control-plaintext"><%= @order.supporter.city%> <%= @order.supporter.state%> <%= @order.supporter.address%></div>
+                </div>
+                <div class="form-group col-md-2">
+                  <label class="text-muted">郵遞區號</label>
+                  <div class="form-control-plaintext"><%= @order.supporter.postal_code%></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="text-muted">聯絡電話</label>
+                <div class="form-control-plaintext"><%= @order.supporter.cell_phone%></div>
+              </div>
+              <div class="form-group">
+                <label class="text-muted">聯絡信箱</label>
+                <div class="form-control-plaintext"><%= @order.supporter.email%></div>
+              </div>
+              <div class="form-group">
+                <label class="text-muted">備註</label>
+                <div class="form-control-plaintext"><%= @order.remark%></div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-12 col-lg-4 mb-lg-0 mb-5">
+        <div class="mb-3">
+          <div class="h5 font-weight-bold">
+            <i class="far fa-check-square"></i> 您支持的回饋項目
+          </div>
+        </div>
+        <div class="item d-block mb-6">
+          <div class="d-block position-relative text-center">
+            <img class="img-fluid" src="assets/img/uploads/project-md2.jpg" alt="">
+          </div>
+          <div class="p-2">
+            <div class="text-black"><%= @order.goody.title%></div>
+            <div class="text-danger font-weight-bold"><%= number_to_currency(@order.goody.price, precision: 0) %></div>
+            <div class="text-muted mb-2">
+              <small>
+                <i class="fas fa-fw fa-file-alt"></i> 支持編號: <%= @order.number%><br>
+                <i class="fas fa-fw fa-credit-card"></i> 支持狀態 : <%= render_is_paid(@order.goody.campaign.id, @order.goody.id, @order.id, @order.paid)%><br>
+                <i class="fas fa-fw fa-calendar-alt"></i> 預計達成時間 : <%= @order.goody.delivery_time.strftime('%F')%>
+              </small>
+            </div>
+          </div>
+        </div>
+        <%= mail_to @order.goody.campaign.email, "聯絡提案人", :class => "btn btn-outline-primary btn-block"%>
+      </div>
+    </div>
+  </div>
+</div>

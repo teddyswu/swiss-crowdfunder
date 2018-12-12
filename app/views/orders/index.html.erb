@@ -1,30 +1,83 @@
-<div class="container">
-	贊助紀錄
-	<hr >
-	<table>
-	  <tr>
-	    <th>專案名稱</th>
-	    <th>商品</th> 
-	    <th>金額</th>
-	    <th>單號</th>
-	    <th>付款狀態</th>
-	    <th>成立日期</th>
-	    <th>付款方式</th>
-	    <th>付款日期</th>
-	  </tr>
-	  <% @orders.each do |order|%>
-		  <tr>
-		  	<% if order.goody.campaign.is_active? or order.paid %>
-			    <td><%= link_to order.goody.campaign.title, campaign_path(order.goody.campaign.slug)%></td>
-			    <td><%= order.goody.title%></td> 
-			    <td><%= number_to_currency("#{order.amount + order.bonus.to_i}", precision: 0) %></td>
-			    <td><%= order.number%></td>
-			    <td><%= render_is_paid(order.goody.campaign.id, order.goody.id, order.id, order.paid)%></td>
-			    <td><%= order.created_at.strftime('%F')%></td>
-			    <td><%= render_how_to_pay(order.ecpay_payment_type)%></td>
-			    <td><%= order.payment_date%></td>
-			  <% end %>
-		  </tr>
-		<% end %>
-	</table>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success mb-7">
+          <h1 class="font-weight-bold">友善會員</h1>
+          <div class="h3">支持紀錄</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid border-bottom mb-6 pt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+              	<%= link_to "帳號管理", edit_user_registration_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+              	<%= link_to "支持紀錄", orders_path, class:"nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "追蹤提案", tracks_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+              	<%= link_to "提案紀錄", campaigns_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="user-favorite-farmer.html">最愛小農</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  	<% @orders.each do |order|%>
+      <div class="row mb-6">
+        <div class="col-12 col-md-3 col-lg-2 mb-2 mb-md-0">
+        	<%= link_to campaign_path(order.goody.campaign.slug), :class => "d-block position-relative mb-2" do %>
+            <img class="img-fluid text-center" src="<%= order.goody.campaign.campaign_image.try(:campaign_path) %>" alt="">
+          <% end %>
+        </div>
+        <div class="col-12 col-md-9 col-lg-10">
+          <div class="row justify-content-between">
+            <div class="col-12 col-md">
+            	<%= link_to order.goody.campaign.title, campaign_path(order.goody.campaign.slug), :class => "item-title text-black"%>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 text-left text-md-right font-small"><%= order.created_at.strftime('%F')%></div>
+          </div>
+          <hr>
+          <div class="row align-items-end">
+            <div class="col-12 col-md-10 col-lg-11">
+              <div class="text-row-1">
+                <%= order.goody.title%> <span class="text-danger font-weight-bold ml-4">
+                <%= number_to_currency("#{order.amount + order.bonus.to_i}", precision: 0) %></span>
+              </div>
+              <div class="text-muted">
+                <small>
+                  <span class="d-inline-block mr-5">
+                    <i class="fas fa-fw fa-file-alt"></i> 支持編號：<%= order.number%>
+                  </span>
+                  <span class="d-inline-block mr-5">
+                    <i class="fas fa-fw fa-credit-card"></i> 支持狀態：<%= render_is_paid(order.goody.campaign.id, order.goody.id, order.id, order.paid)%>
+                  </span>
+                  <span class="d-inline-block mr-5">
+                    <i class="fas fa-fw fa-calendar-alt"></i> 預計達成時間：<%= order.goody.delivery_time.strftime('%F')%>
+                  </span>
+                </small>
+              </div>
+          	</div>
+            <div class="col-12 col-md-2 col-lg-1">
+            	<%= link_to "查看", detail_order_path(order.id), :class => "btn btn-sm btn-block btn-outline-primary"%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
