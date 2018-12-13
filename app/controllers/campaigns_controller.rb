@@ -30,6 +30,7 @@ class CampaignsController < ApplicationController
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
+    @agrisc_host = YAML.load_file("config/settings.yml")[:agrisc_host]
   end
 
   def support

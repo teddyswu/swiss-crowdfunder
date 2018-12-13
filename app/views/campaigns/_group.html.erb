@@ -25,10 +25,10 @@
         </div>
         <ul class="nav nav-info">
           <li class="nav-item my-1">
-          	<%= link_to "<u>#{group.user.farmer_profile.farm_name}</u>".html_safe, "https://story.i-sogi.com/farmers/#{group.user.id}", :class => "nav-link"%>
+          	<%= link_to "<u>#{group.user.farmer_profile.farm_name}</u>".html_safe, "https://#{agrisc_host}/farmers/#{group.user.id}", :class => "nav-link"%>
           </li>
           <li class="nav-item my-1">
-          	<%= link_to "<u>農場工作紀錄</u>".html_safe, "https://story.i-sogi.com/farmers/#{group.user.id}/work_record", :class => "nav-link" %>
+          	<%= link_to "<u>農場工作紀錄</u>".html_safe, "https://#{agrisc_host}/farmers/#{group.user.id}/work_record", :class => "nav-link" %>
           </li>
         </ul>
         <div class="mt-4 text-muted">
