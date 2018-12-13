@@ -10,8 +10,8 @@
       <% service.description @order.id %>
       <% service.item_name @order.goody.title %>
       <% service.choose_payment "ALL" %>
-      <% service.return_url "http://#{SelfConfig.root_host}/orders/#{@order.id}/finished" %>
-      <% service.notify_url "http://#{SelfConfig.root_host}/orders/#{@order.id}/is_paid" %>
+      <% service.return_url "#{SelfConfig.root_host}/orders/#{@order.id}/finished" %>
+      <% service.notify_url "#{SelfConfig.root_host}/orders/#{@order.id}/is_paid" %>
       <% service.encrypt_type "1" %>
       <% service.encrypted_data %>
     <% end %>
