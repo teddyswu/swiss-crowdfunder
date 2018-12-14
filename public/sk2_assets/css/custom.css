@@ -23,12 +23,16 @@ a.text-line:hover {
   color: #008600 !important; }
 
 .bg-404 {
-  background: url(../img/uploads/bg-404.jpg) center center no-repeat;
   background-size: cover; }
 
 .bg-login {
-  background: url(../img/uploads/bg-login.jpg) center center no-repeat;
+  background: url(../img/uploads/bg-login.jpg) center 20% no-repeat;
   background-size: cover; }
+
+#intro {
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
 
 @media (max-width: 991.98px) {
   .navbar-brand img {
@@ -267,6 +271,211 @@ a.text-line:hover {
 #support-action.scroll-down {
   bottom: -100px; }
 
+.grid:after {
+  content: '';
+  display: block;
+  clear: both; }
+.grid .grid-item {
+  float: left;
+  padding: 5px; }
+.grid .grid-item .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  height: 100%; }
+.grid .grid-item .overlay .my-auto {
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-align: center;
+  color: #fff; }
+.grid .grid-item img {
+  display: block;
+  z-index: 0;
+  width: 100%;
+  height: 180px;
+  text-align: center;
+  object-fit: cover; }
+.grid .grid-item-2x img {
+  height: 370px !important; }
+@media (max-width: 991.98px) {
+  .grid .grid-item .overlay {
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 1; }
+  .grid .grid-item .overlay:hover, .grid .grid-item .overlay:focus, .grid .grid-item .overlay:active {
+    background: rgba(0, 0, 0, 0.5); } }
+
+.progress-circle {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  background: none;
+  margin: 0 auto;
+  box-shadow: none;
+  position: relative; }
+.progress-circle:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 7px solid #eee;
+  position: absolute;
+  top: 0;
+  left: 0; }
+.progress-circle > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1; }
+.progress-circle .progress-left {
+  left: 0; }
+.progress-circle .progress-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 7px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+  border-color: #ffb43e; }
+.progress-circle.progress-primary .progress-bar {
+  border-color: #85af4b; }
+.progress-circle.progress-warning .progress-bar {
+  border-color: #f90; }
+.progress-circle.progress-info .progress-bar {
+  border-color: #4a99d6; }
+.progress-circle.progress-danger .progress-bar {
+  border-color: #dc3545; }
+.progress-circle .progress-left .progress-bar {
+  left: 100%;
+  border-top-right-radius: 75px;
+  border-bottom-right-radius: 75px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left; }
+.progress-circle .progress-right {
+  right: 0; }
+.progress-circle .progress-right .progress-bar {
+  left: -100%;
+  border-top-left-radius: 75px;
+  border-bottom-left-radius: 75px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right; }
+.progress-circle .progress-value {
+  display: flex;
+  border-radius: 50%;
+  font-size: 36px;
+  text-align: center;
+  line-height: 20px;
+  align-items: center;
+  justify-content: center;
+  height: 100%; }
+.progress-circle .progress-value div {
+  margin-top: 10px; }
+.progress-circle .progress-value span {
+  font-size: .875rem;
+  text-transform: uppercase; }
+
+/* This for loop creates the 	necessary css animation names
+Due to the split circle of progress-left and progress right, we must use the animations on each side.
+*/
+.progress-circle[data-percentage="10"] .progress-right .progress-bar {
+  animation: loading-1 0.5s linear forwards; }
+.progress-circle[data-percentage="10"] .progress-left .progress-bar {
+  animation: 0; }
+
+.progress-circle[data-percentage="20"] .progress-right .progress-bar {
+  animation: loading-2 0.5s linear forwards; }
+.progress-circle[data-percentage="20"] .progress-left .progress-bar {
+  animation: 0; }
+
+.progress-circle[data-percentage="30"] .progress-right .progress-bar {
+  animation: loading-3 0.5s linear forwards; }
+.progress-circle[data-percentage="30"] .progress-left .progress-bar {
+  animation: 0; }
+
+.progress-circle[data-percentage="40"] .progress-right .progress-bar {
+  animation: loading-4 0.5s linear forwards; }
+.progress-circle[data-percentage="40"] .progress-left .progress-bar {
+  animation: 0; }
+
+.progress-circle[data-percentage="50"] .progress-right .progress-bar {
+  animation: loading-5 0.5s linear forwards; }
+.progress-circle[data-percentage="50"] .progress-left .progress-bar {
+  animation: 0; }
+
+.progress-circle[data-percentage="60"] .progress-right .progress-bar {
+  animation: loading-5 0.5s linear forwards; }
+.progress-circle[data-percentage="60"] .progress-left .progress-bar {
+  animation: loading-1 0.5s linear forwards 0.5s; }
+
+.progress-circle[data-percentage="70"] .progress-right .progress-bar {
+  animation: loading-5 0.5s linear forwards; }
+.progress-circle[data-percentage="70"] .progress-left .progress-bar {
+  animation: loading-2 0.5s linear forwards 0.5s; }
+
+.progress-circle[data-percentage="80"] .progress-right .progress-bar {
+  animation: loading-5 0.5s linear forwards; }
+.progress-circle[data-percentage="80"] .progress-left .progress-bar {
+  animation: loading-3 0.5s linear forwards 0.5s; }
+
+.progress-circle[data-percentage="90"] .progress-right .progress-bar {
+  animation: loading-5 0.5s linear forwards; }
+.progress-circle[data-percentage="90"] .progress-left .progress-bar {
+  animation: loading-4 0.5s linear forwards 0.5s; }
+
+.progress-circle[data-percentage="100"] .progress-right .progress-bar {
+  animation: loading-5 0.5s linear forwards; }
+.progress-circle[data-percentage="100"] .progress-left .progress-bar {
+  animation: loading-5 0.5s linear forwards 0.5s; }
+
+@keyframes loading-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(36);
+    transform: rotate(36deg); } }
+@keyframes loading-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(72);
+    transform: rotate(72deg); } }
+@keyframes loading-3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(108);
+    transform: rotate(108deg); } }
+@keyframes loading-4 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(144);
+    transform: rotate(144deg); } }
+@keyframes loading-5 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(180);
+    transform: rotate(180deg); } }
+.progress-circle {
+  margin-bottom: 1em; }
+
 @media (max-width: 991.98px) {
   .table-rwd thead {
     clip: rect(0 0 0 0);
@@ -327,6 +536,22 @@ a.text-line:hover {
 @media (max-width: 991.98px) {
   .h1 {
     font-size: 2rem; } }
+.filter-grayscale {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1); }
+
+.filter-sepia {
+  -webkit-filter: sepia(1);
+  filter: sepia(1); }
+
+.filter-saturate {
+  -webkit-filter: saturate(0.5);
+  filter: saturate(0.5); }
+
+.filter-contrast {
+  -webkit-filter: contrast(2);
+  filter: contrast(2); }
+
 .nav-info .nav-item {
   border-left: 1px solid #ced4da; }
 .nav-info .nav-item .nav-link {
@@ -436,6 +661,9 @@ a.text-line:hover {
   background-color: #008600 !important;
   color: #fff; }
 
+.block-info {
+  position: relative;
+  display: block; }
 .block-info .flex-column {
   opacity: 0;
   -moz-transition: all 0.2s ease;
@@ -454,6 +682,7 @@ a.text-line:hover {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
+  z-index: 10;
   width: 40px;
   height: 40px;
   background: #fff; }
@@ -1290,7 +1519,7 @@ input[type="text"], input[type="email"], input[type="date"] {
 .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
   opacity: 0.25; }
 .slick-prev:before, .slick-next:before {
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 5 Free";
   font-size: 1rem;
   font-weight: 900;
   line-height: 1;

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_locale
+  before_action :set_locale,
+                :http_check
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
 
@@ -14,6 +15,12 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: I18n.locale }
+  end
+
+  def http_check
+    if request.host.include?("ugooz")
+      redirect_to request.original_url.gsub("http","https"), :status => 301 if request.original_url.include?("http://")
+    end
   end
 
   private

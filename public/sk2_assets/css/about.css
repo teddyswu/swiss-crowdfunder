@@ -7,8 +7,7 @@
   font-weight: bold; }
 
 #intro {
-  background: url(../img/uploads/about-intro.jpg) center 0 no-repeat;
-  background-attachment: fixed; }
+  background-image: url(../img/uploads/about-intro.jpg); }
 #intro .h1 {
   color: #fff;
   border-color: #fff; }
@@ -22,9 +21,10 @@
   box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.1); }
 
 #team {
-  background: url(../img/uploads/about-team.jpg) 0 0 no-repeat;
+  background: url(../img/uploads/about-team.jpg) center 0 no-repeat;
   background-attachment: fixed;
-  background-size: cover; }
+  background-size: cover;
+  text-shadow: 0px 0px 10px #fff; }
 #team .box {
   color: black; }
 
