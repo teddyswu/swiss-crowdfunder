@@ -37,14 +37,35 @@
     </div>
   </div>
 	<div class="container">
-		追蹤紀錄
-		<hr >
-		<% @tracks.each do |track|%>
-			<%= link_to track.campaign.title, campaign_path(track.campaign.slug)%> <%= link_to "取消追蹤", cancel_tracks_path(:user_id => current_user.id, :campaign_id => track.campaign_id) %><br/>
-		<% end %>
-		<% content_for :javascript do %>
-			<script>
-			</script>
-		<% end %>
+    <row>
+      <% @tracks.each do |track|%>
+        <div class="col-12 col-sm-6 col-lg-3 my-3">
+          <div class="item">
+            <%= link_to campaign_path(track.campaign.slug), :class => "d-block position-relative" do %>
+              <span class="badge badge-primary">NEW</span>
+              <img class="img-fluid text-center" src="<%= track.campaign.campaign_image.try(:campaign_path) %>" alt="">
+            <% end %>
+            <div class="p-2">
+              <%= link_to track.campaign.title, campaign_path(track.campaign.slug), :class => "item-title text-black"%>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(track.campaign) %>;" aria-valuenow="<%= campaign_percentage(track.campaign) %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(track.campaign) %></div>
+              </div>
+              <div class="mt-2">
+                <small class="d-block">
+                  <i class="far fa-fw fa-clock"></i> <%= render_remain_day(track.campaign.end_date) %>
+                </small>
+                <small class="d-block">
+                  <i class="fas fa-fw fa-dollar-sign"></i> <span class="text-muted">目前達成金額</span>
+                  <strong><%= number_to_currency(track.campaign.amount_raised, precision: 0)%></strong>
+                </small>
+              </div>
+              <div class="mt-2">
+                <%= link_to "取消追蹤", cancel_tracks_path(:user_id => current_user.id, :campaign_id => track.campaign_id), :class => "btn btn-outline-primary btn-block btn-sm" %>
+              </div>
+            </div>
+          </div>
+        </div>
+  		<% end %>
+		</row>
 	</div>
 </div>

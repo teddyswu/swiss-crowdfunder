@@ -71,7 +71,32 @@ module CampaignsHelper
       return render "shared/list/processing", campaign: campaign if campaign.start_date < Date.today && campaign.end_date > Date.today
       return render "shared/list/end", campaign: campaign if campaign.end_date < Date.today
     end
-    
+  end
+
+  def render_link_or_div(campaign)
+    agrisc_host = YAML.load_file("config/settings.yml")[:agrisc_host]
+    case campaign.is_rate
+    when true
+      "<a class=\"btn btn-sm btn-block btn-outline-secondary h-100\" href=\"#{agrisc_host}/#{campaign.id}/rate\">
+        <div class=\"h-100 d-flex flex-column justify-content-center\">
+          <div class=\"font-weight-bold\">滿意度指數</div>
+          <div class=\"my-2\">
+            <i class=\"far fa-2x fa-meh\"></i>
+          </div>
+          <div class=>尚未調查</div>
+        </div>
+      </a>".html_safe
+    else
+      "<div class=\"btn btn-sm btn-block btn-outline-secondary h-100\">
+        <div class=\"h-100 d-flex flex-column justify-content-center\">
+          <div class=\"font-weight-bold\">滿意度指數</div>
+          <div class=\"my-2\">
+            <i class=\"far fa-2x fa-meh\"></i>
+          </div>
+          <div class=>尚未調查</div>
+        </div>
+      </div>".html_safe
+    end
   end
 
 end

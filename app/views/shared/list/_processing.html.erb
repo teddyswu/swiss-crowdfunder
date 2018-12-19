@@ -12,14 +12,21 @@
       </div>
       <%= link_to campaign.title, campaign_path(campaign.slug), :class => "text-black text-row-1"%>
       <hr class="my-3">
-      <div class="text-muted">
-        資金目標：<%= number_to_currency(campaign.goal, precision: 0) %><br>
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(campaign) %>;" aria-valuenow="<%= campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(campaign) %></div>
+      <div class="row">
+        <div class="col-12 col-md-10 col-lg-9">
+          <div class="text-muted">
+            資金目標：<%= number_to_currency(campaign.goal, precision: 0) %><br>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(campaign) %>;" aria-valuenow="<%= campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(campaign) %></div>
+            </div>
+            目前達成：<%= number_to_currency(campaign.amount_raised, precision: 0) %><br>
+            支持人數：<%= campaign.supporters.count %> 人<br>
+            剩餘時間：<%= render_remain_day(campaign.end_date)%>
+          </div>
         </div>
-        目前達成：<%= number_to_currency(campaign.amount_raised, precision: 0) %><br>
-        支持人數：<%= campaign.supporters.count %> 人<br>
-        剩餘時間：<%= render_remain_day(campaign.end_date)%>
+        <div class="col-12 col-md-2 col-lg-3">
+          <%= render_link_or_div(campaign)%>
+        </div>
       </div>
     </div>
   </div>
