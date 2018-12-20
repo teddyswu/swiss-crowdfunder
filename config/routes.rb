@@ -32,9 +32,11 @@ Rails.application.routes.draw do
     patch "goody_update", :on => :member
     post "goody_create",:on => :collection
     delete "goody_del", :on => :member
+    get "check_slug", :on => :collection
     resources :goodies, only: [:index] do
       resources :orders, only: [:new, :show, :create]
     end
+
   end
   resources :campaign_tags
 

@@ -108,7 +108,7 @@
             <%= i.file_field :file, :class => "form-control"%>
           <% end %>
         <div class="form-text text-muted font-small">
-          請提供 JPEG、PNG檔，圖片尺寸至少 1024 x 768 px (4:3)；檔案大小 2MB 以內。
+          請提供 JPEG、PNG檔，圖片尺寸至少 1024 x 768 px (4:3)；檔案大小 2MB 以內，若不修改請勿上傳。
         </div>
       </div>
       <div class="form-group">
@@ -265,7 +265,7 @@
           </label>
         </div>
       </div>
-      <%= f.submit "儲存與檢查", :class => "btn btn-primary px-10", "data-toggle" => "modal", "data-target" => "#modal-check" %>
+      <%= f.submit "儲存與檢查", :class => "btn btn-primary px-10", :onclick => "return validate_all();" %>
       <a class="btn btn-outline-secondary px-10" href="">取消</a>
     </div>
   <% end %>
@@ -294,5 +294,56 @@
       var node = "div_" + id;
       $("#" + node).remove();
     }
+    function form_one(){
+      var fields = "1. 提案設定\n";
+      var chun = 0;
+      if($("#campaign_goal").val() == ""){ fields += "資金目標\n";chun+=1};
+      if($("#campaign_start_date").val()==""){fields += "開始日期\n";chun+=1};
+      if($("#campaign_start_date").val()==""){fields += "結束日期\n";chun+=1};
+      if($("#campaign_slug").val()==""){fields += "提案關鍵字\n";chun+=1};
+      if($("#campaign_claim").val()==""){fields += "提案摘要\n";chun+=1};
+      if($('input[id=tag_ids_]:checked').length == 0){fields += "標籤類別\n";chun+=1};
+      if(chun==0){return true;}else{return fields;}
+    }
+    function form_two(){
+      var fields = "2. 攥寫提案\n";
+      var chun = 0;
+      if(CKEDITOR.instances['campaign_description_html'].getData() == ""){ fields += "提案內容\n";chun+=1};
+      if(CKEDITOR.instances['campaign_order_description_html'].getData() == ""){ fields += "支持注意事項\n";chun+=1};
+      if(CKEDITOR.instances['campaign_risk'].getData() == ""){ fields += "風險與承諾\n";chun+=1};
+      if(chun==0){return true;}else{return fields;}
+    }
+    function form_three(){
+      var fields = "3. 提案人資料\n";
+      var chun = 0;
+      if($("#campaign_name").val() == ""){ fields += "提案者姓名\n";chun+=1};
+      if($("#campaign_email").val() == ""){ fields += "聯絡信箱\n";chun+=1};
+      if($("#campaign_phone").val() == ""){ fields += "手機號碼\n";chun+=1};
+      if($("#campaign_self_introduction").val() == ""){ fields += "自我介紹\n";chun+=1};
+      if(CKEDITOR.instances['campaign_order_success_html'].getData() == ""){ fields += "提案內容\n";chun+=1};
+      if(chun==0){return true;}else{return fields;}
+    }
+    function form_four(){
+      var fields = "4. 小農隊\n";
+      var chun = 0;
+      if($("[name='campaign_groups[0][income]']").val()==undefined){ fields += "參與合作的小農\n";chun+=1};
+      if($('input[id=customCheck-agree]:checked').length == 0){fields += "是否同意\n";chun+=1};
+      if(chun==0){return true;}else{return fields;}
+    }
+    function validate_all(){
+      var fields = "請填寫以下欄位:\n"
+      var chun = 0;
+      if (form_one()!=true){ fields += form_one(); chun+=1; };
+      if (form_two()!=true){ fields += form_two(); chun+=1; };
+      if (form_three()!=true){ fields += form_three(); chun+=1; };
+      if (form_four()!=true){ fields += form_four(); chun+=1; };
+      if (chun==0){return true;}else{alert(fields);return false;};
+    }
+    $( "#campaign_slug" ).change(function() {
+      $.get("<%= check_slug_campaigns_path %>", { slug: $( "#campaign_slug" ).val() },
+      function(data){
+        if(data == true){ $( "#campaign_slug" ).val("") }
+      });
+    });
   </script>
 <% end %>

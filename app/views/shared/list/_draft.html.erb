@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-12 col-lg my-1 my-lg-0 text-center text-lg-right">
-        <%= form_for campaign, :url => campaign_path(campaign), :method => :patch do |f| %>
+        <%= form_for campaign, :url => campaign_path(campaign.slug), :method => :patch do |f| %>
           <%= link_to "編輯提案", edit_campaign_path(campaign.slug), :class => "btn btn-sm btn-outline-primary"%>
           <%= link_to "編輯回饋", goody_campaign_path(campaign.slug), :class => "btn btn-sm btn-outline-primary"%>
           <%= f.hidden_field :status, :value => 2%>

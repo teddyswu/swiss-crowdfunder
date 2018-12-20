@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant-TW">
+<html  lang="zh-Hant-TW">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -96,8 +96,32 @@
         </nav>
       </div>
     </div>
-    <%= yield %>
-    <!-- footer (todo: partial) -->
+    <div id="main" class="push py-14 mt-10 mt-lg-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="text-center text-success mb-10">
+              <div class="h1 font-weight-bold">發起提案</div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <div class="jumbotron bg-light mb-10 bs">
+              <div class="display-4 font-weight-bold text-primary mb-4 text-center">
+                <i class="fas fa-check"></i> 提交成功
+              </div>
+              <div class="media">
+                <i class="far fa-4x fa-envelope text-muted mr-3"></i>
+                <div class="media-body">
+                  您的提案已送交完成，審核時間約3個工作天，將有專案經理與您聯繫，審核期間若有相關疑問請與客服聯繫robert@sogi.com.tw，謝謝。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer id="footer" class="push">
       <div class="container py-6">
         <div class="row">
@@ -226,10 +250,6 @@
       </div>
     </footer>
 
-    <a class="btn btn-outline-primary btn-top anchor rounded-circle" href="#top"><i class="fas fa-lg fa-angle-up"></i></a>
-    <!-- end footer -->
-    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
-    <!-- global -->
     <script src="/sk2_assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="/sk2_assets/js/vendor/bootstrap-datepicker.min.js"></script>
     <script src="/sk2_assets/js/vendor/locales/bootstrap-datepicker.zh-TW.min.js" charset="UTF-8"></script>
@@ -240,6 +260,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.js"></script>
     <script src="/sk2_assets/js/custom.js"></script>
     <div id="fb-root"></div>
-    <%= yield(:javascript) if content_for(:javascript).present? %>
+
   </body>
 </html>

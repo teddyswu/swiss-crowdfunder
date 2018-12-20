@@ -26,6 +26,11 @@ class CampaignsController < ApplicationController
     @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
   end
 
+  def check_slug
+    slug = Campaign.find_by_slug(params[:slug])
+    render json: (slug.present? ? true : false)
+  end
+
   def group
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
     user_id = current_user.present? ? current_user.id : nil
@@ -112,12 +117,16 @@ class CampaignsController < ApplicationController
         @campaign_tag_ship.save!
       end
     end
-    @campaign_group = CampaignGroup.where(:campaign_id => @campaign.id)
-    @campaign_group.destroy_all
-    group_params.each do |k, v|
-      CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
+    if @campaign.status == 2
+      render partial: 'shared/project_finished'
+    else
+      @campaign_group = CampaignGroup.where(:campaign_id => @campaign.id)
+      @campaign_group.destroy_all
+      group_params.each do |k, v|
+        CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
+      end
+      redirect_to campaigns_path
     end
-    redirect_to campaigns_path
   end
 
   def create
