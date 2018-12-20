@@ -33,10 +33,10 @@ class User
           user.skip_confirmation!
           if user.save#(:validate => false)
             user.authorizations << Authorization.new( :provider => provider, :uid => uid )
-            up = FarmerProfile.new
+            up = UserProfile.new
             up.user_id = user.id
-            up.name = data["nickname"].present? ? data ["nickname"] : data["name"]
-            up.name = "u#{Time.now.to_i}" if up.name.blank?
+            up.nickname = data["nickname"].present? ? data ["nickname"] : data["name"]
+            up.nickname = "u#{Time.now.to_i}" if up.nickname.blank?
             # up.fb_uid = uid
             #up.gender = (data["user_gender"] == "male"? 1 : 0 )
             #up.birthday = data["user_birthday"]
