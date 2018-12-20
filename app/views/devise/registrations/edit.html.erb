@@ -37,53 +37,50 @@
     </div>
   </div>
   <div class="container">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
-
-      <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true,:readonly => true %>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-        <% end %>
-        
-        <%#= f.input :password,
-                    hint: "leave it blank if you don't want to change it",
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%#= f.input :password_confirmation,
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%#= f.input :current_password,
-                    hint: "we need your current password to confirm your changes",
-                    required: true,
-                    input_html: { autocomplete: "current-password" } %>
-        <%= f.fields_for :user_profile, resource.user_profile do |user_profile| %>
-          <%= user_profile.input :nickname,required: true,autofocus: true %>
-          <%#= user_profile.input :first_name %>
-          <%#= user_profile.input :last_name %>
-          <%#= user_profile.input :city %>
-          <%#= user_profile.input :state %>
-          <%#= user_profile.input :postal_code %>
-          <%#= user_profile.input :address %>
-          <%= user_profile.input :country, :as => :hidden, :input_html => { :value => "TW" }  %>
-          <%= user_profile.label :gender %>
-          <%= user_profile.radio_button(:gender, 1) %>男
-          <%= user_profile.radio_button(:gender, 0) %>女<br />
-          <%= user_profile.label :birthday %>
-          <%= user_profile.date_field :birthday %>
-          <%#= user_profile.input :tel %>
-          <%#= user_profile.input :cell_phone %>
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">電子信箱</label>
+            <div class="col-sm-9">
+              <%= f.input :email, required: true, autofocus: true,:readonly => true, label: false, :class => "form-control" %>
+            </div>
+          </div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+          <%= f.fields_for :user_profile, resource.user_profile do |user_profile| %>
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label">暱稱</label>
+              <div class="col-sm-9">
+                <%= user_profile.input :nickname,required: true,autofocus: true, label: false, :class => "form-control" %>
+              </div>
+            </div>
+            <%= user_profile.input :country, :as => :hidden, :input_html => { :value => "TW" }  %>
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label">性別</label>
+              <div class="col-sm-9">
+                <%= user_profile.radio_button(:gender, 1) %>男
+                <%= user_profile.radio_button(:gender, 0) %>女
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label">生日</label>
+              <div class="col-sm-9">
+                <%= user_profile.date_field :birthday %>
+              </div>
+            </div>
+          <% end %>
+          <div class="form-group row">
+            <div class="col-sm-9 offset-sm-3">
+              <%= f.button :submit, "更新", :class => "btn btn-primary px-8" %>
+              <%= link_to "回上一頁", :back, :class => "btn btn-primary px-8" %>
+            </div>
+          </div>
         <% end %>
       </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Update" %>
-      </div>
-    <% end %>
-
-    <%= link_to "Back", :back %>
+    </div>
+    
   </div>
 </div>
