@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181211151142) do
+ActiveRecord::Schema.define(version: 20181225095605) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20181211151142) do
     t.text "description"
     t.text "description_html"
     t.text "claim"
-    t.string "facebook_url"
     t.string "twitter_url"
     t.text "order_description"
     t.text "order_description_html"
@@ -119,6 +118,13 @@ ActiveRecord::Schema.define(version: 20181211151142) do
     t.text "self_introduction"
     t.index ["slug"], name: "index_campaigns_on_slug", unique: true
     t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
+  create_table "favo_farmers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.integer "farmer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -223,6 +229,7 @@ ActiveRecord::Schema.define(version: 20181211151142) do
     t.text "address"
     t.string "tel"
     t.string "cell_phone"
+    t.string "facebook_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_profiles_on_user_id"

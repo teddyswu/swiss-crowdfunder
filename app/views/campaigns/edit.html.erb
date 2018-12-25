@@ -117,13 +117,6 @@
           影片時間建議100百秒左右，建議在上傳YouTube時先設定好影片封面。
         </div>
       </div>
-      <div class="form-group">
-        <%= f.label :facebook_url, "提案粉專" %>
-        <%= f.text_field :facebook_url, :class => "form-control" %>
-        <div class="form-text text-muted font-small">
-          請輸入與提案相關的FB粉專，請貼上完整網址。
-        </div>
-      </div>
     </div>
     <div class="tab-pane fade" id="tab-create2">
       <div class="mb-3 font-small text-muted">
@@ -188,13 +181,13 @@
           請確保專案經理聯絡到您，以及提案中支持者的來信都將透過此信箱。
         </div>
       </div>
-      <!-- <div class="form-group">
-        <label>FB或粉專</label>
-        <input type="url" class="form-control" value="" placeholder="">
+      <div class="form-group">
+        <%= label_tag :facebook_url, "提案粉專" %>
+        <%= text_field_tag :facebook_url, current_user.user_profile.facebook_url, :class => "form-control" %>
         <div class="form-text text-muted font-small">
-          如有個人、團體或品牌之粉專，請貼上完整網址。
+          請輸入與提案相關的FB粉專，請貼上完整網址。
         </div>
-      </div> -->
+      </div>
       <div class="form-group">
         <%= f.label :self_introduction, "自我介紹" %>
         <%= f.text_area :self_introduction, :class => "form-control", :rows => "4", :required => true %>

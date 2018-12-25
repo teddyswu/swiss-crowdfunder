@@ -36,6 +36,7 @@ class CampaignsController < ApplicationController
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
     @agrisc_host = YAML.load_file("config/settings.yml")[:agrisc_host]
+    @is_favo = FavoFarmer.where(:user_id => current_user.id).map { |user| user.farmer_id }
   end
 
   def support
@@ -108,6 +109,9 @@ class CampaignsController < ApplicationController
   def update
     @campaign.update(campaign_params)
     @campaign.save!
+    user_profile = UserProfile.find_by_user_id(current_user.id)
+    user_profile.facebook_url = params[:facebook_url]
+    user_profile.save!
     @campaign.campaign_image.update_urls_success?
     if tag_ids_params.present?
       @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id)
@@ -141,6 +145,9 @@ class CampaignsController < ApplicationController
     @campaign.start_date = params[:campaign][:start_date].gsub(/[年月]/, '-').gsub("日","")
     @campaign.end_date = params[:campaign][:end_date].gsub(/[年月]/, '-').gsub("日","")
     @campaign.save!
+    user_profile = UserProfile.find_by_user_id(current_user.id)
+    user_profile.facebook_url = params[:facebook_url]
+    user_profile.save!
     @campaign.campaign_image.update_urls_success?
     tag_ids_params.each do |ti|
       @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
@@ -173,12 +180,13 @@ class CampaignsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find_by(:slug => params[:id])
+      redirect_to root_path if @campaign.status != 3
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
       params.require(:campaign).permit(:name, :phone, :self_introduction, :slug, :claim, :email, :goal, :start_date, :end_date,
-      :title, :youtube_url, :twitter_url, :facebook_url, :status, :risk, :description_html, :order_description_html, :order_success_html, campaign_image_attributes: [:file])
+      :title, :youtube_url, :twitter_url, :status, :risk, :description_html, :order_description_html, :order_success_html, campaign_image_attributes: [:file])
     end
 
     def campaign_groups_params

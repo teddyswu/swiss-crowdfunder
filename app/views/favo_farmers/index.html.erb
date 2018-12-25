@@ -1,0 +1,172 @@
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success mb-7">
+          <h1 class="font-weight-bold">友善會員</h1>
+          <div class="h3">最愛小農</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid border-bottom mb-6 pt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+                <%= link_to "帳號管理", edit_user_registration_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "支持紀錄", orders_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "追蹤提案", tracks_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "提案紀錄", campaigns_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "最愛小農", favo_farmers_path, class:"nav-link active" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <% @favo_farmers.each do |farmer|%>
+        <div class="col-12 mb-lg-0 mb-5">
+          <div class="border p-3 mb-6">
+            <div class="row">
+              <div class="col-12 col-md-3 col-lg-2 my-2 text-center">
+                <img class="img-fluid rounded-circle" src="assets/img/uploads/avatar.jpg" alt="" style="width: 120px;">
+                <div class="my-2">
+                  <div class="text-center">
+                    <span class="h5"><%= farmer.farmer.farmer_profile.front_name%></span>
+                    <span class="ml-3">
+                      <a class="text-fb" href="" target="_blank">
+                        <i class="fab fa-fw fa-lg fa-facebook"></i>
+                      </a>
+                      <a class="text-danger btn-like" href="javascript:AddFarmer(<%= farmer.farmer.id %>);">
+                        <i class="fas fa-fw fa-lg fa-heart" id="heart_<%= farmer.farmer.id %>"></i>
+                      </a>
+                    </span>
+                  </div>
+                  <!-- <div class="font-small text-muted my-2">
+                    <span class="mr-2">
+                      <i class="icon-award"></i> 有機認證
+                    </span>
+                  </div> -->
+                </div>
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <%= link_to "<u>#{farmer.farmer.farmer_profile.farm_name}</u>".html_safe, "#{YAML.load_file("config/settings.yml")[:agrisc_host]}/farmers/#{farmer.farmer.id}", :class => "nav-link" %>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-9 col-lg-10 my-2">
+                <div class="row article">
+                  <div class="col-6 col-md-3 my-3 post">
+                    <a class="position-relative d-block block-info" href="javascript:void();">
+                      <div class="position-absolute d-none d-lg-flex flex-column w-100 h-100 p-2 text-white">
+                        <div class="mb-auto"></div>
+                        <div class="text-center">
+                          <div class="my-auto">
+                            <div class="align-self-center">工作時間：01:00</div>
+                            <div class="">工作項目：施肥</div>
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-auto"></div>
+                      </div>
+                      <img class="img-fluid text-center" src="assets/img/uploads/info-md2.jpg" alt="">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-3 my-3 post">
+                    <a class="position-relative d-block block-info" href="javascript:void();">
+                      <div class="position-absolute d-none d-lg-flex flex-column w-100 h-100 p-2 text-white">
+                        <div class="mb-auto"></div>
+                        <div class="text-center">
+                          <div class="my-auto">
+                            <div class="align-self-center">工作時間：01:00</div>
+                            <div class="">工作項目：施肥</div>
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-auto"></div>
+                      </div>
+                      <img class="img-fluid text-center" src="assets/img/uploads/info-md1.jpg" alt="">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-3 my-3 post">
+                    <a class="position-relative d-block block-info" href="javascript:void();">
+                      <div class="position-absolute d-none d-lg-flex flex-column w-100 h-100 p-2 text-white">
+                        <div class="mb-auto"></div>
+                        <div class="text-center">
+                          <div class="my-auto">
+                            <div class="align-self-center">工作時間：01:00</div>
+                            <div class="">工作項目：施肥</div>
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-auto"></div>
+                      </div>
+                      <img class="img-fluid text-center" src="assets/img/uploads/info-md3.jpg" alt="">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-3 my-3 post">
+                    <a class="position-relative d-block block-info" href="javascript:void();">
+                      <div class="position-absolute d-none d-lg-flex flex-column w-100 h-100 p-2 text-white">
+                        <div class="mb-auto"></div>
+                        <div class="text-center">
+                          <div class="my-auto">
+                            <div class="align-self-center">工作時間：01:00</div>
+                            <div class="">工作項目：施肥</div>
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-auto"></div>
+                      </div>
+                      <img class="img-fluid text-center" src="assets/img/uploads/info-md4.jpg" alt="">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- <nav class="mt-4">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav> -->
+  </div>
+</div>
+<% content_for :javascript do %>
+  <script>
+    function AddFarmer(id){
+      <% if user_signed_in? %>
+      $.post( "/favo_farmers", { farmer_id: id })
+        .done(function( data ) {
+          $("#heart_"+id).attr('data-prefix', "far")
+        });
+      <% else %>
+      alert("請先登入");
+      <% end %>
+    }
+  </script>
+<% end %>

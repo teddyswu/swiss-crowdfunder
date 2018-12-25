@@ -12,8 +12,8 @@
             	<%= link_to "#{group.user.farmer_profile.fb_url}", :class => "text-fb" do %>
                 <i class="fab fa-fw fa-lg fa-facebook"></i>
               <% end %>
-              <a class="text-danger btn-like" href="javascript:void();">
-                <i class="far fa-fw fa-lg fa-heart"></i>
+              <a class="text-danger btn-like" href="javascript:AddFarmer(<%= group.user.id %>);">
+                <i class="<%= is_favo.include?(group.user.id)? "fas" : "far" %> fa-fw fa-lg fa-heart" id="heart_<%= group.user.id %>"></i>
               </a>
             </span>
           </div>

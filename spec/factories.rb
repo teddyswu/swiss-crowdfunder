@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :favo_farmer do
+    
+  end
   factory :pay_order_number do
     
   end

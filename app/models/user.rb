@@ -10,6 +10,8 @@ class User < AgricDbConnecter
   has_many :campaigns
   has_many :tracks
   has_many :orders
+  has_many :favo_farmers
+  has_many :favo_farmers, :foreign_key => "farmer_id"
   has_many :authorizations
   has_one :user_profile
   has_one :farmer_profile

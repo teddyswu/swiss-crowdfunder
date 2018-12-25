@@ -30,8 +30,8 @@
             <%= mail_to campaign.email, subject: "募資項目: #{campaign.title}", class: "text-muted mr-2" do %>
               <i class="fas fa-lg fa-fw fa-envelope"></i>
             <% end %>
-            <%- unless campaign.facebook_url.blank? %>
-              <%= link_to campaign.facebook_url, target: "_blank", class: "text-muted" do  %>
+            <%- unless campaign.user.user_profile.facebook_url.blank? %>
+              <%= link_to campaign.user.user_profile.facebook_url, target: "_blank", class: "text-muted" do  %>
                 <i class="fab fa-lg fa-fw fa-facebook"></i>
               <% end %>
             <% end %>

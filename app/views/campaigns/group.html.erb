@@ -41,7 +41,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-8 mb-lg-0 mb-5">
-        <%= render partial: 'group', locals: { groups: @campaign.campaign_groups, agrisc_host: @agrisc_host } %>
+        <%= render partial: 'group', locals: { groups: @campaign.campaign_groups, agrisc_host: @agrisc_host, is_favo: @is_favo } %>
       </div>
       <div class="col-12 col-lg-4">
         <div class="pt-10 mb-3 d-lg-none" id="rewards">
@@ -77,5 +77,21 @@
     alert("請先登入");
     <% end %>
   });
+  function AddFarmer(id){
+    <% if user_signed_in? %>
+    $.post( "/favo_farmers", { farmer_id: id })
+      .done(function( data ) {
+        if ($("#heart_"+id).attr('data-prefix').indexOf("fas") == 0){
+          $("#heart_"+id).attr('data-prefix', "far");
+        }
+        else
+        {
+          $("#heart_"+id).attr('data-prefix', "fas");
+        }        
+      });
+    <% else %>
+    alert("請先登入");
+    <% end %>
+  }
   </script>
 <% end %>

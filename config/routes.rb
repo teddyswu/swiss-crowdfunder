@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     get "cancel", :on => :collection
   end
 
+  resources :favo_farmers
+
   resources :campaigns do
     get "list", :on => :member
     get "group", :on => :member

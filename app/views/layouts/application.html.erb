@@ -75,7 +75,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="#">我的牆面</a>
-                <a class="dropdown-item" href="#">最愛小農</a>
+                <%= link_to "最愛小農", favo_farmers_path, class:"dropdown-item"  %>
                 <%= link_to "支持紀錄", orders_path, class:"dropdown-item" %>
                 <%= link_to "追蹤提案", tracks_path, class:"dropdown-item" %>
                 <%= link_to "提案紀錄", campaigns_path, class:"dropdown-item" %>
