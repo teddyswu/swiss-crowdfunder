@@ -10,6 +10,6 @@
 	  </div>
 	  <div class="text-muted"><small><%= cup.created_at.strftime('%F %H:%M') %></small></div>
 	  <%= truncate(strip_tags(cup.campaign_content), length: 50)%>
-	  <%= link_to "繼續閱讀", campaign_update_detail_path(@campaign.id, cup.id, anchor: "menu"), :class => "btn btn-sm btn-outline-primary" %>
+	  <%= link_to "繼續閱讀", campaign_update_detail_path(@campaign.slug, cup.id, anchor: "menu"), :class => "btn btn-sm btn-outline-primary" %>
 	</div>
 <% end %>
