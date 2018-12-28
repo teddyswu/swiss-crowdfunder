@@ -33,7 +33,7 @@
   <body id="top">
     <nav class="pushy pushy-left bg-white">
       <ul class="list-group list-group-flush border-bottom border-gray-9 m-0">
-        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="<%= YAML.load_file("config/settings.yml")[:agrisc_host]%>">
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="<%= "#{YAML.load_file("config/settings.yml")[:agrisc_host]}/stories/list"%>">
             農村故事
         </a>
         <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="">
@@ -51,7 +51,7 @@
           <button class="navbar-toggler menu-btn" type="button">
             <i class="fas fa-bars"></i>
           </button>
-          <a class="navbar-brand" href="/">
+          <a class="navbar-brand" href="<%= YAML.load_file("config/settings.yml")[:agrisc_host]%>">
             <img src="/sk2_assets/img/ui/logo1121.png" srcset="/sk2_assets/img/ui/logo1121.png" class="logo" alt="">
           </a>
           <div class="nav-main d-none d-lg-block navbar-collapse">
@@ -63,7 +63,7 @@
                 <%= link_to "友善提案", root_path, class:"nav-link p-3" %>
               </li>
               <li class="nav-item">
-                <a class="nav-link p-3" href="<%= YAML.load_file("config/settings.yml")[:agrisc_host]%>">農村故事</a>
+                <a class="nav-link p-3" href="<%= "#{YAML.load_file("config/settings.yml")[:agrisc_host]}/stories/list"%>">農村故事</a>
               </li>
             </ul>
           </div>
@@ -109,12 +109,6 @@
               <li class="nav-item">
                 <%= link_to t(".about-us"), static_about_us_path, :class => "nav-link" %>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">關於我們</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">關於我們</a>
-              </li>
             </ul>
           </div>
           <div class="col-6 col-sm-3 col-md mb-2">
@@ -124,12 +118,6 @@
               </li>
               <li class="nav-item">
                 <%= link_to t(".terms-of-service"), static_terms_of_service_path, :class => "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">服務條款</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">服務條款</a>
               </li>
             </ul>
           </div>

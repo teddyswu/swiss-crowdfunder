@@ -1,7 +1,49 @@
-ID:<%= @user.id%><br />
-暱稱：<%= @user.user_profile.nickname %>
-<hr>
-發起募資<br />
-<% @user.campaigns.each do |campaign|%>
-	<%= campaign.title %><br />
-<% end %>
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success mb-10">
+          <h1 class="font-weight-bold">友善會員</h1>
+          <div class="h3">開心農場</div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 mb-6">
+        <div class="border-top border-bottom border-gray py-3">
+          <div class="row">
+            <div class="col-12 col-lg-2 my-2 text-center">
+              <img class="img-fluid rounded-circle" src="<%= @user.authorizations.present? ? "https://graph.facebook.com/#{@user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 150px;">
+            </div>
+            <div class="col-12 col-lg-10 my-2">
+              <div class="mb-2">
+                <div class="text-center text-md-left">
+                  <span class="h5"><%= @user.user_profile.nickname%></span>
+                </div>
+              </div>
+              <ul class="nav nav-info">
+                <li class="nav-item my-1">
+                  <div class="nav-link">
+                    支持 <a href=""><u><%= @user.orders.size%></u></a> 個活動
+                  </div>
+                </li>
+                <li class="nav-item my-1">
+                  <div class="nav-link">
+                    閱讀 <a href=""><u>10</u></a> 篇友善故事
+                  </div>
+                </li>
+                <li class="nav-item my-1">
+                  <div class="nav-link">
+                    關注 <a href=""><u><%= @user.tracks.size%></u></a> 位友善農夫
+                  </div>
+                </li>
+              </ul>
+              <div class="mt-4 text-row-2 text-muted">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

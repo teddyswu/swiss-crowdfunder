@@ -36,7 +36,7 @@ class CampaignsController < ApplicationController
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
     @agrisc_host = YAML.load_file("config/settings.yml")[:agrisc_host]
-    @is_favo = FavoFarmer.where(:user_id => current_user.id).map { |user| user.farmer_id }
+    @is_favo = current_user.present? ? FavoFarmer.where(:user_id => current_user.id).map { |user| user.farmer_id } : [0]
   end
 
   def support
@@ -180,7 +180,7 @@ class CampaignsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find_by(:slug => params[:id])
-      redirect_to root_path if @campaign.status != 3
+      redirect_to root_path if (@campaign.status != 3 and current_user.is_admin == false and @campaign.user_id != current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
