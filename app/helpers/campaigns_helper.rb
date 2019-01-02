@@ -77,13 +77,13 @@ module CampaignsHelper
     agrisc_host = YAML.load_file("config/settings.yml")[:agrisc_host]
     case campaign.is_rate
     when true
-      "<a class=\"btn btn-sm btn-block btn-outline-secondary h-100\" href=\"#{agrisc_host}/#{campaign.id}/rate\">
+      "<a class=\"btn btn-sm btn-block btn-outline-primary h-100\" href=\"#{agrisc_host}/#{campaign.id}/rate\">
         <div class=\"h-100 d-flex flex-column justify-content-center\">
           <div class=\"font-weight-bold\">滿意度指數</div>
           <div class=\"my-2\">
-            <i class=\"far fa-2x fa-meh\"></i>
+            <i class=\"far fa-2x fa-smile\"></i>
           </div>
-          <div class=>尚未調查</div>
+          <div class=>8.5</div>
         </div>
       </a>".html_safe
     else
