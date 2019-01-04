@@ -57,7 +57,7 @@
           <div class="nav-main d-none d-lg-block navbar-collapse">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link p-3" href="#">工作牆</a>
+                <a class="nav-link p-3" href="<%= "#{YAML.load_file("config/settings.yml")[:agrisc_host]}/work_walls"%>">工作牆</a>
               </li>
               <li class="nav-item">
                 <%= link_to "友善提案", root_path, class:"nav-link p-3" %>
@@ -74,13 +74,14 @@
                 <img class="img-fluid rounded-circle" src="<%= current_user.authorizations.present? ? "https://graph.facebook.com/#{current_user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 30px">
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">我的牆面</a>
+                <%= link_to "我的牆面", "#{YAML.load_file("config/settings.yml")[:agrisc_host]}/farmers/#{current_user.id}", class: "dropdown-item" if current_user.is_check_farmer?%>
                 <%= link_to "最愛小農", favo_farmers_path, class:"dropdown-item"  %>
                 <%= link_to "支持紀錄", orders_path, class:"dropdown-item" %>
                 <%= link_to "追蹤提案", tracks_path, class:"dropdown-item" %>
                 <%= link_to "提案紀錄", campaigns_path, class:"dropdown-item" %>
                 <div class="dropdown-divider"></div>
-                <!-- <a class="dropdown-item" href="#">工作管理</a> -->
+                <a class="dropdown-item" href="#"></a>
+                <%= link_to "工作管理", "#{YAML.load_file("config/settings.yml")[:agrisc_host]}/work_records/outputs?name=#{current_user.farmer_profile.name}", class: "dropdown-item" if current_user.is_check_farmer?%>
                 <%= link_to "帳號管理", edit_user_registration_path, class:"dropdown-item" %>
                 <%= link_to "登出", destroy_user_session_path, class:"dropdown-item" %>
               </div>
