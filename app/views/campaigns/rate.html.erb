@@ -1,0 +1,100 @@
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+  <div class="container mb-3">
+    <div class="mb-3">
+      <%= link_to campaigns_path do %>
+        <i class="fas fa-chevron-left"></i> 返回參與紀錄
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-12">
+          <div class="text-center mb-10">
+              <div class="h3 text-success"><%= @campaign.title%></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 my-2">
+        <div class="border rounded p-3 h-100">
+          <div class="progress-circle progress-info" data-percentage="80">
+            <span class="progress-left">
+              <span class="progress-bar"></span>
+            </span>
+            <span class="progress-right">
+              <span class="progress-bar"></span>
+            </span>
+            <div class="progress-value w-100">
+              <div>
+                8.0<br>
+                <span>期望指數</span>
+              </div>
+            </div>
+          </div>
+          <p>對故事提案最滿意的地方</p>
+          <ul class="fa-ul pl-5 ml-0 font-small text-muted">
+            <li><span class="fa-li" ><i class="far fa-comment"></i></span>故事影片故事影片故事影片故事影片故事影片故事影片</li>
+            <li><span class="fa-li" ><i class="far fa-comment"></i></span>解決阿財與茶園面臨的問題</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 my-2">
+        <div class="border rounded p-3 h-100">
+          <div class="progress-circle progress-warning" data-percentage="40">
+            <span class="progress-left">
+              <span class="progress-bar"></span>
+            </span>
+            <span class="progress-right">
+              <span class="progress-bar"></span>
+            </span>
+            <div class="progress-value w-100">
+              <div>
+                4.0<br>
+                <span>體驗指數</span>
+              </div>
+            </div>
+          </div>
+          <p>對故事提案最滿意的地方</p>
+          <ul class="fa-ul pl-5 ml-0 font-small text-muted">
+            <li><span class="fa-li" ><i class="far fa-comment"></i></span>故事影片故事影片故事影片故事影片故事影片故事影片</li>
+            <li><span class="fa-li" ><i class="far fa-comment"></i></span>解決阿財與茶園面臨的問題</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 my-2">
+        <div class="border rounded p-3 h-100">
+          <div class="progress-circle progress-danger" data-percentage="70">
+            <span class="progress-left">
+              <span class="progress-bar"></span>
+            </span>
+            <span class="progress-right">
+              <span class="progress-bar"></span>
+            </span>
+            <div class="progress-value w-100">
+              <div>
+                7.0<br>
+                <span>經驗指數</span>
+              </div>
+            </div>
+          </div>
+          <p>對整體最滿意的地方與分享意願</p>
+          <ul class="fa-ul pl-5 ml-0 font-small text-muted">
+            <li><span class="fa-li" ><i class="far fa-comment"></i></span>故事影片故事</li>
+            <li><span class="fa-li" ><i class="far fa-comment"></i></span>解決阿財與茶園面臨的問題</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 my-2">
+        <div class="bg-light bs rounded p-3">
+          <div class="text-center">
+            <p>滿意度指數</p>
+            <div class="display-1 text-warning">
+              <i class="far fa-2x fa-meh"></i><br>
+              8.5
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

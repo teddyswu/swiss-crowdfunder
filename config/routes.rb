@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     post "goody_create",:on => :collection
     delete "goody_del", :on => :member
     get "check_slug", :on => :collection
+    get "rate", :on => :member
     resources :goodies, only: [:index] do
       resources :orders, only: [:new, :show, :create]
     end

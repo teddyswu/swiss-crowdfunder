@@ -176,6 +176,10 @@ class CampaignsController < ApplicationController
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
   end
 
+  def rate
+    @campaign = Campaign.find_by(:slug => params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
