@@ -184,7 +184,7 @@ class CampaignsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find_by(:slug => params[:id])
-      redirect_to root_path if (@campaign.status != 3 and current_user.is_admin == false and @campaign.user_id != current_user.id)
+      redirect_to root_path if (current_user.is_admin == false and @campaign.user_id != current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
