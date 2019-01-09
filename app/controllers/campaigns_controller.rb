@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :edit, :update, :group_edit, :goody, :group, :support]
+  before_action :set_campaign, only: [:show, :edit, :update, :goody, :group, :support]
   before_action :authenticate_user!, only: [:index, :new]
 
   # GET /campaigns/1
@@ -184,7 +184,7 @@ class CampaignsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find_by(:slug => params[:id])
-      redirect_to root_path if (current_user.is_admin == false and @campaign.user_id != current_user.id)
+      redirect_to root_path if (@campaign.status != 3 and current_user.is_admin == false and @campaign.user_id != current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
