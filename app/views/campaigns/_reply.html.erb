@@ -48,7 +48,7 @@
 		  			<%= f.hidden_field :enabled, :value => true %>
 		  			<div class="form-row align-items-center">
 	          	<div class="col">
-	          		<%= f.text_area(:content, :class => "form-control mb-2 reply_#{crp.id}", :placeholder => "回覆這則留言")%>
+	          		<%= f.text_area(:content, :class => "form-control mb-2 reply_#{crp.id}", :placeholder => "回覆這則留言", :required => true)%>
 			    		</div>
 		          <div class="col-auto">
 		            <button class="btn btn-outline-primary mb-2">送出</button>

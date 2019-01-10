@@ -5,7 +5,7 @@
       <%= f.hidden_field :campaign_id, :value => @campaign.id%>
       <%= f.hidden_field :enabled, :value => true %>
       <%= f.hidden_field :user_id, :value => current_user.id%>
-      <%= f.text_area(:content, :class => "form-control", :rows => "4", :placeholder => "留言")%>
+      <%= f.text_area(:content, :class => "form-control", :rows => "4", :placeholder => "留言", :required => true)%>
       <button class="btn btn-outline-primary">送出</button>
     <% end %>
   </div>

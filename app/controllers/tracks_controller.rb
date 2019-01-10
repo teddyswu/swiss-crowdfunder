@@ -4,7 +4,7 @@ class TracksController < ApplicationController
 
 	def create
     campaign = Campaign.find_by_slug(params[:campaign])
-  	@track = Track.where(:user_id => params[:user_id], :campaign_id => campaign.id)
+  	@track = Track.where(:user_id => params[:user_id], :campaign_id => campaign.id).order("id DESC")
   	@track.present? ? @track.destroy_all : @track.create
   	render plain: "OK"
 	end

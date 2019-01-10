@@ -37,12 +37,12 @@
     </div>
   </div>
 	<div class="container">
-    <row>
+    <div class="row">
       <% @tracks.each do |track|%>
         <div class="col-12 col-sm-6 col-lg-3 my-3">
           <div class="item">
             <%= link_to campaign_path(track.campaign.slug), :class => "d-block position-relative" do %>
-              <span class="badge badge-primary">NEW</span>
+              <%= campaign_tag(track.campaign) %>
               <img class="img-fluid text-center" src="<%= track.campaign.campaign_image.try(:campaign_path) %>" alt="">
             <% end %>
             <div class="p-2">

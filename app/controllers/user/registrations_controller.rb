@@ -26,6 +26,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     super
     resource.update_attributes!(user_params)
     resource.user_profile.update_attributes!(user_profile_params)
+    set_flash_message! :notice, :updated
   end
 
   # DELETE /resource
@@ -59,6 +60,10 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update_without_password(params)
+  end
+
+  def after_update_path_for(resource)
+    edit_user_registration_path(resource)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
