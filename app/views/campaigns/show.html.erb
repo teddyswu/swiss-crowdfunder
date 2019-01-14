@@ -54,7 +54,9 @@
           <figure class="figure">
             <%= image_tag @campaign.campaign_image.try(:campaign_path), class: "img-fluid" %>
           </figure>
-          <%= raw @campaign.description_html %>
+          <div id="campaign_body">
+            <%= raw @campaign.description_html %>
+          </div>
         </div>
         <div class="border p-3 rounded">
           <div class="text-center mb-3">
@@ -79,23 +81,26 @@
     </div>
   </div>
 </div>
+<div class="fixed-bottom bg-white border-top p-3 d-lg-none" id="support-action">
+  <%= link_to "支持提案", campaign_goodies_path(@campaign.slug), class: "btn btn-primary btn-block" %>
+</div>
 <% content_for :javascript do %>
   <script>
+  $("#campaign_body").find('img').map(function(){
+    $(this).attr('class', "img-fluid");
+    $(this).removeAttr('style');
+  })
   $(".btn_card").click(function() {
     <% if user_signed_in? %>
-    var track_class = $("#track_btn").attr("class")
+    var track_class = $("#track_btn").attr("data-prefix")
     $.post( "/tracks", { user_id: <%= current_user.id %>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
-        if (track_class.indexOf("-o")!=-1){
-          alert( "追蹤取消" );
-          $("#track_btn").removeClass("fa-bookmark-o");
-          $("#track_btn").addClass("fa-bookmark");
+        if (track_class.indexOf("fas")!=-1){
+          $("#track_btn").attr("data-prefix", "far")
         }
         else
         {
-          alert( "追蹤完成" );
-          $("#track_btn").removeClass("fa-bookmark");
-          $("#track_btn").addClass("fa-bookmark-o"); 
+          $("#track_btn").attr("data-prefix", "fas")
         }
       });
     <% else %>

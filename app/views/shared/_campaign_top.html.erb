@@ -53,25 +53,25 @@
       </div>
       <div class="my-2">
         <div class="font-small text-muted">剩餘時間 (<%= I18n.l campaign.start_date %> ~ <%= I18n.l campaign.end_date %>)</div>
-        <div class="h1 font-weight-bold"><%= render_remain_day_only_num(campaign.end_date) %>天</div>
+        <div class="h1 font-weight-bold"><%= render_remain_day_only_num(campaign.end_date) %></div>
       </div>
       <div class="row no-gutters mt-2">
         <div class="col-6">
           <a class="btn btn-outline-primary btn-like btn_card" href="##">
             <i class="<%= is_track ? "fas" : "far" %> fa-fw fa-heart" id="track_btn" ></i> <%= is_track ? "已追蹤" : "追蹤" %>
           </a>
-          <div class="fb-like" data-href="<%= request.url%>" data-layout="button" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+          <div class="fb-like" data-href="<%= request.url%>" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
         </div>
         <div class="col-6 text-right">
           <!--<small class="mr-2">分享</small>-->
           <div class="btn-group btn-group-md">
-            <a class="btn btn-outline-secondary" href="">
+            <a class="btn btn-outline-secondary" href="http://twitter.com/share?url=<%= request.url%>">
               <i class="fab fa-fw fa-twitter"></i>
             </a>
-            <a class="btn btn-outline-secondary" href="">
+            <a class="btn btn-outline-secondary" href="https://www.facebook.com/sharer/sharer.php?u=<%= request.url%>">
               <i class="fab fa-fw fa-facebook-f"></i>
             </a>
-            <a class="btn btn-outline-secondary" href="">
+            <a class="btn btn-outline-secondary" href="http://line.naver.jp/R/msg/text/?<%= request.url%>">
               <i class="fab fa-fw fa-line"></i>
             </a>
           </div>

@@ -64,7 +64,7 @@
                     <i class="fas fa-fw fa-file-alt"></i> 支持編號：<%= order.number%>
                   </span>
                   <span class="d-inline-block mr-5">
-                    <i class="fas fa-fw fa-credit-card"></i> 支持狀態：<%= render_is_paid(order.goody.campaign.id, order.goody.id, order.id, order.paid)%>
+                    <i class="fas fa-fw fa-credit-card"></i> 支持狀態：<%= render_is_paid(order.goody.campaign, order.goody.id, order.id, order.paid)%>
                   </span>
                   <span class="d-inline-block mr-5">
                     <i class="fas fa-fw fa-calendar-alt"></i> 預計達成時間：<%= order.goody.delivery_time.strftime('%F')%>

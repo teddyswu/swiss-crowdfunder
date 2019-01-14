@@ -101,6 +101,7 @@
                       </span>
                     </label>
                     <%= s.text_field :email, value: current_user.email, :class => "form-control" %>
+                    <p id ="email_format" style="font-size: 10px;color: red;"></p>
                   </div>
                 <% end %>
                 <div class="form-group">
@@ -178,7 +179,7 @@
             </div>
           </div>
         </div>
-        <a class="btn btn-outline-primary btn-block" href="project-rewards.html">更改回饋</a>
+        <%= link_to "更改回饋", campaign_goodies_path(@goody.campaign.slug), :class => "btn btn-outline-primary btn-block"%>
       </div>
     </div>
   </div>
@@ -194,6 +195,16 @@
   $(document).ready(function() {
     $('#order_bonus').keyup(function () {
       this.value = this.value.replace(/[^\d]/g, '');
+    });
+    $('#order_supporter_attributes_email').change(function () {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(re.test(String($('#order_supporter_attributes_email').val()).toLowerCase()) == false ){
+        $('#order_supporter_attributes_email').val("");
+        $("#email_format").html("格式錯誤");
+      }
+      else{
+       $("#email_format").html(""); 
+      }
     });
   });
   function validateForm(){
