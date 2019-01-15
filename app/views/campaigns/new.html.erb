@@ -79,7 +79,7 @@
         <%= f.text_field :slug, :class => "form-control", :required => true %>
         <div class="form-text text-muted font-small">
           請輸入一組英文名稱、或由英文+數字組合的名稱，不能輸入其它符號或空格，這組名稱將作為您的提案短網址使用。
-        </div>
+        </div><div id="slug_word" style="font-size: 10px;color: red;"></div>
       </div>
       <div class="form-group">
         <label>提案摘要</label>
@@ -216,7 +216,7 @@
       </div>
       <div class="form-row mb-6">
         <div class="col-12 col-lg-4 my-2">
-          <%= select_tag :group_id, '<option value=''>選擇隊伍</option>'.html_safe + options_for_select(@farmer_group), :class => "custom-select", :onchange=> "change_user_id();", :required => true %>
+          <%= select_tag :group_id, '<option value=''>選擇隊伍</option>'.html_safe + options_for_select(@farmer_group), :class => "custom-select", :onchange=> "change_user_id();"%>
         </div>
         <div class="col-12 col-lg-4 my-2">
           <select class="custom-select" id="campaign_groups_user_id">
@@ -313,7 +313,6 @@
     function form_four(){
       var fields = "4. 小農隊\n";
       var chun = 0;
-      if($("[name='campaign_groups[0][income]']").val()==undefined){ fields += "參與合作的小農\n";chun+=1};
       if($('input[id=customCheck-agree]:checked').length == 0){fields += "是否同意\n";chun+=1};
       if(chun==0){return true;}else{return fields;}
     }
@@ -329,7 +328,12 @@
     $( "#campaign_slug" ).change(function() {
       $.get("<%= check_slug_campaigns_path %>", { slug: $( "#campaign_slug" ).val() },
       function(data){
-        if(data == true){ $( "#campaign_slug" ).val("") }
+        if(data == true){ 
+          $( "#campaign_slug" ).val("");
+          $("#slug_word").html("關鍵字重複"); 
+        }else{
+          $("#slug_word").html("");
+        }
       });
     });
   </script>

@@ -61,16 +61,12 @@
     var track_class = $("#track_btn").attr("class")
     $.post( "/tracks", { user_id: <%= current_user.id %>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
-        if (track_class.indexOf("-o")!=-1){
-          alert( "追蹤完成" );
-          $("#track_btn").removeClass("fa-bookmark-o");
-          $("#track_btn").addClass("fa-bookmark");
+        if (track_class.indexOf("fas")!=-1){
+          $("#track_btn").attr("data-prefix", "far")
         }
         else
         {
-          alert( "追蹤取消" );
-          $("#track_btn").removeClass("fa-bookmark");
-          $("#track_btn").addClass("fa-bookmark-o"); 
+          $("#track_btn").attr("data-prefix", "fas")
         }
       });
     <% else %>

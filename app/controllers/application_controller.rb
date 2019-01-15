@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource_or_scope)
+    session[:redirect_path].present? ? session[:redirect_path] : root_path
+  end
+
   private
   def render_404
     render "errors/not_found"

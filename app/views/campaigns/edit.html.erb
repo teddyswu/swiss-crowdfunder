@@ -319,7 +319,6 @@
     function form_four(){
       var fields = "4. 小農隊\n";
       var chun = 0;
-      if($("[name='campaign_groups[0][income]']").val()==undefined){ fields += "參與合作的小農\n";chun+=1};
       if($('input[id=customCheck-agree]:checked').length == 0){fields += "是否同意\n";chun+=1};
       if(chun==0){return true;}else{return fields;}
     }

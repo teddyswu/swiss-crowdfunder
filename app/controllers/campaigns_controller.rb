@@ -1,6 +1,7 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :goody, :group, :support]
   before_action :authenticate_user!, only: [:index, :new]
+  protect_from_forgery with: :null_session
 
   # GET /campaigns/1
   # GET /campaigns/1.json
@@ -126,8 +127,10 @@ class CampaignsController < ApplicationController
     else
       @campaign_group = CampaignGroup.where(:campaign_id => @campaign.id)
       @campaign_group.destroy_all
-      group_params.each do |k, v|
-        CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
+      if group_params.present?
+        group_params.each do |k, v|
+          CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
+        end
       end
       redirect_to campaigns_path
     end
@@ -153,8 +156,10 @@ class CampaignsController < ApplicationController
       @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
       @campaign_tag_ship.save!
     end
-    group_params.each do |k, v|
-      CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
+    if group_params.present?
+      group_params.each do |k, v|
+        CampaignGroup.create(:campaign_id => @campaign.id, :user_id => v[:user_id], :income => v[:income] )      
+      end
     end
     
     redirect_to campaigns_path
@@ -216,6 +221,6 @@ class CampaignsController < ApplicationController
     end
 
     def group_params
-      params.require(:campaign_groups)
+      params.require(:campaign_groups) if params[:campaign_groups].present?
     end
 end
