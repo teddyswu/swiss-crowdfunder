@@ -10,7 +10,7 @@ class TracksController < ApplicationController
 	end
 
 	def index
-		@tracks = Track.where(:user_id => current_user.id)
+		@tracks = Track.where(:user_id => current_user.id).order("id DESC")
 	end
 
 	def cancel

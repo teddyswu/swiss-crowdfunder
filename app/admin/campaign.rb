@@ -1,5 +1,4 @@
 ActiveAdmin.register Campaign do
-#
   permit_params :goal, :start_date, :end_date, :title, :youtube_url,
     :description, :claim, :twitter_url, :headline, :slug, :risk, :is_rate,
     :order_description, :order_success, :email, :image, :active, :status

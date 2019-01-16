@@ -183,7 +183,7 @@
       </div>
       <div class="form-group">
         <%= label_tag :facebook_url, "提案粉專" %>
-        <%= text_field_tag :facebook_url, current_user.user_profile.facebook_url, :class => "form-control" %>
+        <%= text_field_tag :facebook_url, current_user.user_profile.try(:facebook_url), :class => "form-control" %>
         <div class="form-text text-muted font-small">
           請輸入與提案相關的FB粉專，請貼上完整網址。
         </div>
