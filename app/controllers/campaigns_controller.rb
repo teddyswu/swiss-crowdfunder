@@ -148,9 +148,11 @@ class CampaignsController < ApplicationController
     @campaign.start_date = params[:campaign][:start_date].gsub(/[年月]/, '-').gsub("日","")
     @campaign.end_date = params[:campaign][:end_date].gsub(/[年月]/, '-').gsub("日","")
     @campaign.save!
-    user_profile = UserProfile.find_by_user_id(current_user.id)
-    user_profile.facebook_url = params[:facebook_url] if params[:facebook_url].present?
-    user_profile.save!
+    if params[:facebook_url].present?
+      user_profile = UserProfile.find_by_user_id(current_user.id)
+      user_profile.facebook_url = params[:facebook_url] 
+      user_profile.save!
+    end
     @campaign.campaign_image.update_urls_success?
     tag_ids_params.each do |ti|
       @campaign_tag_ship = CampaignTagShip.new(:campaign_id => @campaign.id, :campaign_tag_id => ti)
