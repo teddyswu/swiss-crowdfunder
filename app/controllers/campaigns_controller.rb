@@ -149,7 +149,7 @@ class CampaignsController < ApplicationController
     @campaign.end_date = params[:campaign][:end_date].gsub(/[年月]/, '-').gsub("日","")
     @campaign.save!
     user_profile = UserProfile.find_by_user_id(current_user.id)
-    user_profile.facebook_url = params[:facebook_url]
+    user_profile.facebook_url = params[:facebook_url] if params[:facebook_url].present?
     user_profile.save!
     @campaign.campaign_image.update_urls_success?
     tag_ids_params.each do |ti|
