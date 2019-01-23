@@ -108,7 +108,7 @@
                 <strong>關於我們</strong>
               </li>
               <li class="nav-item">
-                <%= link_to t(".about-us"), static_about_path, :class => "nav-link" %>
+                <%= link_to t(".about-us"), about_path, :class => "nav-link" %>
               </li>
             </ul>
           </div>
@@ -118,7 +118,7 @@
                 <strong>服務條款</strong>
               </li>
               <li class="nav-item">
-                <%= link_to t(".terms-of-service"), static_terms_path, :class => "nav-link" %>
+                <%= link_to t(".terms-of-service"), terms_path, :class => "nav-link" %>
               </li>
             </ul>
           </div>
@@ -204,11 +204,11 @@
               </small>
             </div>
             <div class="col-12 col-lg-3 text-center text-lg-right">
-              <%= link_to static_privacy_path, :class => "text-gray-6" do %>
+              <%= link_to privacy_path, :class => "text-gray-6" do %>
                 <small>隱私權政策</small>
               <% end %>
               <span class="mx-3">|</span>
-              <%= link_to "<small>服務條款</small>".html_safe, static_terms_path, :class => "text-gray-6" %>
+              <%= link_to "<small>服務條款</small>".html_safe, terms_path, :class => "text-gray-6" %>
             </div>
           </div>
         </div>

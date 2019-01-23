@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'static/about', to: 'static#about_us'
-  get 'static/terms', to: 'static#terms_of_service'
-  get 'static/privacy', to: 'static#privacy_policy'
+  get 'about', to: 'static#about_us'
+  get 'terms', to: 'static#terms_of_service'
+  get 'privacy', to: 'static#privacy_policy'
   get 'static/exception_test', to: 'static#exception_test'
 
   #devise_for :users, ActiveAdmin::Devise.config
