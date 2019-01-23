@@ -385,7 +385,7 @@ a.text-line:hover {
   font-size: .875rem;
   text-transform: uppercase; }
 
-/* This for loop creates the 	necessary css animation names
+/* This for loop creates the  necessary css animation names
 Due to the split circle of progress-left and progress right, we must use the animations on each side.
 */
 .progress-circle[data-percentage="10"] .progress-right .progress-bar {
@@ -692,7 +692,7 @@ Due to the split circle of progress-left and progress right, we must use the ani
 .btn-primary {
   color: #fff; }
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:focus {
+.btn-primary:hover, .btn-primary:active, .btn-outline-primary:hover, .btn-outline-primary:active {
   color: #fff !important; }
 
 .btn-group-justified {
@@ -1503,10 +1503,9 @@ input[type="text"], input[type="email"], input[type="date"] {
   cursor: pointer;
   background: transparent;
   color: transparent;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
+  top: 0;
+  width: 5%;
+  height: 100%;
   padding: 0;
   border: none;
   outline: none; }
@@ -1520,7 +1519,7 @@ input[type="text"], input[type="email"], input[type="date"] {
   opacity: 0.25; }
 .slick-prev:before, .slick-next:before {
   font-family: "Font Awesome 5 Free";
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 900;
   line-height: 1;
   color: #fff;

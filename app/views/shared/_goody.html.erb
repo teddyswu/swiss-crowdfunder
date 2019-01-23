@@ -7,7 +7,7 @@
     <div class="text-danger font-weight-bold"><%= number_to_currency(goody.price, precision: 0) %></div>
     <div class="text-muted mb-2">
       <small>
-        <div class="text-row-2"><%= goody.description %></div>
+        <div class=""><%= goody.description %></div>
         <i class="fas fa-fw fa-check"></i> <%= t(".quantity", quantity: goody.remaining_quantity) %><br>
         <i class="fas fa-fw fa-user"></i> <%= t(".backers", quantity: goody.orders_count) %><br>
         <i class="fas fa-fw fa-truck"></i> 預計送達 : <%= goody.delivery_time.strftime("%Y年%m月") %>
