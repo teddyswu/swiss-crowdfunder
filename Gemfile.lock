@@ -569,6 +569,7 @@ GEM
     selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    seo_helper (1.0.3)
     shellany (0.0.1)
     simple_form (4.0.1)
       actionpack (>= 5.0)
@@ -659,6 +660,7 @@ DEPENDENCIES
   rvm-capistrano
   sass-rails (~> 5.0)
   selenium-webdriver
+  seo_helper
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
