@@ -18,6 +18,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     UserProfile.find_or_create_by(:user_id => resource.id)
+    set_page_title "帳號管理"
+    
     super
   end
 

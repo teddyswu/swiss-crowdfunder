@@ -8,6 +8,9 @@ class CampaignUpdatesController < ApplicationController
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
+    set_page_description @campaign.claim
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title "#{@campaign.title}-進度更新"
 	end
 
 	def create
@@ -24,6 +27,9 @@ class CampaignUpdatesController < ApplicationController
 	def detail
 		@campaign_update = CampaignUpdate.find(params[:update_id])
 		@campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
+		set_page_description ActionView::Base.full_sanitizer.sanitize(@campaign_update.campaign_content)[0,60]
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title "#{@campaign.title}-#{@campaign_update.campaign_title}"
 	end
 
 	def update

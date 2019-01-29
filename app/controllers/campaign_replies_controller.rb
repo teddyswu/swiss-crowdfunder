@@ -8,6 +8,9 @@ class CampaignRepliesController < ApplicationController
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
     @sponsor_ids = @campaign.orders.map {|order| order.user_id }
+    set_page_description @campaign.claim
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title "#{@campaign.title}-留言板"
 	end
 
 	def create

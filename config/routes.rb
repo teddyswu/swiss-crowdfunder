@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'static/exception_test', to: 'static#exception_test'
 
   #devise_for :users, ActiveAdmin::Devise.config
-  devise_for :users, :controllers => { :registrations => "user/registrations",:omniauth_callbacks => "user/omniauth_callbacks" }
+  devise_for :users, :controllers => { :registrations => "user/registrations",:omniauth_callbacks => "user/omniauth_callbacks", :sessions => "user/sessions" }
   ActiveAdmin.routes(self)
   resources :users
   resources :campaign_qas

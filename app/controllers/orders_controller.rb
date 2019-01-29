@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     @order.amount = @goody.price
     @order.quantity = 1
     @order.paid = false
-
+    
     if NewOrderService.new(@order).call
       redirect_to go_pay_order_path(@order.id)#[@goody.campaign, @goody, @order]
     else
@@ -35,10 +35,12 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(:user_id => current_user.id)
+    set_page_title "支持紀錄"
   end
 
   def detail
     @order = Order.find(params[:id])
+    set_page_title "支持紀錄-#{@order.goody.campaign.title}"
   end
 
   def show
@@ -49,6 +51,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @campaign = @order.goody.campaign
     @campaigns_new = Campaign.where(:status => 3).order("updated_at DESC").limit(4)
+    set_page_description @campaign.claim
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title "#{@campaign.title}-支持成功"
   end
 
   def is_paid
@@ -101,6 +106,9 @@ class OrdersController < ApplicationController
     @goody = Goody.find(params[:goody_id])
     @order = Order.new
     @order.build_supporter
+    set_page_description @goody.campaign.claim
+    set_page_image @goody.campaign.campaign_image.campaign_path
+    set_page_title "#{@goody.campaign.title}-支持提案"
   end
 
   private

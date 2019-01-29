@@ -1,5 +1,6 @@
 class ErrorsController < ApplicationController
   def not_found
+  	set_page_title "找不到頁面"
     respond_to do |format|
       format.html { render status: 404 }
     end

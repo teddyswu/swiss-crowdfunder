@@ -9,16 +9,21 @@ class CampaignsController < ApplicationController
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
+    set_page_description @campaign.claim
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title @campaign.title
   end
 
   def index
     @campaigns = Campaign.where(:user_id => current_user.id)
+    set_page_title "提案紀錄"
   end
 
   def new
     @campaign = Campaign.new
     @campaign_tags = CampaignTag.all
     @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
+    set_page_title "發起提案"
   end
 
   def edit
@@ -38,12 +43,21 @@ class CampaignsController < ApplicationController
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
     @agrisc_host = YAML.load_file("config/settings.yml")[:agrisc_host]
     @is_favo = current_user.present? ? FavoFarmer.where(:user_id => current_user.id).map { |user| user.farmer_id } : [0]
+    group_name = @campaign.campaign_groups.map do |group| 
+      group.user.farmer_profile.front_name
+    end.join("、")
+    set_page_description group_name
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title "#{@campaign.title}-參與小農"
   end
 
   def support
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
+    set_page_description group_name
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title "#{@campaign.title}-支持者"
   end
 
   def group_edit
@@ -69,6 +83,7 @@ class CampaignsController < ApplicationController
 
   def goody
     @goody = Goody.new
+    set_page_title "編輯回饋項目-支持者"
   end
 
   def goody_create

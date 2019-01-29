@@ -11,6 +11,7 @@ class TracksController < ApplicationController
 
 	def index
 		@tracks = Track.where(:user_id => current_user.id).order("id DESC")
+		set_page_title "#追蹤提案"
 	end
 
 	def cancel

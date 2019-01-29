@@ -8,6 +8,9 @@ class CampaignQasController < ApplicationController
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )
+    set_page_description @campaign.claim
+    set_page_image @campaign.campaign_image.campaign_path
+    set_page_title "#{@campaign.title}-問與答"
 	end
 	
 	def create
