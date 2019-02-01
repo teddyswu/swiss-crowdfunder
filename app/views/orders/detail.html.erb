@@ -102,7 +102,7 @@
         </div>
         <div class="item d-block mb-6">
           <div class="d-block position-relative text-center">
-            <img class="img-fluid" src="assets/img/uploads/project-md2.jpg" alt="">
+            <img class="img-fluid" src="<%= @order.goody.goody_image.try(:cover) %>" alt="">
           </div>
           <div class="p-2">
             <div class="text-black"><%= @order.goody.title%></div>
