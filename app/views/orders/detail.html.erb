@@ -110,7 +110,7 @@
             <div class="text-muted mb-2">
               <small>
                 <i class="fas fa-fw fa-file-alt"></i> 支持編號: <%= @order.number%><br>
-                <i class="fas fa-fw fa-credit-card"></i> 支持狀態 : <%= render_is_paid(@order.goody.campaign.id, @order.goody.id, @order.id, @order.paid)%><br>
+                <i class="fas fa-fw fa-credit-card"></i> 支持狀態 : <%= render_is_paid(@order.goody.campaign, @order.goody.id, @order.id, @order.paid)%><br>
                 <i class="fas fa-fw fa-calendar-alt"></i> 預計達成時間 : <%= @order.goody.delivery_time.strftime('%F')%>
               </small>
             </div>
