@@ -47,6 +47,18 @@ class OrdersController < ApplicationController
     @goody = Goody.find(params[:goody_id])
   end
 
+  def edit
+    @order = Order.find(params[:id])
+    render :layout => false
+  end
+
+  def update
+    order = Order.find(params[:id])
+    order.update(order_params)
+    order.save!
+    redirect_to detail_order_path(params[:id])
+  end
+
   def finished
     @order = Order.find(params[:id])
     @campaign = @order.goody.campaign
