@@ -1,43 +1,45 @@
-<%= form_for @order, :url => order_path( @order.id) do |f| %>
-  <div class="card-body">
-    <%= f.hidden_field :user_id %>
-    <%= f.fields_for :supporter do |s| %>
-      <div class="form-group">
-        <label class="text-muted">收件人</label>
-        <%= s.text_field :first_name, value: @order.supporter.first_name, :class => "form-control", :placeholder => "請輸入姓名" %>
-      </div>
-      <div class="form-group">
-        <%= s.hidden_field :country %>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-10">
-          <label class="text-muted">地址</label>
-          <div class="form-control-plaintext">
-            <%= s.text_field :city, value: @order.supporter.city, :class => "form-control", :placeholder => "請輸入縣市" %>
-            <%= s.text_field :state, value: @order.supporter.state, :class => "form-control", :placeholder => "請輸入鄉鎮市區" %>
-            <%= s.text_field :address, value: @order.supporter.address, :class => "form-control", :placeholder => "請輸入地址" %>
+<% if current_user.id == @order.user_id %>
+  <%= form_for @order, :url => order_path( @order.id) do |f| %>
+    <div class="card-body">
+      <%= f.hidden_field :user_id %>
+      <%= f.fields_for :supporter do |s| %>
+        <div class="form-group">
+          <label class="text-muted">收件人</label>
+          <%= s.text_field :first_name, value: @order.supporter.first_name, :class => "form-control", :placeholder => "請輸入姓名" %>
+        </div>
+        <div class="form-group">
+          <%= s.hidden_field :country %>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-10">
+            <label class="text-muted">地址</label>
+            <div class="form-control-plaintext">
+              <%= s.text_field :city, value: @order.supporter.city, :class => "form-control", :placeholder => "請輸入縣市" %>
+              <%= s.text_field :state, value: @order.supporter.state, :class => "form-control", :placeholder => "請輸入鄉鎮市區" %>
+              <%= s.text_field :address, value: @order.supporter.address, :class => "form-control", :placeholder => "請輸入地址" %>
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <label class="text-muted">郵遞區號</label>
+            <%= s.text_field :postal_code, value: @order.supporter.postal_code, :class => "form-control" %>
           </div>
         </div>
-        <div class="form-group col-md-2">
-          <label class="text-muted">郵遞區號</label>
-          <%= s.text_field :postal_code, value: @order.supporter.postal_code, :class => "form-control" %>
+        <div class="form-group">
+          <label class="text-muted">聯絡電話</label>
+          <%= s.text_field :cell_phone, value: @order.supporter.cell_phone, :class => "form-control", :placeholder => "請輸入電話" %>
         </div>
+        <div class="form-group">
+          <label class="text-muted">聯絡信箱</label>
+          <%= s.text_field :email, value: @order.supporter.email, :class => "form-control" %>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <label class="text-muted">備註</label>
+        <%= f.text_area :remark, value: @order.remark, :class => "form-control"  %>
       </div>
       <div class="form-group">
-        <label class="text-muted">聯絡電話</label>
-        <%= s.text_field :cell_phone, value: @order.supporter.cell_phone, :class => "form-control", :placeholder => "請輸入電話" %>
+        <%= f.submit "儲存", :class => "btn btn-outline-primary"%>
       </div>
-      <div class="form-group">
-        <label class="text-muted">聯絡信箱</label>
-        <%= s.text_field :email, value: @order.supporter.email, :class => "form-control" %>
-      </div>
-    <% end %>
-    <div class="form-group">
-      <label class="text-muted">備註</label>
-      <%= f.text_area :remark, value: @order.remark, :class => "form-control"  %>
     </div>
-    <div class="form-group">
-      <%= f.submit "儲存", :class => "btn btn-outline-primary"%>
-    </div>
-  </div>
+  <% end %>
 <% end %>

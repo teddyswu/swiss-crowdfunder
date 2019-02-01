@@ -124,7 +124,7 @@
 <% content_for :javascript do %>
   <script>
     function change_info(){
-      url = '/orders/18/edit';
+      url = '/orders/<%= params[:id]%>/edit';
       xmlHttp = new XMLHttpRequest();
       xmlHttp.open( "GET", url, false );
       xmlHttp.send( null );
