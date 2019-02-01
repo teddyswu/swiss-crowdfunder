@@ -89,7 +89,7 @@
               <div class="form-control-plaintext"><%= @order.remark%></div>
             </div>
             <div class="form-group">
-              <%= link_to "變更資料", "##", :onclick => "change_info()", :class => "btn btn-outline-primary" %>
+              <%= link_to "變更資料", "##", :onclick => "change_info()", :class => "btn btn-outline-primary" if @order.goody.campaign.end_date > Date.today %>
             </div>
           </div>
         </div>
