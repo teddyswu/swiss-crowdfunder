@@ -70,15 +70,15 @@
   <script>
   $(".btn_card").click(function() {
     <% if user_signed_in? %>
-    var track_class = $("#track_btn").attr("class")
+    var track_class = $("#track_icon").attr("data-prefix")
     $.post( "/tracks", { user_id: <%= current_user.id %>, campaign: "<%= params[:id]%>" })
       .done(function( data ) {
         if (track_class.indexOf("fas")!=-1){
-          $("#track_btn").attr("data-prefix", "far")
+          $("#track_btn").html("<i class='far fa-fw fa-heart' id='track_icon' ></i>追蹤")
         }
         else
         {
-          $("#track_btn").attr("data-prefix", "fas")
+          $("#track_btn").html("<i class='fas fa-fw fa-heart' id='track_icon' ></i>已追蹤")
         }
       });
     <% else %>
