@@ -72,7 +72,6 @@
               <label for="name" class="col-sm-3 col-form-label">生日</label>
               <div class="col-sm-9">
                 <%= user_profile.date_field :birthday %> 
-                <%= link_to "親愛的會員，請打開您的生日賀卡!", "https://soginationaltest.s3-ap-southeast-1.amazonaws.com/agric_sc/gif/birthday-card.png", :target => "_blank" if resource.user_profile.birthday.present? %>
               </div>
             </div>
           <% end %>
