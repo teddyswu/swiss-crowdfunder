@@ -5,7 +5,7 @@
         <div class="p-0 p-lg-10">
           <img class="img-fluid py-0 py-lg-10" src="/sk2_assets/img/uploads/404-pic.png" alt="">
           <p>您查詢的頁面不存在</p>
-          <%= link_to "回首頁", root_path, :class => "btn btn-link"%>
+          <%= link_to "回首頁", "#{YAML.load_file("config/settings.yml")[:agrisc_host]}", :class => "btn btn-link"%>
         </div>
       </div>
     </div>
