@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="text-center text-success mb-7">
           <h1 class="font-weight-bold">友善會員</h1>
-          <div class="h3">支持紀錄</div>
+          <div class="h3">帳號管理</div>
         </div>
       </div>
     </div>
@@ -44,10 +44,15 @@
             <div class="alert alert-<%= key %>"><%= value %></div>
           <% end %>
           <%= f.error_notification %>
-          <div class="form-group row">
-            <label for="email" class="col-sm-3 col-form-label">電子信箱</label>
-            <div class="col-sm-9">
-              <%= f.input :email, required: true, autofocus: true,:readonly => true, label: false, :class => "form-control" %>
+          <div class="form-group row align-items-center">
+            <label for="id" class="col-sm-3 col-form-label">
+              <img class="img-fluid rounded-circle" src="<%= current_user.authorizations.present? ? "https://graph.facebook.com/#{current_user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 50px">
+            </label>
+            <div class="col-sm-10"></div>
+            <div class="col-12">
+              <small class="form-text text-muted">
+                * 會員照片與您的臉書相同，臉書更新照片~友故事會一起更新哦！
+              </small>
             </div>
           </div>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -58,6 +63,25 @@
               <label for="name" class="col-sm-3 col-form-label">暱稱</label>
               <div class="col-sm-9">
                 <%= user_profile.input :nickname,required: true,autofocus: true, label: false, :class => "form-control" %>
+                <div class="form-text text-muted font-small">
+                  * 網站顯示的名稱。
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">電子信箱</label>
+              <div class="col-sm-9">
+                <%= f.input :email, required: true, autofocus: true,:readonly => true, label: false, :class => "form-control" %>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+                  <label class="custom-control-label" for="customCheck2">允許訊息通知</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-9 offset-sm-3">
+                <img class="img-fluid" src="/sk2_assets/img/uploads/qrcode.png" alt="" style="width: 80px;">
+                <a class="" href="https://m.me/ugooz" target="_blank"><u>和友故事聊聊吧！</u></a>
               </div>
             </div>
             <%= user_profile.input :country, :as => :hidden, :input_html => { :value => "TW" }  %>
