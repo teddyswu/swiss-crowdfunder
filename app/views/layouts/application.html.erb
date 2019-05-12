@@ -147,12 +147,12 @@
                   <i class="fab fa-fw fa-2x fa-facebook"></i>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" style="display:none">
                 <a class="nav-link" href="#">
                   <i class="fab fa-fw fa-2x fa-instagram"></i>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" style="display:none">
                 <a class="nav-link" href="#">
                     <i class="fab fa-fw fa-2x fa-youtube"></i>
                 </a>
@@ -196,6 +196,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.js"></script>
     <script src="/sk2_assets/js/custom.js"></script>
     <div id="fb-root"></div>
+    <script>
+      function tapCopy($id) {
+        document.getElementById($id).style.display='block'
+        selectText($id);
+        document.execCommand('copy');
+        document.getElementById($id).style.display='none'
+        alert('複製成功');
+      }
+      function selectText(element) {
+        var text = document.getElementById(element);
+        if (document.body.createTextRange) {
+          var range = document.body.createTextRange();
+          range.moveToElementText(text);
+          range.select();
+        } else if (window.getSelection) {
+          var selection = window.getSelection();
+          var range = document.createRange();
+          range.selectNodeContents(text);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        } else {
+          alert("複製失敗");
+        }
+      }
+    </script>
     <%= yield(:javascript) if content_for(:javascript).present? %>
   </body>
 </html>

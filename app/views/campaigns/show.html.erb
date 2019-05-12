@@ -45,7 +45,7 @@
           <div class="border p-3 mb-6 rounded">
             <div class="lead font-weight-bold">
               <span class="badge badge-warning text-white">NEW</span>
-                計畫更新 <small>發佈於<%= @campaign.campaign_updates.last.created_at.strftime(" %F") %></small>
+                提案更新 <small>發佈於<%= @campaign.campaign_updates.last.created_at.strftime(" %F") %></small>
             </div>
             <%= link_to "#{@campaign.campaign_updates.last.campaign_title}", campaign_update_detail_path(params[:id], @campaign.campaign_updates.last.id, anchor: "menu") %>
           </div>

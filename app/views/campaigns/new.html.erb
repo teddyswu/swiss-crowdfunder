@@ -37,7 +37,7 @@
   <%= form_for @campaign, :url => campaigns_path(@campaign), :method => :post, :validation => true, :html => {:class => 'container tab-content'} do |f| %>
     <div class="tab-pane fade show active" id="tab-create1">
       <div class="mb-3 font-small text-muted">
-        設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案
+        請依照您的提案內容，完整填入下列各項必填資訊，填寫完成後您可儲存與檢查您的提案，在未點擊「提交審核」按鈕之前，您都可以修改提案內容，如有問題請與我們聯絡。
       </div>
       <div class="form-group">
         <%= f.label :goal, "資金目標" %>
@@ -48,7 +48,7 @@
           <%= f.number_field :goal, :class => "form-control", :required => true %>
         </div>
         <div class="form-text text-muted font-small">
-          資金目標並無設限，但應能啟動提案為門檻。
+          資金目標並無設限，請依您提案的需求，估算您需要募集的金額。設定目標金額時，除了考量提案執行的成本支出外，也必須考量回饋項目的成本。
         </div>
       </div>
       <div class="form-group">
@@ -64,28 +64,28 @@
           </div>
         </div>
         <div class="form-text text-muted font-small">
-          系統預設開始時間為當日中午12點整，結束時間為當日傍晚24點整；最長不可超過90天。
+          系統預設開始時間為當日中午12點整，結束時間為結束日期當日晚上24點整；最長不可超過90天。
         </div>
       </div>
       <div class="form-group">
         <label>提案名稱</label>
         <%= f.text_field :title, :class => "form-control", :required => true %>
         <div class="form-text text-muted font-small">
-          不超過XX字，請輸入有核心理念引人注意的標題，非必要，審核後將不得變更。
+          不超過22字，請輸入有核心理念引人注意的標題，請仔細確認標題，審核通過後將不得變更。
         </div>
       </div>
       <div class="form-group">
         <label>提案關鍵字</label>
         <%= f.text_field :slug, :class => "form-control", :required => true %>
         <div class="form-text text-muted font-small">
-          請輸入一組英文名稱、或由英文+數字組合的名稱，不能輸入其它符號或空格，這組名稱將作為您的提案短網址使用。
+          只接受英文與數字，不接受中文，符號只接受"_"，其它符號不可。
         </div><div id="slug_word" style="font-size: 10px;color: red;"></div>
       </div>
       <div class="form-group">
         <label>提案摘要</label>
         <%= f.text_area :claim, :class => "form-control", :rows => "4" %>
         <div class="form-text text-muted font-small">
-          不超過XX字，重點說明你的目標以及理念，強調不同之處，讓支持人對你或你的提案感號喜好。
+          不超過55字，重點說明此提案的目標以及理念，或強調不同之處，以吸引支持者願意進一步了解您的提案。
         </div>
       </div>
       <div class="form-group">
@@ -99,7 +99,7 @@
           <%end%>
         </div>
         <div class="form-text text-muted font-small">
-          請勾選屬於您提案的類別。
+          請勾選屬於您提案的類別，可複選，若無則可不勾選。
         </div>
       </div>
       <div class="form-group">
@@ -108,27 +108,27 @@
             <%= i.file_field :file, :class => "form-control"%>
           <% end %>
         <div class="form-text text-muted font-small">
-          請提供 JPEG、PNG檔，圖片尺寸至少 1024 x 768 px (4:3)；檔案大小 2MB 以內。
+          請提供 JPEG、PNG檔，圖片尺寸 1024 x 515 px ；檔案大小 2MB 以內。
         </div>
       </div>
       <div class="form-group">
         <%= f.label :youtube_url, "YouTube影片" %><%= f.text_field :youtube_url, :class => "form-control" %>
         <div class="form-text text-muted font-small">
-          影片時間建議100百秒左右，建議在上傳YouTube時先設定好影片封面。
+          放置短片能更快的將您的理念傳達給支持者，建議在上傳YouTube時先設定好影片封面。
         </div>
       </div>
     </div>
     <div class="tab-pane fade" id="tab-create2">
       <div class="mb-3 font-small text-muted">
-        設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案
+        請依照您的提案內容，完整填入下列各項必填資訊，填寫完成後您可儲存與檢查您的提案，在未點擊「提交審核」按鈕之前，您都可以修改提案內容，如有問題請與我們聯絡。
       </div>
       <div class="form-group">
         <%= f.label :description_html, "提案內容" %>
         <%= f.text_area :description_html, rows: 4, :class => "form-control", :required => true %>
         <div class="form-text text-muted font-small">
           <ol class="pl-4">
-            <li>建議圖片寬度為 697 px，單張圖檔不超過 2 MB，圖片中文字不得小於16字級。</li>
-            <li>平台有最終保留權力，如果您所提供的資訊過少，或無法證明的真實性、可行性，提案則無法上架。</li>
+            <li>建議圖片寬度為 690 px ；檔案大小 2MB 以內。</li>
+            <li>平台擁有審核與最終保留權力，如果您所提供的資訊過少，或無法證明提案項目之真實性與可行性，提案將無法上架。</li>
           </ol>
         </div>
       </div>
@@ -136,56 +136,53 @@
         <%= f.label :order_description_html, "支持注意事項" %>
         <%= f.text_area :order_description_html, rows: 4, :class => "form-control" %>
         <div class="form-text text-muted font-small">
-          <ol class="pl-4">
-            <li>若需要補充贊助時注意事項請在此說明，如回饋商品的款式、顏色、尺寸等，若無則系統預設如下。(系統預設則為<a href="http://prntscr.com/l69hl6" target="_blank">http://prntscr.com/l69hl6</a>)</li>
-            <li>若需要補充贊助後注意事項請在此說明，如回饋商品的換貨、退款、發票等，若無則系統預設如下圖。</li>
-          </ol>
+          若需要補充支持後的注意事項請在此說明，如回饋商品的換貨、退款、發票等，若無填寫則系統將不會顯示。
         </div>
       </div>
       <div class="form-group">
         <%= f.label :risk, "風險與承諾" %><%= f.text_area :risk, rows: 4, :class => "form-control" %>
         <div class="form-text text-muted font-small">
-          提案中可能遇到許多變數，請清楚條例出備案及辦法，降低支持者疑慮。<br>
+          請列出提案和回饋項目可能遇到的風險與變數，並提出解決方式或預備方案，以降低支持者的疑慮。
           範例參考：
           <ol class=" pl-4">
             <li>募資成功後，預計oo月開始採收期，製程至包裝到出貨預計為期oo週。</li>
-            <li>收到貨後時，請先檢查是否有碰撞造成損毀，如有出現狀況，請立即與我們聯繫。</li>
-            <li>天災及不可抗力因素（如：颱風、豪大雨、病蟲害），將會延遲出貨。</li>
+            <li>天災及不可抗力之因素（如：颱風、豪大雨、病蟲害），將會延遲出貨。</li>
             <li>同上，若導致產量銳減無法順利出貨，將會進行通知並退費給支持者。</li>
+            <li>收到回饋項目時，請先檢查是否有碰撞造成損毀，如有出現狀況，請立即與我們聯繫。</li>
           </ol>
         </div>
       </div>
     </div>
     <div class="tab-pane fade" id="tab-create3">
       <div class="mb-3 font-small text-muted">
-        設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案
+        請依序正確填入提案人的各項必填資料。
       </div>
       <div class="form-group">
         <%= f.label :name, "提案者姓名" %>
         <%= f.text_field :name, :class => "form-control", :required => true %>
         <div class="form-text text-muted font-small">
-          本平台提案人需作身份核實，請務必填寫您的真實姓名。
+          提案人需作身份核實，請務必填寫您的真實姓名。目前只限定台灣用戶提案。
         </div>
       </div>
       <div class="form-group">
         <%= f.label :email, "聯絡信箱" %>
         <%= f.text_field :email, :class => "form-control", :required => true %>
         <div class="form-text text-muted font-small">
-          請確保專案經理聯絡到您，以及提案中支持者的來信都將透過此信箱。
+          請填寫您經常使用之email信箱，以確保網站工作團隊能聯絡到您。
         </div>
       </div>
       <div class="form-group">
         <%= f.label :phone, "手機號碼" %>
         <%= f.text_field :phone, :class => "form-control", :required => true %>
         <div class="form-text text-muted font-small">
-          請確保專案經理聯絡到您，以及提案中支持者的來信都將透過此信箱。
+          請填寫您本人使用之手機號碼，以確保網站工作團隊能聯絡到您。
         </div>
       </div>
       <div class="form-group">
         <%= label_tag :facebook_url, "提案粉專" %>
         <%= text_field_tag :facebook_url, current_user.user_profile.try(:facebook_url), :class => "form-control" %>
         <div class="form-text text-muted font-small">
-          請輸入與提案相關的FB粉專，請貼上完整網址。
+          請填寫與提案相關的Facebook頁面，請貼上完整網址。
         </div>
       </div>
       <!-- <div class="form-group">
@@ -199,20 +196,20 @@
         <%= f.label :self_introduction, "自我介紹" %>
         <%= f.text_area :self_introduction, :class => "form-control", :rows => "4", :required => true %>
         <div class="form-text text-muted font-small">
-          不超過XX字，最長不超過xx字
+          請填寫至少100字的介紹。
         </div>
       </div>
       <div class="form-group">
         <%= f.label :order_success_html, "給支持者的話" %>
         <%= f.text_area :order_success_html, rows: 4, :class => "form-control" %>
         <div class="form-text text-muted font-small">
-          不超過XX字，最長不超過xx字
+          您可留下對支持者感謝的話，當支持者完成付款後，將會看到您留下的文字。
         </div>
       </div>
     </div>
     <div class="tab-pane fade" id="tab-create4">
       <div class="mb-3 font-small text-muted">
-        設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案設定提醒文案
+        請列出合作參與此提案之友善小農，若無可不填。
       </div>
       <div class="form-row mb-6">
         <div class="col-12 col-lg-4 my-2">
@@ -247,7 +244,7 @@
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input" id="customCheck-agree">
           <label class="custom-control-label" for="customCheck-agree">
-            我已同意<a href="" target="_blank"><u>網站使用條款</u></a> 及 <a href="project-contract.html" target="_blank"><u>提案合約書</u></a>
+            我已同意<%= link_to "<u>網站服務條款</u>".html_safe, terms_path, :target => "_blank"%> 及 <%= link_to "<u>提案合約書</u>".html_safe, contract_path, :target => "_blank"%>
           </label>
         </div>
       </div>

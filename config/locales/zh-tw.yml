@@ -70,7 +70,7 @@
       end: "結束"
       glarnerpick: "Glarnerpick"
     goody:
-      pledge: "贊助此項回饋"
+      pledge: "支持此項回饋"
       price: "價格 :"
       quantity: "剩餘數量: %{quantity}"
       backers: "支持者 : %{quantity}"

@@ -20,15 +20,12 @@
             <div class="card mb-3">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="formPay">付款方式</label>
-                  <div class="form-row">
-                    <div class="col-12 col-sm-6 mb-2">
-                      <div class="custom-control custom-radio custom-button">
-                        <%= f.radio_button :payment_type, 'ecpay', :class=> "custom-control-input", :onClick =>"settip('支援多重付款方式')", :checked => true%>
-                        <label class="custom-control-label" for="order_payment_type_ecpay">第三方支付</label>
-                      </div>
-                    </div>
-                  </div>
+                  <label for="formPay">支付方式說明</label>
+                  <ul class="pl-4">
+                    <li>信用卡付款：可用卡別：VISA／MASTERCARD／JCB／銀聯，不接受國外信用卡交易，無手續費用產生。</li>
+                    <li>網路 ATM (晶片讀卡機) 或實體 ATM 及網銀：轉帳付款時，非金流特定銀行將產生 15 元手續費。</li>
+                    <li>超商付款：超商條碼/代碼付款不需支付手續費，付款期限為 7 天，請務必於期限內進行付款。</li>
+                  </ul>
                   <small class="form-text text-muted" id="paytip"></small>
                 </div>
               </div>
@@ -50,13 +47,19 @@
                 <%= f.fields_for :supporter do |s| %>
                   <%= s.hidden_field :country, value: "TW" %>
                   <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">使用會員資料的姓名、電子信箱、地址及手機號碼</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <label for="formName" class="d-flex justify-content-between">
                       收件人
                       <span class="text-muted" data-toggle="tooltip" data-placement="top" title="填寫姓名">
                         <i class="far fa-sm fa-question-circle"></i>
                       </span>
                     </label>
-                    <%= s.text_field :first_name, value: @last_order.try(:supporter).try(:first_name), :class => "form-control", :placeholder => "請輸入姓名" %>
+                    <%= s.text_field :first_name, value: @last_order.try(:supporter).try(:first_name), :class => "form-control", :placeholder => "必填，請填寫真實姓名，若不正確可能造成投遞失敗。" %>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-6">

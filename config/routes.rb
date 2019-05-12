@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'terms', to: 'static#terms_of_service'
   get 'privacy', to: 'static#privacy_policy'
   get 'static/exception_test', to: 'static#exception_test'
+  get 'contract', to: 'static#contract'
 
   #devise_for :users, ActiveAdmin::Devise.config
   devise_for :users, :controllers => { :registrations => "user/registrations",:omniauth_callbacks => "user/omniauth_callbacks", :sessions => "user/sessions" }

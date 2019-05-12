@@ -19,6 +19,11 @@ class StaticController < ApplicationController
     set_page_title "隱私權政策"
   end
 
+  def static
+    set_page_image "https://www.ugooz.cc/assets/sk2/img/ui/logo.png"
+    set_page_title "提案合約書"
+  end
+
   def exception_test
     raise "This endpoint is designed to fail!"
   end

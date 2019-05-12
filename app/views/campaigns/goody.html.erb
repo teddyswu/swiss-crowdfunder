@@ -18,17 +18,23 @@
       					<%= i.file_field :file, :class => "form-control"%>
 						  <% end %>
             </div>
-            <small class="form-text text-muted"></small>
+            <small class="form-text text-muted">
+              請提供 JPEG、PNG檔，圖片比例3:2為佳；檔案大小 1MB 以內。
+            </small>
           </div>
           <div class="form-group">
             <label>回饋項目名稱</label>
             <%= f.text_field :title, :class => "form-control", :required => true %>
-            <small class="form-text text-muted"></small>
+            <small class="form-text text-muted">
+              請提供此回饋項目之名稱，最長不超過18字。
+            </small>
           </div>
           <div class="form-group">
             <label>回饋項目說明</label>
             <%= f.text_area :description, :class => "form-control", rows: 4 %>
-            <small class="form-text text-muted"></small>
+            <small class="form-text text-muted">
+              請說明此回饋項目之詳細內容。
+            </small>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -39,18 +45,24 @@
                 </div>
                 <%= f.number_field :price, :class => "form-control", :required => true %>
               </div>
-              <small class="form-text text-muted"></small>
+              <small class="form-text text-muted">
+                最低回饋金額為 NT$100。
+              </small>
             </div>
             <div class="form-group col-md-6">
               <label>回饋數量</label>
               <%= f.number_field :quantity, :class => "form-control", :required => true %>
-              <small class="form-text text-muted">輸入-1，無上限</small>
+              <small class="form-text text-muted">
+                請設定此回饋項目可提供的數量。
+              </small>
             </div>
           </div>
           <div class="form-group">
             <label>預計達成時間</label>
             <%= f.date_field :delivery_time, :class => "form-control", :required => true%>
-            <small class="form-text text-muted">說明文案</small>
+            <small class="form-text text-muted">
+              請設定預計達成此回饋項目的日期。
+            </small>
           </div>
           <div class="form-group">
             <label>排序</label>
