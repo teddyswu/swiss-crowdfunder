@@ -114,6 +114,12 @@ class OrdersController < ApplicationController
 
 
   def new
+    @cities = City.normal_state
+    if params[:city_id]
+      @districts = District.select("id,name").where(:city_id => params[:city_id])
+    else
+      @districts = District.where(:city_id => 1)
+    end
     @last_order = Order.where(:user_id => current_user.id).last
     @goody = Goody.find(params[:goody_id])
     @order = Order.new
@@ -123,6 +129,12 @@ class OrdersController < ApplicationController
     set_page_title "#{@goody.campaign.title}-支持提案"
   end
 
+  def user_info
+    @cities = City.normal_state
+    @districts = District.select("id,name").where(:city_id => current_user.user_profile.city_id)
+    render :layout => false
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -130,7 +142,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:user_id, :agreement, :bonus, :payment_type, :anonymous, :remark, 
       supporter_attributes:
     [:first_name, :last_name, :email, :date_of_birth, :address,
-    :postal_code, :country, :city, :state, :tel, :cell_phone, :anonymous])
+    :postal_code, :country, :city_id, :district_id, :tel, :cell_phone, :anonymous])
   end
 
 end

@@ -20,6 +20,7 @@
             <div class="card mb-3">
               <div class="card-body">
                 <div class="form-group">
+                  <%= f.radio_button :payment_type, 'ecpay', :class=> "custom-control-input", :onClick =>"settip('支援多重付款方式')", :checked => true, :style => "display : none;"%>
                   <label for="formPay">支付方式說明</label>
                   <ul class="pl-4">
                     <li>信用卡付款：可用卡別：VISA／MASTERCARD／JCB／銀聯，不接受國外信用卡交易，無手續費用產生。</li>
@@ -52,78 +53,59 @@
                       <label class="custom-control-label" for="customCheck1">使用會員資料的姓名、電子信箱、地址及手機號碼</label>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="formName" class="d-flex justify-content-between">
-                      收件人
-                      <span class="text-muted" data-toggle="tooltip" data-placement="top" title="填寫姓名">
-                        <i class="far fa-sm fa-question-circle"></i>
-                      </span>
-                    </label>
-                    <%= s.text_field :first_name, value: @last_order.try(:supporter).try(:first_name), :class => "form-control", :placeholder => "必填，請填寫真實姓名，若不正確可能造成投遞失敗。" %>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="formCountry" class="d-flex justify-content-between">
-                        縣市
-                        <span class="text-muted" data-toggle="tooltip" data-placement="top" title="填寫縣市">
-                          <i class="far fa-sm fa-question-circle"></i>
-                        </span>
+                  <div id="user_info">
+                    <div class="form-group">
+                      <label for="formName" class="d-flex justify-content-between">
+                        收件人
                       </label>
-                      <%= s.text_field :city, value: @last_order.try(:supporter).try(:city), :class => "form-control", :placeholder => "請輸入縣市" %>
+                      <%= s.text_field :first_name, value: @last_order.try(:supporter).try(:first_name), :class => "form-control", :placeholder => "必填，請填寫真實姓名，若不正確可能造成投遞失敗。" %>
                     </div>
-                    <div class="form-group col-md-6">
-                      <label for="formCountry" class="d-flex justify-content-between">
-                        鄉鎮市區
-                        <span class="text-muted" data-toggle="tooltip" data-placement="top" title="填寫鄉鎮市區">
-                          <i class="far fa-sm fa-question-circle"></i>
-                        </span>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="formCountry" class="d-flex justify-content-between">
+                          縣市
+                        </label>
+                        <%= s.select :city_id, options_from_collection_for_select(@cities,"id","name", :selected => @last_order.try(:supporter).try(:city_id)),{}, {:class => "form-control", :onchange => "change_city_select(value)", :prompt => "縣市"} %>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="formCountry" class="d-flex justify-content-between">
+                          鄉鎮市區
+                        </label>
+                        <%= s.select :district_id, options_from_collection_for_select(@districts,"id","name", :selected => @last_order.try(:supporter).try(:district_id)),{}, {:class => "form-control", :prompt => "鄉鎮市區"} %>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-10">
+                        <label for="formAddress" class="d-flex justify-content-between">
+                          地址
+                        </label>
+                        <%= s.text_field :address, value: @last_order.try(:supporter).try(:address), :class => "form-control", :placeholder => "請輸入地址" %>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="formNum" class="d-flex justify-content-between">
+                          郵遞區號
+                        </label>
+                        <%= s.text_field :postal_code, value: @last_order.try(:supporter).try(:postal_code), :class => "form-control" %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="formPhone" class="d-flex justify-content-between">
+                        聯絡電話
                       </label>
-                      <%= s.text_field :state, value: @last_order.try(:supporter).try(:state), :class => "form-control", :placeholder => "請輸入鄉鎮市區" %>
+                      <%= s.text_field :cell_phone, value: @last_order.try(:supporter).try(:cell_phone), :class => "form-control", :placeholder => "請輸入電話" %>
                     </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-10">
-                      <label for="formAddress" class="d-flex justify-content-between">
-                        地址
+                    <div class="form-group">
+                      <label for="formMail" class="d-flex justify-content-between">
+                        聯絡信箱
                       </label>
-                      <%= s.text_field :address, value: @last_order.try(:supporter).try(:address), :class => "form-control", :placeholder => "請輸入地址" %>
+                      <%= s.text_field :email, value: current_user.email, :class => "form-control" %>
+                      <p id ="email_format" style="font-size: 10px;color: red;"></p>
                     </div>
-                    <div class="form-group col-md-2">
-                      <label for="formNum" class="d-flex justify-content-between">
-                        郵遞區號
-                        <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                          <i class="far fa-sm fa-question-circle"></i>
-                        </span>
-                      </label>
-                      <%= s.text_field :postal_code, value: @last_order.try(:supporter).try(:postal_code), :class => "form-control" %>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="formPhone" class="d-flex justify-content-between">
-                      聯絡電話
-                      <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                        <i class="far fa-sm fa-question-circle"></i>
-                      </span>
-                    </label>
-                    <%= s.text_field :cell_phone, value: @last_order.try(:supporter).try(:cell_phone), :class => "form-control", :placeholder => "請輸入電話" %>
-                  </div>
-                  <div class="form-group">
-                    <label for="formMail" class="d-flex justify-content-between">
-                      聯絡信箱
-                      <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                        <i class="far fa-sm fa-question-circle"></i>
-                      </span>
-                    </label>
-                    <%= s.text_field :email, value: current_user.email, :class => "form-control" %>
-                    <p id ="email_format" style="font-size: 10px;color: red;"></p>
                   </div>
                 <% end %>
                 <div class="form-group">
                   <label for="formNote" class="d-flex justify-content-between">
                     備註
-                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                      <i class="far fa-sm fa-question-circle"></i>
-                    </span>
                   </label>
                   <%= f.text_area :remark, :class => "form-control"  %>
                 </div>
@@ -204,6 +186,19 @@
       myOption = setting;
       document.getElementById("paytip").innerHTML = myOption;
     }
+    function change_city_select(value){
+      jQuery.get("<%= new_campaign_goody_order_path %>", { city_id : value },null,"script");
+    }
+    $("#customCheck1").change(function() {
+      if(this.checked) {
+        url = '<%= user_info_orders_path %>';
+        xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url, false );
+        xmlHttp.send( null );
+        content = xmlHttp.responseText;
+        $("#user_info").html(content);
+      }
+    });
   </script>
   <script>
   $(document).ready(function() {
