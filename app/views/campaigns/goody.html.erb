@@ -67,7 +67,7 @@
           <div class="form-group">
             <label>排序</label>
             <%= f.number_field :sort, :class => "form-control", :required => true%>
-            <small class="form-text text-muted">越小越上面</small>
+            <small class="form-text text-muted">數值愈小，排列愈前面</small>
           </div>
           <%= f.submit "送出", :class => "btn btn-primary mr-2"%>
           <%= link_to "返回提案紀錄", campaigns_path, class:"btn btn-outline-secondary" %>

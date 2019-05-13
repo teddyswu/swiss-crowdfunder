@@ -17,13 +17,13 @@
               <p class="lead font-weight-bold">支持者的鼓勵</p>
               <div class="form-group">
                 <label>請給您支持的提案更多鼓勵的話</label>
-                <select class="form-control mb-2">
+                <select class="form-control mb-2" id="def_text">
                   <option>預設的鼓勵</option>
-                  <option>我很期待，祝你成功！</option>
-                  <option>謝謝您為環境的努力！</option>
-                  <option>辛苦了~請繼續加油！</option>
-                  <option>您的理念很棒！我支持您！</option>
-                  <option>很開心能參與這樣有意義的提案，謝謝！</option>
+                  <option value="我很期待，祝你成功！">我很期待，祝你成功！</option>
+                  <option value="謝謝您為環境的努力！">謝謝您為環境的努力！</option>
+                  <option value="辛苦了~請繼續加油！">辛苦了~請繼續加油！</option>
+                  <option value="您的理念很棒！我支持您！">您的理念很棒！我支持您！</option>
+                  <option value="很開心能參與這樣有意義的提案，謝謝！">很開心能參與這樣有意義的提案，謝謝！</option>
                 </select>
                 <%= f.text_area :evaluation, :class => "form-control mb-2", :placeholder => "自行輸入"%>
                 <%=  f.submit "送出", :class => "btn btn-outline-primary" %>
@@ -77,3 +77,10 @@
     </div>
   </div>
 </div>
+<script>
+  $("#def_text").change(function(){
+    tt = $("#def_text").val();
+    $("#order_evaluation").val(tt);
+  });
+
+</script>

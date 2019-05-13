@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181225095605) do
+ActiveRecord::Schema.define(version: 20190513085931) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -120,6 +120,22 @@ ActiveRecord::Schema.define(version: 20181225095605) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.boolean "enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "districts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "zipcode"
+    t.integer "city_id"
+    t.boolean "enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "favo_farmers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
     t.integer "farmer_id"
@@ -197,8 +213,8 @@ ActiveRecord::Schema.define(version: 20181225095605) do
     t.string "first_name"
     t.string "last_name"
     t.string "address"
-    t.string "city"
-    t.string "state"
+    t.integer "city_id"
+    t.integer "district_id"
     t.string "postal_code"
     t.string "country"
     t.string "tel"
@@ -222,14 +238,15 @@ ActiveRecord::Schema.define(version: 20181225095605) do
     t.string "last_name"
     t.integer "gender"
     t.datetime "birthday"
-    t.string "city"
-    t.string "state"
+    t.integer "city_id"
+    t.integer "district_id"
     t.string "postal_code"
     t.string "country"
     t.text "address"
     t.string "tel"
     t.string "cell_phone"
     t.string "facebook_url"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_profiles_on_user_id"

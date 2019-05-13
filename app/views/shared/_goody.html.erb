@@ -10,7 +10,7 @@
         <div class=""><%= goody.description %></div>
         <i class="fas fa-fw fa-check"></i> <%= t(".quantity", quantity: goody.remaining_quantity) %><br>
         <i class="fas fa-fw fa-user"></i> <%= t(".backers", quantity: goody.orders_count) %><br>
-        <i class="fas fa-fw fa-truck"></i> 預計送達 : <%= goody.delivery_time.strftime("%Y年%m月") %>
+        <i class="fas fa-fw fa-truck"></i> 預計達成 : <%= goody.delivery_time.strftime("%Y年%m月") %>
       </small>
     </div>
     <%= goody.remaining_quantity == 0 ? "<div class='btn btn-block btn-danger'>已額滿</div>".html_safe : "<div class='btn btn-block btn-outline-primary'>#{t('.pledge')}</div>".html_safe %>

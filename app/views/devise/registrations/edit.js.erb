@@ -1,0 +1,3 @@
+<% if @districts.present? %>
+  $("#user_user_profile_discrict_id").html('<%= escape_javascript select_tag("discrict_for_select[district_id]", options_from_collection_for_select(@districts,"id","name")) %>');
+<% end %>

@@ -62,7 +62,7 @@
             <div class="form-group row">
               <label for="name" class="col-sm-3 col-form-label">暱稱</label>
               <div class="col-sm-9">
-                <%= user_profile.input :nickname,required: true,autofocus: true, label: false, :class => "form-control" %>
+                <%= user_profile.input :nickname, required: true, autofocus: true, label: false, :class => "form-control" %>
                 <div class="form-text text-muted font-small">
                   * 網站顯示的名稱。
                 </div>
@@ -84,6 +84,12 @@
                 <a class="" href="https://m.me/ugooz" target="_blank"><u>和友故事聊聊吧！</u></a>
               </div>
             </div>
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label">姓名</label>
+              <div class="col-sm-9">
+                <%= user_profile.input :first_name, required: true, autofocus: true, label: false, :class => "form-control", :placeholder => "若您為提案人，請填寫真實姓名" %>
+              </div>
+            </div>
             <%= user_profile.input :country, :as => :hidden, :input_html => { :value => "TW" }  %>
             <div class="form-group row">
               <label for="name" class="col-sm-3 col-form-label">性別</label>
@@ -95,7 +101,46 @@
             <div class="form-group row">
               <label for="name" class="col-sm-3 col-form-label">生日</label>
               <div class="col-sm-9">
-                <%= user_profile.date_field :birthday %> 
+                <div class="form-row">
+                  <%= user_profile.date_field :birthday , :class => "form-control"%> 
+                </div>
+                <div class="form-text text-muted font-small">
+                  * 有您的性別與生日，友故事才能為您提供個人茶諮詢服務哦！
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="birthday" class="col-sm-3 col-form-label">地址</label>
+              <div class="col-sm-9">
+                <div class="form-row">
+                  <div class="col">
+                    <%= user_profile.input :city_id, :collection =>@cities.map { |c| [c.name, c.id] }, :selected => resource.user_profile.city_id.to_i, label: false, :prompt => "縣市", :input_html => {:onchange => "change_city_select(value)"}%>
+                  </div>
+                  <div class="col">
+                    <%= user_profile.input :district_id, :collection =>@districts.map { |c| [c.name, c.id] }, :selected => resource.user_profile.district_id.to_i, label: false, :prompt => "鄉鎮市區"%>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <%= user_profile.input :address, label: false, :class => "form-control", :placeholder => "路段街道及門牌號碼"%>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="mobile" class="col-sm-3 col-form-label">手機號碼</label>
+              <div class="col-sm-9">
+                <%= user_profile.input :cell_phone, label: false, :class => "form-control", :placeholder => "正確門號為十碼"%>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">個人臉書或粉專</label>
+              <div class="col-sm-9">
+                <%= user_profile.input :facebook_url, label: false, :class => "form-control", :placeholder => "https://facebook.com/page-name"%>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">個人介紹</label>
+              <div class="col-sm-9">
+                <%= user_profile.input :introduction, label: false, :class => "form-control", :placeholder => "若您為提案人，請填寫至少100字的介紹", :input_html => {:rows => 5}%>
               </div>
             </div>
           <% end %>
@@ -111,3 +156,8 @@
     
   </div>
 </div>
+<script type="text/javascript">
+  function change_city_select(value){
+    jQuery.get("<%= edit_user_registration_path %>", { city_id : value },null,"script");
+  }
+</script>

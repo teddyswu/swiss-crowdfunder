@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :district do
+    
+  end
+  factory :city do
+    
+  end
   factory :favo_farmer do
     
   end

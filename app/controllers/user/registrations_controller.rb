@@ -17,6 +17,12 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    @cities = City.normal_state
+    if params[:city_id]
+      @districts = District.select("id,name").where(:city_id => params[:city_id])
+    else
+      @districts = District.where(:city_id => resource.user_profile.city_id)
+    end
     UserProfile.find_or_create_by(:user_id => resource.id)
     set_page_title "帳號管理"
     
@@ -53,7 +59,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
   def user_profile_params
-    params.require(:user).require(:user_profile).permit(:nickname, :first_name, :last_name, :address, :gender, :birthday, :tel, :cell_phone, :city, :state, :postal_code, :country)
+    params.require(:user).require(:user_profile).permit(:nickname, :first_name, :last_name, :address, :gender, :birthday, :tel, :cell_phone, :city_id, :district_id, :facebook_url, :postal_code, :country, :introduction)
   end
 
   def user_params
