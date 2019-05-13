@@ -13,7 +13,7 @@
 		  	<% goody.orders.each do | order|%>
 		  		<tr>
 		  			<td><%= order.supporter.last_name%><%= order.supporter.first_name%></td>
-		  			<td><%= order.supporter.postal_code%> <%= order.supporter.city%> <%= order.supporter.state%> <%= order.supporter.address%></td>
+		  			<td><%= order.supporter.postal_code%> <%= order.supporter.try(:city).try(:name)%> <%= order.supporter.try(:district).try(:name)%> <%= order.supporter.address%></td>
 		  			<td><%= order.supporter.tel%></td>
 		  			<td><%= order.supporter.cell_phone%></td>
 		  		</tr>

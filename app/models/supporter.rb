@@ -1,5 +1,7 @@
 class Supporter < ApplicationRecord
   belongs_to :order
+  belongs_to :district
+  belongs_to :city
   validates_presence_of :first_name, :address,
     :postal_code, :country, :city, :email
 

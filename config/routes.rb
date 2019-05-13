@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     post "is_paid", :on => :member
     post "add_evaluation", :on => :member
     get "detail",:on => :member
+    get "user_info", :on => :collection
   end
 
   get '*any', via: :all, to: 'errors#not_found'
