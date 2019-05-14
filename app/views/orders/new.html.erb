@@ -195,11 +195,11 @@
         xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", url, false );
         xmlHttp.send( null );
-        if(xmlHttp.status == 500){
-          alert("個人資料未填寫完全")
-        } else {
+        if(xmlHttp.status == 200){
           content = xmlHttp.responseText;
-          $("#user_info").html(content);  
+          $("#user_info").html(content);
+        } else {
+          alert("個人資料未填寫完全");  
         }
       }
     });
