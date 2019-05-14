@@ -10,32 +10,45 @@
         <div class="form-group">
           <%= s.hidden_field :country %>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-10">
-            <label class="text-muted">地址</label>
-            <div class="form-control-plaintext">
-              <%= s.text_field :city, value: @order.supporter.city, :class => "form-control", :placeholder => "請輸入縣市" %>
-              <%= s.text_field :state, value: @order.supporter.state, :class => "form-control", :placeholder => "請輸入鄉鎮市區" %>
-              <%= s.text_field :address, value: @order.supporter.address, :class => "form-control", :placeholder => "請輸入地址" %>
+        <div class="form-group">
+          <label class="d-flex justify-content-between">地址</label>
+          <div class="form-row">
+            <div class="col">
+              <%= s.select :city_id, options_from_collection_for_select(@cities,"id","name", :selected => @order.try(:supporter).try(:city_id)),{}, {:class => "form-control", :onchange => "change_city_select(value)", :prompt => "縣市"} %>
             </div>
-          </div>
-          <div class="form-group col-md-2">
-            <label class="text-muted">郵遞區號</label>
-            <%= s.text_field :postal_code, value: @order.supporter.postal_code, :class => "form-control" %>
+            <div class="col">
+              <%= s.select :district_id, options_from_collection_for_select(@districts,"id","name", :selected => @order.try(:supporter).try(:district_id)),{}, {:class => "form-control", :prompt => "鄉鎮市區"} %>
+            </div>
           </div>
         </div>
         <div class="form-group">
-          <label class="text-muted">聯絡電話</label>
-          <%= s.text_field :cell_phone, value: @order.supporter.cell_phone, :class => "form-control", :placeholder => "請輸入電話" %>
+          <%= s.text_field :address, value: @order.supporter.address, :class => "form-control", :placeholder => "請填寫完整地址，若不完整可能造成投遞失敗" %>
+        </div>
+        <div class="form-group">
+          <label class="text-muted">郵遞區號</label>
+          <%= s.text_field :postal_code, value: @order.supporter.postal_code, :class => "form-control", :placeholder => "基本三碼" %>
+        </div>
+
+        <div class="form-group">
+          <label class="text-muted">手機號碼</label>
+          <%= s.text_field :cell_phone, value: @order.supporter.cell_phone, :class => "form-control", :placeholder => "請填寫正確手機號碼，以利提案人與您聯繫和包裹之查詢領取" %>
         </div>
         <div class="form-group">
           <label class="text-muted">聯絡信箱</label>
-          <%= s.text_field :email, value: @order.supporter.email, :class => "form-control" %>
+          <%= s.text_field :email, value: @order.supporter.email, :class => "form-control", :placeholder => "請填寫常用的電子信箱，以利提案人與您聯繫" %>
         </div>
       <% end %>
       <div class="form-group">
         <label class="text-muted">備註</label>
-        <%= f.text_area :remark, value: @order.remark, :class => "form-control"  %>
+        <%= f.text_area :remark, value: @order.remark, :class => "form-control", :class => "form-control", :placeholder => "若有其他需求都可以填寫在這邊"  %>
+      </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= f.check_box :anonymous, :class => "custom-control-input" %>
+          <label class="custom-control-label" for="order_anonymous">
+            匿名支持<br><small class="text-muted">不顯示公開的會員資料</small>
+          </label>
+        </div>
       </div>
       <div class="form-group">
         <%= f.submit "儲存", :class => "btn btn-outline-primary"%>

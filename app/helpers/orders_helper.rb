@@ -31,4 +31,8 @@ module OrdersHelper
 	  end
   end
 
+  def render_is_anonymous(anonymous)
+    anonymous == true ? "有" : "無"
+  end
+
 end

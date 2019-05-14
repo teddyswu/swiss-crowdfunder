@@ -48,6 +48,12 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    @cities = City.normal_state
+    if params[:city_id]
+      @districts = District.select("id,name").where(:city_id => params[:city_id])
+    else
+      @districts = District.where(:city_id => 1)
+    end
     @order = Order.find(params[:id])
     render :layout => false
   end
