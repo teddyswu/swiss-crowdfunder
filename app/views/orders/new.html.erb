@@ -195,8 +195,12 @@
         xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", url, false );
         xmlHttp.send( null );
-        content = xmlHttp.responseText;
-        $("#user_info").html(content);
+        if(xmlHttp.status == 500){
+          alert("個人資料未填寫完全")
+        } else {
+          content = xmlHttp.responseText;
+          $("#user_info").html(content);  
+        }
       }
     });
   </script>
