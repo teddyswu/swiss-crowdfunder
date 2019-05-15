@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="col-12 col-lg-4 d-none d-lg-block">
-          <%= link_to "支持提案", campaign_goodies_path(@campaign.slug), class: "btn btn-primary btn-block" %>
+          <%= render_goods_url(@campaign) %>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
           <%= raw @campaign.risk %>
         </div>
         <div class="mt-3 d-lg-none">
-          <%= link_to "支持提案", campaign_goodies_path(@campaign.slug), class: "btn btn-primary btn-block" %>
+          <%= render_goods_url(@campaign) %>
         </div>
       </div>
       <div class="col-12 col-lg-4">
@@ -82,7 +82,7 @@
   </div>
 </div>
 <div class="fixed-bottom bg-white border-top p-3 d-lg-none" id="support-action">
-  <%= link_to "支持提案", campaign_goodies_path(@campaign.slug), class: "btn btn-primary btn-block" %>
+  <%= render_goods_url(@campaign) %>
 </div>
 <% content_for :javascript do %>
   <script>

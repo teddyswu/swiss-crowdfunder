@@ -146,7 +146,13 @@ a.text-line:hover {
   .article .post {
     margin: 5px 0 !important;
     padding-left: 5px;
-    padding-right: 5px; } }
+    padding-right: 5px; }
+  .article .post .my-auto {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; } }
 .card-headlines {
   background-position: center center;
   background-repeat: no-repeat;
@@ -809,6 +815,10 @@ input[type="text"], input[type="email"], input[type="date"] {
   position: relative;
   top: -2px; }
 
+.spinner-border {
+  width: 20rem;
+  height: 20rem; }
+
 .badge.badge-outlined {
   border-width: 1px;
   border-style: solid;
@@ -846,6 +856,15 @@ input[type="text"], input[type="email"], input[type="date"] {
   position: absolute;
   left: -10px;
   top: 5px; }
+
+.loading .loading-text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-top: -3rem; }
+.loading .loading-text .img-fluid {
+  max-height: 70px; }
 
 /*!
  * Datepicker for Bootstrap v1.6.4 (https://github.com/eternicode/bootstrap-datepicker)

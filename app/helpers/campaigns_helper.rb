@@ -17,6 +17,16 @@ module CampaignsHelper
   	(day - Date.today).to_i > 1 ? "剩下<strong>#{(day - Date.today).to_i}</strong>天".html_safe : "已結束"
   end
 
+  def render_goods_url(campaign)
+    if campaign.end_date < Date.today && campaign.status == 3
+      link_to "提案已結束", "javascript:void();", class: "btn btn-outline-secondary btn-block disabled"
+    elsif campaign.start_date < Date.today && campaign.status == 3
+      link_to "支持提案", campaign_goodies_path(campaign.slug), class: "btn btn-primary btn-block"
+    else
+      link_to "提案尚未開始", "javascript:void();", class: "btn btn-outline-secondary btn-block disabled"
+    end
+  end
+
   def render_remain_day_only_num(day)
     (day - Date.today).to_i > 1 ? "#{(day - Date.today).to_i}天" : "已結束"
   end

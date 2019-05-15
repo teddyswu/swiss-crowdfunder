@@ -24,10 +24,10 @@
         <img class="rounded-circle mr-3" src="<%= campaign.user.authorizations.present? ? "https://graph.facebook.com/#{campaign.user.authorizations[0].uid}/picture" : "https://help.lebara.com/assets/images/fdecb4bb.profile.jpg"%>" alt="" style="width: 50px;">
         <div class="media-body">
           <div>
-            <%= link_to campaign.user.user_profile.nickname, user_path(campaign.user.id), :class => "text-dark"%>
+            <%= campaign.user.user_profile.nickname %>
           </div>
           <div class="font-small">
-            <%= mail_to campaign.email, subject: "募資項目: #{campaign.title}", class: "text-muted mr-2" do %>
+            <%= mail_to campaign.email, subject: "募資項目: #{campaign.title}", class: "text-muted mr-2", target: '_blank' do %>
               <i class="fas fa-lg fa-fw fa-envelope"></i>
             <% end %>
             <%- unless campaign.user.user_profile.facebook_url.blank? %>

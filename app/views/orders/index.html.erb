@@ -53,7 +53,7 @@
           </div>
           <hr>
           <div class="row align-items-end">
-            <div class="col-12 col-md-10 col-lg-11">
+            <div class="col-12 col-md-9 col-lg-10">
               <div class="text-row-1">
                 <%= order.goody.title%> <span class="text-danger font-weight-bold ml-4">
                 <%= number_to_currency("#{order.amount + order.bonus.to_i}", precision: 0) %></span>
@@ -72,8 +72,8 @@
                 </small>
               </div>
           	</div>
-            <div class="col-12 col-md-2 col-lg-1">
-            	<%= link_to "查看", detail_order_path(order.id), :class => "btn btn-sm btn-block btn-outline-primary"%>
+            <div class="col-12 col-md-3 col-lg-2">
+              <%= render_pay_or_view(order.id, order.paid)%>
             </div>
           </div>
         </div>
