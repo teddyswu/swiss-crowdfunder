@@ -27,6 +27,26 @@ module CampaignsHelper
     end
   end
 
+  def render_campaign_view_goods_url(campaign, goody)
+    if campaign.end_date < Date.today && campaign.status == 3
+      "javascript:void();"
+    elsif campaign.start_date < Date.today && campaign.status == 3
+      new_campaign_goody_order_path(campaign, goody)
+    else
+      "javascript:void();"
+    end
+  end
+
+  def render_goody_button(campaign, goody)
+    if campaign.end_date < Date.today && campaign.status == 3
+      "<div class=\"btn btn-outline-secondary btn-block disabled\">提案已結束</div>".html_safe
+    elsif campaign.start_date < Date.today && campaign.status == 3
+      goody.remaining_quantity == 0 ? "<div class='btn btn-block btn-danger'>已額滿</div>".html_safe : "<div class='btn btn-block btn-outline-primary'>#{t('.pledge')}</div>".html_safe
+    else
+      "<div class=\"btn btn-outline-secondary btn-block disabled\">提案尚未開始</div>".html_safe
+    end
+  end
+
   def render_remain_day_only_num(day)
     (day - Date.today).to_i > 1 ? "#{(day - Date.today).to_i}天" : "已結束"
   end
