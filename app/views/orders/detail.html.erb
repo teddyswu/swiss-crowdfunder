@@ -141,6 +141,9 @@
 </div>
 <% content_for :javascript do %>
   <script>
+    function cancel(){
+      location.reload();
+    };
     function change_info(){
       url = '/orders/<%= params[:id]%>/edit';
       xmlHttp = new XMLHttpRequest();

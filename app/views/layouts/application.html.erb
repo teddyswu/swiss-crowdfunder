@@ -7,7 +7,7 @@
     <%= render_page_title_tag %>
     <meta property="og:title" content="<%= page_title %>" />
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://project.ugooz.cc">
+    <meta property="og:url" content="<%= canonical_url() %>" />
     <meta property="og:image" content="<%= page_image %>"/>
     <meta property="og:description" content="<%= page_description %>" />
     <meta property="fb:app_id" content="<%= YAML.load_file("config/authorization_key.yml")[:facebook][:app_key] %>" />
@@ -114,7 +114,7 @@
                 <strong>關於</strong>
               </li>
               <li class="nav-item">
-                <%= link_to "關於有故事", about_path, :class => "nav-link" %>
+                <%= link_to "關於友故事", about_path, :class => "nav-link" %>
               </li>
               <li class="nav-item">
                 <%= link_to "如何加入", about_path(:anchor => "group"), :class => "nav-link" %>

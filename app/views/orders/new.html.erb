@@ -4,9 +4,9 @@
       <div class="col-12">
         <div class="text-center mb-10">
           <div class="h3 text-success"><%= @goody.campaign.title %></div>
-          <%= link_to user_path(@goody.campaign.user.id), :class => "font-small" do %>
+          <div class="font-small" style="color: #2772ac;"%>
             <i class="far fa-user"></i> <%= @goody.campaign.user.user_profile.nickname%>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -135,7 +135,7 @@
                 </div>
               </div>
             </div>
-            <%= f.submit "立即付款支持", class: "btn btn-primary", :onclick => "return validate_all();" %>
+            <%= f.submit "前往付款支持", class: "btn btn-primary", :onclick => "return validate_all();" %>
             <div class="alert alert-secondary mt-3">
               當提案時間結束後且達成或超過目標資金時，將進行結算；若於 <%= @goody.campaign.end_date%> 晚上 23:59:59 秒前沒有達到提案目標資金，則不進行結算，您所支持的金額會扣除金流手續費用後，於 7~14 工作天完成退款。
             </div>
