@@ -18,7 +18,8 @@ ActiveAdmin.register Campaign do
           a+=1
         end
       end
-      Headline.find_by(:resource_type => "Campaign", :resource_id => params[:id]).destroy if a == 0
+      h = Headline.find_by(:resource_type => "Campaign", :resource_id => params[:id])
+      h.destroy if h.present? && a == 0
     end
 
     protected
@@ -56,9 +57,9 @@ ActiveAdmin.register Campaign do
       input :youtube_url
       input :twitter_url
       input :risk, label: "風險與承諾"
-      input :description, label: "提案內容"
-      input :order_description, label: "贊助時注意事項"
-      input :order_success, label: "贊助後注意事項"
+      input :description_html, label: "提案內容"
+      input :order_description_html, label: "贊助時注意事項"
+      input :order_success_html, label: "贊助後注意事項"
       input :is_rate, label: "顯示 (顯示調查結果)"
       input :status, :label => '狀態', :as => :select, :collection => options_for_select([["草稿", "1", :selected =>[1].include?(object.status)], ["審核中", "2", :selected =>[2].include?(object.status)], ["審核完成", "3", :selected =>[3].include?(object.status)]])
       @is_headline = Headline.exists?(:resource_type => "Campaign", :resource_id => params[:id])
