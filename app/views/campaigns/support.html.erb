@@ -74,5 +74,13 @@
     window.location.replace("/users/sign_in");
     <% end %>
   });
+  fb_share_event = function() {
+    FB.ui( {
+      method: 'share',
+      href: '<%= "#{YAML.load_file("config/settings.yml")[:root_host]}/campaigns/#{params[:id]}"%>',
+      display: 'popup'
+    }, function( response ) {
+    } ) ; // FB.ui()
+  } ;
   </script>
 <% end %>

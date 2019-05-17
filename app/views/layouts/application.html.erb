@@ -33,6 +33,23 @@
 
       gtag('config', 'UA-135903772-1');
     </script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '<%= YAML.load_file("config/authorization_key.yml")[:facebook][:app_key] %>',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v3.3'
+        });
+      };
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <%#= csrf_meta_tags %>
     <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= render partial: 'shared/favicon' %>
