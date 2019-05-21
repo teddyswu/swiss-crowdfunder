@@ -56,4 +56,10 @@
       </div>
     </div>
   <% end %>
+  <script src="/sk2_assets/js/vendor/jquery.min.js"></script>
+  <script>
+    function change_city_select(value){
+      jQuery.get("<%= edit_order_path(params[:id]) %>", { city_id : value },null,"script");
+    }
+  </script>
 <% end %>

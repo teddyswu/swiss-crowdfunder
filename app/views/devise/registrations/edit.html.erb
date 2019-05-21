@@ -87,7 +87,7 @@
             <div class="form-group row">
               <label for="name" class="col-sm-3 col-form-label">姓名</label>
               <div class="col-sm-9">
-                <%= user_profile.input :first_name, required: true, autofocus: true, label: false, :class => "form-control", :placeholder => "若您為提案人，請填寫真實姓名" %>
+                <%= user_profile.input :first_name, autofocus: true, label: false, :class => "form-control", :placeholder => "若您為提案人，請填寫真實姓名" %>
               </div>
             </div>
             <%= user_profile.input :country, :as => :hidden, :input_html => { :value => "TW" }  %>

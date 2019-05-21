@@ -41,7 +41,7 @@
       <div class="col-12 col-lg-8 order-last order-lg-first">
         <div class="mb-3">
           <%= link_to orders_path do %>
-            <i class="fas fa-chevron-left"></i> 返回支持列表
+            <i class="fas fa-chevron-left"></i> 返回列表
           <% end %>
         </div>
         <div class="card mb-3">
@@ -134,7 +134,7 @@
             </div>
           </div>
         </div>
-        <%= mail_to @order.goody.campaign.email, "聯絡提案人", :class => "btn btn-outline-primary btn-block"%>
+        <%= mail_to @order.goody.campaign.email, "聯絡提案人", :class => "btn btn-outline-primary btn-block", :target => "_blank"%>
       </div>
     </div>
   </div>
@@ -152,5 +152,6 @@
       content = xmlHttp.responseText;
       $("#info").html(content);
     };
+    
   </script>
 <% end %>

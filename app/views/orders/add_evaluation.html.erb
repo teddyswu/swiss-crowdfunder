@@ -4,32 +4,16 @@
       <div class="col-12 col-lg-8">
         <div class="jumbotron bg-light mb-10 text-center bs">
           <div class="display-4 font-weight-bold text-primary mb-2">
-            <i class="fas fa-check"></i> 支持成功
+            <i class="fas fa-check"></i> 鼓勵已送出
           </div>
           <p>
-            您支持的提案預計在 <%= @campaign.end_date.strftime("%Y年%m月")%>達成。詳細內容請至「<%= link_to "帳號管理-支持紀錄", orders_path %>」查看。
+            您支持的詳細內容請至「<%= link_to "帳號管理-支持紀錄", orders_path %>」查看。
           </p>
           <hr class="my-4">
-          <p class="lead font-weight-bold">提案人想和你說..</p>
+          <p class="lead font-weight-bold">提案人想和你說...</p>
           <p class="mb-10"><%= raw @campaign.order_success_html %></p>
-          <% if params[:s] != "evaluation" %>
-            <%= form_for @order, :url => add_evaluation_order_path(@order), method: :post do |f| %>
-              <p class="lead font-weight-bold">支持者的鼓勵</p>
-              <div class="form-group">
-                <label>請給您支持的提案更多鼓勵的話</label>
-                <select class="form-control mb-2" id="def_text">
-                  <option>預設的鼓勵</option>
-                  <option value="我很期待，祝你成功！">我很期待，祝你成功！</option>
-                  <option value="謝謝您為環境的努力！">謝謝您為環境的努力！</option>
-                  <option value="辛苦了~請繼續加油！">辛苦了~請繼續加油！</option>
-                  <option value="您的理念很棒！我支持您！">您的理念很棒！我支持您！</option>
-                  <option value="很開心能參與這樣有意義的提案，謝謝！">很開心能參與這樣有意義的提案，謝謝！</option>
-                </select>
-                <%= f.text_area :evaluation, :class => "form-control mb-2", :placeholder => "自行輸入"%>
-                <%=  f.submit "送出", :class => "btn btn-outline-primary" %>
-              </div>
-            <% end %>
-          <% end %>
+          <p class="lead font-weight-bold">支持者的鼓勵</p>
+          <%= link_to "返回支持的提案", campaign_path(@campaign.slug), :class => "btn btn-outline-primary"%>
         </div>
       </div>
     </div>
@@ -74,13 +58,6 @@
           <% end %>
         </div>
       <% end %>
-    </div>
+    </div>  
   </div>
 </div>
-<script>
-  $("#def_text").change(function(){
-    tt = $("#def_text").val();
-    $("#order_evaluation").val(tt);
-  });
-
-</script>

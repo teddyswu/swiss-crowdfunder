@@ -23,9 +23,11 @@
               <li class="nav-item">
                 <%= link_to "留言 <span class='text-primary'>#{@campaign_replies.size}</span>".html_safe, campaign_show_reply_path(params[:id], anchor: "menu"), :class => "nav-link active" %>
               </li>
-              <li class="nav-item">
-                <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
-              </li>
+              <% if @campaign.campaign_groups.size > 0 %>
+                <li class="nav-item">
+                  <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
+                </li>
+              <% end %>
               <li class="nav-item">
                 <%= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id], anchor: "menu") , :class => "nav-link"%>
               </li>

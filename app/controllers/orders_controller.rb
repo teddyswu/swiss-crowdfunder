@@ -27,14 +27,16 @@ class OrdersController < ApplicationController
   end
 
   def add_evaluation
+    @campaigns_new = Campaign.where(:status => 3).order("updated_at DESC").limit(4)
     @order = Order.find(params[:id])
+    @campaign = @order.goody.campaign
     @order.evaluation = params[:order][:evaluation]
     @order.save!
-    redirect_to finished_order_path(params[:id], :s => "evaluation")
+    #redirect_to finished_order_path(params[:id], :s => "evaluation")
   end
 
   def index
-    @orders = Order.where(:user_id => current_user.id)
+    @orders = Order.where(:user_id => current_user.id).order(id: :desc)
     set_page_title "支持紀錄"
   end
 

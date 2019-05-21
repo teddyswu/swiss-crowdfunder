@@ -7,7 +7,7 @@ module OrdersHelper
       if 100*(campaign.amount_raised.to_f / campaign.goal) > 100 && (campaign.end_date - Date.today).to_i < 1
         "已付款(<a href=\"###\" onClick=\"alert('提案已達成請聯繫提案人')\">取消</a>)".html_safe
       else
-  		  "已付款(<a href=\"mailto:#{campaign.email}\">取消</a>)".html_safe
+  		  "已付款(<a href=\"mailto:#{campaign.email}\" target=\"_blank\">取消</a>)".html_safe
       end
   	end
   end

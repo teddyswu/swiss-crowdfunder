@@ -56,13 +56,13 @@
         <div class="h1 font-weight-bold"><%= render_remain_day_only_num(campaign.end_date) %></div>
       </div>
       <div class="row no-gutters mt-2">
-        <div class="col-6">
+        <div class="col-7">
           <a class="btn btn-outline-primary btn-like btn_card" href="##" id="track_btn">
             <i class="<%= is_track ? "fas" : "far" %> fa-fw fa-heart" id="track_icon" ></i> <%= is_track ? "已追蹤" : "追蹤" %>
           </a>
           <div class="fb-like" data-href="<%= request.url%>" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
         </div>
-        <div class="col-6 text-right">
+        <div class="col-5 text-right">
           <!--<small class="mr-2">分享</small>-->
           <div class="btn-group btn-group-md">
             <a class="btn btn-outline-secondary" href="#" onclick="fb_share_event()">
