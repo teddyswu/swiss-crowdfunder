@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     get "finished", :on => :member
     get "go_pay", :on => :member
     post "is_paid", :on => :member
+    post "payment_info", :on => :member
     post "add_evaluation", :on => :member
     get "detail",:on => :member
     get "user_info", :on => :collection

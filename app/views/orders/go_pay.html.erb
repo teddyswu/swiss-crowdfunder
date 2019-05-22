@@ -11,6 +11,7 @@
       <% service.item_name @order.goody.title %>
       <% service.choose_payment "ALL" %>
       <% service.ignore_payment "WebATM#BARCODE"%>
+      <% service.payment_info_url "#{SelfConfig.root_host}/orders/#{@order.id}/payment_info" %>
       <% service.return_url "#{SelfConfig.root_host}/orders/#{@order.id}/finished" %>
       <% service.notify_url "#{SelfConfig.root_host}/orders/#{@order.id}/is_paid" %>
       <% service.encrypt_type "1" %>

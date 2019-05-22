@@ -105,6 +105,13 @@ class OrdersController < ApplicationController
     render plain: "0|驗證失敗"
   end
 
+  def payment_info
+    File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
+      file.syswrite(%(#{Time.now.iso8601}: payment_info \n---------------------------------------------\n\n))
+      file.syswrite(%(#{Time.now.iso8601}: #{request.raw_post} \n---------------------------------------------\n\n))
+    end
+  end
+
   def go_pay
     @order = Order.find(params[:id])
     number = @order.number + (100 + Random.rand(100 - 10)).to_s
