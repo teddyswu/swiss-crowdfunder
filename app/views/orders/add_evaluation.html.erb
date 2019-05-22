@@ -13,6 +13,7 @@
           <p class="lead font-weight-bold">提案人想和你說...</p>
           <p class="mb-10"><%= raw @campaign.order_success_html %></p>
           <p class="lead font-weight-bold">支持者的鼓勵</p>
+          <p class="mb-10"><%= @order.evaluation %></p>
           <%= link_to "返回支持的提案", campaign_path(@campaign.slug), :class => "btn btn-outline-primary"%>
         </div>
       </div>

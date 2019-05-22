@@ -2,7 +2,7 @@
 	<% if supporter.paid == true %>
 		<div class="border border-hover p-3 mb-6">
 		  <div class="media">
-		    <img class="img-fluid rounded-circle mr-3" src="assets/img/uploads/avatar3.jpg" alt="" style="width: 50px">
+		    <img class="img-fluid rounded-circle mr-3" src="<%= supporter.anonymous == true ? "/sk2_assets/img/ui/anonymous.jpg" : "https://graph.facebook.com/#{supporter.user.try(:authorizations[0]).try(:uid)}/picture" %>" alt="" style="width: 50px">
 		    <div class="media-body">
 		      <div class="row">
 		        <div class="col">
