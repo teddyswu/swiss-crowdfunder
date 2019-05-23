@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   resources :campaign_tags
 
   resources :orders, only: [:index, :edit, :update] do
-    get "finished", :on => :member
+    match "finished", :on => :member, via: [:get, :post]
     get "go_pay", :on => :member
     post "is_paid", :on => :member
     post "payment_info", :on => :member
