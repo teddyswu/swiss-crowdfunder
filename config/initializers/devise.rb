@@ -263,8 +263,8 @@ Devise.setup do |config|
 
   authorization = YAML.load_file("config/authorization_key.yml")
   config.omniauth :facebook, authorization[:facebook][:app_key], authorization[:facebook][:app_secret], {
-  :scope => 'email',
-  # :scope => 'email,user_gender,user_birthday',
+  # :scope => 'email',
+  :scope => 'email,user_gender,user_birthday',
   :info_fields => 'id,email,gender,birthday,link,locale,name,timezone,updated_time,verified',
   strategy_class: OmniAuth::Strategies::Facebook,
   :provider_ignores_state => true}
