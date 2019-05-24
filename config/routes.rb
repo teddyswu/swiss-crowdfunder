@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     post "is_paid", :on => :member
     post "payment_info", :on => :member
     post "add_evaluation", :on => :member
-    get "detail",:on => :member
+    match "detail",:on => :member, via: [:get, :post]
     get "user_info", :on => :collection
   end
 

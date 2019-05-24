@@ -44,6 +44,76 @@
             <i class="fas fa-chevron-left"></i> 返回列表
           <% end %>
         </div>
+        <% if @order.status == 2 %>
+          <div class="jumbotron bg-light mb-10 py-6 text-center bs">
+            <div class="display-4 font-weight-bold text-primary mb-2">
+              <i class="fas fa-check"></i> 支持完成
+            </div>
+            <hr class="my-4">
+            <p class="lead font-weight-bold">提案人想和你說...</p>
+            <p class="mb-10"><%= raw @order.goody.campaign.order_success_html %></p>
+          </div>
+          <div class="card mb-3 border-danger">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="text-muted">繳款資訊</label>
+                <% if @order.bank_code.present? %>
+                  <div class="form-control-plaintext">
+                    銀行代碼：<%= @order.bank_code %><br>
+                    銀行帳號：<%= @order.vAccount %><br>
+                    繳費期限：<%= @order.expire_date %>
+                  </div>
+                <% else %>
+                  <div class="form-control-plaintext">
+                    超商繳費代碼：<%= @order.payment_no %><br>
+                    繳費期限：<%= @order.expire_date %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% if @order.status == 3 %>
+          <div class="jumbotron bg-light mb-10 py-6 text-center bs">
+            <div class="display-4 font-weight-bold text-primary mb-2">
+              <i class="fas fa-check"></i> 支持成功
+            </div>
+            <hr class="my-4">
+            <p class="lead font-weight-bold">提案人想和你說...</p>
+            <p class="mb-10"><%= raw @order.goody.campaign.order_success_html %></p>
+            <p class="lead font-weight-bold">支持者的鼓勵</p>
+            <%= form_for @order, :url => add_evaluation_order_path(@order), method: :post do |f| %>
+              <div class="form-group">
+                <label>請給您支持的提案更多鼓勵的話</label>
+                <% if @order.evaluation.present? %>
+                  <p class="mb-10"><%= @order.evaluation %></p>
+                <% else %>
+                  <select class="form-control mb-2" id="def_text">
+                    <option>預設的鼓勵</option>
+                    <option value="我很期待，祝你成功！">我很期待，祝你成功！</option>
+                    <option value="謝謝您為環境的努力！">謝謝您為環境的努力！</option>
+                    <option value="辛苦了~請繼續加油！">辛苦了~請繼續加油！</option>
+                    <option value="您的理念很棒！我支持您！">您的理念很棒！我支持您！</option>
+                    <option value="很開心能參與這樣有意義的提案，謝謝！">很開心能參與這樣有意義的提案，謝謝！</option>
+                  </select>
+                  <%= f.text_area :evaluation, :class => "form-control mb-2", :placeholder => "自行輸入"%>
+                  <%=  f.submit "送出", :class => "btn btn-outline-primary" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="card mb-3 border-danger">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="text-muted">退款說明</label>
+                <div class="form-control-plaintext">有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”</div>
+              </div>
+              <div class="form-group">
+                <a class="btn btn-outline-primary" href="">申請退款</a>
+              </div>
+            </div>
+          </div>
+        <% end %>
         <div class="card mb-3">
           <div class="card-body">
             <div class="form-group">
@@ -152,6 +222,10 @@
       content = xmlHttp.responseText;
       $("#info").html(content);
     };
-    
+    $("#def_text").change(function(){
+      tt = $("#def_text").val();
+      $("#order_evaluation").val(tt);
+    });
+
   </script>
 <% end %>
