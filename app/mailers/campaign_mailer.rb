@@ -5,8 +5,10 @@ class CampaignMailer < ApplicationMailer
   #
   #   en.campaign_mailer.notify_comment.subject
   #
-  def notify_comment(user, campaign)
+  def notify_comment(user, campaign, order)
   	@campaign = campaign
+  	@order = order
+  	@user = user
     mail(:to => user.email, :subject => "您贊助了 #{campaign.title}募資項目")
   end
 end

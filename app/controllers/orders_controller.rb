@@ -111,7 +111,7 @@ class OrdersController < ApplicationController
           order.status = 4
         end
         order.save!
-        CampaignMailer.notify_comment(order.user, order.goody.campaign).deliver_now!
+        CampaignMailer.notify_comment(order.user, order.goody.campaign, order).deliver_now!
         render plain: "1|OK"
       end
       render plain: "0|付款失敗"
