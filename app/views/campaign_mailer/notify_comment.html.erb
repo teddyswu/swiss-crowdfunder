@@ -390,7 +390,7 @@
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 25px; padding-left: 25px; padding-top: 10px; padding-bottom: 20px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
 <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:200%;padding-top:10px;padding-right:25px;padding-bottom:20px;padding-left:25px;">
 <div style="font-size: 12px; line-height: 24px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;">
-<p dir="ltr" style="font-size: 14px; line-height: 30px; text-align: center; margin: 0;"><span style="color: #333333; font-size: 15px; background-color: #ffffff;">感謝您支持<span style="line-height: 30px; font-size: 15px; background-color: #ffffff; color: #0068a5;"> <a href="https://project.ugooz.cc/campaigns/<%= @campaign.slug%>" rel="noopener" style="text-decoration: underline; color: #0068a5;" target="_blank"><span style="font-size: 15px; line-height: 30px;"><%= @campaign.title %></span> </a></span>提案，以下為您的支持紀錄，若提案最終未達成目標，友故事將於提案時間結束後 7~14 天內寄送退款通知。</span></p>
+<p dir="ltr" style="font-size: 14px; line-height: 30px; text-align: center; margin: 0;"><span style="color: #333333; font-size: 15px; background-color: #ffffff;">感謝您支持<span style="line-height: 30px; font-size: 15px; background-color: #ffffff; color: #0068a5;"> <a href="<%= "#{YAML.load_file("config/settings.yml")[:root_host]}"%>/campaigns/<%= @campaign.slug%>" rel="noopener" style="text-decoration: underline; color: #0068a5;" target="_blank"><span style="font-size: 15px; line-height: 30px;"><%= @campaign.title %></span> </a></span>提案，以下為您的支持紀錄，若提案最終未達成目標，友故事將於提案時間結束後 7~14 天內寄送退款通知。</span></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
