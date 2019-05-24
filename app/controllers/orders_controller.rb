@@ -131,7 +131,7 @@ class OrdersController < ApplicationController
       file.syswrite(%(#{Time.now.iso8601}: 1234 \n---------------------------------------------\n\n))
     end
     if chksource.checksum_ok?
-      t_no = PayOrderNumber.find(:pay_order_number => params[:MerchantTradeNo])
+      t_no = PayOrderNumber.find_by(:pay_order_number => params[:MerchantTradeNo])
       order = Order.find_by_number(t_no.original_order_number)
       order.status = 2
       order.bank_code = params[:BankCode] if params[:BankCode].present?
