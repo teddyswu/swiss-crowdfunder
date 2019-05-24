@@ -17,6 +17,18 @@
         <% if is_goody_active?(@goody) == ''%>
           <%= form_for @order, :url => campaign_goody_orders_path(@goody.campaign, @goody) do |f| %>
             <%= f.hidden_field :user_id, value: current_user.id %>
+            <% if params[:s]=="f"%>
+              <div class="card mb-3 border-danger">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label class="text-muted">您的付款失敗了！</label>
+                    <div class="form-control-plaintext">
+                      可能的原因有OOXXOOXXOOXXOOXX
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
             <div class="card mb-3">
               <div class="card-body">
                 <div class="form-group">
@@ -24,8 +36,8 @@
                   <label for="formPay">支付方式說明</label>
                   <ul class="pl-4">
                     <li>信用卡付款：可用卡別：VISA／MASTERCARD／JCB／銀聯，不接受國外信用卡交易，無手續費用產生。</li>
-                    <li>網路 ATM (晶片讀卡機) 或實體 ATM 及網銀：轉帳付款時，非金流特定銀行將產生 15 元手續費。</li>
-                    <li>超商付款：超商條碼/代碼付款不需支付手續費，付款期限為 7 天，請務必於期限內進行付款。</li>
+                    <li>網路 ATM 或實體 ATM 及網銀：轉帳付款時，非金流特定銀行將產生 15 元手續費。</li>
+                    <li>超商付款：超商代碼付款不需支付手續費，付款期限為 7 天，請務必於期限內進行付款。</li>
                   </ul>
                   <small class="form-text text-muted" id="paytip"></small>
                 </div>

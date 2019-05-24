@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
     @order.goody = @goody
     @order.amount = @goody.price
     @order.quantity = 1
+    @order.status = 1
     @order.paid = false
     
     if NewOrderService.new(@order).call
@@ -36,12 +37,20 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(:user_id => current_user.id).order(id: :desc)
+    if params[:status] == "cancel"
+      @orders = Order.where(:user_id => current_user.id, :status => 4 ).order(id: :desc).paginate(:page => params[:page], per_page: 10)  
+    else
+      order_a = Order.where(:user_id => current_user.id, :status => 2).where("expire_date > ?",Date.today).order(id: :desc).map { |order| order.id }
+      order_b = Order.where(:user_id => current_user.id, :status => 3 ).order(id: :desc).map { |order| order.id }
+      order_ids = order_a + order_b
+      @orders = Order.where(:id => order_ids).paginate(:page => params[:page], per_page: 10)
+    end
     set_page_title "支持紀錄"
   end
 
   def detail
     @order = Order.find(params[:id])
+    redirect_to new_campaign_goody_order_path(@order.goody.campaign.id, @order.goody_id, :s => "f") if @order.status == 1
     set_page_title "支持紀錄-#{@order.goody.campaign.title}"
   end
 
@@ -90,12 +99,17 @@ class OrdersController < ApplicationController
       File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
         file.syswrite(%(#{Time.now.iso8601}: #{params[:RtnCode] == "1"} \n---------------------------------------------\n\n))
       end
-      if params[:RtnCode] == "1" #&& params[:SimulatePaid] == 0
+      if params[:RtnCode] == "1"
         order.paid = true
         order.trade_no = params[:TradeNo]
         order.payment_date = params[:PaymentDate]
         order.ecpay_payment_type = params[:PaymentType]
         order.payment_type_charge_fee = params[:PaymentTypeChargeFee]
+        if order.goody.remaining_quantity != 0
+          order.status = 3
+        else
+          order.status = 4
+        end
         order.save!
         CampaignMailer.notify_comment(order.user, order.goody.campaign).deliver_now!
         render plain: "1|OK"
@@ -110,6 +124,21 @@ class OrdersController < ApplicationController
       file.syswrite(%(#{Time.now.iso8601}: payment_info \n---------------------------------------------\n\n))
       file.syswrite(%(#{Time.now.iso8601}: #{request.raw_post} \n---------------------------------------------\n\n))
     end
+    chksource = OffsitePayments::Integrations::Allpay::Notification.new(request.raw_post)
+    if chksource.checksum_ok?
+      order = Order.find_by_number(params[:MerchantTradeNo])
+      order.status = 2
+      order.bank_code = params[:BankCode] if params[:BankCode].present?
+      order.expire_date = params[:ExpireDate]
+      order.merchant_trade_no = params[:MerchantTradeNo]
+      order.trade_amt = params[:TradeAmt]
+      order.trade_date = params[:TradeDate]
+      order.vAccount = params[:vAccount] if params[:vAccount].present?
+      order.payment_no = params[:PaymentNo] if params[:PaymentNo].present?
+      order.save!
+      render plain: "1|OK"
+    end
+    render plain: "0|驗證失敗"
   end
 
   def go_pay

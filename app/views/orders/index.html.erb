@@ -37,6 +37,15 @@
     </div>
   </div>
   <div class="container">
+    <div class="mb-6">
+      <div class="d-flex justify-content-between">
+        <div class="h5 font-weight-bold">
+          <%= params[:status] == "cancel" ? "<i class=\"fas fa-fw fa-exclamation-circle\"></i> 取消或退款".html_safe : "<i class=\"fas fa-fw fa-check-circle\"></i> 支持成功".html_safe %>
+        </div>
+        <%= render_order_title_path(params[:status]).html_safe %>
+      </div>
+      <small class="text-muted">* ATM 轉帳與超商付款若未於期限內繳款，逾期後訂單會自動取消。</small>
+    </div>
   	<% @orders.each do |order|%>
       <div class="row mb-6">
         <div class="col-12 col-md-3 col-lg-2 mb-2 mb-md-0">
@@ -77,7 +86,13 @@
             </div>
           </div>
         </div>
+        <div class="col-12">
+          <div class="text-muted">
+            <small><%= render_campaign_status(order.goody.campaign)%></small>
+          </div>
+        </div>
       </div>
     <% end %>
+    <%= will_paginate @orders %>
   </div>
 </div>

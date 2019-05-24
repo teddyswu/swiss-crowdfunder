@@ -48,7 +48,7 @@ module CampaignsHelper
   end
 
   def render_remain_day_only_num(day)
-    (day - Date.today).to_i > -1 ? "#{(day - Date.today).to_i}天" : "已結束"
+    (day - Date.today).to_i > -1 ? (day - Date.today == 0 ? "最後一天" : "#{(day - Date.today).to_i}天") : "已結束"
   end
 
   def render_staus(status)

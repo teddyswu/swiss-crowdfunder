@@ -12,7 +12,7 @@ class Goody < ApplicationRecord
 
   accepts_nested_attributes_for :goody_image, update_only: true
   def orders_count
-    orders.count
+    orders.where(:status => 3).count
   end
 
   def input_goody_image

@@ -20,6 +20,30 @@ module OrdersHelper
     end
   end
 
+  def render_order_title_path(status)
+    html = String.new
+    if status == "cancel"
+      html << "<a class=\"d-block\" href=\"/orders?locale=zh-TW\">"
+      html << "<i class=\"fas fa-fw fa-check-circle\"></i> 支持成功"
+      html << "</a>"
+    else
+      html << "<a class=\"d-block\" href=\"/orders?locale=zh-TW&status=cancel\">"
+      html << "<u><i class=\"fas fa-fw fa-exclamation-circle\"></i> 取消或退款</u>"
+      html << "</a>"
+    end
+  end
+
+  def render_campaign_status(campaign)
+    case campaign.result_status
+    when 1
+      "您支持的提案成功了"
+    when 2
+      "很可惜提案失敗了"
+    when 3
+      "提案終止"
+    end   
+  end
+
   def render_how_to_pay(payment_type)
   	case payment_type
   	when "Credit_CreditCard"

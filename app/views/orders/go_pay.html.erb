@@ -12,8 +12,8 @@
       <% service.choose_payment "ALL" %>
       <% service.ignore_payment "WebATM#BARCODE"%>
       <% service.payment_info_url "#{SelfConfig.root_host}/orders/#{@order.id}/payment_info" %>
-      <% service.client_redirect_url "#{SelfConfig.root_host}/orders/#{@order.id}/finished" %>
-      <% service.redirect_url "#{SelfConfig.root_host}/orders/#{@order.id}/finished" %>
+      <% service.client_redirect_url "#{SelfConfig.root_host}/orders/#{@order.id}/detail" %>
+      <% service.redirect_url "#{SelfConfig.root_host}/orders/#{@order.id}/detail" %>
       <% service.notify_url "#{SelfConfig.root_host}/orders/#{@order.id}/is_paid" %>
       <% service.encrypt_type "1" %>
       <% service.encrypted_data %>
