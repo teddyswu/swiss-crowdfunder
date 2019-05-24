@@ -128,9 +128,11 @@ class OrdersController < ApplicationController
     File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
       file.syswrite(%(#{Time.now.iso8601}: payment_info \n---------------------------------------------\n\n))
       file.syswrite(%(#{Time.now.iso8601}: #{chksource.checksum_ok?} \n---------------------------------------------\n\n))
+      file.syswrite(%(#{Time.now.iso8601}: 1234 \n---------------------------------------------\n\n))
     end
-    # if chksource.checksum_ok?
-      order = Order.find_by_number(params[:MerchantTradeNo])
+    if chksource.checksum_ok?
+      t_no = PayOrderNumber.find(:pay_order_number => params[:MerchantTradeNo])
+      order = Order.find_by_number(t_no.original_order_number)
       order.status = 2
       order.bank_code = params[:BankCode] if params[:BankCode].present?
       order.expire_date = params[:ExpireDate]
@@ -141,7 +143,7 @@ class OrdersController < ApplicationController
       order.payment_no = params[:PaymentNo] if params[:PaymentNo].present?
       order.save!
       render plain: "1|OK"
-    # end
+    end
     render plain: "0|驗證失敗"
   end
 
