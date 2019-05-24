@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:is_paid, :payment_info, :finished]
+  skip_before_action :verify_authenticity_token, only: [:is_paid, :payment_info, :finished, :detail]
   before_action :authenticate_user!, only: [:new, :index, :detail]
 
   # TODO: Think about proper safety in this method/controller. This
@@ -125,7 +125,11 @@ class OrdersController < ApplicationController
       file.syswrite(%(#{Time.now.iso8601}: #{request.raw_post} \n---------------------------------------------\n\n))
     end
     chksource = OffsitePayments::Integrations::Allpay::Notification.new(request.raw_post)
-    if chksource.checksum_ok?
+    File.open("#{Rails.root}/log/is_paid.log", "a+") do |file|
+      file.syswrite(%(#{Time.now.iso8601}: payment_info \n---------------------------------------------\n\n))
+      file.syswrite(%(#{Time.now.iso8601}: #{chksource.checksum_ok?} \n---------------------------------------------\n\n))
+    end
+    # if chksource.checksum_ok?
       order = Order.find_by_number(params[:MerchantTradeNo])
       order.status = 2
       order.bank_code = params[:BankCode] if params[:BankCode].present?
@@ -137,7 +141,7 @@ class OrdersController < ApplicationController
       order.payment_no = params[:PaymentNo] if params[:PaymentNo].present?
       order.save!
       render plain: "1|OK"
-    end
+    # end
     render plain: "0|驗證失敗"
   end
 
