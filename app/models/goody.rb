@@ -2,7 +2,7 @@
 class Goody < ApplicationRecord
   # Add relation, but also allow non-active campaigns to already
   # create goodies
-  belongs_to :campaign#, -> { unscope(where: 'active') }
+  belongs_to :campaign, -> { unscope(where: 'active') }
   has_many :orders
   has_many :supporters, through: :orders
   has_one :goody_image

@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   validates :supporter, presence: true
 
   validate :goody, :are_goodies_left?
-  validate :goody, :is_campaign_active?
+  #validate :goody, :is_campaign_active?
 
   scope :is_paid, -> { where(paid: true) }
 
