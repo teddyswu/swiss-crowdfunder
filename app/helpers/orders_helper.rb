@@ -14,7 +14,7 @@ module OrdersHelper
 
   def render_pay_or_view(id, is_paid)
     if is_paid == false
-      link_to "前往付款", detail_order_path(id), :class => "btn btn-sm btn-block btn-outline-danger"
+      link_to "尚未付款", detail_order_path(id), :class => "btn btn-sm btn-block btn-outline-danger"
     else
       link_to "查看", detail_order_path(id), :class => "btn btn-sm btn-block btn-outline-primary"
     end

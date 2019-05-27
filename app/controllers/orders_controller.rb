@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     @campaign = @order.goody.campaign
     @order.evaluation = params[:order][:evaluation]
     @order.save!
-    redirect_to detail_order_path(@order.id)#finished_order_path(params[:id], :s => "evaluation")
+    redirect_to finished_order_path(params[:id], :s => "evaluation")
   end
 
   def index

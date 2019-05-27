@@ -47,33 +47,26 @@
         <% if @order.status == 2 %>
           <div class="jumbotron bg-light mb-10 py-6 text-center bs">
             <div class="display-4 font-weight-bold text-primary mb-2">
-              <i class="fas fa-check"></i> 支持完成
+              <i class="fas fa-check"></i> 等待付款中
             </div>
             <hr class="my-4">
-            <p class="lead font-weight-bold">提案人想和你說...</p>
-            <p class="mb-10"><%= raw @order.goody.campaign.order_success_html %></p>
-          </div>
-          <div class="card mb-3 border-danger">
-            <div class="card-body">
-              <div class="form-group">
-                <label class="text-muted">繳款資訊</label>
-                <% if @order.bank_code.present? %>
-                  <div class="form-control-plaintext">
-                    銀行代碼：<%= @order.bank_code %><br>
-                    銀行帳號：<%= @order.vAccount %><br>
-                    繳費期限：<%= @order.expire_date %>
-                  </div>
-                <% else %>
-                  <div class="form-control-plaintext">
-                    超商繳費代碼：<%= @order.payment_no %><br>
-                    繳費期限：<%= @order.expire_date %>
-                  </div>
-                <% end %>
+            <p class="lead font-weight-bold">只差一部就完成囉...</p>
+            <p class="mb-10"><%= render_how_to_pay(@order.ecpay_payment_type)%></p>
+            <% if @order.bank_code.present? %>
+              <div class="form-control-plaintext">
+                銀行代碼：<%= @order.bank_code %><br>
+                ATM繳費帳號：<%= @order.vAccount %><br>
+                繳費截止日期：<%= @order.expire_date %>
               </div>
-            </div>
+            <% else %>
+              <div class="form-control-plaintext">
+                超商繳費代碼：<%= @order.payment_no %><br>
+                繳費截止日期：<%= @order.expire_date %>
+              </div>
+            <% end %>
           </div>
         <% end %>
-        <% if @order.status == 3 %>
+        <% if @order.status == 3 && @order.evaluation.blank? %>
           <div class="jumbotron bg-light mb-10 py-6 text-center bs">
             <div class="display-4 font-weight-bold text-primary mb-2">
               <i class="fas fa-check"></i> 支持成功
@@ -85,23 +78,21 @@
             <%= form_for @order, :url => add_evaluation_order_path(@order), method: :post do |f| %>
               <div class="form-group">
                 <label>請給您支持的提案更多鼓勵的話</label>
-                <% if @order.evaluation.present? %>
-                  <p class="mb-10"><%= @order.evaluation %></p>
-                <% else %>
-                  <select class="form-control mb-2" id="def_text">
-                    <option>預設的鼓勵</option>
-                    <option value="我很期待，祝你成功！">我很期待，祝你成功！</option>
-                    <option value="謝謝您為環境的努力！">謝謝您為環境的努力！</option>
-                    <option value="辛苦了~請繼續加油！">辛苦了~請繼續加油！</option>
-                    <option value="您的理念很棒！我支持您！">您的理念很棒！我支持您！</option>
-                    <option value="很開心能參與這樣有意義的提案，謝謝！">很開心能參與這樣有意義的提案，謝謝！</option>
-                  </select>
-                  <%= f.text_area :evaluation, :class => "form-control mb-2", :placeholder => "自行輸入"%>
-                  <%=  f.submit "送出", :class => "btn btn-outline-primary" %>
-                <% end %>
+                <select class="form-control mb-2" id="def_text">
+                  <option>預設的鼓勵</option>
+                  <option value="我很期待，祝你成功！">我很期待，祝你成功！</option>
+                  <option value="謝謝您為環境的努力！">謝謝您為環境的努力！</option>
+                  <option value="辛苦了~請繼續加油！">辛苦了~請繼續加油！</option>
+                  <option value="您的理念很棒！我支持您！">您的理念很棒！我支持您！</option>
+                  <option value="很開心能參與這樣有意義的提案，謝謝！">很開心能參與這樣有意義的提案，謝謝！</option>
+                </select>
+                <%= f.text_area :evaluation, :class => "form-control mb-2", :placeholder => "自行輸入"%>
+                <%=  f.submit "送出", :class => "btn btn-outline-primary" %>
               </div>
             <% end %>
           </div>
+        <% end %>
+        <% if @order.status == 4 %>
           <div class="card mb-3 border-danger">
             <div class="card-body">
               <div class="form-group">
