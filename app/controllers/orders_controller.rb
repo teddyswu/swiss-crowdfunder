@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     if params[:status] == "cancel"
       @orders = Order.where(:user_id => current_user.id, :status => 4 ).order(id: :desc).paginate(:page => params[:page], per_page: 10)  
     else
-      order_a = Order.where(:user_id => current_user.id, :status => 2).where("expire_date > ?",Date.today).order(id: :desc).map { |order| order.id }
+      order_a = Order.where(:user_id => current_user.id, :status => 2).where("expire_date > ?",Date.today.strftime('%Y/%m/%d')).order(id: :desc).map { |order| order.id }
       order_b = Order.where(:user_id => current_user.id, :status => 3 ).order(id: :desc).map { |order| order.id }
       order_ids = order_a + order_b
       @orders = Order.where(:id => order_ids).paginate(:page => params[:page], per_page: 10)
