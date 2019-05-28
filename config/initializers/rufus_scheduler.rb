@@ -26,7 +26,7 @@ safely_and_compute_time do
     camps.each do |camp|
       if 100*(camp.amount_raised.to_f / camp.goal) >= 100
         camps.result_status = 1
-        camp.orders.each do |order|
+        camp.orders.is_paid.each do |order|
           CampaignMailer.campaign_success(order.user, order.goody.campaign, order).deliver_now!
         end
       else
