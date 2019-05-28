@@ -40,10 +40,11 @@ class OrdersController < ApplicationController
     if params[:status] == "cancel"
       @orders = Order.where(:user_id => current_user.id, :status => 4 ).order(id: :desc).paginate(:page => params[:page], per_page: 10)  
     else
-      order_a = Order.where(:user_id => current_user.id, :status => 2).where("expire_date > ?",Date.today.strftime('%Y/%m/%d')).order(id: :desc).map { |order| order.id }
-      order_b = Order.where(:user_id => current_user.id, :status => 3 ).order(id: :desc).map { |order| order.id }
-      order_ids = order_a + order_b
-      @orders = Order.where(:id => order_ids).paginate(:page => params[:page], per_page: 10)
+      order_a = Order.where(:user_id => current_user.id, :status => 2).where("expire_date > ? and expire_date like '% %'",Time.now.strftime('%Y/%m/%d %T')).map { |order| order.id }
+      order_b = Order.where(:user_id => current_user.id, :status => 2).where("expire_date >= ? and expire_date not like '% %'",Time.now.strftime('%Y/%m/%d')).where.not(:id => order_a ).map { |order| order.id }
+      order_c = Order.where(:user_id => current_user.id, :status => 3 ).map { |order| order.id }
+      order_ids = order_a + order_b + order_c
+      @orders = Order.where(:id => order_ids).order(paid: :desc).paginate(:page => params[:page], per_page: 10)
     end
     set_page_title "支持紀錄"
   end

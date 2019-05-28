@@ -19,9 +19,20 @@ ensure
 end
 
 safely_and_compute_time do
-  # scheduler  = Rufus::Scheduler.start_new
-  # proc_mutex = Mutex.new # 初始化一個 process 鎖  
-  # scheduler.cron '00 02 * * *', :mutex => proc_mutex do
-  #   camp = Campaign.where(:result_status => nil).where("end_date < ?", Date.today)
-  # end
+  scheduler  = Rufus::Scheduler.start_new
+  proc_mutex = Mutex.new # 初始化一個 process 鎖  
+  scheduler.cron '00 02 * * *', :mutex => proc_mutex do
+    camps = Campaign.where(:result_status => nil).where("end_date < ?", Date.today)
+    camps.each do |camp|
+      if 100*(camp.amount_raised.to_f / camp.goal) >= 100
+        camps.result_status = 1
+        camp.orders.each do |order|
+          CampaignMailer.campaign_success(order.user, order.goody.campaign, order).deliver_now!
+        end
+      else
+        camps.result_status = 2
+      end
+      camp.save!
+    end
+  end
 end
