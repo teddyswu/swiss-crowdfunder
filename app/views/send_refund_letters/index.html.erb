@@ -1,0 +1,43 @@
+<div id="main" class="push py-14 mt-10 mt-lg-12">
+	<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center text-success mb-7">
+          <h1 class="font-weight-bold">管理</h1>
+          <div class="h3">發退款信</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid border-bottom mb-6 pt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-responsive">
+            <ul class="nav nav-tabs nav-justified border-bottom-0">
+              <li class="nav-item">
+              	<%= link_to "訂單匯入", order_batch_uploads_path, class:"nav-link " %>
+              </li>
+              <li class="nav-item">
+              	<%= link_to "發退款信", send_refund_letters_path, class:"nav-link active" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-4 text-right">
+          <%= link_to "新增", new_send_refund_letter_path, :class => "btn btn-outline-primary"%>
+        </div>
+			  <% @rl.each do |rl|%>
+          <%= rl.campaign.title%><%= render_is_send(rl.campaign.status)%>
+        <% end %>
+      </div>
+		</div>
+    <%= will_paginate @rl %>
+	</div>
+</div>

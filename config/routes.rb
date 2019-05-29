@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
   resources :favo_farmers
 
+  resources :order_batch_uploads
+  resources :send_refund_letters
+
   resources :campaigns do
     get "list", :on => :member
     get "group", :on => :member

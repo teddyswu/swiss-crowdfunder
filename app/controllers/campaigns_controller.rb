@@ -52,6 +52,7 @@ class CampaignsController < ApplicationController
   end
 
   def support
+    redirect_to campaign_path(@campaign.slug) #頁面關閉
     @campaign_replies = @campaign.parent_comments.order( "created_at Desc" )
     user_id = current_user.present? ? current_user.id : nil
     @is_track = Track.exists?(:user_id => user_id, :campaign_id => @campaign.id )

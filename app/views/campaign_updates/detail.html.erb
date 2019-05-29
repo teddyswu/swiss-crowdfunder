@@ -26,9 +26,9 @@
               <li class="nav-item">
                 <%= link_to "小農隊 <span class='text-primary'>#{@campaign.campaign_groups.size}</span>".html_safe, group_campaign_path(params[:id]), anchor: "menu", :class => "nav-link"%>
               </li>
-              <li class="nav-item">
-                <%= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id]), anchor: "menu", :class => "nav-link"%>
-              </li>
+              <!-- <li class="nav-item"> -->
+                <%#= link_to "支持者 <span class='text-primary'>#{@campaign.orders.is_paid.size}</span>".html_safe, support_campaign_path(params[:id]), anchor: "menu", :class => "nav-link"%>
+              <!-- </li> -->
             </ul>
           </div>
         </div>

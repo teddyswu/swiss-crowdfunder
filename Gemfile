@@ -23,6 +23,9 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'money'
 gem 'active_merchant_allpay', github: 'imgarylai/active_merchant_allpay'
 
+gem 'delayed_job_active_record'
+gem "daemons"
+
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta.2'
 gem "fog"

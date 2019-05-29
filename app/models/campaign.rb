@@ -10,6 +10,7 @@ class Campaign < ApplicationRecord
   has_many :goodies, dependent: :destroy
   has_many :supporters, through: :goodies
   has_many :orders, through: :goodies
+  has_many :send_refund_mail
   has_many :campaign_updates
   has_many :campaign_replies
   has_many :tracks

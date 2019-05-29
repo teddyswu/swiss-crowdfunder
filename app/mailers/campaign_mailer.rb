@@ -12,6 +12,12 @@ class CampaignMailer < ApplicationMailer
     mail(:to => user.email, :subject => "友故事｜#{campaign.title} 目標達成通知")
   end
 
+  def campaign_fail(campaign, order)
+    @campaign = campaign
+    @order = order
+    mail(:to => user.email, :subject => "友故事｜#{campaign.title} 目標達成通知")
+  end
+
   def notify_comment(user, campaign, order)
     @campaign = campaign
     @order = order

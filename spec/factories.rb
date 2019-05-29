@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :send_refund_mail do
+    
+  end
   factory :district do
     
   end

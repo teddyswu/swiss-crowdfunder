@@ -3,7 +3,7 @@ class Supporter < ApplicationRecord
   belongs_to :district
   belongs_to :city
   validates_presence_of :first_name, :address,
-    :postal_code, :country, :city, :email
+    :postal_code, :country, :city_id, :email
 
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 

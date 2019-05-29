@@ -192,8 +192,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:user_id, :agreement, :bonus, :payment_type, :anonymous, :remark, 
       supporter_attributes:
-    [:first_name, :last_name, :email, :date_of_birth, :address,
-    :postal_code, :country, :city_id, :district_id, :tel, :cell_phone, :anonymous])
+    [:first_name, :email, :address, :postal_code, :country, :city_id, :district_id, :cell_phone])
   end
 
 end
