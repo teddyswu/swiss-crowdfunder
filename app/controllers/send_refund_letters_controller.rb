@@ -21,7 +21,7 @@ class SendRefundLettersController < ApplicationController
 	end
 
 	def send_refund_mail_params
-		params.require(:send_refund_mail).permit(:campaign_id :run_at)
+		params.require(:send_refund_mail).permit(:campaign_id, :run_at)
 	end
 
 	def check_admin
