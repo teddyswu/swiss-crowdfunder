@@ -43,6 +43,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">提案名稱</th>
+                  <th scope="col">發送時間</th>
                   <th scope="col">是否發送</th>
                 </tr>
               </thead>
@@ -51,6 +52,7 @@
                   <tr>
                     <th scope="row"><%= rl.id%></th>
                     <td><%= rl.campaign.title%></td>
+                    <td><%= rl.run_at%></td>
                     <td><%= render_is_send(rl.campaign.status)%></td>
                   </tr>
                 <% end %>
