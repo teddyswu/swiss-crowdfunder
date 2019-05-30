@@ -5,7 +5,7 @@ class SendRefundMailJob < ApplicationJob
     srm = SendRefundMail.find_by(:delayed_job_id => self.job_id)
     campaign = Campaign.find(srm.campaign_id)
     campaign.orders.each do |order|
-    	order.supporter.email
+    	CampaignMailer.campaign_fail(order.user, order.goody.campaign, order).deliver_now!
     end
   end
 end

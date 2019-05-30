@@ -32,20 +32,21 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @campaign = @order.goody.campaign
     @order.evaluation = params[:order][:evaluation]
-    @order.save!
-    redirect_to finished_order_path(params[:id], :s => "evaluation")
+    @order.save(:validate => false)
+    #redirect_to finished_order_path(params[:id], :s => "evaluation")
   end
 
   def index
-    if params[:status] == "cancel"
-      @orders = Order.where(:user_id => current_user.id, :status => 4 ).order(id: :desc).paginate(:page => params[:page], per_page: 10)  
-    else
-      order_a = Order.where(:user_id => current_user.id, :status => 2).where("expire_date > ? and expire_date like '% %'",Time.now.strftime('%Y/%m/%d %T')).map { |order| order.id }
-      order_b = Order.where(:user_id => current_user.id, :status => 2).where("expire_date >= ? and expire_date not like '% %'",Time.now.strftime('%Y/%m/%d')).where.not(:id => order_a ).map { |order| order.id }
-      order_c = Order.where(:user_id => current_user.id, :status => 3 ).map { |order| order.id }
-      order_ids = order_a + order_b + order_c
-      @orders = Order.where(:id => order_ids).order(paid: :desc).paginate(:page => params[:page], per_page: 10)
-    end
+    order_a = Order.where(:user_id => current_user.id, :status => 2).where("expire_date > ? and expire_date like '% %'",Time.now.strftime('%Y/%m/%d %T')).map { |order| order.id }
+    order_b = Order.where(:user_id => current_user.id, :status => 2).where("expire_date >= ? and expire_date not like '% %'",Time.now.strftime('%Y/%m/%d')).where.not(:id => order_a ).map { |order| order.id }
+    order_c = Order.where(:user_id => current_user.id, :status => 3 ).map { |order| order.id }
+    order_ids = order_a + order_b + order_c
+    @orders = Order.where(:id => order_ids).order(id: :desc).paginate(:page => params[:page], per_page: 10)
+    set_page_title "支持紀錄"
+  end
+
+  def cancel
+    @orders = Order.where(:user_id => current_user.id, :status => 4 ).order(id: :desc).paginate(:page => params[:page], per_page: 10)
     set_page_title "支持紀錄"
   end
 
@@ -113,11 +114,11 @@ class OrdersController < ApplicationController
         end
         order.save!
         CampaignMailer.notify_comment(order.user, order.goody.campaign, order).deliver_now!
-        render plain: "1|OK"
+        render plain: "1|OK" and return
       end
-      render plain: "0|付款失敗"
+      render plain: "0|付款失敗" and return
     end
-    render plain: "0|驗證失敗"
+    render plain: "0|驗證失敗" and return
   end
 
   def payment_info
@@ -138,14 +139,15 @@ class OrdersController < ApplicationController
       order.bank_code = params[:BankCode] if params[:BankCode].present?
       order.expire_date = params[:ExpireDate]
       order.merchant_trade_no = params[:MerchantTradeNo]
+      order.ecpay_payment_type = params[:PaymentType]
       order.trade_amt = params[:TradeAmt]
       order.trade_date = params[:TradeDate]
       order.vAccount = params[:vAccount] if params[:vAccount].present?
       order.payment_no = params[:PaymentNo] if params[:PaymentNo].present?
       order.save!
-      render plain: "1|OK"
+      render plain: "1|OK" and return
     end
-    render plain: "0|驗證失敗"
+    render plain: "0|驗證失敗" and return
   end
 
   def go_pay

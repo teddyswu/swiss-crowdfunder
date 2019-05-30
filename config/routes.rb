@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     post "add_evaluation", :on => :member
     match "detail",:on => :member, via: [:get, :post]
     get "user_info", :on => :collection
+    get "cancel", :on => :collection
   end
 
   get '*any', via: :all, to: 'errors#not_found'

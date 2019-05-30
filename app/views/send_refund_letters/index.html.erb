@@ -33,9 +33,31 @@
         <div class="mb-4 text-right">
           <%= link_to "新增", new_send_refund_letter_path, :class => "btn btn-outline-primary"%>
         </div>
-			  <% @rl.each do |rl|%>
-          <%= rl.campaign.title%><%= render_is_send(rl.campaign.status)%>
-        <% end %>
+        <div class="card">
+          <div class="card-header">
+            <strong class="card-title">所有排程</strong>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">提案名稱</th>
+                  <th scope="col">是否發送</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @rl.each do |rl|%>
+                  <tr>
+                    <th scope="row"><%= rl.id%></th>
+                    <td><%= rl.campaign.title%></td>
+                    <td><%= render_is_send(rl.campaign.status)%></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 		</div>
     <%= will_paginate @rl %>

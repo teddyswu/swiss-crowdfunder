@@ -3,7 +3,7 @@ class SendRefundLettersController < ApplicationController
 	before_action :check_admin
 
 	def index
-		@rl = SendRefundMail.all.paginate(:page => params[:page], per_page: 10)
+		@rl = SendRefundMail.all.order(id: :desc).paginate(:page => params[:page], per_page: 10)
 	end
 
 	def new

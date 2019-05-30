@@ -14,7 +14,7 @@ module CampaignsHelper
   end
 
   def render_remain_day(day)
-  	(day - Date.today).to_i > 0 ? "剩下<strong>#{(day - Date.today).to_i}</strong>天".html_safe : "已結束"
+    (day - Date.today).to_i > -1 ? (day - Date.today == 0 ? "最後一天" : "剩下<strong>#{(day - Date.today).to_i}</strong>天".html_safe) : "已結束"
   end
 
   def render_goods_url(campaign)

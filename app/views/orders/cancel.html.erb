@@ -40,11 +40,12 @@
     <div class="mb-6">
       <div class="d-flex justify-content-between">
         <div class="h5 font-weight-bold">
-          <i class="fas fa-fw fa-check-circle"></i> 支持成功
+          <i class="fas fa-fw fa-exclamation-circle"></i> 取消或退款
         </div>
-        <%= link_to "<u><i class=\"fas fa-fw fa-exclamation-circle\"></i> 取消或退款</u>".html_safe, cancel_orders_path, :class => "d-block"%>
+        <a class="d-block" href="/orders?locale=zh-TW">
+          <i class="fas fa-fw fa-check-circle"></i> 支持成功
+        </a>
       </div>
-      <small class="text-muted">* ATM 轉帳與超商付款若未於期限內繳款，逾期後訂單會自動取消。</small>
     </div>
   	<% @orders.each do |order|%>
       <div class="row mb-6">
@@ -73,16 +74,19 @@
                     <i class="fas fa-fw fa-file-alt"></i> 支持編號：<%= order.number%>
                   </span>
                   <span class="d-inline-block mr-5">
-                    <i class="fas fa-fw fa-credit-card"></i> 支持狀態：<%= render_is_paid(order.goody.campaign, order.goody.id, order.id, order.paid)%>
+                    <i class="fas fa-fw fa-credit-card"></i> 支持狀態：已取消
                   </span>
                   <span class="d-inline-block mr-5">
                     <i class="fas fa-fw fa-calendar-alt"></i> 預計達成時間：<%= order.goody.delivery_time.strftime('%F')%>
+                  </span>
+                  <span class="d-inline-block mr-5">
+                    <i class="fas fa-fw fa-clock"></i> 取消時間：<%= order.updated_at.strftime('%F')%>
                   </span>
                 </small>
               </div>
           	</div>
             <div class="col-12 col-md-3 col-lg-2">
-              <%= render_pay_or_view(order.id, order.paid)%>
+              <%= link_to "查看", detail_order_path(order.id), :class => "btn btn-sm btn-block btn-outline-primary" %>
             </div>
           </div>
         </div>

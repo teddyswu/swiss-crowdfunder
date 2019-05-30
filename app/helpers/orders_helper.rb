@@ -5,9 +5,9 @@ module OrdersHelper
   		link_to "未付款", detail_order_path(id)
   	else
       if 100*(campaign.amount_raised.to_f / campaign.goal) > 100 && (campaign.end_date - Date.today).to_i < 1
-        "已付款(<a href=\"###\" onClick=\"alert('提案已達成請聯繫提案人')\">取消</a>)".html_safe
+        "成功(<a href=\"###\" onClick=\"alert('提案已達成請聯繫提案人')\">取消</a>)".html_safe
       else
-  		  "已付款(<a href=\"mailto:#{campaign.email}\" target=\"_blank\">取消</a>)".html_safe
+  		  "成功(<a href=\"mailto:#{campaign.email}\" target=\"_blank\">取消</a>)".html_safe
       end
   	end
   end
@@ -17,19 +17,6 @@ module OrdersHelper
       link_to "尚未付款", detail_order_path(id), :class => "btn btn-sm btn-block btn-outline-danger"
     else
       link_to "查看", detail_order_path(id), :class => "btn btn-sm btn-block btn-outline-primary"
-    end
-  end
-
-  def render_order_title_path(status)
-    html = String.new
-    if status == "cancel"
-      html << "<a class=\"d-block\" href=\"/orders?locale=zh-TW\">"
-      html << "<i class=\"fas fa-fw fa-check-circle\"></i> 支持成功"
-      html << "</a>"
-    else
-      html << "<a class=\"d-block\" href=\"/orders?locale=zh-TW&status=cancel\">"
-      html << "<u><i class=\"fas fa-fw fa-exclamation-circle\"></i> 取消或退款</u>"
-      html << "</a>"
     end
   end
 

@@ -5,6 +5,7 @@ ActiveAdmin.register Order do
 
   index do
     selectable_column
+    column :id
     column :amount
     column :quantity
     column :payment_type
@@ -19,6 +20,9 @@ ActiveAdmin.register Order do
 
   show do
     attributes_table do
+      row :id
+      row :number
+      row :trade_no
       row :quantity
       row :amount
       row :payment_type
@@ -54,6 +58,8 @@ ActiveAdmin.register Order do
 
   form do |f|
     inputs do
+      input :number, label: "訂單編號"
+      input :trade_no, label: "綠界交易編號"
       input :goody
       input :amount
       input :user_id
