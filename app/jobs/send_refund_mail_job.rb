@@ -7,5 +7,7 @@ class SendRefundMailJob < ApplicationJob
     campaign.orders.each do |order|
     	CampaignMailer.campaign_fail(order.user, order.goody.campaign, order).deliver_now!
     end
+    srm.is_send = true
+    srm.save!
   end
 end
