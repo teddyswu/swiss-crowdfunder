@@ -71,6 +71,8 @@ module OrdersHelper
       "萊爾富超商代碼繳款"
     when "CVS_IBON 7-11" 
       "ibon 代碼繳款"
+    when "MAN_RM"
+      "匯款"
 	  end
   end
 
