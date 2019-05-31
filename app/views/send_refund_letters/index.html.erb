@@ -53,7 +53,7 @@
                     <th scope="row"><%= rl.id%></th>
                     <td><%= rl.campaign.title%></td>
                     <td><%= rl.run_at%></td>
-                    <td><%= render_is_send(rl.campaign.status)%></td>
+                    <td><%= render_is_send(rl.is_send)%></td>
                   </tr>
                 <% end %>
               </tbody>
