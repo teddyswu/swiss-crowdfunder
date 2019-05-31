@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   has_one :supporter, dependent: :destroy
   accepts_nested_attributes_for :supporter
 
-  validates :payment_type, inclusion: { in: %w(stripe bank ecpay) }
+  validates :payment_type, inclusion: { in: %w(stripe bank ecpay sogi) }
   validates :agreement, presence: true
   validates :supporter, presence: true
 
