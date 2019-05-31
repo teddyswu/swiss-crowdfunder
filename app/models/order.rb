@@ -13,6 +13,7 @@ class Order < ApplicationRecord
   #validate :goody, :is_campaign_active?
 
   scope :is_paid, -> { where(paid: true) }
+  scope :normal_order, -> { where(paid: true, status: 3) }
 
   def are_goodies_left?
     errors.add(:goody, "No goodies left!") if goody.remaining_quantity == 0

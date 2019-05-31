@@ -49,7 +49,7 @@
       </div>
       <div class="my-2">
         <div class="font-small text-muted">支持人數</div>
-        <div class="h1 font-weight-bold"><%= campaign.orders.is_paid.count %></div>
+        <div class="h1 font-weight-bold"><%= campaign.orders.normal_order.count %></div>
       </div>
       <div class="my-2">
         <div class="font-small text-muted">剩餘時間 (<%= I18n.l campaign.start_date %> ~ <%= I18n.l campaign.end_date %>)</div>
