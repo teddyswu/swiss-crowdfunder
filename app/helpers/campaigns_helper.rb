@@ -20,7 +20,7 @@ module CampaignsHelper
   def render_goods_url(campaign)
     if campaign.end_date < Date.today
       link_to "提案已結束", "javascript:void();", class: "btn btn-outline-secondary btn-block disabled"
-    elsif campaign.start_date < Date.today && campaign.status == 3
+    elsif campaign.start_date <= Date.today && campaign.status == 3
       link_to "支持提案", campaign_goodies_path(campaign.slug), class: "btn btn-primary btn-block"
     else
       link_to "提案尚未開始", "javascript:void();", class: "btn btn-outline-secondary btn-block disabled"
@@ -30,7 +30,7 @@ module CampaignsHelper
   def render_campaign_view_goods_url(campaign, goody)
     if campaign.end_date < Date.today && campaign.status == 3
       "javascript:void();"
-    elsif campaign.start_date < Date.today && campaign.status == 3
+    elsif campaign.start_date <= Date.today && campaign.status == 3
       new_campaign_goody_order_path(campaign, goody)
     else
       "javascript:void();"
@@ -40,7 +40,7 @@ module CampaignsHelper
   def render_goody_button(campaign, goody)
     if campaign.end_date < Date.today
       "<div class=\"btn btn-outline-secondary btn-block disabled\">提案已結束</div>".html_safe
-    elsif campaign.start_date < Date.today && campaign.status == 3
+    elsif campaign.start_date <= Date.today && campaign.status == 3
       goody.remaining_quantity == 0 ? "<div class='btn btn-block btn-danger'>已額滿</div>".html_safe : "<div class='btn btn-block btn-outline-primary'>#{t('.pledge')}</div>".html_safe
     else
       "<div class=\"btn btn-outline-secondary btn-block disabled\">提案尚未開始</div>".html_safe
