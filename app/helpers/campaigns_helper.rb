@@ -84,7 +84,7 @@ module CampaignsHelper
       "<span class='badge badge-warning'>審核中</span>".html_safe
     when 3
       return "<span class='badge badge-primary'>即將啟動</span>".html_safe if campaign.start_date > Date.today
-      return "<span class='badge badge-primary'>進行中</span>".html_safe if campaign.start_date < Date.today && campaign.end_date > Date.today
+      return "<span class='badge badge-primary'>進行中</span>".html_safe if campaign.start_date <= Date.today && campaign.end_date > Date.today
       return "<span class='badge badge-danger'>已結束</span>".html_safe if campaign.end_date < Date.today
     end
   end
@@ -98,7 +98,7 @@ module CampaignsHelper
       render "shared/list/review", campaign: campaign
     when 3
       return render "shared/list/soon", campaign: campaign if campaign.start_date > Date.today
-      return render "shared/list/processing", campaign: campaign if campaign.start_date < Date.today && campaign.end_date > Date.today
+      return render "shared/list/processing", campaign: campaign if campaign.start_date <= Date.today && campaign.end_date > Date.today
       return render "shared/list/end", campaign: campaign if campaign.end_date < Date.today
     end
   end

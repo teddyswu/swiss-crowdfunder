@@ -8,6 +8,8 @@ CKEDITOR.editorConfig = function( config ) {
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
+	config.extraPlugins = 'button,floatpanel,panel,panelbutton,colorbutton,youtube';
+
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -23,12 +25,17 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
-		{ name: 'about' }
+		{ name: 'colorbutton' },
+		{ name: 'youtube' }
 	];
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
+
+	config.youtube_responsive = true;
+
+	config.pasteFromWordRemoveFontStyles = false;
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
