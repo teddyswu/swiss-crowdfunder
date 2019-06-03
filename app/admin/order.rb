@@ -29,6 +29,8 @@ ActiveAdmin.register Order do
       row :paid
       row :goody
       row :supporter
+      row :remark
+      row :evaluation
       row :agreement
       row :created_at
       row :updated_at
