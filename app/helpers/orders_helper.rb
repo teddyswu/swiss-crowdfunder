@@ -1,15 +1,19 @@
 module OrdersHelper
 
-  def render_is_paid(campaign, goody_id, id, is_paid)
-  	if is_paid == false
-  		link_to "未付款", detail_order_path(id)
-  	else
-      if 100*(campaign.amount_raised.to_f / campaign.goal) > 100 && (campaign.end_date - Date.today).to_i < 1
-        "成功(<a href=\"###\" onClick=\"alert('提案已達成請聯繫提案人')\">取消</a>)".html_safe
-      else
-  		  "成功(<a href=\"mailto:#{campaign.email}\" target=\"_blank\">取消</a>)".html_safe
-      end
-  	end
+  def render_is_paid(campaign, order)
+    if order.status == 4
+      "已取消"
+    else
+      if order.paid == false
+    		link_to "未付款", detail_order_path(order.id)
+    	else
+        if 100*(campaign.amount_raised.to_f / campaign.goal) > 100 && (campaign.end_date - Date.today).to_i < 1
+          "成功(<a href=\"###\" onClick=\"alert('提案已達成請聯繫提案人')\">取消</a>)".html_safe
+        else
+    		  "成功(<a href=\"mailto:#{campaign.email}\" target=\"_blank\">取消</a>)".html_safe
+        end
+    	end
+    end
   end
 
   def render_pay_or_view(id, is_paid)

@@ -97,10 +97,39 @@
             <div class="card-body">
               <div class="form-group">
                 <label class="text-muted">退款說明</label>
-                <div class="form-control-plaintext">有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”有機日日茶·抹茶粉“NODOKA”</div>
+                <div class="form-control-plaintext">
+                  <p>支持者您好，</p>若您有退款需求，請先了解您的退款相關權益後，按下申請退款按鈕，提供我們相關資訊，我們會儘快為您服務喔！依原支付方式的不同，信用卡退款將會退回至原卡片中，ATM及超商支付皆為匯款退回。<p></p>信用卡退款程序：<br><li>請依信件內容，提供申請人之信用卡末四碼，我們將全額退刷至原付款信用卡帳單中，並不會有手續費產生。</li><li>依據各發卡銀行不同，退款作業流程可能需 7~30 個工作天，額度才會返還給您，若您急需確認該筆款項額度，請聯絡您的發卡銀行客服。</li><p></p>ATM及超商退款程序：<li>請依信件內容，提供申請人之個人銀行或郵局之帳戶資料，我們會將款項退回至您指定帳戶。</li><li>非國泰世華銀行帳戶，需承擔15元匯款手續費，將直接由支持金額扣除。</li><li>退款作業固定於每週五轉帳。（遇例假日延後至第一個工作日）</li>
+                </div>
               </div>
               <div class="form-group">
-                <a class="btn btn-outline-primary" href="">申請退款</a>
+                <%= mail_to "ugooz@sogi.com.tw", "申請退款", subject: "退款申請：[請填入完整提案名稱]", body: "支持者您好：
+請協助填妥以下退款所需資訊，我們會儘快為您處理 : )
+
+
+若您當時使用ATM或超商支付
+支持編號：
+原支持日期：
+原支持金額：
+原款項匯入之銀行/郵局帳號末5碼(超商支付免填)：
+
+退款收款銀行/郵局代碼：
+退款收款銀行/郵局帳戶：
+退款原因：
+
+
+※再次提醒您：
+◎ 若您填寫之退款帳戶非國泰世華用戶，需承擔轉帳手續費 15 元，將直接由支持金額中扣除。
+◎ 退款作業固定於每週五轉帳。(如遇例假日順延至第一個工作日)
+
+--------------------------------------------------------------------------------------------------------
+
+若您當時使用信用卡支付
+支持編號：
+原支持日期：
+原支持金額：
+信用卡末四碼：
+退款原因：
+", :class => "btn btn-outline-primary", :target => "_blank" %>
               </div>
             </div>
           </div>
@@ -191,7 +220,7 @@
             <div class="text-muted mb-2">
               <small>
                 <i class="fas fa-fw fa-file-alt"></i> 支持編號: <%= @order.number%><br>
-                <i class="fas fa-fw fa-credit-card"></i> 支持狀態 : <%= render_is_paid(@order.goody.campaign, @order.goody.id, @order.id, @order.paid)%><br>
+                <i class="fas fa-fw fa-credit-card"></i> 支持狀態 : <%= render_is_paid(@order.goody.campaign, @order)%><br>
                 <i class="fas fa-fw fa-calendar-alt"></i> 預計達成時間 : <%= @order.goody.delivery_time.strftime('%F')%>
               </small>
             </div>
