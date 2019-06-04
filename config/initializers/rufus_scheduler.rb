@@ -21,9 +21,12 @@ end
 safely_and_compute_time do
   scheduler  = Rufus::Scheduler.start_new
   proc_mutex = Mutex.new # 初始化一個 process 鎖  
-  scheduler.cron '00 01 * * *', :mutex => proc_mutex do
+  scheduler.cron '00 11 * * *', :mutex => proc_mutex do
     camps = Campaign.where(:result_status => nil).to_a#.where("end_date < ?", Date.today)
     camps.each do |camp|
+      File.open("#{Rails.root}/log/jobs.log", "a+") do |file|
+        file.syswrite(%(#{Time.now.iso8601}: #{camp.slug} start \n---------------------------------------------\n\n))
+      end
       if 100*(camp.amount_raised.to_f / camp.goal) >= 100
         camp.result_status = 1
         camp.orders.is_paid.each do |order|
@@ -33,6 +36,9 @@ safely_and_compute_time do
         #camp.result_status = 2
       end
       camp.save!
+      File.open("#{Rails.root}/log/jobs.log", "a+") do |file|
+        file.syswrite(%(#{Time.now.iso8601}: #{camp.slug} end \n---------------------------------------------\n\n))
+      end
     end
   end
 end
