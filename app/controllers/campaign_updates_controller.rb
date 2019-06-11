@@ -11,6 +11,8 @@ class CampaignUpdatesController < ApplicationController
     set_page_description @campaign.claim
     set_page_image @campaign.campaign_image.campaign_path
     set_page_title "#{@campaign.title}-進度更新"
+    host = YAML.load_file("config/settings.yml")[:root_host]
+    @like_url = host + "/campaigns/" + @campaign.slug
 	end
 
 	def create
@@ -30,6 +32,8 @@ class CampaignUpdatesController < ApplicationController
 		set_page_description ActionView::Base.full_sanitizer.sanitize(@campaign_update.campaign_content)[0,60]
     set_page_image @campaign.campaign_image.campaign_path
     set_page_title "#{@campaign.title}-#{@campaign_update.campaign_title}"
+    host = YAML.load_file("config/settings.yml")[:root_host]
+    @like_url = host + "/campaigns/" + @campaign.slug
 	end
 
 	def update
