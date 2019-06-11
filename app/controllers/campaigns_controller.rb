@@ -51,6 +51,8 @@ class CampaignsController < ApplicationController
     set_page_description group_name
     set_page_image @campaign.campaign_image.campaign_path
     set_page_title "#{@campaign.title}-參與小農"
+    host = YAML.load_file("config/settings.yml")[:root_host]
+    @like_url = host + "/campaigns/" + @campaign.slug
   end
 
   def support
@@ -61,6 +63,8 @@ class CampaignsController < ApplicationController
     set_page_description @campaign.claim
     set_page_image @campaign.campaign_image.campaign_path
     set_page_title "#{@campaign.title}-支持者"
+    host = YAML.load_file("config/settings.yml")[:root_host]
+    @like_url = host + "/campaigns/" + @campaign.slug
   end
 
   def group_edit
