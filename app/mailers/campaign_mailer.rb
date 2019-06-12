@@ -24,4 +24,11 @@ class CampaignMailer < ApplicationMailer
     @user = user
     mail(:to => user.email, :subject => "友故事｜支持成功確認")
   end
+
+  def campaign_update(order, user, campaign, update)
+    @campaign = campaign
+    @campaign_update = update
+    @order = order
+    mail(:to => user.email, :subject => "友故事｜#{campaign.title} 進度更新通知")
+  end
 end

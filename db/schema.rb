@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190529090359) do
+ActiveRecord::Schema.define(version: 20190612062228) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20190529090359) do
     t.text "campaign_title"
     t.text "campaign_content"
     t.integer "user_id"
+    t.text "delayed_job_id"
+    t.boolean "is_send"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_campaign_updates_on_campaign_id"
@@ -310,7 +312,6 @@ ActiveRecord::Schema.define(version: 20190529090359) do
   add_foreign_key "campaign_qas", "campaigns"
   add_foreign_key "campaign_replies", "campaigns"
   add_foreign_key "campaign_updates", "campaigns"
-  add_foreign_key "orders", "goodies"
   add_foreign_key "supporters", "orders"
   add_foreign_key "tracks", "campaigns"
 end

@@ -17,7 +17,10 @@ class CampaignUpdatesController < ApplicationController
 
 	def create
 		@campaign_update = CampaignUpdate.new(campaign_update_params)
+		sunm = SendUpdateNoticeMailJob.set(wait: 5.minutes).perform_later
+		@campaign_update.delayed_job_id = sunm.job_id
 		@campaign_update.save!
+
 		id = Campaign.find(params[:campaign_update][:campaign_id]).slug
 		redirect_to campaign_path(id)
 	end

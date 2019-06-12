@@ -31,7 +31,7 @@ module CampaignsHelper
     if campaign.end_date < Date.today && campaign.status == 3
       "javascript:void();"
     elsif campaign.start_date <= Date.today && campaign.status == 3
-      new_campaign_goody_order_path(campaign, goody)
+      goody.remaining_quantity == 0 ? "javascript:void();" : new_campaign_goody_order_path(campaign, goody)
     else
       "javascript:void();"
     end
