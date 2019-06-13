@@ -24,14 +24,14 @@ class CampaignsController < ApplicationController
   def new
     @campaign = Campaign.new
     @campaign_tags = CampaignTag.all
-    @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
+    @farmer_group = PsGroup.normal_state.to_a.map {|pg| [pg.name, pg.name] }
     set_page_title "發起提案"
   end
 
   def edit
     @campaign_tags = CampaignTag.all
     @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id).map {|cts| cts.campaign_tag_id }    
-    @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
+    @farmer_group = PsGroup.normal_state.to_a.map {|pg| [pg.name, pg.name] }
   end
 
   def check_slug
@@ -68,7 +68,7 @@ class CampaignsController < ApplicationController
   end
 
   def group_edit
-    @farmer_group = FarmerProfile.where.not(:ps_group => nil).group(:ps_group).map {|profile| [profile.ps_group, profile.ps_group] }
+    @farmer_group = PsGroup.normal_state.to_a.map {|pg| [pg.name, pg.name] }
     @farmer_lists = params[:group_name].present? ? User.joins(:farmer_profile).where("users.is_check_farmer = true and farmer_profiles.ps_group = ?", params[:group_name]).map {|user| [user.farmer_profile.name, user.id] } : []
     # @farmer_exist_lists = params[:group_name].present? ? @campaign.campaign_groups.map {|group| [group.user.farmer_profile.name, group.user.id] } : []
     # @farmer_lists = params[:group_name].present? ? @farmer_all_lists - @farmer_exist_lists : []
