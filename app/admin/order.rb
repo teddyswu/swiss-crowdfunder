@@ -8,7 +8,6 @@ ActiveAdmin.register Order do
     column :id
     column :amount
     column :quantity
-    column :payment_type
     column :paid
     column :goody
     column :supporter
@@ -25,6 +24,7 @@ ActiveAdmin.register Order do
       row :trade_no
       row :quantity
       row :amount
+      row :bonus
       row :payment_type
       row :paid
       row :goody
