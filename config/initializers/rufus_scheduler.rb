@@ -30,6 +30,9 @@ safely_and_compute_time do
       if 100*(camp.amount_raised.to_f / camp.goal) >= 100
         camp.result_status = 1
         camp.orders.is_paid.group("user_id").to_a.each do |order|
+          File.open("#{Rails.root}/log/jobs.log", "a+") do |file|
+            file.syswrite(%(#{Time.now.iso8601}: send to #{order.user.email} \n---------------------------------------------\n\n))
+          end
           CampaignMailer.campaign_success(order.user, order.goody.campaign, order).deliver_now!
         end
       #else
