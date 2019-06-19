@@ -70,7 +70,7 @@
                       <label for="formName" class="d-flex justify-content-between">
                         收件人
                       </label>
-                      <%= s.text_field :first_name, value: @last_order.try(:supporter).try(:first_name), :class => "form-control", :placeholder => "必填，請填寫真實姓名，若不正確可能造成投遞失敗。" %>
+                      <%= s.text_field :first_name, value: @last_order.try(:supporter).try(:first_name), :class => "form-control", :placeholder => "必填，請填寫真實姓名，若不正確可能造成投遞失敗。", :required => true %>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
@@ -91,26 +91,26 @@
                         <label for="formAddress" class="d-flex justify-content-between">
                           地址
                         </label>
-                        <%= s.text_field :address, value: @last_order.try(:supporter).try(:address), :class => "form-control", :placeholder => "請輸入地址" %>
+                        <%= s.text_field :address, value: @last_order.try(:supporter).try(:address), :class => "form-control", :placeholder => "請輸入地址", :required => true %>
                       </div>
                       <div class="form-group col-md-2">
                         <label for="formNum" class="d-flex justify-content-between">
                           郵遞區號
                         </label>
-                        <%= s.text_field :postal_code, value: @last_order.try(:supporter).try(:postal_code), :class => "form-control" %>
+                        <%= s.text_field :postal_code, value: @last_order.try(:supporter).try(:postal_code), :class => "form-control", :required => true %>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="formPhone" class="d-flex justify-content-between">
                         聯絡電話
                       </label>
-                      <%= s.text_field :cell_phone, value: @last_order.try(:supporter).try(:cell_phone), :class => "form-control", :placeholder => "請輸入電話" %>
+                      <%= s.text_field :cell_phone, value: @last_order.try(:supporter).try(:cell_phone), :class => "form-control", :placeholder => "請輸入電話", :required => true %>
                     </div>
                     <div class="form-group">
                       <label for="formMail" class="d-flex justify-content-between">
                         聯絡信箱
                       </label>
-                      <%= s.text_field :email, value: current_user.email, :class => "form-control" %>
+                      <%= s.text_field :email, value: current_user.email, :class => "form-control", :required => true %>
                       <p id ="email_format" style="font-size: 10px;color: red;"></p>
                     </div>
                   </div>
@@ -240,35 +240,35 @@
     }
     return is_read_checkbox.checked ;
   };
-  function PaymentType(){
-    var payment_type = document.querySelector('input[name="order[payment_type]"]:checked');
-    if (payment_type== null){
-      alert("請選擇付款方式");
-      return false
-    }else{return true}
-  };
-  function CheckAllInput(){
-    if($("#order_supporter_attributes_first_name").val()==""){
-      alert('名字，未填寫');
-      return false
-    }else if($("#order_supporter_attributes_address").val()==""){
-      alert('地址，未填寫');
-      return false
-    }else if($("#order_supporter_attributes_cell_phone").val()==""){
-      alert('手機，未填寫');
-      return false
-    }else if($("#order_supporter_attributes_postal_code").val()==""){
-      alert('郵遞區號，未填寫');
-      return false
-    }else if($("#order_supporter_attributes_city").val()==""){
-      alert('區域，未填寫');
-      return false
-    }else{
-      return true
-    }
-  };
+  // function PaymentType(){
+  //   var payment_type = document.querySelector('input[name="order[payment_type]"]:checked');
+  //   if (payment_type== null){
+  //     alert("請選擇付款方式");
+  //     return false
+  //   }else{return true}
+  // };
+  // function CheckAllInput(){
+  //   if($("#order_supporter_attributes_first_name").val()==""){
+  //     alert('名字，未填寫');
+  //     return false
+  //   }else if($("#order_supporter_attributes_address").val()==""){
+  //     alert('地址，未填寫');
+  //     return false
+  //   }else if($("#order_supporter_attributes_cell_phone").val()==""){
+  //     alert('手機，未填寫');
+  //     return false
+  //   }else if($("#order_supporter_attributes_postal_code").val()==""){
+  //     alert('郵遞區號，未填寫');
+  //     return false
+  //   }else if($("#order_supporter_attributes_city").val()==""){
+  //     alert('區域，未填寫');
+  //     return false
+  //   }else{
+  //     return true
+  //   }
+  // };
   function validate_all(){
-    if (CheckAllInput()==true && validateForm()==true && PaymentType()==true){
+    if (validateForm()==true){
       return true;
     }else{
       return false;
