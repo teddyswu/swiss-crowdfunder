@@ -17,7 +17,7 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    @campaigns = Campaign.where(:user_id => current_user.id).order( "created_at Asc" )
+    @campaigns = Campaign.where(:user_id => current_user.id).order( "created_at Desc" )
     set_page_title "提案紀錄"
   end
 
