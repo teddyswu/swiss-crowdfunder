@@ -37,7 +37,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">$</span>
                 </div>
-                <%= f.number_field :price, :class => "form-control", :required => true %>
+                <%= f.number_field :price, :class => "form-control", :required => true, :min => 100 %>
               </div>
               <small class="form-text text-muted"></small>
             </div>
@@ -64,3 +64,16 @@
     </div>
   </div>
 </div>
+<script>
+  $( "#goody_quantity" ).change(function() {
+    if ($( "#goody_quantity" ).val() < 1){
+      if ($( "#goody_quantity" ).val() != -1){
+        $( "#goody_quantity" ).val("");
+      }else{
+        $("#quantity_format").html("");
+      }
+    }else{
+      $("#quantity_format").html("");
+    }
+  });
+</script>
