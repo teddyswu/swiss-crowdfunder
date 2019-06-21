@@ -1,137 +1,139 @@
-<div id="main" class="push py-14 mt-10 mt-lg-12">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="text-center text-success mb-10">
-          <h1 class="font-weight-bold">友善提案</h1>
+<% cache ["root_index"], :expires_in => 1.hours do %>
+  <div id="main" class="push py-14 mt-10 mt-lg-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center text-success mb-10">
+            <h1 class="font-weight-bold">友善提案</h1>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12 my-3 post">
-        <% @campaigns_top.each_with_index do |campaign, index| %>
-          <%= link_to campaign_path(campaign.slug), :class => "position-relative d-block block-info active" do %>
-            <div class="position-absolute d-flex flex-column w-100 h-100 p-2 text-white">
-              <div class="mb-auto"></div>
-              <div class="text-center">
-                <div class="my-auto">
-                  <div class="h5"><%= campaign.title%></div>
-                  <div class="my-2"><small><i class="far fa-clock"></i> <%= render_remain_day(campaign.end_date) %></small></div>
-                  <div class="btn btn-outline-light px-10">查看內容</div>
+      <div class="row">
+        <div class="col-12 my-3 post">
+          <% @campaigns_top.each_with_index do |campaign, index| %>
+            <%= link_to campaign_path(campaign.slug), :class => "position-relative d-block block-info active" do %>
+              <div class="position-absolute d-flex flex-column w-100 h-100 p-2 text-white">
+                <div class="mb-auto"></div>
+                <div class="text-center">
+                  <div class="my-auto">
+                    <div class="h5"><%= campaign.title%></div>
+                    <div class="my-2"><small><i class="far fa-clock"></i> <%= render_remain_day(campaign.end_date) %></small></div>
+                    <div class="btn btn-outline-light px-10">查看內容</div>
+                  </div>
+                </div>
+                <div class="mt-auto"></div>
+              </div>
+              <div class="d-none d-lg-block">
+                <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:landing_page) %>" alt="" width="100%">
+              </div>
+              <div class="d-lg-none">
+                <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:campaign_path) %>" alt="" width="100%">
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row my-5">
+        <div class="col-12">
+          <div class="h4 font-weight-bold text-muted">
+            <i class="fas fa-fw fa-bullhorn "></i> 最新
+          </div>
+        </div>
+        <% @campaigns_new.each do |camp_new|%>
+          <div class="col-12 col-sm-6 col-lg-3 my-3">
+            <%= link_to campaign_path(camp_new.slug), :class => "item" do %>
+              <div class="d-block position-relative">
+                <%= campaign_tag(camp_new)%>
+                <img class="img-fluid text-center" src="<%= camp_new.campaign_image.try(:campaign_path) %>" alt="">
+              </div>
+              <div class="p-2">
+                <div class="item-title text-black">
+                  <%= camp_new.title %>
+                </div>
+                <div class="text-muted mb-2">
+                  <small>
+                    <i class="far fa-user"></i> <%= camp_new.name%>
+                  </small>
+                  <small class="item-desc">
+                    <%= camp_new.claim %>
+                  </small>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(camp_new) %>;" aria-valuenow="<%= campaign_percentage(camp_new) %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(camp_new) %></div>
+                </div>
+                <div class="mt-2 text-dark">
+                  <small class="d-block">
+                    <i class="far fa-fw fa-clock"></i> <%= render_remain_day(camp_new.end_date) %>
+                  </small>
+                  <small class="d-block">
+                    <i class="fas fa-fw fa-dollar-sign"></i> <span class="text-muted">目前達成金額</span>
+                    <strong><%= number_to_currency(camp_new.amount_raised, precision: 0)%></strong>
+                  </small>
                 </div>
               </div>
-              <div class="mt-auto"></div>
-            </div>
-            <div class="d-none d-lg-block">
-              <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:landing_page) %>" alt="" width="100%">
-            </div>
-            <div class="d-lg-none">
-              <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:campaign_path) %>" alt="" width="100%">
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         <% end %>
       </div>
-    </div>
-    <div class="row my-5">
-      <div class="col-12">
-        <div class="h4 font-weight-bold text-muted">
-          <i class="fas fa-fw fa-bullhorn "></i> 最新
+      <div class="row my-5">
+        <div class="col-12">
+          <div class="h4 font-weight-bold text-muted">
+            <i class="fas fa-fw fa-eye"></i> 關注
+          </div>
         </div>
+        <% @campaigns.each do |campaign|%>
+          <div class="col-12 col-sm-6 col-lg-3 my-3">
+            <%= link_to campaign_path(campaign.slug), :class => "item" do %>
+              <div class="d-block position-relative">
+                <%= campaign_tag(campaign)%>
+                <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:campaign_path) %>" alt="">
+              </div>
+              <div class="p-2">
+                <div class="item-title text-black">
+                  <%= campaign.title %>
+                </div>
+                <div class="text-muted mb-2">
+                  <small>
+                    <i class="far fa-user"></i> <%= campaign.user.user_profile.nickname%>
+                  </small>
+                  <small class="item-desc">
+                    <%= campaign.claim %>
+                  </small>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(campaign) %>;" aria-valuenow="<%= campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(campaign) %></div>
+                </div>
+                <div class="mt-2 text-dark">
+                  <small class="d-block">
+                    <i class="far fa-fw fa-clock"></i> <%= render_remain_day(campaign.end_date) %>
+                  </small>
+                  <small class="d-block">
+                    <i class="fas fa-fw fa-dollar-sign"></i> <span class="text-muted">目前達成金額</span>
+                    <strong><%= number_to_currency(campaign.amount_raised, precision: 0)%></strong>
+                  </small>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-      <% @campaigns_new.each do |camp_new|%>
-        <div class="col-12 col-sm-6 col-lg-3 my-3">
-          <%= link_to campaign_path(camp_new.slug), :class => "item" do %>
-            <div class="d-block position-relative">
-              <%= campaign_tag(camp_new)%>
-              <img class="img-fluid text-center" src="<%= camp_new.campaign_image.try(:campaign_path) %>" alt="">
-            </div>
-            <div class="p-2">
-              <div class="item-title text-black">
-                <%= camp_new.title %>
-              </div>
-              <div class="text-muted mb-2">
-                <small>
-                  <i class="far fa-user"></i> <%= camp_new.name%>
-                </small>
-                <small class="item-desc">
-                  <%= camp_new.claim %>
-                </small>
-              </div>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(camp_new) %>;" aria-valuenow="<%= campaign_percentage(camp_new) %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(camp_new) %></div>
-              </div>
-              <div class="mt-2 text-dark">
-                <small class="d-block">
-                  <i class="far fa-fw fa-clock"></i> <%= render_remain_day(camp_new.end_date) %>
-                </small>
-                <small class="d-block">
-                  <i class="fas fa-fw fa-dollar-sign"></i> <span class="text-muted">目前達成金額</span>
-                  <strong><%= number_to_currency(camp_new.amount_raised, precision: 0)%></strong>
-                </small>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+      <!-- <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav> -->
     </div>
-    <div class="row my-5">
-      <div class="col-12">
-        <div class="h4 font-weight-bold text-muted">
-          <i class="fas fa-fw fa-eye"></i> 關注
-        </div>
-      </div>
-      <% @campaigns.each do |campaign|%>
-        <div class="col-12 col-sm-6 col-lg-3 my-3">
-          <%= link_to campaign_path(campaign.slug), :class => "item" do %>
-            <div class="d-block position-relative">
-              <%= campaign_tag(campaign)%>
-              <img class="img-fluid text-center" src="<%= campaign.campaign_image.try(:campaign_path) %>" alt="">
-            </div>
-            <div class="p-2">
-              <div class="item-title text-black">
-                <%= campaign.title %>
-              </div>
-              <div class="text-muted mb-2">
-                <small>
-                  <i class="far fa-user"></i> <%= campaign.user.user_profile.nickname%>
-                </small>
-                <small class="item-desc">
-                  <%= campaign.claim %>
-                </small>
-              </div>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(campaign) %>;" aria-valuenow="<%= campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(campaign) %></div>
-              </div>
-              <div class="mt-2 text-dark">
-                <small class="d-block">
-                  <i class="far fa-fw fa-clock"></i> <%= render_remain_day(campaign.end_date) %>
-                </small>
-                <small class="d-block">
-                  <i class="fas fa-fw fa-dollar-sign"></i> <span class="text-muted">目前達成金額</span>
-                  <strong><%= number_to_currency(campaign.amount_raised, precision: 0)%></strong>
-                </small>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <!-- <nav class="mt-4">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav> -->
   </div>
-</div>
+<% end %>

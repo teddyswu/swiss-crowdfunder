@@ -20,7 +20,7 @@
               <div class="progress-bar" role="progressbar" style="width: <%= campaign_percentage(campaign) %>;" aria-valuenow="<%= campaign.amount_raised %>" aria-valuemin="0" aria-valuemax="100"><%= campaign_percentage(campaign) %></div>
             </div>
             目前達成：<%= number_to_currency(campaign.amount_raised, precision: 0) %><br>
-            支持人數：<%= campaign.supporters.count %> 人<br>
+            支持人數：<%= campaign.orders.normal_order.count %> 人<br>
             剩餘時間：<%= render_remain_day(campaign.end_date)%>
           </div>
         </div>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="col-12 col-lg my-1 my-lg-0 text-center text-lg-right">
-        <%= mail_to "ugooz@sogi.com.tw", "申請變更", :class => "btn btn-sm btn-outline-primary" %>
+        <%= mail_to "ugooz@sogi.com.tw", "申請變更", :class => "btn btn-sm btn-outline-primary", target: '_blank' %>
       </div>
     </div>
   </div>

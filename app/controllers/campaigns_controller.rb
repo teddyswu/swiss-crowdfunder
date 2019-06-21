@@ -17,7 +17,7 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    @campaigns = Campaign.where(:user_id => current_user.id)
+    @campaigns = Campaign.where(:user_id => current_user.id).order( "created_at Asc" )
     set_page_title "提案紀錄"
   end
 
@@ -135,7 +135,9 @@ class CampaignsController < ApplicationController
     user_profile = UserProfile.find_by_user_id(current_user.id)
     user_profile.facebook_url = params[:facebook_url]
     user_profile.save!
-    @campaign.campaign_image.update_urls_success?
+    if params[:commit] != "提交審核"
+      @campaign.campaign_image.update_urls_success?
+    end
     if tag_ids_params.present?
       @campaign_tag_ship = CampaignTagShip.where(:campaign_id => @campaign.id)
       @campaign_tag_ship.destroy_all

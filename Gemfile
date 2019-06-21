@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer'
 gem 'mini_racer'
 gem "rufus-scheduler", "2.0.24"
-
+gem "dalli"
 gem 'will_paginate', '~> 3.1.0'
 gem 'money'
 gem 'active_merchant_allpay', github: 'imgarylai/active_merchant_allpay'

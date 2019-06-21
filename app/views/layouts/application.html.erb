@@ -108,6 +108,7 @@
                 <%= link_to "訂單匯入", order_batch_uploads_path, class:"dropdown-item" if current_user.is_admin? %>
                 <%= link_to "發退款信", send_refund_letters_path, class:"dropdown-item" if current_user.is_admin? %>
                 <%= link_to "帳號管理", edit_user_registration_path, class:"dropdown-item" %>
+                <%= link_to "後台管理", "#{YAML.load_file("config/settings.yml")[:agrisc_host]}/agris", class: "dropdown-item" if current_user.is_admin?%>
                 <%= link_to "登出", destroy_user_session_path, class:"dropdown-item" %>
               </div>
             </div>
