@@ -8,7 +8,7 @@
     </div>
     <div class="col-12 col-lg-7 p-2">
       <div class="font-small text-muted">
-        <%= campaign.updated_at.strftime("%F %T") %>
+        <%= campaign.created_at.strftime("%F %T") %>
       </div>
       <%= link_to campaign.title, campaign_path(campaign.slug), :class => "text-black text-row-1"%>
       <hr class="my-3">

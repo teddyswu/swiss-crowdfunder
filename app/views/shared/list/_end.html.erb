@@ -8,7 +8,7 @@
     </div>
     <div class="col-12 col-lg-7 p-2">
       <div class="font-small text-muted">
-        <%= campaign.updated_at.strftime("%F %T") %>
+        <%= campaign.created_at.strftime("%F %T") %>
       </div>
       <%= link_to campaign.title, campaign_path(campaign.slug), :class => "text-black text-row-1"%>
       <hr class="my-3">
@@ -33,13 +33,15 @@
   <div class="bg-white border-top p-4">
     <div class="row align-items-center">
       <div class="col-12 col-lg-8 text-center text-lg-left">
-        <div class="text-success my-1 my-lg-0">
-        	<% if 100*(campaign.amount_raised.to_f / campaign.goal) > 100 %>
+        <% if 100*(campaign.amount_raised.to_f / campaign.goal) > 100 %>
+          <div class="text-success my-1 my-lg-0">
           	<%= "<i class='fas fa-fw fa-check'></i> 您的提案已結束，恭喜您的提案支持成功！".html_safe %>
-          <% else %>
+          </div>
+        <% else %>
+          <div class="text-danger my-1 my-lg-0">
          	 	<%= "<i class='fas fa-fw fa-ban'></i> 您的提案已結束，很可惜提案未成功。".html_safe %>
-         	<% end %>
-        </div>
+       	  </div>
+        <% end %>
       </div>
       <div class="col-12 col-lg my-1 my-lg-0 text-center text-lg-right">
       	<%= link_to "查看紀錄", list_campaign_path(campaign.slug), :class => "btn btn-sm btn-outline-primary" if 100*(campaign.amount_raised.to_f / campaign.goal) > 100 %>
