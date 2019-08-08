@@ -47,9 +47,6 @@ class User::RegistrationsController < Devise::RegistrationsController
         set_flash_message :notice, flash_key
       end
       bypass_sign_in resource, scope: resource_name
-      p params[:s] != ""
-      p params[:s]
-      p "================"
       if params[:s] != ""
         redirect_to "https://m.me/agrisogi?ref=u_advisory" and return
       end
