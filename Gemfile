@@ -32,7 +32,7 @@ gem 'bootstrap', '~> 4.0.0.beta.2'
 gem "fog"
 gem "omniauth-oauth"
 gem "omniauth-facebook", '4.0.0'
-gem 'devise', '4.5.0'
+gem 'devise', '4.7.1'
 gem 'activeadmin'
 gem 'redcarpet'
 gem 'simple_form'
